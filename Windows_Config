@@ -17,16 +17,19 @@ Install-ADDSForest –DomainName "lab.net"
  
 #Customized Configuration  
 Install-ADDSForest –DomainName ‘lab.net’ –CreateDNSDelegation –DomainMode Win2012R2 –ForestMode Win2012R2 –DatabasePath "d:\NTDS" –SYSVOLPath "d:\SYSVOL" –LogPath "e:\Logs"
-Install-ADDSForest –DomainName $domain –DomainMode Win2012 –ForestMode Win2012 -Force -SafeModeAdministratorPassword (convertto-securestring $password -asplaintext -force) –DatabasePath $locationNTDS –SYSVOLPath $locationSYSVOL –LogPath $locationNTDSLogs -verbose
- 
+Install-ADDSForest –DomainName $domain –DomainMode Win2012R2 –ForestMode Win2012R2 -Force -SafeModeAdministratorPassword (convertto-securestring $password -asplaintext -force) –DatabasePath $locationNTDS –SYSVOLPath $locationSYSVOL –LogPath $locationNTDSLogs -verbose
+
+#First you MUST install AD Role on Server
+Install-Windowsfeature AD-Domain-Services, DNS
+
+#Join an existing Domain this is the replacment for DCPROMO
+Install-ADDSDomainController -DomainName 'awssol.com' -InstallDNS:$True –Credential (Get-Credential) 
+
 #CleanUp commands 
 Get-help Uninstall-ADDSDomainController 
  
 #Demote Commands 
 Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole 
- 
-#Join an existing Domain 
- Install-ADDSDomainController -DomainName 'awssol.com' -InstallDNS:$True –Credential (Get-Credential) 
  
 #Set TrustedHost 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
