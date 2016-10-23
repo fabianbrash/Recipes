@@ -1,0 +1,38 @@
+#Various Powershell commands for installing and configuring a Server core and Server GUI install
+
+
+#Configure Server core
+sconfig
+
+#Powershell AD Join commands 
+ 
+#Check available commands 
+Get-command –module ADDSDeployment 
+ 
+#Run Poweshell against remote servers 
+invoke-command {install-addsdomaincontroller –domainname ethernuno.intra –credential (get-credential) –computername dc02 
+ 
+#Simplest way of Creating a new Forest 
+Install-ADDSForest –DomainName "lab.net" 
+ 
+#Customized Configuration  
+Install-ADDSForest –DomainName ‘lab.net’ –CreateDNSDelegation –DomainMode Win2012R2 –ForestMode Win2012R2 –DatabasePath "d:\NTDS" –SYSVOLPath "d:\SYSVOL" –LogPath "e:\Logs" 
+ 
+#CleanUp commands 
+Get-help Uninstall-ADDSDomainController 
+ 
+#Demote Commands 
+Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole 
+ 
+#Join an existing Domain 
+ Install-ADDSDomainController -DomainName awssol.com -InstallDNS:$True –Credential (Get-Credential) 
+ 
+#Set TrustedHost 
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
+
+#Get windows features
+Get-Windowsfeature
+#Install windows feature
+Install-Windowsfeature
+
+
