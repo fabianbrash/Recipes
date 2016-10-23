@@ -20,7 +20,7 @@ Install-ADDSForest –DomainName ‘lab.net’ –CreateDNSDelegation –DomainM
 Install-ADDSForest –DomainName $domain –DomainMode Win2012R2 –ForestMode Win2012R2 -Force -SafeModeAdministratorPassword (convertto-securestring $password -asplaintext -force) –DatabasePath $locationNTDS –SYSVOLPath $locationSYSVOL –LogPath $locationNTDSLogs -verbose
 
 #First you MUST install AD Role on Server
-Install-Windowsfeature AD-Domain-Services, DNS
+Install-Windowsfeature AD-Domain-Services,DNS
 
 #Join an existing Domain this is the replacment for DCPROMO
 Install-ADDSDomainController -DomainName 'awssol.com' -InstallDNS:$True –Credential (Get-Credential) 
@@ -39,5 +39,15 @@ Get-Windowsfeature
 #Install windows feature
 Install-Windowsfeature -Name 'FeatureName' -IncludeAllSubFeature -IncludeManagementTools
 Install-Windowsfeature -Name 'FeatureName','FeatureName'
+
+#Disable FireWall You can also do this with a GPO Computer Config>Admin Templates>Network>Network Connections>Windows Firewall
+#Advance Firewall settings GPO comouter config>Policies>Windows Swttings>Security Settings>Windows Firewall with Advanced Security
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+#In a virtual environment you will need configure an external time source for your PDC
+w32tm.exe /config /manualpeerlist:"0.us.pool.ntp.org 1.us.pool.ntp.org" /syncfromflags:manual /reliable:YES /update
+w32tm.exe /config /update
+Restart-Service w32time
+
 
 
