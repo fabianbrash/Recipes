@@ -16,7 +16,8 @@ invoke-command {install-addsdomaincontroller –domainname ethernuno.intra –cr
 Install-ADDSForest –DomainName "lab.net" 
  
 #Customized Configuration  
-Install-ADDSForest –DomainName ‘lab.net’ –CreateDNSDelegation –DomainMode Win2012R2 –ForestMode Win2012R2 –DatabasePath "d:\NTDS" –SYSVOLPath "d:\SYSVOL" –LogPath "e:\Logs" 
+Install-ADDSForest –DomainName ‘lab.net’ –CreateDNSDelegation –DomainMode Win2012R2 –ForestMode Win2012R2 –DatabasePath "d:\NTDS" –SYSVOLPath "d:\SYSVOL" –LogPath "e:\Logs"
+Install-ADDSForest –DomainName $domain –DomainMode Win2012 –ForestMode Win2012 -Force -SafeModeAdministratorPassword (convertto-securestring $password -asplaintext -force) –DatabasePath $locationNTDS –SYSVOLPath $locationSYSVOL –LogPath $locationNTDSLogs -verbose
  
 #CleanUp commands 
 Get-help Uninstall-ADDSDomainController 
@@ -25,7 +26,7 @@ Get-help Uninstall-ADDSDomainController
 Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole 
  
 #Join an existing Domain 
- Install-ADDSDomainController -DomainName awssol.com -InstallDNS:$True –Credential (Get-Credential) 
+ Install-ADDSDomainController -DomainName 'awssol.com' -InstallDNS:$True –Credential (Get-Credential) 
  
 #Set TrustedHost 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
@@ -33,6 +34,7 @@ Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local�
 #Get windows features
 Get-Windowsfeature
 #Install windows feature
-Install-Windowsfeature
+Install-Windowsfeature -Name 'FeatureName' -IncludeAllSubFeature -IncludeManagementTools
+Install-Windowsfeature -Name 'FeatureName','FeatureName'
 
 
