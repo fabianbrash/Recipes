@@ -49,5 +49,6 @@ w32tm.exe /config /manualpeerlist:"0.us.pool.ntp.org 1.us.pool.ntp.org" /syncfro
 w32tm.exe /config /update
 Restart-Service w32time
 
-
+#Remote Volume Management
+#VDS must be running on both the local and remote device, please make certain to open up 'Remote Volume Management' 
 
