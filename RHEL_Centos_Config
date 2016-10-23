@@ -1,0 +1,27 @@
+#Install RHEl or centos with the Development packages
+#If you forgot you can use yum group install
+
+sudo yum upgrade
+
+sudo yum grouplist
+sudu yum grouplist hidden
+
+sudo yum groupinstall "GroupPackage Name"
+
+#Install Epel packages
+sudo yum install epel-release
+
+#Text graphical config of network
+sudo nmtui
+
+#List all services
+#Centos/RHEL V6.x
+sudo service --status-all
+sudo service --status-all | less or more
+sudo service --status-all | grep ntpd
+
+#Centos/RHEL V7.x
+sudo systemctl start | stop | enable | mask 'service name'
+sudo systemctl list-unit-files
+sudo systemd-cgtop
+chkconfig --list
