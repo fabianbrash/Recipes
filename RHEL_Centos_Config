@@ -25,3 +25,13 @@ sudo systemctl start | stop | enable | mask 'service name'
 sudo systemctl list-unit-files
 sudo systemd-cgtop
 chkconfig --list
+
+#Install open-vmtools
+sudo yum install open-vm-tools
+
+#Start openvmtools
+sudo systemctl start openvmtoolsd
+sudo systemctl enable openvmtoolsd
+
+#Install NPM(which install nodejs) you must first install epel-release
+sudo yum install npm
