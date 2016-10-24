@@ -1,0 +1,4 @@
+#In case you have a failed PSC or failed VCSA we need to clean things up
+cmsso-util unregister --node-pnid FQDN_of_failed_PSC_or_vCenter --username administrator@your_domain_name --passwd vCenter-Single-Sign-On-password
+#The above did not work for me but this did
+/usr/lib/vmware-vmdir/bin/vdcleavefed -h lab-psc-01.lab.net -u administrator
