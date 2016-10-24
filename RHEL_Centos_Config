@@ -35,3 +35,6 @@ sudo systemctl enable openvmtoolsd
 
 #Install NPM(which install nodejs) you must first install epel-release
 sudo yum install npm
+
+#The default firewall is now firewalld
+#TODO: Add firewalld commands here
