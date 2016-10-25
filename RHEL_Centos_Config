@@ -55,3 +55,25 @@ firewall-cmd --get-zones
 firewall-cmd --zone=home --list-all
 
 sudo firewall-cmd --zone=home --change-interface=eth0
+#Permanently change zones edit below file and add ZONE=thezone at end of file
+sudo nano /etc/sysconfig/network-scripts/ifcfg-eth0
+sudo systemctl restart network.service
+sudo systemctl restart firewalld.service
+
+#Change default zone
+sudo firewall-cmd --set-default-zone=home
+
+#Get All services
+firewall-cmd --get-services
+
+#Add a service permanently
+sudo firewall-cmd --zone=public --permanent --add-service=http
+
+#Add a port
+sudo firewall-cmd --zone=public --permanent --add-port=5000/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=4990-4999/udp
+#list all permanent ports
+sudo firewall-cmd --zone-public permanent --list-ports
+
+#Create your own zones
+sudo firewall-cmd --permanent --new-zone=publicweb
