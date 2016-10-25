@@ -30,8 +30,8 @@ chkconfig --list
 sudo yum install open-vm-tools
 
 #Start openvmtools
-sudo systemctl start openvmtoolsd
-sudo systemctl enable openvmtoolsd
+sudo systemctl start vmtoolsd
+sudo systemctl enable vmtoolsd
 
 #Install NPM(which install nodejs) you must first install epel-release
 sudo yum install npm
