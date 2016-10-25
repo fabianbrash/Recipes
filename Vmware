@@ -12,3 +12,6 @@ cd /usr/lib/vmware-vmdir/bin
 
 #Show replication partners
 ./vdcrepadmin -f showpartners -h lab-psc-01.lab.net -u administrator
+
+#Show current replication status
+./vdcrepadmin -f showpartnerstatus -h localhost -u administrator
