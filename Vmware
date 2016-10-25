@@ -19,3 +19,4 @@ cd /usr/lib/vmware-vmdir/bin
 #Display storage capabilities i.e. SCSI UNMAP
 esxcli storage core device list (-d optional if you want to target a particulat device)
 esxcli storage core device vaai status get
+esxcli storage core plugin list
