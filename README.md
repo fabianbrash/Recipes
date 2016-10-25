@@ -1,2 +1,2 @@
 # Recipes
-Scripts for setting up a Linux and Windows Infrastructure
+Scripts for setting up a Linux, Windows, and VMware Infrastructure
