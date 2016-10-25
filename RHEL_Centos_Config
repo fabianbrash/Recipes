@@ -37,4 +37,21 @@ sudo systemctl enable vmtoolsd
 sudo yum install npm
 
 #The default firewall is now firewalld
-#TODO: Add firewalld commands here
+#If firewalld is not installed
+sudo yum install firewalld
+
+#See the state of firewalld
+firewall-cmd --state
+
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+
+firewall-cmd --get-default-zone
+
+firewall-cmd --get-active-zones
+firewall-cmd --list-all
+
+firewall-cmd --get-zones
+firewall-cmd --zone=home --list-all
+
+sudo firewall-cmd --zone=home --change-interface=eth0
