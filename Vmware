@@ -5,7 +5,10 @@ cmsso-util unregister --node-pnid FQDN_of_failed_PSC_or_vCenter --username admin
 /usr/lib/vmware-vmdir/bin/vdcleavefed -h lab-psc-01.lab.net -u administrator
 
 #List all PSC's in
-/usr/lib/vmware-vmdir/bin/vdcrepadmin -h lab-psc-01.lab.net -u administrator
+/usr/lib/vmware-vmdir/bin/vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
 or
 cd /usr/lib/vmware-vmdir/bin
-./vdcrepadmin -h lab-psc-01.lab.net -u administrator
+./vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
+
+#Show replication partners
+./vdcrepadmin -f showpartners -h lab-psc-01.lab.net -u administrator
