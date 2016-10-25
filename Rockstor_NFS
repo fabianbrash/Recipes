@@ -1,0 +1,3 @@
+#Config options for exporting NFS share with Rockstor
+
+/export/NFS-Share *(rw,sync,no_root_squash,insecure)
