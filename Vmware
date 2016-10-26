@@ -20,3 +20,8 @@ cd /usr/lib/vmware-vmdir/bin
 esxcli storage core device list (-d optional if you want to target a particulat device)
 esxcli storage core device vaai status get
 esxcli storage core plugin list
+
+#Connectin to the various VCSA and PSC appliances
+#https://psc-IP/psc - this is the SSO side of things
+#https://psc-IP:5480 - this is the appliance itself
+#https://vcsa-IP:5480 - this is the VCSA VAMI interface
