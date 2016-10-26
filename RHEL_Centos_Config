@@ -77,3 +77,6 @@ sudo firewall-cmd --zone-public permanent --list-ports
 
 #Create your own zones
 sudo firewall-cmd --permanent --new-zone=publicweb
+
+#Install python packages get pip first
+sudo yum install python-pip
