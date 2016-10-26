@@ -25,3 +25,7 @@ esxcli storage core plugin list
 #https://psc-IP/psc - this is the SSO side of things
 #https://psc-IP:5480 - this is the appliance itself
 #https://vcsa-IP:5480 - this is the VCSA VAMI interface
+
+#Get NUMA information from a host
+
+esxcli hardware memory get | grep NUMA
