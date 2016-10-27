@@ -52,3 +52,7 @@ Restart-Service w32time
 #Remote Volume Management
 #VDS must be running on both the local and remote device, please make certain to open up 'Remote Volume Management' 
 
+#Must register this on each DC so you can move Schema master role
+regsvr32 schmmgmt.dll
+#Then load mmc.exe and you should now see an options for schema master
+
