@@ -80,3 +80,9 @@ sudo firewall-cmd --permanent --new-zone=publicweb
 
 #Install python packages get pip first
 sudo yum install python-pip
+
+#using find command
+sudo find
+sudo find ./etc -name "hosts"
+find ./test -name "abc.txt"
+find ./test -name "*.php"
