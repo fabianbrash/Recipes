@@ -56,3 +56,30 @@ Restart-Service w32time
 regsvr32 schmmgmt.dll
 #Then load mmc.exe and you should now see an options for schema master
 
+
+################################################################################################################################
+Create Bootable USB stick for Server 2012 R2 I will assume this will work for 2016 as well
+
+Pre-requisites: 7-Zip software (Download it from here: http://7-zip.org/), Windows 2012 (R2) ISO (or Windows 8.1 ISO), 8GB or more USB disk
+
+Open Command Prompt in elevated mode (Run as Administrator)
+Type diskpart and press Enter
+Type list disk and press Enter. Note the list of existing disks.
+Insert the USB Disk
+Type list disk and press enter again. Note the new disk showed up which is our USB disk. I assume the new disk is 2 for example purpose.
+Type select disk X where X is your USB disk. E.g., select disk 2. Press Enter.
+Type clean and press enter.
+Type create partition primary and press enter to create primary partition 1.
+Type select partition 1 and press enter.
+Type active and press enter to make the partition 1 active
+Type format fs=ntfs and press enter. This will format the partition 1 as NTFS volume.
+Type assign and press enter to assign the USB disk to a drive letter.
+ 
+
+Now right click on Windows Server 2012 R2 or Windows 8.1 ISO file, select 7-Zip –> Extract Files…
+Select your USB disk to extract the ISO contents to the USB disk
+That’s all. Boot the server or computer using the bootable USB disk.
+
+***Note I simply formatted the USB disk as NTFS in the GUI and then I set the partition as primary
+***This also will allow you to upgrade a server instead of doing a clean install
+#########################################################################################################################
