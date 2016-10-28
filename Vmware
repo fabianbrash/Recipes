@@ -29,3 +29,6 @@ esxcli storage core plugin list
 #Get NUMA information from a host
 
 esxcli hardware memory get | grep NUMA
+
+$Get DCUI console from ssh, ssh into esxi host and type below
+dcui
