@@ -8,3 +8,12 @@ git add filename or git add *
 #commit changes
 git commit -m "Some text"
 git push or git pull
+#Get status
+git status
+#branches
+git branch -a
+#delete branch
+git branch -d <branchname>
+#checkout a branch
+git checkout <branchname>
+
