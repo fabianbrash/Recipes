@@ -86,3 +86,8 @@ sudo find
 sudo find ./etc -name "hosts"
 find ./test -name "abc.txt"
 find ./test -name "*.php"
+
+##Fedora has a tool gnome-tweak-tool
+dnf install gnome-tweak-tool
+##Then from terminal run
+gnome-tweak-tool
