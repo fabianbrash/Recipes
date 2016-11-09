@@ -32,3 +32,18 @@ esxcli hardware memory get | grep NUMA
 
 $Get DCUI console from ssh, ssh into esxi host and type below
 dcui
+
+###VScsiStats#######################################################
+#List all disks
+vscsiStats -l
+Start stats on a VM with World ID 76634 and disk ID 8192
+vscsiStats -s -w 76634 -i 8192
+
+#Display Stats ioLength
+vscsiStats -p ioLength -c -w 76634 -i 8192
+
+#Display Latency
+vscsiStats -p latency -c -w 76634 -i 8192
+
+#Stop logging
+vscsiStats -x -w 76634 -i 8192
