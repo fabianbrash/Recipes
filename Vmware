@@ -47,3 +47,19 @@ vscsiStats -p latency -c -w 76634 -i 8192
 
 #Stop logging
 vscsiStats -x -w 76634 -i 8192
+
+###Useful ESX commands#############################################################################################
+Useful ESX commands
+
+esxcli software vib list | grep ams
+
+
+/etc/init.d/hp-ams.sh stop
+
+/etc/init.d/hp-ams.sh stop && chkconfig hp-ams.sh off && services.sh restart
+chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
+
+########Enable CDP###############################################################################################
+esxcfg vswitch b vSwitch1
+esxcfg vswitch B both vSwitch1
+esxcfg vswitch b vSwitch1
