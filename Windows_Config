@@ -9,7 +9,7 @@ sconfig
 #Check available commands 
 Get-command –module ADDSDeployment 
  
-#Run Poweshell against remote servers 
+#Run Powershell against remote servers 
 invoke-command {install-addsdomaincontroller –domainname ethernuno.intra –credential (get-credential) –computername dc02 
  
 #Simplest way of Creating a new Forest 
@@ -31,7 +31,7 @@ Get-help Uninstall-ADDSDomainController
 #Demote Commands 
 Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole 
  
-#Set TrustedHost 
+######Set TrustedHost this is required to remotely manage a server when both systems are not apart of a Domain##################### 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
 
 #Get windows features
