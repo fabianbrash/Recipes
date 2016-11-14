@@ -1,0 +1,4 @@
+##Settin up reverse lookup zone
+##type reverse IP followed by .in-addr.arpa as it's zone name(MASTER ZONE)
+##ex. 0.168.192.in-addr.arpa for 192.168.1.0/24
+#####Make certain to install Yast Server managment look under YAST in software manager under RPM tree
