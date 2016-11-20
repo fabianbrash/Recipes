@@ -37,6 +37,8 @@ TTL 2d
 
 ###DNS server on reverse is ns.fb.net(or whatever)
 
+###REFER TO http://mixeduperic.com/ubuntu/seven-easy-steps-to-setting-up-an-interal-dns-server-on-ubuntu.html
+
 ###Restart/Stop/Start service
 sudo service "servicename" restart/stop/start
 sudo service named restart
