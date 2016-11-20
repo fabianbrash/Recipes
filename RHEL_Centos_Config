@@ -91,3 +91,5 @@ find ./test -name "*.php"
 dnf install gnome-tweak-tool
 ##Then from terminal run
 gnome-tweak-tool
+
+####GREAT RESOURCE: https://www.server-world.info/en/
