@@ -35,6 +35,7 @@ TTL 2d
 253             IN PTR          pscs.fb.net.
 
 
+###DNS server on reverse is ns.fb.net(or whatever)
 
 ###Restart/Stop/Start service
 sudo service "servicename" restart/stop/start
