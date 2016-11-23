@@ -63,3 +63,12 @@ chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
 esxcfg vswitch b vSwitch1
 esxcfg vswitch B both vSwitch1
 esxcfg vswitch b vSwitch1
+
+##################STORAGE CONFIG COMMANDS######################################################################
+##List all NFS Datastores
+esxcli storage nfs list
+/etc/init.d/storageRM stop
+##Rescan all storage devices and then
+/etc/init.d/storageRM start
+##Now lets remove it
+escli storage nfs remove -v "NFS volume name"
