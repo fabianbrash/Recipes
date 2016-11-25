@@ -91,3 +91,5 @@ diskperf -Y
 ######This is probably due to a power outage as the VM was doing it's update
 ##boot into safe mode and run make certain C is the correct drive of your Windows install, in my case it was D
 dism.exe /image:D:\ /cleanup-image /revertpendingactions
+######You can also attempt to rename the following file
+c:\windows\winsxs\pending.xml
