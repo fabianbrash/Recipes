@@ -87,3 +87,7 @@ That’s all. Boot the server or computer using the bootable USB disk.
 #####Enable Disk performance metrics under server 2012,windows 10, server 2016, windows 8.1 from command prompt enter
 diskperf -Y
 
+###################Windows update tries to update but stops @ updating n%#########################
+######This is probably due to a power outage as the VM was doing it's update
+##boot into safe mode and run make certain C is the correct drive of your Windows install, in my case it was D
+dism.exe /image:D:\ /cleanup-image /revertpendingactions
