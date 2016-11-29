@@ -72,3 +72,7 @@ esxcli storage nfs list
 /etc/init.d/storageRM start
 ##Now lets remove it
 escli storage nfs remove -v "NFS volume name"
+
+#####################VAAI CONFIG##################################################################################
+esxcli storage core device vaai status get
+esxtop select 'u' for devices
