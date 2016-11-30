@@ -82,3 +82,9 @@ vim-cmd hostsvc/maintenace_mode_enter
 esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"
 vim-cmd hostsvc/maintenance_mode_exit
 reboot
+
+###Get all VM ID's
+vim-cmd vmsvc/getall
+###Then if you like you can use the VM ID's to launch the VMRC
+cd to the location of the VMRC installation
+vmrc.exe vmrc://root@yourhostorvc/?moid='vmid'
