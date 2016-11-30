@@ -76,3 +76,9 @@ escli storage nfs remove -v "NFS volume name"
 #####################VAAI CONFIG##################################################################################
 esxcli storage core device vaai status get
 esxtop select 'u' for devices
+
+#########################UPDATE ESXI HOST SSH##################################################################
+vim-cmd hostsvc/maintenace_mode_enter
+esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"
+vim-cmd hostsvc/maintenance_mode_exit
+reboot
