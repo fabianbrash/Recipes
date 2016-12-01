@@ -1,0 +1,7 @@
+####Rethink runs on port 8080 by default
+
+#############Start rethinkDB
+rethinkdb --bind all
+
+######Join a Rethink cluster
+rethinkdb --join IP_OF_FIRST_MACHINE:29015 --bind all
