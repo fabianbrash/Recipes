@@ -5,3 +5,108 @@ rethinkdb --bind all
 
 ######Join a Rethink cluster
 rethinkdb --join IP_OF_FIRST_MACHINE:29015 --bind all
+
+###########################REQL commands############################################################################################
+r.db('movies').table('imdb').orderBy(r.desc('year')).limit(200)
+
+r.db('movies').table('imdb').orderBy(r.desc('year')).limit(10)
+
+r.dbCreate("Schools")
+
+r.db("Schools").tableCreate("schooldata")
+
+r.db("Schools").table('schooldata') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/shools.json')) r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').oderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('Subnet')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').getAll("Fisher")
+
+r.db("Schools").table('schooldata').filter({"Fisher"})
+
+r.db("Schools").table('schooldata').filter("Fisher")
+
+r.db("Schools").table('schooldata').filter({"name":"Fisher"})
+
+r.db("Schools").table('schooldata').filter({"name":"George"})
+
+r.db("Schools").table('schooldata').filter({"name":"Mason"})
+
+r.db("Schools").table('schooldata').filter({"name":"Wythe"})
+
+r.db("Schools").table('schooldata').filter({"name":"George Mason"})
+
+r.db("Schools").table('schooldata').filter({"name":"Reid"})
+
+r.db("Schools").table('schooldata').filter({"name":"Woodville"})
+
+r.db("Schools").table('schooldata').filter({"name":"Westover"})
+
+r.db("Schools").table('schooldata').filter({"name":"Westoverhills"})
+
+r.db("Schools").table('schooldata').contains('Westover')
+
+r.db("Schools").table('schooldata').contains('Westoverhills')
+
+r.db("Schools").table('schooldata').contains('Woodville')
+
+r.db("Schools").table('schooldata').filter({'name': 'Greene'})
+
+r.db("Schools").table('schooldata').filter({'name': 'Henderson'})
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata')filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Elementary'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Elementary'}).orderBy('name')
