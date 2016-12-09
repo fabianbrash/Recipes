@@ -93,3 +93,6 @@ dnf install gnome-tweak-tool
 gnome-tweak-tool
 
 ####GREAT RESOURCE: https://www.server-world.info/en/
+
+####List users on centos/rhel system
+cat /etc/passwd
