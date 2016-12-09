@@ -80,6 +80,9 @@ sudo firewall-cmd --zone-public permanent --list-ports
 #Create your own zones
 sudo firewall-cmd --permanent --new-zone=publicweb
 
+##Reload the firewall
+sudo firewall-cmd --reload
+
 #Install python packages get pip first
 sudo yum install python-pip
 
@@ -98,3 +101,14 @@ gnome-tweak-tool
 
 ####List users on centos/rhel system
 cat /etc/passwd
+
+
+####List users on centos/rhel system
+cat /etc/passwd
+
+###Installing Webmin the --no-check-certificate option is necessary if wgt does not trust the cert sourceforge bounces you around######
+download .rpm from http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
+wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
+###Required Dependency for webmin
+sudo yum install perl-Net-SSLeay
+###Webmin runs on port 10000 so you will need to open that up if you are using a firewall
