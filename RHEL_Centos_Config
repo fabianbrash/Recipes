@@ -11,8 +11,10 @@ sudo yum groupinstall "GroupPackage Name"
 #Install Epel packages
 sudo yum install epel-release
 
-#Text graphical config of network
+#Text graphical config of network after making a change you will need to restart network service
 sudo nmtui
+sudo systemctl restart network
+
 
 #List all services
 #Centos/RHEL V6.x
