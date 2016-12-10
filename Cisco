@@ -33,7 +33,7 @@ password 'your password'
 
 ###THIS WORKED FOR ME########
 config t
-liny vty 0
+line vty 0
 password 'your password'
 login
 login synchronous
