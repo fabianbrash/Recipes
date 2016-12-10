@@ -1,2 +1,17 @@
+##########All these command have help (?) or have autocomplete####################
+
+
 ####LIST ALL PORTS##########
 show ip interface
+#####SHOW VLAN INFO########
+show vlan brief
+#####DISPLAY WHAT'S IN FLASH
+show flash
+####SET DATE AND TIME#######
+clock set hh:mm:ss 10 December 2016
+
+######COPY RUNNING CONFIG TO STARTUP######
+copy running-config startup-config
+
+#####CHANGE SWITCH HOSTNAME MUST BE RUN FROM GLOBAL CONFIG########################
+hostname CORE1
