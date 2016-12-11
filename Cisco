@@ -42,3 +42,10 @@ motd-banner(optional)
 
 #####AD NEW USER AND SET PRIVILEGE THERE ARE WAYS TO ENCRYPT THE PASSWORD TYPE ? AFTTER PASSWORD 0 5 7?###########
 usernme fb privilege 15 password 'your password'
+
+####################CONFIGURE SSH###################################
+conf t
+line vty 0 4
+login local
+transport input ssh
+
