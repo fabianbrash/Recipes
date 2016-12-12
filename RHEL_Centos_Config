@@ -111,4 +111,7 @@ download .rpm from http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.no
 wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
 ###Required Dependency for webmin
 sudo yum install perl-Net-SSLeay
+*Note is you use yum to install the .rpm file webmin.xxx.rpm it will locate the dependency for you and install it
+***If you use RPM to install you will need to install the dependency first
+
 ###Webmin runs on port 10000 so you will need to open that up if you are using a firewall
