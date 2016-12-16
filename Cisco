@@ -22,6 +22,10 @@ ip address 192.168.x.x 255.255.x.x
 ######KEEP AN INTERFACE UP
 interface FastEthernet0
 no shut(conversely you can shut down an interface with shut)
+
+########Show interface status see if something is connected to a port################################
+show interfaces status
+
 ########SETUP PASSWORD
 enable password 'your password'
 enable secret 'your password'can't be the same as enable password
