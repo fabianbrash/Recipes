@@ -54,3 +54,9 @@ conf t
 interface range GigabitEthernet1/0/1-28
 no shut
 no shut
+
+##############Configure a VLAN#####################################
+enable
+config t
+vlan "vlan number"
+name Mgmt
