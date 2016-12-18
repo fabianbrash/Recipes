@@ -92,6 +92,7 @@ vmrc.exe vmrc://root@yourhostorvc/?moid='vmid'
 
 #########################CREATING CUSTOM IMAGES WITH POERCLI##############################################
 ##You need the offline bundle to start with
+####Also download your drivers and unzip so you just have your dirver offline bundle
 ##Get all available Profiles
 Get-EsxImageProfile
 ##ADD a depot
@@ -110,3 +111,17 @@ Add-EsxSoftwarePackage -ImageProfile MyProfile -SoftwarePackage 'packageName'
 Get-EsxSoftwarePackage
 #####Now let's export our ISO You can also export to an offline-bundle .zip file################
 Export-EsxImageprofile -ImageProfile MyProfile -Filepath C:\images\MyProfile.iso -ExportToIso -Force -NoSignatureCheck
+
+################ALTERNATIVE METHOD#################################################
+Add-EsxSoftwareDepot -Depot C:\depot\Esxi-6.0.zip
+Add-EsxSoftwareDepot -Depot C:\depot\vibs\fusion-io.zip
+Get-EsxSoftwareDepot
+Get-EsxImageProfile
+New-EsxImageProfile -CloneProfile "Esxi-6.0-standard" -Name "MyProfile"
+Get-EsxImageProfile
+Get-EsxSoftwarePackage
+######Optionally we can remove unwanted packages or deprecated packages###################
+Remove-EsxSoftwarePackage
+#########When asked for an image profile use the profile you created above "MyProfile"
+(Get-EsxImageProfile "MyProfile").viblist
+
