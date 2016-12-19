@@ -113,10 +113,10 @@ Get-EsxSoftwarePackage
 Export-EsxImageprofile -ImageProfile MyProfile -Filepath C:\images\MyProfile.iso -ExportToIso -Force -NoSignatureCheck
 
 ################ALTERNATIVE METHOD#################################################
-Add-EsxSoftwareDepot -Depot C:\depot\Esxi-6.0.zip
-Add-EsxSoftwareDepot -Depot C:\depot\vibs\fusion-io.zip
+Add-EsxSoftwareDepot -DepotUrl C:\depot\Esxi-6.0.zip
+Add-EsxSoftwareDepot -DepotUrl C:\depot\vibs\fusion-io.zip
 Get-EsxSoftwareDepot
-Get-EsxImageProfile
+Get-EsxImageProfile | Format-list (The Names are truncated so you will need this)
 New-EsxImageProfile -CloneProfile "Esxi-6.0-standard" -Name "MyProfile"
 Get-EsxImageProfile
 Get-EsxSoftwarePackage
@@ -124,4 +124,27 @@ Get-EsxSoftwarePackage
 Remove-EsxSoftwarePackage
 #########When asked for an image profile use the profile you created above "MyProfile"
 (Get-EsxImageProfile "MyProfile").viblist
+Add-EsxSoftwarePackage
+Export-EsxImageProfile -ImageProfile "MyProfile" -ExportToIso(or ExportToBundle) -FilePath C:\vmware\ISO\MyProfile.iso -Force -NoSignatureCheck
 
+######################################WHAT WORKED FOR ME#################################################
+Get-EsxImageProfile
+Add-EsxSoftwareDepot -DepotUrl C:\VMware\esxi-depot.zip
+Get-EsxImageProfile
+Get-EsxSoftwareDepot
+New-EsxImageProfile -CloneProfile "Then Name from the Get-EsxImageProfile | Format-list" -Name "MyProfileName"
+[vendor]: Whatever you want
+######LIST all VIBS in the package
+Get-EsxSoftwarePackage
+########ADD to the main depot
+Add-EsxSoftwareDepot
+DepotUrl[0]: C:\VMware\VIBS
+#####Now a get will tell you if you successfully added the Depot
+Get-EsxSoftwarePackage
+#####Now lets add it to our Custom depot
+Add-EsxSoftwarePackage -ImageProfile "MyProfile"
+SoftwarePackage[0]: scsi-iomemory-vsl
+####Now lets make certain the package was injected correctly
+(Get-EsxImageProfile "MyProfile").viblist
+Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile.iso -ExportToIso -Force -noSignatureCheck
+Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile-offline-bundle.zip -ExportToBundle -Force -noSignatureCheck
