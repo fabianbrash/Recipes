@@ -87,3 +87,12 @@ switchport trunk allowed vlan add 30
 
 
 #####################################################################################################################################
+
+
+########SHOW MAC ADDRESS TABLE####################################################################
+show or sh mac-address-table
+show arp table - can only be used once routing has been enabled on the switch
+
+#######################IP ROUTING ENABLING L3##############################################################
+conf t
+ip routing
