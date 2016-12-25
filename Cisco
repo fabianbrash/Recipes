@@ -18,6 +18,7 @@ hostname CORE1
 ###########CONFIGURE AN INTERFACE#############
 interface FastEthernet0
 ip address 192.168.x.x 255.255.x.x
+no shut
 
 ######KEEP AN INTERFACE UP
 interface FastEthernet0
@@ -44,8 +45,8 @@ login synchronous
 exec-timeout 40(optional)
 motd-banner(optional)
 
-#####AD NEW USER AND SET PRIVILEGE THERE ARE WAYS TO ENCRYPT THE PASSWORD TYPE ? AFTTER PASSWORD 0 5 7?###########
-usernme fb privilege 15 password 'your password'
+#####ADD NEW USER AND SET PRIVILEGE THERE ARE WAYS TO ENCRYPT THE PASSWORD TYPE ? AFTER PASSWORD 0 5 7?###########
+username fb privilege 15 password 'your password'
 
 ####################CONFIGURE SSH###################################
 conf t
