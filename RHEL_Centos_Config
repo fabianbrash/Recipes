@@ -115,3 +115,9 @@ sudo yum install perl-Net-SSLeay
 ***If you use RPM to install you will need to install the dependency first
 
 ###Webmin runs on port 10000 so you will need to open that up if you are using a firewall
+
+
+################CHECK RPM PACKAGE UPDATE HISTORY######################################################
+sudo rpm -q kernel --last
+sudo rpm -q vim --last
+sudo rpm -qa --last
