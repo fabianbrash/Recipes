@@ -13,6 +13,10 @@ clock set hh:mm:ss 10 December 2016
 ######COPY RUNNING CONFIG TO STARTUP######
 copy running-config startup-config
 
+############SHOW LICENSE INFO################################
+show license
+
+
 #####CHANGE SWITCH HOSTNAME MUST BE RUN FROM GLOBAL CONFIG########################
 hostname CORE1
 ###########CONFIGURE AN INTERFACE#############
