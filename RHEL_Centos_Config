@@ -126,7 +126,16 @@ sudo rpm -qa --last
 #############################DMESG#################################################################
 dmesg is used to write kermel messages to standard out
 dmesg | less
-dmesg | grep -i memory
+dmesg | grep -i memory(check system memory)
 dmesg | grep -i usb
 dmesg | grep -i network
+dmesg | grep -i dma(see if hdd isrunning in dma mode)
+dmesg | grep -i 10(check for 10G NIC)
 
+#############THE lspci tool can also be used to check all pci bus devices in our system#######################
+lspci(ls + pci) if you get command not found you need to install the pciutils package
+sudo yum install -y pciutils
+lspci
+######the info returned can then be piped into dmesg to make certain our pci-e devices are registering correctly
+ex. VMXNET 3 returned address 03:00 so we can run
+dmesg | grep -i 03:00(-i means ignore case)
