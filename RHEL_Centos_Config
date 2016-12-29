@@ -136,6 +136,8 @@ dmesg | grep -i 10(check for 10G NIC)
 lspci(ls + pci) if you get command not found you need to install the pciutils package
 sudo yum install -y pciutils
 lspci
+lspci -m
+lspci -t
 ######the info returned can then be piped into dmesg to make certain our pci-e devices are registering correctly
 ex. VMXNET 3 returned address 03:00 so we can run
 dmesg | grep -i 03:00(-i means ignore case)
