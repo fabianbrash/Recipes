@@ -121,3 +121,12 @@ sudo yum install perl-Net-SSLeay
 sudo rpm -q kernel --last
 sudo rpm -q vim --last
 sudo rpm -qa --last
+
+
+#############################DMESG#################################################################
+dmesg is used to write kermel messages to standard out
+dmesg | less
+dmesg | grep -i memory
+dmesg | grep -i usb
+dmesg | grep -i network
+
