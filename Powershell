@@ -1,0 +1,8 @@
+############################HOW TO SIGN A POWERSHELL SCRIPT##############################################
+#Launch Powershell and CD to
+cd Cert:\CurrentUser\My
+##The above will have all of your personal certificates(Note a Code Signing certificate is a user cert not a machine cert)
+$cert=Get-ChildItem -Path Cert:\Currentuser\My -CodeSigningCert
+Set-AuthenicationcodeSignature 'path to your code' -cert $cert
+#################IF YOU ARE AD INTEGRATED AND HAVE A CA OPERATIONAL YOU CAN USE THE BUILT IN CODESIGNING TEMPLATE TO DO THIS#########
+***NOTE SIGN YOUR CODE ONCE YOU'VE TESTING THAT EVERYTHING IS OKAY, BECAUSE IF YOU MAKE A CHANGE YOU WILL NEED TO SIGN IT AGAIN.
