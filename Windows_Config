@@ -93,3 +93,15 @@ diskperf -Y
 dism.exe /image:D:\ /cleanup-image /revertpendingactions
 ######You can also attempt to rename the following file
 c:\windows\winsxs\pending.xml
+
+
+################################UPGRADING ROOT CA FROM SHA1 TO SHA256#####################################################
+#########THIS IS IF YOU ONLY HAVE A ROOT CA AND YOU DON'T HAVE SUB-CA'S PLEASE REFERENCE https://www.petenetlive.com/KB/Article/0001243
+#Launch powershell
+certutil -setreg ca\csp\CNGHashAlgorithm SHA256
+net stop certsvc
+net start certsvc
+#########Then Renew your Root Certificate and it should now show SHA256
+#####FROM YOU CA "Renew CA Certificate" make certain you select "NO" to "Generate new public and private keys"
+########ALSO YOU CAN DO THIS SIMPLY IF YOUR CRYPTOGRAPHIC PROVIDER IS "Microsoft Software Key Storage Provider" again refer to above link
+
