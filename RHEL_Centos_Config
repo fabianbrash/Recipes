@@ -143,3 +143,7 @@ lspci -s 03:00
 ######the info returned can then be piped into dmesg to make certain our pci-e devices are registering correctly
 ex. VMXNET 3 returned address 03:00 so we can run
 dmesg | grep -i 03:00(-i means ignore case)
+
+########ethtool###############################
+ethtool eth0 or 'whatever you adapter is'
+
