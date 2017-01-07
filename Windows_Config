@@ -105,3 +105,22 @@ net start certsvc
 #####FROM YOU CA "Renew CA Certificate" make certain you select "NO" to "Generate new public and private keys"
 ########ALSO YOU CAN DO THIS SIMPLY IF YOUR CRYPTOGRAPHIC PROVIDER IS "Microsoft Software Key Storage Provider" again refer to above link
 
+
+############FORMAT A DISK 8K BLOCK SIZE#########################################################
+
+####This can be done from the GUI or from diskpart
+######let's first check our current unit allocation size
+##launch elevated command prompt
+fsutil fsinfo ntfsinfo 'your drive' 'bytes per cluster is your unit allocation'
+
+######now let's format using diskpart
+elevated command prompt
+diskpart.exe
+list volume or list disk
+select volume 'your volume number' or select disk
+format fs=ntfs quick unit=8096 label=data or
+format fs=ntfs quick unit=8k label=data
+
+
+
+
