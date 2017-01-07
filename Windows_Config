@@ -118,7 +118,14 @@ elevated command prompt
 diskpart.exe
 list volume or list disk
 select volume 'your volume number' or select disk
-format fs=ntfs quick unit=8096 label=data or
+
+####You can also create a 500 MB partition if this is your C drive like so
+
+create partition primary size=500
+format quick
+####this will give you a 500MB partition and then the below will format the rest as 8k block size
+create partition primary
+format fs=ntfs quick unit=8192 label=data or
 format fs=ntfs quick unit=8k label=data
 
 
