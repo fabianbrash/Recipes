@@ -104,6 +104,8 @@ net start certsvc
 #########Then Renew your Root Certificate and it should now show SHA256
 #####FROM YOU CA "Renew CA Certificate" make certain you select "NO" to "Generate new public and private keys"
 ########ALSO YOU CAN DO THIS SIMPLY IF YOUR CRYPTOGRAPHIC PROVIDER IS "Microsoft Software Key Storage Provider" again refer to above link
+####NOTE YOU MUST RUN GPUPDATE /FORCE SO THE NEW CERTIFICATE CAN REPLICATE TO YOUR ENDPOINTS "TRUSTED ROOT CERTIFICATE AUTHORITY"##
+#####ALSO YOU CAN USE THE lpd.exe TOOL TO TEST LDAPS FUNCTUNALITY LDAP PORT:389 LDAPS:636###################
 
 
 ############FORMAT A DISK 8K BLOCK SIZE#########################################################
