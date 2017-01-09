@@ -10,3 +10,13 @@ Set-AuthenicationcodeSignature 'path to your code' -cert $cert
 
 
 ***NOTE SIGN YOUR CODE ONCE YOU'VE TESTING THAT EVERYTHING IS OKAY, BECAUSE IF YOU MAKE A CHANGE YOU WILL NEED TO SIGN IT AGAIN.
+
+
+
+
+################################CREATE A PS PROFILE#####################################
+##Check if 1 exists
+Test-Path $profile
+##returns False if you don't have a profile
+###Create one
+New-Item -path $profile -type file -force
