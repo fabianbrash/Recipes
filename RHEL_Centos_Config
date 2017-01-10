@@ -145,5 +145,5 @@ ex. VMXNET 3 returned address 03:00 so we can run
 dmesg | grep -i 03:00(-i means ignore case)
 
 ########ethtool###############################
-ethtool eth0 or 'whatever you adapter is'
+ethtool eth0 or 'whatever your adapter is'
 
