@@ -131,5 +131,15 @@ format fs=ntfs quick unit=8192 label=data or
 format fs=ntfs quick unit=8k label=data
 
 
+#########CHANGE DEFAULT COMPUTER AND USER OU###########################
+
+##Computer redirect
+redircmp ou=ComputersOU,dc=mydomain,dc=com
+
+##User redirect
+redirusr ou=UsersOU,dc=mydomain,dc=com
+
+##In my case
+redircmp "OU=fbWorkstations,DC=fb,DC=com"
 
 
