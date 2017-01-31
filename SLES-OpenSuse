@@ -1,0 +1,46 @@
+##Settin up reverse lookup zone
+##type reverse IP followed by .in-addr.arpa as it's zone name(MASTER ZONE)
+##ex. 1.168.192.in-addr.arpa for 192.168.1.0/24
+#####Make certain to install Yast Server managment look under YAST in software manager under RPM tree
+####Config File for reverse DNS
+
+$TTL 5m
+@               IN SOA          ns.fb.net.      postmaster.fb.net. (
+                                2016112005      ; serial
+                                3h              ; refresh
+                                1h              ; retry
+                                1w              ; expiry
+                                1d )            ; minimum
+
+;1.168.192.in-addr.arpa.
+;name server(s)
+@               IN NS           ns.fb.net.
+
+;PTR records
+224             IN PTR          ns.fb.net.
+253             IN PTR          pscs.fb.net.
+
+####YAST might do this as well note the replacement of the @ symbol##############################
+
+TTL 2d
+@               IN SOA          ns.fb.net.      postmaster.fb.net. (
+                                2016112006      ; serial
+                                3h              ; refresh
+                                1h              ; retry
+                                1w              ; expiry
+                                1d )            ; minimum
+
+1.168.192.in-addr.arpa. IN NS           ns.fb.net.
+224             IN PTR          ns.fb.net.
+253             IN PTR          pscs.fb.net.
+
+
+###DNS server on reverse is ns.fb.net(or whatever)
+
+###REFER TO http://mixeduperic.com/ubuntu/seven-easy-steps-to-setting-up-an-interal-dns-server-on-ubuntu.html
+
+###Restart/Stop/Start service
+sudo service "servicename" restart/stop/start
+sudo service named restart
+
+

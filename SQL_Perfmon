@@ -1,0 +1,29 @@
+####Some base performance counters to look at for SQL in PERFMON###############################
+
+SQLServer:Buffer Manager
+      Buffer cache hit ratio:  should be 100
+      Database pages:          in KB
+      Page life expectancy:    in seconds higher is better
+      
+      #####################################Excerpt############################################################################
+      #Source:  http://solutioncenter.apexsql.com/top-sql-server-memory-pressure-counters/
+      
+      By far the most cited performance counter is Page Life Expectancy (aka PLE). This counter is part of SQL Server’s Buffer Manager Object and MSDN defines [1] it as “the number of seconds a page will stay in the buffer pool without references.” Even though it doesn’t say so in its definition nor in its name, this counter actually shows the average, not some total or min/max, of the lifetime of pages in the buffer pool. So this counter indicates just how long, in seconds and on average, the pages are staying in the buffer pool and the longer an average page is living in the buffer pool, the higher the chances are that SQL Server will find it there when eventually it needs it again instead of having to read it from the disk
+
+The relevance of monitoring this counter cannot be overstated, as a low value for it indicates that a SQL Server memory pressure, as explained above, must necessarily lead to more I/O which is, of course, the slowest component in the stack by several orders of magnitude. As an example a missing index on a large table (table for which pages cannot fit into RAM available for SQL Server’s buffer pool) will eventually lead to a full scan which will of course lead to increased reading (problem) and flushing of potentially useful pages of other tables (aggravating problem). Such an event would be easily detectable by following the page life expectancy counter as its value would necessarily drop
+
+Several authorities on the subject, including SQL Server’s Customer Advisory Team (CAT) [3], indicated that the value for this counter should be at least 300 for OLTP applications. SQL Server’s CAT also indicated that values for this counter should never quickly drop by 50% or more
+
+Today the value 300 is too small to be used as a threshold. This value was determined when servers generally had 4GB of RAM installed. Today, it is not uncommon for a SQL Servers to have more than 48GB of RAM. [12] Instead the old 300 threshold, an adaptive formula can be used to get a threshold estimate:
+
+This SQL Server performance counter is, obviously, available in its Memory Manager object and is defined by MSDN [2] as “the total number of processes waiting for a workspace memory grant” where by processes is referred to SQL Server’s internal system processes (like sessions and the likes of the aforementioned lazy writer)
+
+SQL Server Customer Advisory Team [3] recommends that the value of this measurement should always be less or equal to 1. Anything above that indicates that there are processes waiting for memory and that you should probably increase the memory allocated to SQL Server
+
+#######################################################################################################################################
+      
+SQLServer:Memory Manager
+      Database Cache Memory(KB)(2008 R2 might call it SQL Cache Memory): Total Memory SQL is using or thinks it's using in a VM
+      Memory Grants Pending:  this should be <=1
+      Stolen Server Memory(KB):  How much RAM SQL has taken from the server(might not need this)
+      

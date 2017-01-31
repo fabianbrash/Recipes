@@ -1,0 +1,19 @@
+#Initial Git Config
+git config --global user.name "Full Name"
+git config --global user.email test@test.com
+#Clone repository
+git clone http://repo or ssh:
+#Add file
+git add filename or git add *
+#commit changes
+git commit -m "Some text"
+git push or git pull
+#Get status
+git status
+#branches
+git branch -a
+#delete branch
+git branch -d <branchname>
+#checkout a branch
+git checkout <branchname>
+

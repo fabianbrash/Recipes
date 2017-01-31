@@ -1,0 +1,103 @@
+##########All these command have help (?) or have autocomplete####################
+
+
+####LIST ALL PORTS##########
+show ip interface
+#####SHOW VLAN INFO########
+show vlan brief
+#####DISPLAY WHAT'S IN FLASH
+show flash
+####SET DATE AND TIME#######
+clock set hh:mm:ss 10 December 2016
+
+######COPY RUNNING CONFIG TO STARTUP######
+copy running-config startup-config
+
+############SHOW LICENSE INFO################################
+show license
+
+
+#####CHANGE SWITCH HOSTNAME MUST BE RUN FROM GLOBAL CONFIG########################
+hostname CORE1
+###########CONFIGURE AN INTERFACE#############
+interface FastEthernet0
+ip address 192.168.x.x 255.255.x.x
+no shut
+
+######KEEP AN INTERFACE UP
+interface FastEthernet0
+no shut(conversely you can shut down an interface with shut)
+
+########Show interface status see if something is connected to a port################################
+show interfaces status
+
+########SETUP PASSWORD
+enable password 'your password'
+enable secret 'your password'can't be the same as enable password
+
+######CONFIGURE TELNET PASSWORD
+config t
+line console 0
+password 'your password'
+
+###THIS WORKED FOR ME########
+config t
+line vty 0
+password 'your password'
+login
+login synchronous
+exec-timeout 40(optional)
+motd-banner(optional)
+
+#####ADD NEW USER AND SET PRIVILEGE THERE ARE WAYS TO ENCRYPT THE PASSWORD TYPE ? AFTER PASSWORD 0 5 7?###########
+username fb privilege 15 password 'your password'
+
+####################CONFIGURE SSH###################################
+conf t
+line vty 0 4
+login local
+transport input ssh
+
+########CONFIGURE MULTIPLE INTERFACE###################
+conf t
+interface range GigabitEthernet1/0/1-28
+no shut
+no shut
+
+##############Configure a VLAN#####################################
+enable
+config t
+vlan "vlan number"
+name Mgmt
+
+#####Now lets place a port or ports into the VLAN
+config t
+interface Gi1/0/24
+switchport mode access
+switchport access vlan "vlan number"
+
+#####Setup up a Trunk for use with Virtualization on a VSS or vDS
+config t
+interface Gi1/0/23
+switchport mode trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk allowed vlan remove 99,100-101
+switchport trunk allowed vlan add 30
+
+
+#####################################################################################################################################
+                          THE 3750-E USES A X2 INTERFACE WHICH USES SC FIBRE SO WE NEED A LC-SC CABLE AND THEN 
+                          A LC MODULE FOR THE SFP+ PORT ON A 10GB SFP+ NIC(OR CAN YOU PLUG IT IN WITHOUT A COVERTER)
+                          XFP AND SFP+ USES LC CABLES
+
+
+#####################################################################################################################################
+
+
+########SHOW MAC ADDRESS TABLE####################################################################
+show or sh mac-address-table
+show arp table - can only be used once routing has been enabled on the switch
+
+#######################IP ROUTING ENABLING L3##############################################################
+conf t
+ip routing

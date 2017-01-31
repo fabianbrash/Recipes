@@ -1,0 +1,150 @@
+#In case you have a failed PSC or failed VCSA we need to clean things up
+cmsso-util unregister --node-pnid FQDN_of_failed_PSC_or_vCenter --username administrator@your_domain_name --passwd vCenter-Single-Sign-On-password
+
+#The above did not work for me but this did
+/usr/lib/vmware-vmdir/bin/vdcleavefed -h lab-psc-01.lab.net -u administrator
+
+#List all PSC's in
+/usr/lib/vmware-vmdir/bin/vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
+or
+cd /usr/lib/vmware-vmdir/bin
+./vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
+
+#Show replication partners
+./vdcrepadmin -f showpartners -h lab-psc-01.lab.net -u administrator
+
+#Show current replication status
+./vdcrepadmin -f showpartnerstatus -h localhost -u administrator
+
+#Display storage capabilities i.e. SCSI UNMAP
+esxcli storage core device list (-d optional if you want to target a particulat device)
+esxcli storage core device vaai status get
+esxcli storage core plugin list
+
+#Connectin to the various VCSA and PSC appliances
+#https://psc-IP/psc - this is the SSO side of things
+#https://psc-IP:5480 - this is the appliance itself
+#https://vcsa-IP:5480 - this is the VCSA VAMI interface
+
+#Get NUMA information from a host
+
+esxcli hardware memory get | grep NUMA
+
+$Get DCUI console from ssh, ssh into esxi host and type below
+dcui
+
+###VScsiStats#######################################################
+#List all disks
+vscsiStats -l
+Start stats on a VM with World ID 76634 and disk ID 8192
+vscsiStats -s -w 76634 -i 8192
+
+#Display Stats ioLength
+vscsiStats -p ioLength -c -w 76634 -i 8192
+
+#Display Latency
+vscsiStats -p latency -c -w 76634 -i 8192
+
+#Stop logging
+vscsiStats -x -w 76634 -i 8192
+
+###Useful ESX commands#############################################################################################
+Useful ESX commands
+
+esxcli software vib list | grep ams
+
+
+/etc/init.d/hp-ams.sh stop
+
+/etc/init.d/hp-ams.sh stop && chkconfig hp-ams.sh off && services.sh restart
+chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
+
+########Enable CDP###############################################################################################
+esxcfg vswitch b vSwitch1
+esxcfg vswitch B both vSwitch1
+esxcfg vswitch b vSwitch1
+
+##################STORAGE CONFIG COMMANDS######################################################################
+##List all NFS Datastores
+esxcli storage nfs list
+/etc/init.d/storageRM stop
+##Rescan all storage devices and then
+/etc/init.d/storageRM start
+##Now lets remove it
+escli storage nfs remove -v "NFS volume name"
+
+#####################VAAI CONFIG##################################################################################
+esxcli storage core device vaai status get
+esxtop select 'u' for devices
+
+#########################UPDATE ESXI HOST SSH##################################################################
+vim-cmd hostsvc/maintenace_mode_enter
+esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"
+vim-cmd hostsvc/maintenance_mode_exit
+reboot
+
+###Get all VM ID's
+vim-cmd vmsvc/getall
+###Then if you like you can use the VM ID's to launch the VMRC
+cd to the location of the VMRC installation
+vmrc.exe vmrc://root@yourhostorvc/?moid='vmid'
+
+
+#########################CREATING CUSTOM IMAGES WITH POERCLI##############################################
+##You need the offline bundle to start with
+####Also download your drivers and unzip so you just have your dirver offline bundle
+##Get all available Profiles
+Get-EsxImageProfile
+##ADD a depot
+Add-EsxSoftwareDepot -DepotURL C:\location\vmware-esxi6.5-depot.zip
+###Get our newly added profiles
+Get-EsxImageProfile
+####Create an image profile
+New-EsxImageProfile -CloneProfile 'pick one from above command' -Name "MyProfile"
+#####Check to see what VIBs are included in the depot
+Get-EsxSoftwarePackage
+###Add our VIB
+Add-EsxSoftwareDepot -DepotUrl C:\location\mlx.zip
+###Lets now add it to our custom image
+Add-EsxSoftwarePackage -ImageProfile MyProfile -SoftwarePackage 'packageName'
+#####Check to see what VIBs are included in the depot
+Get-EsxSoftwarePackage
+#####Now let's export our ISO You can also export to an offline-bundle .zip file################
+Export-EsxImageprofile -ImageProfile MyProfile -Filepath C:\images\MyProfile.iso -ExportToIso -Force -NoSignatureCheck
+
+################ALTERNATIVE METHOD#################################################
+Add-EsxSoftwareDepot -DepotUrl C:\depot\Esxi-6.0.zip
+Add-EsxSoftwareDepot -DepotUrl C:\depot\vibs\fusion-io.zip
+Get-EsxSoftwareDepot
+Get-EsxImageProfile | Format-list (The Names are truncated so you will need this)
+New-EsxImageProfile -CloneProfile "Esxi-6.0-standard" -Name "MyProfile"
+Get-EsxImageProfile
+Get-EsxSoftwarePackage
+######Optionally we can remove unwanted packages or deprecated packages###################
+Remove-EsxSoftwarePackage
+#########When asked for an image profile use the profile you created above "MyProfile"
+(Get-EsxImageProfile "MyProfile").viblist
+Add-EsxSoftwarePackage
+Export-EsxImageProfile -ImageProfile "MyProfile" -ExportToIso(or ExportToBundle) -FilePath C:\vmware\ISO\MyProfile.iso -Force -NoSignatureCheck
+
+######################################WHAT WORKED FOR ME#################################################
+Get-EsxImageProfile
+Add-EsxSoftwareDepot -DepotUrl C:\VMware\esxi-depot.zip
+Get-EsxImageProfile
+Get-EsxSoftwareDepot
+New-EsxImageProfile -CloneProfile "Then Name from the Get-EsxImageProfile | Format-list" -Name "MyProfileName"
+[vendor]: Whatever you want
+######LIST all VIBS in the package
+Get-EsxSoftwarePackage
+########ADD to the main depot
+Add-EsxSoftwareDepot
+DepotUrl[0]: C:\VMware\VIBS
+#####Now a get will tell you if you successfully added the Depot
+Get-EsxSoftwarePackage
+#####Now lets add it to our Custom depot
+Add-EsxSoftwarePackage -ImageProfile "MyProfile"
+SoftwarePackage[0]: scsi-iomemory-vsl
+####Now lets make certain the package was injected correctly
+(Get-EsxImageProfile "MyProfile").viblist
+Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile.iso -ExportToIso -Force -noSignatureCheck
+Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile-offline-bundle.zip -ExportToBundle -Force -noSignatureCheck

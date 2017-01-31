@@ -1,0 +1,28 @@
+############################HOW TO SIGN A POWERSHELL SCRIPT##############################################
+#Launch Powershell and CD to
+cd Cert:\CurrentUser\My
+##The above will have all of your personal certificates(Note a Code Signing certificate is a user cert not a machine cert)
+$cert=Get-ChildItem -Path Cert:\Currentuser\My -CodeSigningCert
+Set-AuthenicationcodeSignature 'path to your code' -cert $cert
+#################IF YOU ARE AD INTEGRATED AND HAVE A CA OPERATIONAL YOU CAN USE THE BUILT IN CODESIGNING TEMPLATE TO DO THIS#########
+################ALSO IF YOU ARE AN AD ENVIRONMENT YOU CAN USE GROUP POLICY TO PUSH THE CERTIFICATE TO ALL YOUR USERS' "TRUSTED PUBLISHERS CERTIFICATE STORE"
+
+
+
+***NOTE SIGN YOUR CODE ONCE YOU'VE TESTING THAT EVERYTHING IS OKAY, BECAUSE IF YOU MAKE A CHANGE YOU WILL NEED TO SIGN IT AGAIN.
+
+
+
+
+################################CREATE A PS PROFILE#####################################
+##Check if 1 exists
+Test-Path $profile
+##returns False if you don't have a profile
+###Create one
+New-Item -path $profile -type file -force
+
+
+#########GET ALL INSTALLED APPS X64##################
+
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize
+Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize > C:\installedApps.txt

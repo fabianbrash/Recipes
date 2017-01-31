@@ -1,0 +1,8 @@
+#############THIS IS MY CONFIG FOR RUNNING IPERF I'M SURE THERE ARE BETTER, BUT THIS WORKS FOR ME#########################
+########SERVER CONFIG
+iperf3 -s -f m
+
+########CLIENT CONFIG
+iperf3 -c 'IP of server' -f m -t 480 -4
+
+#########THE ABOVE COMMANDS ARE ALSO WHAT I USE ON LINUX
