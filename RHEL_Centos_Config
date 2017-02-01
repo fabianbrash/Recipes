@@ -154,3 +154,16 @@ ethtool eth0 or 'whatever your adapter is'
 ###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchor
 ##Then run update-ca-trust
 #####HOPEFULLY I WILL BE ABLE TO TEST THIS SOON.##########
+
+
+
+########USING AWK###################################################################
+######Basic Format awk '/search_pattern/ { action_to_take_on_matches; another_action; }' file_to_parse
+####Using it like cat
+awk '{print}' /etc/fstab
+awk '/UUID/' /etc/fstab
+
+
+
+
+
