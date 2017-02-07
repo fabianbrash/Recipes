@@ -142,4 +142,10 @@ redirusr ou=UsersOU,dc=mydomain,dc=com
 ##In my case
 redircmp "OU=fbWorkstations,DC=fb,DC=com"
 
+##############################INSTALL .NET FROM DVD###############################################################################
+DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:d:\sources\sxs (D is DVD drive)
+
+
+
+
 
