@@ -84,7 +84,11 @@ switchport mode trunk
 switchport trunk allowed vlan remove 99,100-101
 switchport trunk allowed vlan add 30
 
+#################################DELETE A VLAN##############################################################################
 
+conf t
+vlan
+no vlan 3(delete VLAN 3)
 #####################################################################################################################################
                           THE 3750-E USES A X2 INTERFACE WHICH USES SC FIBRE SO WE NEED A LC-SC CABLE AND THEN 
                           A LC MODULE FOR THE SFP+ PORT ON A 10GB SFP+ NIC(OR CAN YOU PLUG IT IN WITHOUT A COVERTER)
