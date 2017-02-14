@@ -81,11 +81,13 @@ config t
 interface Gi1/0/23
 switchport trunk encapsulation dot1q
 switchport mode trunk
-switchport trunk allowed vlan remove 99,100-101
-switchport trunk allowed vlan add 30
+switchport trunk allowed vlan remove 1-4094
+switchport trunk allowed vlan add 30,40,50
+switchport trunk native vlan 99
 ####Did not work as expected with this command "switchport mode trunk encapsulation dot1q"#################
 
-
+#####SHOW VLAN INFORMATION ON A PORT###########################################
+show interfaces Gi1/0/13 switchport
 
 #################################DELETE A VLAN##############################################################################
 
