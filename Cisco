@@ -79,10 +79,13 @@ switchport access vlan "vlan number"
 #####Setup up a Trunk for use with Virtualization on a VSS or vDS
 config t
 interface Gi1/0/23
-switchport mode trunk encapsulation dot1q
+switchport trunk encapsulation dot1q
 switchport mode trunk
 switchport trunk allowed vlan remove 99,100-101
 switchport trunk allowed vlan add 30
+####Did not work as expected with this command "switchport mode trunk encapsulation dot1q"#################
+
+
 
 #################################DELETE A VLAN##############################################################################
 
