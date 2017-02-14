@@ -118,3 +118,8 @@ show arp table - can only be used once routing has been enabled on the switch
 #######################IP ROUTING ENABLING L3##############################################################
 conf t
 ip routing
+
+conf t
+interface vlan 'your vlan number'
+ip address 192.168.xx.1 255.255.255.0
+
