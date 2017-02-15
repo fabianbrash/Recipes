@@ -95,6 +95,13 @@ conf t
 vlan
 no vlan 3(delete VLAN 3)
 
+#####REMOVE TRUNKING FROM A PORT OR PORTS########################################
+conf t
+interface Gi1/0/19(or whatever port(s)
+no switchport trunk encapsulation dot1q
+no switchport trunk native vlan 'your vlan number'
+no switchport trunk allowed vlan 'your vlan range'
+
 
 ######REMOVE A CONFIGURATION LINE FROM A PORT OR PORTS#############################
 conf t
