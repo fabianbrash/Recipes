@@ -136,3 +136,18 @@ conf t
 interface vlan 'your vlan number'
 ip address 192.168.xx.1 255.255.255.0
 
+
+
+##################CISCO ESXI TRUNK CONFIGURATION##################################################################
+
+conf t
+interface range Gi1/0/10-20
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 1,30,40,50,99
+ switchport mode trunk
+ switchport nonegotiate
+ spanning-tree portfast trunk
+
+
+
