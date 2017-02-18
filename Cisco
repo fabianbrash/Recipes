@@ -148,6 +148,11 @@ interface range Gi1/0/10-20
  switchport mode trunk
  switchport nonegotiate
  spanning-tree portfast trunk
+ 
+ 
+ ###NOTE YOU MUST RUN THE BELOW COMMANDS TOGETHER OR YOU WILL RECEIVE AN ERROR##############################
+ switchport mode trunk
+ switchport nonegotiate
 
 
 
