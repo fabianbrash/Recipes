@@ -89,6 +89,10 @@ switchport trunk native vlan 99
 #####SHOW VLAN INFORMATION ON A PORT###########################################
 show interfaces Gi1/0/13 switchport
 
+
+#################SHOW TRUNK INFORMATION##############################################
+show interfaces trunk
+
 #################################DELETE A VLAN##############################################################################
 
 conf t
