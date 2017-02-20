@@ -166,3 +166,10 @@ show system mtu
 conf t
 system mtu jumbo 9198(This is the max)
 reload
+
+
+##################REMOVE###############################################
+no system mtu jumbo
+reload
+
+
