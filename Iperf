@@ -6,3 +6,14 @@ iperf3 -s -f m
 iperf3 -c 'IP of server' -f m -t 480 -4
 
 #########THE ABOVE COMMANDS ARE ALSO WHAT I USE ON LINUX
+
+###########################10G Config####################################################################################
+
+
+iperf3 -c 'IP of server' -f m -t 480 -4 -w 384K
+I was able to get 7.6Gb/s using MTU=1500
+
+###########################################ALSO THIS WORKED PRETTY WELL##################################################
+
+
+iperf3 -c 'IP of server' -f m -t 480 -4 -w 256K
