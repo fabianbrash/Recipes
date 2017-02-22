@@ -106,6 +106,9 @@ no switchport trunk encapsulation
 no switchport trunk native vlan 'your vlan number'
 no switchport trunk allowed vlan 'your vlan range'
 
+################SHOW TRUNK INFO################
+show interfaces trunk
+
 ########REMOVE FROM VLAN###########################
 conf t
 interface vlan 'vlan id'
