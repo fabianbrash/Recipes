@@ -13,6 +13,10 @@ iperf3 -c 'IP of server' -f m -t 480 -4
 iperf3 -c 'IP of server' -f m -t 480 -4 -w 384K
 I was able to get 7.6Gb/s using MTU=1500
 
+
+######MULTITHREADED################################
+
+iperf3 -c 'IP of server' -f m -t 480 -4 -P 4 -w 4096K
 ###########################################ALSO THIS WORKED PRETTY WELL##################################################
 
 
@@ -22,4 +26,4 @@ iperf3 -c 'IP of server' -f m -t 480 -4 -w 256K
 ##########CPU##################################################################################
 WATCH CPU ESPECIALLY IN VM'S I NOTICED POOR PERFORMANCE IF ONE OF THE VM'S CPU WAS BUSY
 FOR RSS SET BASE PROCESSOR TO PROC 1 NOT 0 AS 0 IS USED MOSTLY BY OS
-SO BASEPROC=1 MAXPROC=4(NOTE YOU CAN'T SAY 3 ON VMNET3)
+SO BASEPROC=1 MAXPROC=4(NOTE YOU CAN'T SAY 3 ON VMXNET3)
