@@ -22,6 +22,9 @@ iperf3 -c 'IP of server' -f m -t 480 -4 -P 4 -w 4096K
 
 iperf3 -c 'IP of server' -f m -t 480 -4 -w 256K
 
+############################AWWW SIMPLICITY#####################################################
+
+iperf3 -c 'IP of server' -t 480 -P 2 -w 512K -O 2
 
 ##########CPU##################################################################################
 WATCH CPU ESPECIALLY IN VM'S I NOTICED POOR PERFORMANCE IF ONE OF THE VM'S CPU WAS BUSY
