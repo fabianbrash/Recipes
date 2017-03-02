@@ -147,6 +147,11 @@ dmesg | grep -i 03:00(-i means ignore case)
 ########ethtool###############################
 ethtool eth0 or 'whatever your adapter is'
 
+
+#####Check RSS################################
+egrep 'CPU|eno123xxx' /proc/interrupts
+
+
 ######################ADDING ROOT CA TO RHEL/CENTOS#############################################
 ##I HAVE NO TESTED THIS YET
 ##Export your root CA to .crt if on Windows it'll be exported as .cer you can use openssl to convert or if you exported the file
