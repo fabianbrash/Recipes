@@ -169,6 +169,16 @@ awk '{print}' /etc/fstab
 awk '/UUID/' /etc/fstab
 
 
+######################ENABLE NTP ON CENTOS7#############################################
+
+sudo yum install ntp -y
+sudo vim /etc/ntp.conf (You should not have to change anything here or you can add our own timeservers)
+sudo systemctl start ntpd
+sudo systemctl enable ntpd
+#####ADD OUR FIREWALL RULES#########################
+sudo firewall-cmd --add-service=ntp --permanent
+sudo firewall-cmd --reload
+
 
 
 
