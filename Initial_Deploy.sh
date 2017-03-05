@@ -8,3 +8,5 @@ systemctl start vmtoolsd && systemctl enable vmtoolsd
 systemctl start ntpd && systemctl enable ntpd
 firewall-cmd --add-service=ntp --permanent
 firewall-cmd --reload
+sleep 30
+yum upgrade
