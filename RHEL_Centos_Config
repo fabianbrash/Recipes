@@ -183,3 +183,14 @@ sudo firewall-cmd --reload
 sudo ntpq -p
 
 
+
+###################TUNED CONFIG#######################################
+##If not installed
+sudo yum install tuned
+
+sudo tuned-adm list ##LIST ALL AVAILABLE
+sudo tuned-adm profile 'Your new Profile'
+
+
+
+
