@@ -192,6 +192,7 @@ sudo tuned-adm list ##LIST ALL AVAILABLE
 sudo tuned-adm profile 'Your new Profile'
 sudo tuned-adm recommended
 
-
+##########################TOP############################################
+top -c then presss '1' shows al cpu's
 
 
