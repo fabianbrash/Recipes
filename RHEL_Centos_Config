@@ -196,3 +196,67 @@ sudo tuned-adm recommended
 top -c then presss '1' shows al cpu's
 
 
+##################IPTABLES#############################################################################
+sudo iptables -S
+sudo iptables -L
+##Let's see our current policy
+sudo iptables -L | grep policy
+##Let's accept our traffic(this is the defauly behaviour)
+sudo iptables --policy INPUT ACCEPT
+sudo iptables --policy OUTPUT ACCEPT
+sudo iptables --policy FORWARD ACCEPT
+
+#####If you would like to drop all connections except the ones you specify
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+
+##Drop connections from a specific IP or Subnet#####
+sudo iptables -A INPUT -s 10.10.10.10 -j DROP
+sudo iptables -A INPUT -s 10.10.10.0/24 -j DROP
+sudo iptables -A INPUT -p tcp --dport ssh -s 10.10.10.10 -j DROP(Block SSH)
+iptables -A INPUT -p tcp --dport 22 -s 10.10.10.10 -j DROP
+
+
+Replace ACCEPT with DROP to block port:
+## open port ssh tcp port 22 ##
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 22 -j ACCEPT
+ 
+## open cups (printing service) udp/tcp port 631 for LAN users ##
+iptables -A INPUT -s 192.168.1.0/24 -p udp -m udp --dport 631 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -p tcp -m tcp --dport 631 -j ACCEPT
+ 
+## allow time sync via NTP for lan users (open udp port 123) ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p udp --dport 123 -j ACCEPT
+ 
+## open tcp port 25 (smtp) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 25 -j ACCEPT
+ 
+# open dns server ports for all ##
+iptables -A INPUT -m state --state NEW -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -m state --state NEW -p tcp --dport 53 -j ACCEPT
+ 
+## open http/https (Apache) server port to all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+ 
+## open tcp port 110 (pop3) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 110 -j ACCEPT
+ 
+## open tcp port 143 (imap) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 143 -j ACCEPT
+ 
+## open access to Samba file server for lan users only ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 137 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 138 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 139 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 445 -j ACCEPT
+ 
+## open access to proxy server for lan users only ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 3128 -j ACCEPT
+ 
+## open access to mysql server for lan users only ##
+iptables -I INPUT -p tcp --dport 3306 -j ACCEPT
+
+
