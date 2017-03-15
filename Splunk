@@ -1,0 +1,27 @@
+Splunk Search Command
+________________________
+
+
+Choose our forwarder = sourcetype=iis host="RPS-INTERACTIVE"
+
+sourcetype=iis host="iBoss-IISPACSrv"
+Useful Splunk IIS Searches
+__________________________
+
+Number of Visits by Day/Time - sourcetype=iis | timechart count(c_ip) as "Number of Visits”
+Unique Visitors by Day/Time - sourcetype=iis | timechart dc(c_ip) as "Unique Visitors”
+Number of Hits - sourcetype=iis | stats count(cs_uri_stem) as “Hits"
+Total and Unique Visitors - sourcetype=iis | stats count(c_ip) as "total visitors" dc(c_ip) as "unique visitors” 
+Total and Unique Visitors by Day/Time - sourcetype=iis | timechart count(c_ip) as "total visitors" dc(c_ip) as "unique visitors"
+Page Errors by Day/Time - sourcetype=iis sc_status > 400 | timechart count by sc_status
+Top 10 Referring Sites - sourcetype=iis | top 10 cs_Referer 
+
+Self created Splunk searches
+______________________________________
+Show only users that requested the proxy pac file
+
+sourcetype=iis "/rps_proxy00.pac" | top c_ip | table c_ip, count | rename c_ip as "Users" count as "Visits"
+
+Show top 5 web browsers
+
+sourcetype=iis "/rps_proxy00.pac" | top limit=5 cs_User_Agent | rename cs_User_Agent as "Browser"
