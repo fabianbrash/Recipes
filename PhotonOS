@@ -1,0 +1,5 @@
+
+
+###Start Docker
+systemctl start docker
+systemctl enable docker
