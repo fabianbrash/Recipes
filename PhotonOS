@@ -1,4 +1,7 @@
-#####Github source:https://github.com/vmware/photon/blob/master/docs/photon-admin-guide.md#managing-the-network-configuration
+
+
+
+#####Github source:https://github.com/vmware/photon/blob/master/docs/photon-admin-guide.md
 
 ###Start Docker#####################################
 systemctl start docker
