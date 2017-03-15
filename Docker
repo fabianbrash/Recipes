@@ -1,0 +1,21 @@
+
+
+#################Get an image#################################
+docker pull 'image name'
+
+##########Spawn a container from an image#################
+docker run 'image name'
+
+###############List all containers###########
+docker ps
+docker ps -a (List even containers that are not running)
+
+#########List volumes##############
+docker volume ls
+##########Stop Container##############
+docker stop 'container ID or container name'
+
+#######Delete Container###########
+docker rm 'container ID or container name' -f(force)
+####Delete an image#########
+docker rmi 'image name' -f
