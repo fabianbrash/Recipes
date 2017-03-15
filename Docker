@@ -44,5 +44,9 @@ docker run --name myapp --volumes-from=data
 For me the above is a more complex way of adding persistence to a container I prefer using the vm as the DVC so I just need to backup
 the VM.
 
+######Shell into a container
+docker exec -it 'containerID or name' /bin/bash
+exit to quit
+
 
 
