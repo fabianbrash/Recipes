@@ -1,4 +1,4 @@
-
+#####Github source:https://github.com/vmware/photon/blob/master/docs/photon-admin-guide.md#managing-the-network-configuration
 
 ###Start Docker#####################################
 systemctl start docker
@@ -6,13 +6,27 @@ systemctl enable docker
 
 #######Setup networking##############################
 cd /etc/systemd/network
-####Copy the existing file and create a new one called the static moniker
+####Copy the existing file and create a new one using the static moniker
 cp 10-dhcp-en.network 10-static-en.network
+
+##################Example File#####################################
+[Network]
+Address=192.168.79.134/24
+Gateway=192.168.79.2
+DNS=8.8.8.8
+Domains=photon.local
+#####################################################################
 ########Add  your IP and remember afterword to rename the DHCP file################
 mv 10-dhcp-en.network 10-dhcp-en.network.OLD
+####chmod file#########
+chmod 644 10-static-en.network
 
-##############Restart networking############################################
+##############Restart network############################################
 systemctl restart systemd-networkd
+
+########List network/adapter info########
+networkctl
+networkctl status eth0
 
 #######Allow root to ssh######################################
 vim /etc/ssh/sshd_config (Find in the file PermitRootLogin and change to yes)
