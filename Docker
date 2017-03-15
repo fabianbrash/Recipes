@@ -19,3 +19,15 @@ docker stop 'container ID or container name'
 docker rm 'container ID or container name' -f(force)
 ####Delete an image#########
 docker rmi 'image name' -f
+
+######The rest can be found around the web#############
+
+#####NOW let's do something interesting##########
+docker run --name mycontainer --hostname mycontainer.org -d -p 80:80 --restart always --volume /srv/myapp/folderA:/opt/myapp/folderA:Z --volume /srv/myapp/folderB:/opt/myapp/folderB:Z 'image name or image ID'
+####What's happing here
+#### we are running a container with a friendly name of mycontainer and a hostname of mycontainer.org it's also detached(-d) and we are
+mapping port 80 on the host with port 80 on the container we want the container to restart with the host(--restart always) and then
+we get to the complex bit and that's how we are going to persist our cotainers storage what we are effectively doing here is using or 
+photonOS or whatever linux host you are using as a DVC(Data Volume container) check here:https://getcarina.com/docs/tutorials/data-volume-containers/
+what that means is that we are going to use our host as the persistent storage for our container and we are mapping the host storage to
+the container storage i.e. /srv/myapp/folderA:/opt/myapp/folderA:Z(the:Z is for SELinux if it's on you need that)
