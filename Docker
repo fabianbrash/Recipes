@@ -29,5 +29,14 @@ docker run --name mycontainer --hostname mycontainer.org -d -p 80:80 --restart a
 mapping port 80 on the host with port 80 on the container we want the container to restart with the host(--restart always) and then
 we get to the complex bit and that's how we are going to persist our cotainers storage what we are effectively doing here is using or 
 photonOS or whatever linux host you are using as a DVC(Data Volume container) check here:https://getcarina.com/docs/tutorials/data-volume-containers/
-what that means is that we are going to use our host as the persistent storage for our container and we are mapping the host storage to
-the container storage i.e. /srv/myapp/folderA:/opt/myapp/folderA:Z(the:Z is for SELinux if it's on you need that)
+what that means is that we are going to use our host as the persistent storage for our container and we are mapping the host
+storage to the container storage i.e. /srv/myapp/folderA:/opt/myapp/folderA:Z(the:Z is for SELinux if it's on you need that)
+The app venfor will usually list what folders need to be persisted---what this does is allow us to use in my case photonOS as a VM
+and then I can backup at the VM level and I will be able to recover lost data...COOL
+also we can create a container whose sole purpose is to be a DVC you could do this
+docker run --name data -v /opt/splunk/etc -v /opt/splunk/var busybox
+the above will create a new container using busybox as the base image and create the above mount points\
+now we can do this
+docker run --name myapp --volumes-from=data
+For me the above is a more complex way of adding persistence to a container I prefer using the vm as the DVC so I just need to backup
+the VM.
