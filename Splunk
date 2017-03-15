@@ -2,9 +2,9 @@ Splunk Search Command
 ________________________
 
 
-Choose our forwarder = sourcetype=iis host="RPS-INTERACTIVE"
+Choose our forwarder = sourcetype=iis host="YourHost"
 
-sourcetype=iis host="iBoss-IISPACSrv"
+sourcetype=iis host="YourHost"
 Useful Splunk IIS Searches
 __________________________
 
@@ -20,8 +20,20 @@ Self created Splunk searches
 ______________________________________
 Show only users that requested the proxy pac file
 
-sourcetype=iis "/rps_proxy00.pac" | top c_ip | table c_ip, count | rename c_ip as "Users" count as "Visits"
+sourcetype=iis "/proxy00.pac" | top c_ip | table c_ip, count | rename c_ip as "Users" count as "Visits"
 
 Show top 5 web browsers
 
-sourcetype=iis "/rps_proxy00.pac" | top limit=5 cs_User_Agent | rename cs_User_Agent as "Browser"
+sourcetype=iis "/proxy00.pac" | top limit=5 cs_User_Agent | rename cs_User_Agent as "Browser"
+
+
+#############DOCKER INFO###############
+docker exec -it 'containerID or name' entrypoint.sh splunk version
+###LETS Clean all data from our indexer#############
+docker exec -it 'containerID or name' entrypoint.sh splunk stop
+docker exec -it 'containerID or name' entrypoint.sh splunk clean eventdata
+docker exec -it 'containerID or name' entrypoint.sh splunk start
+#####Splunk not being run as a container
+splunk stop
+splunk clean eventdata
+splunk start
