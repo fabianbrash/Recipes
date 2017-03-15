@@ -1,5 +1,19 @@
 
 
-###Start Docker
+###Start Docker#####################################
 systemctl start docker
 systemctl enable docker
+
+#######Setup networking##############################
+cd /etc/systemd/network
+####Copy the existing file and create a new one called the static moniker
+cp 10-dhcp-en.network 10-static-en.network
+########Add  your IP and remember afterword to rename the DHCP file################
+mv 10-dhcp-en.network 10-dhcp-en.network.OLD
+
+##############Restart networking############################################
+systemctl restart systemd-networkd
+
+#######Allow root to ssh######################################
+vim /etc/ssh/sshd_config (Find in the file PermitRootLogin and change to yes)
+systemctl restart sshd
