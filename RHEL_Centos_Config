@@ -27,6 +27,11 @@ sudo systemctl start | stop | enable | mask 'service name'
 sudo systemctl list-unit-files
 sudo systemd-cgtop
 chkconfig --list
+chkconfig --list docker
+##Enable Service
+chkconfig docker on
+##Disable service
+chkconfig docker off
 
 #Install open-vmtools
 sudo yum install open-vm-tools
