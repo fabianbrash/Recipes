@@ -282,6 +282,27 @@ sudo mount /dev/sda1 /Data
 
 
 
+######Create a symbolic link##############
+ln -s /var/logs/apache/logs ./logs
+
+######################################################################################################################
+####Check versions###########
+uname -a
+cat /etc/redhat-release
+
+####Clean up yum cache####
+sudo yum clean all
+
+
+#############SELinux##################################################
+sestatus
+sestatus -v
+sestatus -b (state of Booleans)
+sestatus -b | grep gluster | grep on$ or off$
+##config file location####
+/etc/sysconfig/selinux(which is symbolic link to /etc/selinux/config
+
+
 
 
 
