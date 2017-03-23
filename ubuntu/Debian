@@ -1,0 +1,8 @@
+#####Get all updates#####
+
+sudo apt-get update -y && sudo apt-get upgrade -y
+##I usually install aptitude
+sudo apt-get install aptitude -y
+sudo aptitude upgrade
+service --status-all
+sudo systemctl status ssh(Same as RHEL/CentOS)
