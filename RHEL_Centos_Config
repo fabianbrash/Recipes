@@ -285,6 +285,9 @@ sudo mount /dev/sda1 /Data
 ######Create a symbolic link##############
 ln -s /var/logs/apache/logs ./logs
 
+###let's find all .conf files inside of /etc
+sudo ls -l /etc/*.conf
+
 ######################################################################################################################
 ####Check versions###########
 uname -a
@@ -293,14 +296,33 @@ cat /etc/redhat-release
 ####Clean up yum cache####
 sudo yum clean all
 
+####Let's see what's installed on our system
+sudo rpm -qa | grep node
+
 
 #############SELinux##################################################
 sestatus
 sestatus -v
 sestatus -b (state of Booleans)
 sestatus -b | grep gluster | grep on$ or off$
+getenforce(See current execution policy)
+sudo setenforce enforcing
+
+
 ##config file location####
 /etc/sysconfig/selinux(which is symbolic link to /etc/selinux/config
+sudo cat /var/log/messages | grep "SELinux is preventing" 
+sudo cat /var/log/messages | grep SELinux 
+sudo semodule -l | less (list modules in memory)
+sudo ls -l /etc/selinux/targeted/modules/active/modules/
+getsebool virt_use_nfs
+sudo setsebool virt_use_nfs on
+
+sudo ls -l /etc/*.conf
+###now###
+sudo ls -Z /etc/*.conf
+
+#####Source:  https://www.digitalocean.com/community/tutorials/an-introduction-to-selinux-on-centos-7-part-2-files-and-processes
 
 
 
