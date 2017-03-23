@@ -6,3 +6,30 @@ sudo apt-get install aptitude -y
 sudo aptitude upgrade
 service --status-all
 sudo systemctl status ssh(Same as RHEL/CentOS)
+
+
+####FIREWALL Source: https://help.ubuntu.com/community/UFW ##################################
+###ubuntu uses ufw
+sudo ufw status
+sudo ufw enable
+sudo ufw status verbose
+sudo ufw show raw
+##Lets allow ssh from any device#########
+sudo ufw allow 22/tcp or sudo ufw allow ssh
+####Let's deny a port
+sudo ufw deny 53/tcp
+
+###Delete an existing rule
+ufw deny 80/tcp
+sudo ufw delete deny 80/tcp
+
+sudo ufw allow from 192.168.1.25/32 to any port 22 proto tcp(only allow that IP to access port 22)
+
+###Alternatively################
+sudo ufw deny from 207.46.232.182
+sudo ufw deny from 192.168.0.1 to any port 22
+
+sudo ufw deny from 192.168.0.1 to any port 22
+sudo ufw deny from 192.168.0.7 to any port 22
+sudo ufw allow from 192.168.0.0/24 to any port 22 proto tcp
+
