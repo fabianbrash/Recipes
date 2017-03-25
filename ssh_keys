@@ -4,6 +4,10 @@
 #########GENERATING SSH KEYS TO SSH INTO SERVERS#################################
 
 ssh-keygen -t rsa
+###You can also associate it with your email
+ssh-keygen -t rsa -C "me@me.com"(-C is for comments)
+##Also you can use
+ssh-keygen -t rsa -b 4096(-b bits)
 ##then answer the presented questions#########
 ###you can enter a passphrase for your key if you like but if you do then you will need to enter it everytime you ssh into your server
 ######Once completed your keys should be in a location like this###
@@ -12,3 +16,10 @@ LINUX - /home/me/.ssh
 ####File Names#####
 id_rsa - private key this is the one you keep
 id_rsa.pub - public key the one that gets uploaded to your server
+
+####Copy ssh keys to server##################
+
+ssh-copy-id user@123.45.56.78
+##or###
+ssh-copy-id -i /users/home/mykey.pub user@123.45.56.78(-i specifies the identity file to use default is /users/home/.ssh/id_rsa.pub)
+###this should copy the keys to /user/home/.ssh/authorized_keys
