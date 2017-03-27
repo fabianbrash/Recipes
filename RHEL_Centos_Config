@@ -279,6 +279,8 @@ sudo mkdir /Data
 sudo mount /dev/sda1 /Data
 ###EDIT YOUR /ect/fstab file#######
 /dev/sda1  /Data  ext4  defaults 0 0 
+##PVDISPLAY######
+sudo pvdisplay (for LVM)
 
 
 
