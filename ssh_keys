@@ -22,6 +22,6 @@ id_rsa.pub - public key the one that gets uploaded to your server
 ssh-copy-id user@123.45.56.78
 ##or###
 ssh-copy-id -i /users/home/mykey.pub user@123.45.56.78(-i specifies the identity file to use default is /users/home/.ssh/id_rsa.pub)
-###this should copy the keys to /user/home/.ssh/authorized_keys
+###this should copy the keys to /home/user/.ssh/authorized_keys
 
 ##You might have to use ssh-add 'your private key'
