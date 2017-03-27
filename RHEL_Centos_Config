@@ -21,6 +21,7 @@ sudo systemctl restart network
 sudo service --status-all
 sudo service --status-all | less or more
 sudo service --status-all | grep ntpd
+sudo service docker status
 
 #Centos/RHEL V7.x
 sudo systemctl start | stop | enable | mask 'service name'
