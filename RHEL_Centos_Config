@@ -279,8 +279,16 @@ sudo mkdir /Data
 sudo mount /dev/sda1 /Data
 ###EDIT YOUR /ect/fstab file#######
 /dev/sda1  /Data  ext4  defaults 0 0 
+
+####If your volume uses LVM this is a bit trickier######
 ##PVDISPLAY######
 sudo pvdisplay (for LVM)
+##Also
+sudo lsblk
+##See if we already have a file system
+sudo file -s /dev/sdb1(if this returns 'data' then no file system is present must format disk)
+sudo lvdisplay
+sudo lvscan
 
 
 
