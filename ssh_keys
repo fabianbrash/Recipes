@@ -25,3 +25,12 @@ ssh-copy-id -i /users/home/mykey.pub user@123.45.56.78(-i specifies the identity
 ###this should copy the keys to /home/user/.ssh/authorized_keys
 
 ##You might have to use ssh-add 'your private key'
+
+#######SSH BANNERS########################################
+#Create a file called issue.net it can be located anywhere
+sudo vim /etc/ssh/issue.net
+###Add content to file then restart sshd
+sudo systemctl restart sshd
+
+##############SSH MOTD############################
+sudo vim /etc/motd
