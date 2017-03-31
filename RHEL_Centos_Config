@@ -335,6 +335,10 @@ sudo ls -Z /etc/*.conf
 
 #####Source:  https://www.digitalocean.com/community/tutorials/an-introduction-to-selinux-on-centos-7-part-2-files-and-processes
 
+#######MAKE SCRIPTS EXECUTABLE####################################################
+chmod u+x script.sh(only the current user can run the script)
+chmod x script.sh(this is equivalent to chmod a+x all users can run the script)
+
 
 
 
