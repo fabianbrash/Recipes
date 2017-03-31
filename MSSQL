@@ -1,0 +1,18 @@
+####BASIC MSSQL COMMANDS####################################
+####Create A DB
+CREATE DATABASE testdb;
+###Let's create a table####
+USE testdb;
+CREATE TABLE inventory (id INT, name NVARCHAR(50), quantity INT);
+
+####Let's insert into our table some values
+USE testdb;
+
+INSERT INTO inventory VALUES(1, 'banana', 150);
+INSERT INTO inventory VALUES(2, 'orange', 154);
+
+
+###Let's read it back
+
+SELECT * FROM inventory
+
