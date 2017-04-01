@@ -4,6 +4,17 @@ CREATE DATABASE testdb;
 ###Let's create a table####
 USE testdb;
 CREATE TABLE inventory (id INT, name NVARCHAR(50), quantity INT);
+##Another ways
+
+USE testdb;
+GO
+CREATE TABLE inventory
+(
+  id INT,
+  name NVARCHAR(50)(could also use char(50) or VARCHAR(50) ),
+  quantity INT
+)
+
 
 ####Let's insert into our table some values
 USE testdb;
