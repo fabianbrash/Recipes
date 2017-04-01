@@ -22,8 +22,26 @@ USE testdb;
 INSERT INTO inventory VALUES(1, 'banana', 150);
 INSERT INTO inventory VALUES(2, 'orange', 154);
 
+####BULK INSERT#########
+BULK INSERT inventory
+FROM 'C:\data\data.txt'
+WITH
+(
+  FIELDTERMINATOR = ',',
+  ROWTERMINTOR = '\n'
+)
+GO
+
 
 ###Let's read it back
 
 SELECT * FROM inventory
+ORDER BY name
+GO
+
+###Alternatively
+SELECT * FROM inventory
+WHERE id BETWEEN 1 AND 2
+ORDER BY name
+GO
 
