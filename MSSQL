@@ -11,7 +11,7 @@ GO
 CREATE TABLE inventory
 (
   id INT,
-  name NVARCHAR(50)(could also use char(50) or VARCHAR(50) ),
+  name NVARCHAR(50) NOT NULL(could also use char(50) or VARCHAR(50) ),
   quantity INT
 )
 
