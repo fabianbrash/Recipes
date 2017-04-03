@@ -159,7 +159,7 @@ egrep 'CPU|eno123xxx' /proc/interrupts
 
 
 ######################ADDING ROOT CA TO RHEL/CENTOS#############################################
-##I HAVE NO TESTED THIS YET
+##I HAVE NOT TESTED THIS YET
 ##Export your root CA to .crt if on Windows it'll be exported as .cer you can use openssl to convert or if you exported the file
 ##as DER not "DER Binary" you can just change the extension
 ###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchor
@@ -199,7 +199,7 @@ sudo tuned-adm profile 'Your new Profile'
 sudo tuned-adm recommended
 
 ##########################TOP############################################
-top -c then presss '1' shows al cpu's
+top -c then presss '1' shows all cpu's
 
 
 ##################IPTABLES#############################################################################
