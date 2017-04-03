@@ -28,7 +28,7 @@ FROM 'C:\data\data.txt'
 WITH
 (
   FIELDTERMINATOR = ',',
-  ROWTERMINTOR = '\n'
+  ROWTERMINATOR = '\n'
 )
 GO
 
