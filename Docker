@@ -21,7 +21,9 @@ docker stop 'container ID or container name'
 #######Delete Container###########
 docker rm 'container ID or container name' -f(force)
 ####Delete an image#########
-docker rmi 'image name' -f
+docker rmi 'image name | ID' -f
+
+sudo docker stats
 
 ######The rest can be found around the web#############
 
