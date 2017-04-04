@@ -33,11 +33,33 @@ server {
           location /app2 {
           rewrite ^/app2(.*) $1 break;
           proxy_pass "http://127.0.0.1:3002";
+          }
           
 }
 ####NOTE the above code requires a ULR rewrite because the app is expecting traffic on /, if the app was expecting
 #####traffic on /app1 then I don't think the rewrite was would be required, using / is a common practice for Node apps
 
+
+
+
+######CONFIGURING MULTIPLE HOSTNAMES#################
+#########CONTENTS OF app-name file##########################
+server {
+          listen 80;
+          server_name abc.com;
+          location / {
+           proxy_pass http://127.0.0.1:3000;
+           }
+             
+}
+
+server {
+          listen 80;
+          server_name def.com;
+          location / {
+           proxy_pass http://127.0.0.1:3001;
+           }
+}
 
 
 ######END FILE CONTENTS########################################
