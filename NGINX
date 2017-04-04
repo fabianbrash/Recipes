@@ -1,0 +1,39 @@
+################USING NGINX AS A LB, REVERSE PROXY, CACHING AND SSL TERMMINATION SERVER###################
+cd /etc/nginx
+##A couple of important directories here are sites-available and sites-enabled(sites-enabled gets loaded when nginx starts or reloads)
+cd /etc/nginx/sites-available
+sudo vim app-name
+
+#########CONTENTS OF app-name file##########################
+server {
+          listen 80;
+          location / {
+           proxy_pass "http://127.0.0.1:3000"
+         }
+}
+
+
+######END FILE CONTENTS########################################
+
+
+
+
+#########CONTENTS OF app-name file##########################
+server {
+          listen 80;
+          location / {
+           proxy_pass "http://127.0.0.1:3000"
+         }
+         
+         location /codify(Your URL would go here) {
+          rewrite ^/codify(.*) $1 break;
+          proxy_pass "http://127.0.0.1:3001";
+          }
+          
+}
+
+
+######END FILE CONTENTS########################################
+
+sudo ln -s /etc/nginx/sites-available/app-name /etc/nginx/sites-enabled/node-app
+sudo systemctl reload nginx
