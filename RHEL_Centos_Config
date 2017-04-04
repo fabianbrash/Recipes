@@ -344,6 +344,24 @@ chmod u+x script.sh(only the current user can run the script)
 chmod x script.sh(this is equivalent to chmod a+x all users can run the script)
 
 
+######################CURL EXAMPLES############################################
+sudo yum install curl
+curl http://localhost ##Show the output of a page
+curl http://localhost > file.html
+curl -o file.pdf http://www.localhost/file.pdf
+curl -O http://localhost/file.pdf (this will name the file the same as the URL content you are downloading)
+curl -O http://localhost/file2.pdf -O http://localhost/file3.pdf
+
+curl -L http://www.google.com (Follow redirects)
+curl -C - -O http://localhost/largefile.iso (Continue downloading our large file from where we left off)
+curl --limit-rate 1000B -O http://localhost/largefile.ISO (limit-rate of file downloads)
+curl -z 21-Jan-17 http://localhost/file.pdf (only download file if modified after the given date)
+curl -z -21-Jan-17 http://localhost/file.pdf (only download file if modified before given date)
+curl -u ftpuser:ftppass -O ftp://localhost.file.pdf
+curl -v http://www.google.com
+
+#####SOURCE:  http://www.thegeekstuff.com/2012/04/curl-examples/?utm_source=feedburner
+
 
 
 
