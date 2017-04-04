@@ -114,6 +114,7 @@ ip-hash
 ip_hash; (used for sticky sessions)
 
 upstream backend_nodes {
+              ip_hash; /make connections sticky
               server 192.168.1.5;
               server 192.168.1.6;
               server 192.168.1.7;
@@ -124,7 +125,7 @@ server {
           listen 80;
           
           location / {
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; (send the IP of the client to the backend nodes)
             proxy_pass http://backend_nodes;
             }
  }
