@@ -4,6 +4,7 @@ cd /etc/nginx
 cd /etc/nginx/sites-available
 sudo vim app-name
 
+#######BASIC REVERSE PROXY SETTINGS##############################
 #########CONTENTS OF app-name file##########################
 server {
           listen 80;
@@ -17,7 +18,7 @@ server {
 
 
 
-
+######CONFIGURING MULTIPLE APPS BY URL REWRITE#################
 #########CONTENTS OF app-name file##########################
 server {
           listen 80;
@@ -25,12 +26,18 @@ server {
            proxy_pass "http://127.0.0.1:3000"
          }
          
-         location /codify(Your URL would go here) {
-          rewrite ^/codify(.*) $1 break;
+         location /app1(Your URL would go here) {
+          rewrite ^/app1(.*) $1 break;
           proxy_pass "http://127.0.0.1:3001";
           }
+          location /app2 {
+          rewrite ^/app2(.*) $1 break;
+          proxy_pass "http://127.0.0.1:3002";
           
 }
+####NOTE the above code requires a ULR rewrite because the app is expecting traffic on /, if the app was expecting
+#####traffic on /app1 then I don't think the rewrite was would be required, using / is a common practice for Node apps
+
 
 
 ######END FILE CONTENTS########################################
