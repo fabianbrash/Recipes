@@ -45,3 +45,24 @@ WHERE id BETWEEN 1 AND 2
 ORDER BY name
 GO
 
+#############LETS DROP(DELETE) A TABLE IF IT EXISTS##################
+USE DBNAME:
+GO
+DROP TABLE IF EXISTS dbo.thetabletodrop;
+GO
+
+
+################NOW LETS INSERT SOME ROWS INTO OUR TABLE###############
+###FIRST LETS DROP THE TABLE IF IT EXISTS AND RECREATE IT
+DROP TABLE IF EXISTS dbo.thetabletodrop;
+CREATE TABLE thetabletodrop (id INT, name VARCHAR(50), age INT);
+DECLARE @id INT
+SELECT @id = 1
+while @id >=1 and @id <= 10000
+begin
+	insert into tabletodrop values(@id, 'rps' + CONVERT(varchar(50),@id), 14)
+	select @id = @id + 1
+end
+
+select * from tabletodrop
+
