@@ -51,4 +51,26 @@ docker exec -it 'containerID or name' /bin/bash
 exit to quit
 
 
+#####GETTING DOCKER ON CENTOS7.X#########################################
+###FIRST REMOVE THE OLD DOCKER IF YOU HAVE IT#####################
+sudo yum remove docker docker-common container-selinux docker-selinux docker-engine
+
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum makecache fast
+
+sudo yum install -y docker-ce
+
+################PLEASE NOTE##################3
+#if you installed docker with the below command
+sudo yum install docker -y
+#####and then you remove it and intalled with the following command
+sudo yum install -y docker-ce
+###MAKE CERTAIN TO DELEATE ALL IMAGES PRIOR AS YOU MIGHT HAVE ISSUES DELETING IMAGES THAT WERE PULLED FROM THE FIRST INSTALL###
+
+
+
+
+
+
 
