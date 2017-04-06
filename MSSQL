@@ -66,3 +66,31 @@ end
 
 select * from tabletodrop
 
+
+
+########MUCH MUCH FASTER##################################
+
+USE stresstest
+GO
+
+drop table if exists t1
+create table t1 (id int, a text, b text) 
+go
+
+-- #1 - 1,000,000 - 30s -> 45s
+with ID(number) as
+(
+    select 1 as number
+    union all
+    select number + 1
+    from ID
+    where number < 250000 + 1
+)
+insert into t1
+    select number, 'a_' + cast (number as varchar), 'b_' + cast (number/2 as varchar)
+    from ID  
+    option(maxrecursion 0)
+
+select * from t1
+
+
