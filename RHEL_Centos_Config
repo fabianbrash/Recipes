@@ -363,6 +363,11 @@ curl -v http://www.google.com
 #####SOURCE:  http://www.thegeekstuff.com/2012/04/curl-examples/?utm_source=feedburner
 
 
+######SCP################################################
+scp -r /directory/ user@192.168.1.1:/directory (recursively copy all data from /directory on the source to /directory on the destination,
+if the folder does not exist on dest then it will be created)
+
+
 
 
 
