@@ -1,6 +1,6 @@
 #!/bin/bash
 
-##Initial config for a minimal CentOS install
+##Initial config for a minimal CentOS install and setup of docker host
 
 yum upgrade -y && yum group install "Development Tools" -y && yum install wget ntp vim firewalld epel-release open-vm-tools pciutils yum-utils  -y
 sleep 15
