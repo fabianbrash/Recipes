@@ -68,6 +68,11 @@ sudo yum install docker -y
 sudo yum install -y docker-ce
 ###MAKE CERTAIN TO DELETE ALL IMAGES PRIOR AS YOU MIGHT HAVE ISSUES DELETING IMAGES THAT WERE PULLED FROM THE FIRST INSTALL###
 
+###INSTALL INSTRUCTIONS FOR CENTOS#####
+#https://docs.docker.com/engine/installation/linux/centos/#install-using-the-repository
+
+#####RPM's are here###############
+#https://download.docker.com/linux/centos/7/x86_64/stable/Packages/
 
 
 
