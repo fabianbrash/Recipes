@@ -359,6 +359,7 @@ curl -z 21-Jan-17 http://localhost/file.pdf (only download file if modified afte
 curl -z -21-Jan-17 http://localhost/file.pdf (only download file if modified before given date)
 curl -u ftpuser:ftppass -O ftp://localhost.file.pdf
 curl -v http://www.google.com
+curl -i http://www.google.com (get http headers)
 
 #####SOURCE:  http://www.thegeekstuff.com/2012/04/curl-examples/?utm_source=feedburner
 
