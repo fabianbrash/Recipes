@@ -53,6 +53,7 @@ exit to quit
 
 #######LET'S SETUP SOME NETWORKING IN DOCKER#########################
 sudo docker create network --driver=bridge br0
+sudo docker run -d --name container1 --network=br0 mongo
 
 #####GETTING DOCKER ON CENTOS7.X#########################################
 ###FIRST REMOVE THE OLD DOCKER IF YOU HAVE IT#####################
