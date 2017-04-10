@@ -51,6 +51,9 @@ docker exec -it 'containerID or name' /bin/bash
 exit to quit
 
 
+#######LET'S SETUP SOME NETWORKING IN DOCKER#########################
+sudo docker create network --driver=bridge br0
+
 #####GETTING DOCKER ON CENTOS7.X#########################################
 ###FIRST REMOVE THE OLD DOCKER IF YOU HAVE IT#####################
 sudo yum remove docker docker-common container-selinux docker-selinux docker-engine
