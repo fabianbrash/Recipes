@@ -370,6 +370,17 @@ if the folder does not exist on dest then it will be created)
 
 
 
-
+######################LINUX PERMISSIONS#############################################
+###logged in as root
+mkdir /Permissions
+touch file.txt
+chown bob file.txt (make bob the owner of file.txt)
+chown root bob.txt (remove bob's rights to write to the file)
+chown bob file.txt (give him ownership back)
+chown bob:bob file.txt (give user bob and group bob ownership of the file)
+chown :bob file.txt (only give bob group ownership of the file)
+chown root /foo (change ownership of folder foo to root)
+chown root:www-data /foo (give root ownership and the group www-data to folder foo)
+chown -R root:www-data /foo (give root ownership and the group www-data to folder subfolder and files to foo) -R(Recursively)
 
 
