@@ -382,5 +382,6 @@ chown :bob file.txt (only give bob group ownership of the file)
 chown root /foo (change ownership of folder foo to root)
 chown root:www-data /foo (give root ownership and the group www-data to folder foo)
 chown -R root:www-data /foo (give root ownership and the group www-data to folder subfolder and files to foo) -R(Recursively)
+chown -R bob /foo (give bob full rights to folder foo and all subfiles and folders)
 
 
