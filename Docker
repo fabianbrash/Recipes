@@ -65,6 +65,12 @@ sudo yum makecache fast
 
 sudo yum install -y docker-ce
 
+###########OPTIONAL EDGE BUILDS####################
+sudo yum-config-manager --enable docker-ce-edge
+
+###DISABLE EDGE BUILDS#################
+sudo yum-config-manager --disable docker-ce-edge
+
 ################PLEASE NOTE##################3
 #if you installed docker with the below command
 sudo yum install docker -y
