@@ -385,3 +385,11 @@ chown -R root:www-data /foo (give root ownership and the group www-data to folde
 chown -R bob /foo (give bob full rights to folder foo and all subfiles and folders)
 
 
+###############USER CREATION################################################################
+#Source:  https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-users-add.html
+
+
+useradd jdoe
+
+
+
