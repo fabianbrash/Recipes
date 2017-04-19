@@ -1,4 +1,5 @@
 #######################I WILL BE ADDING INFO HERE REGARDING MY JENKINS EXPERIENCE##########################
 ####When integrating Jenkins with Git,on Windows systems when installing Git make certain to uncheck "ENABLE GIT CREDENTIAL MANAGER"
 ##This will override the credectials that was assigned inside Jenkins
+###Or you can just install the portable version
 ###Git for windows can be downloaded from https://git-scm.com/download/win
