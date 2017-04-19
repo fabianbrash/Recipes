@@ -3,3 +3,4 @@
 ##This will override the credectials that was assigned inside Jenkins
 ###Or you can just install the portable version
 ###Git for windows can be downloaded from https://git-scm.com/download/win
+###Reference https://support.cloudbees.com/hc/en-us/articles/221046888-Build-Hang-or-Fail-with-Git-for-Windows
