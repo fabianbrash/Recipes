@@ -8,6 +8,12 @@ service --status-all
 sudo systemctl status ssh(Same as RHEL/CentOS)
 
 
+############INSTALL NMTUI/NETWORKMANAGER###########
+sudo aptitude install network-manager
+sudo systemctl start NetworkManager && sudo systemctl enable NetworkManager
+sudo nmtui
+
+
 ####FIREWALL Source: https://help.ubuntu.com/community/UFW ##################################
 ###ubuntu uses ufw
 sudo ufw status
