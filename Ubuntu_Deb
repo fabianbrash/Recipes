@@ -7,12 +7,23 @@ sudo aptitude upgrade
 service --status-all
 sudo systemctl status ssh(Same as RHEL/CentOS)
 
+####Searching
+sudo apt-cache search packagename
+sudo aptitude search all network | less
+
 
 ############INSTALL NMTUI/NETWORKMANAGER###########
 sudo aptitude install network-manager
 sudo systemctl start NetworkManager && sudo systemctl enable NetworkManager
 sudo nmtui
 
+
+####INSTALL .deb packages###############
+sudo dpkg -i package.deb
+sudo apt-get package.deb
+sudo aptitude package.deb
+###remove
+sudo dpkg -r package.deb
 
 ####FIREWALL Source: https://help.ubuntu.com/community/UFW ##################################
 ###ubuntu uses ufw
