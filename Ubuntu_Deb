@@ -16,7 +16,18 @@ sudo aptitude search all network | less
 sudo aptitude install network-manager
 sudo systemctl start NetworkManager && sudo systemctl enable NetworkManager
 sudo nmtui
-
+####once installed you need to head to backup and then edit /etc/network/interfaces
+##And comment out the lines with 'iface' and 'auto'
+###Because ubuntu's network-manager will still be managing those devices you can check with the below command
+sudo nmcli d 'you will see unmanaged'
+##then restart network-manager
+sudo systemctl restart network-manager
+##Then Active the interface
+sudo nmtui
+##Then select activate interface and select your adapter
+###Add your network info and then reboot
+sudo reboot
+###You should now see the IP that you configured
 
 ####INSTALL .deb packages###############
 sudo dpkg -i package.deb
