@@ -31,8 +31,8 @@ sudo reboot
 
 ####INSTALL .deb packages###############
 sudo dpkg -i package.deb
-sudo apt-get package.deb
-sudo aptitude package.deb
+sudo apt-get package.deb #This did not work for me
+sudo aptitude package.deb #This did not work for me
 ###remove
 sudo dpkg -r package.deb
 
