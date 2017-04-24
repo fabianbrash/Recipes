@@ -205,6 +205,11 @@ top -c then presss '1' shows all cpu's
 ############CPU INFO####################################################
 cat /proc/cpuinfo
 
+
+#######MEMORY INFO###################################
+cat /proc/meminfo
+
+
 ##################IPTABLES#############################################################################
 sudo iptables -S
 sudo iptables -L
