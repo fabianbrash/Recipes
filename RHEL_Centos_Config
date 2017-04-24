@@ -210,6 +210,11 @@ cat /proc/cpuinfo
 cat /proc/meminfo
 
 
+####FOLDER SIZE INFO######
+###got to the folder location you want to gather size information on and then run
+sudo du -sh * | sort -n
+
+
 ##################IPTABLES#############################################################################
 sudo iptables -S
 sudo iptables -L
