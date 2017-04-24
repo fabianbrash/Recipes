@@ -31,10 +31,11 @@ sudo reboot
 
 ####INSTALL .deb packages###############
 sudo dpkg -i package.deb
-sudo apt-get package.deb #This did not work for me
-sudo aptitude package.deb #This did not work for me
 ###remove
 sudo dpkg -r package.deb
+
+sudo dpkg -l | grep 'app looking for'
+sudo dpkg -l | grep plex
 
 ####FIREWALL Source: https://help.ubuntu.com/community/UFW ##################################
 ###ubuntu uses ufw
