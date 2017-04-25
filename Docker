@@ -124,5 +124,6 @@ services:
 
 ####The above example would launch a stack of 2 services, a nginx web server listening on port 3000 and a cache service that run
 ####redis on it's standard port of 6379
+###Note image and ports must lineup as well as volumes etc...
 
 
