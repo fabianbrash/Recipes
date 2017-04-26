@@ -12,6 +12,12 @@ sudo apt-cache search packagename
 sudo aptitude search all network | less
 
 
+#####Set root password#############
+sudo passwd
+
+###set another user password
+sudo passwd (if other user's are on the system it will ask for which user)
+
 ############INSTALL NMTUI/NETWORKMANAGER###########
 sudo aptitude install network-manager
 sudo systemctl start NetworkManager && sudo systemctl enable NetworkManager
@@ -128,4 +134,7 @@ sudo apt list --upgradeable (see all available updates)
  #########Example##################
  sudo apt install docker-ce=17.03.1~ce-0~ubuntu-xenial
  
- 
+ ###Install Docker Compose############################
+ ##First su to root
+ su -
+ sudo curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
