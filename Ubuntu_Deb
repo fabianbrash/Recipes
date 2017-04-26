@@ -20,8 +20,8 @@ sudo nmtui
 ##And comment out the lines with 'iface' and 'auto'
 ###Because ubuntu's network-manager will still be managing those devices you can check with the below command
 sudo nmcli d 'you will see unmanaged'
-##then restart network-manager
-sudo systemctl restart network-manager
+##then restart the system
+sudo reboot
 ##Then Active the interface
 sudo nmtui
 ##Then select activate interface and select your adapter
