@@ -119,8 +119,12 @@ services:
       - "6379:6379"
       
 ######################END CONTENT###########################################################
-##Then Run
+##Then Run##
 sudo docker-compose up -d
+
+##Take down stack###
+sudo docker-compose down
+
 ########PLEASE NOTE SPACING IS VERY VERY VERY VERY VERY IMPORTANT WITH YML FILES#############
 
 ####The above example would launch a stack of 2 services, a nginx web server listening on port 3000 and a cache service that run
