@@ -106,6 +106,17 @@ sudo apt install \
    $(lsb_release -cs) \
    stable"
    
+#####ADD edge repo###############
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   edge"
+   
+##Then run###
+sudo apt update
+###Then run
+sudo apt list --upgradeable (see all available updates)
+   
  sudo apt update or sudo apt-get update
  
  #####See available versions##########################
