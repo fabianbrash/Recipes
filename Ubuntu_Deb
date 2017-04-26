@@ -119,12 +119,10 @@ sudo add-apt-repository \
    edge"
    
 ##Then run###
-sudo apt update
-###Then run
-sudo apt list --upgradeable (see all available updates)
-   
- sudo apt update or sudo apt-get update
- 
+sudo apt update or sudo apt-get update
+###Then run (optional)
+sudo apt list --upgradeable (see all available updates) 
+
  #####See available versions##########################
  apt-cache madison docker-ce
  
