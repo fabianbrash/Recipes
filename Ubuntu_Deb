@@ -78,3 +78,7 @@ sudo du -sh * | sort -n
 ###Or you can 
 sudo du -h
 
+
+###################UBUNTU MOTD#################################
+cd /run
+cat motd.dynamic
