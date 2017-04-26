@@ -5,8 +5,8 @@
 
 apt update && apt upgrade
 sleep 15
-apt install -y network-manager
-systemctl start NetworkManager && systemctl enable NetworkManager
+apt install -y network-manager openssh-server
+systemctl start NetworkManager && systemctl enable NetworkManager && systemctl start ssh & systemctl enable ssh
 sleep 20
 ##Install AUFS storage driver
 apt install linux-image-extra-$(uname -r) linux-image-extra-virtual
