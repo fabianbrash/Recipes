@@ -82,3 +82,39 @@ sudo du -h
 ###################UBUNTU MOTD#################################
 cd /run
 cat motd.dynamic
+
+
+
+#######INSTALL DOCKER##################################
+
+####Install the AUFS storage driver
+sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual
+
+####Install official REPOS###########################
+sudo apt install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+    
+ ####ADD Dockers' KEYS#########################
+ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+ 
+ ####ADD stable repo###################
+ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+ sudo apt update or sudo apt-get update
+ 
+ #####See available versions##########################
+ apt-cache madison docker-ce
+ 
+ ###Install specific versions
+ sudo apt-get install docker-ce=<VERSION>
+ 
+ #########Example##################
+ sudo apt install docker-ce=17.03.1~ce-0~ubuntu-xenial
+ 
+ 
