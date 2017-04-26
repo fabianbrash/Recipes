@@ -5,4 +5,6 @@
 
 apt update && apt upgrade
 sleep 15
+apt install -y network-manager
+systemctl start NetworkManager && systemctl enable NetworkManager
 apt update
