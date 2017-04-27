@@ -1,0 +1,32 @@
+######CREATE A SELF-SIGNED CERT WITH SAN(Subject Alternative Name) use in conjunction with openssl.ps1####
+
+##########BEGIN FILE#####################################
+
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+x509_extensions     = v3_req
+prompt             = no
+[ req_distinguished_name ]
+countryName                 = "US"
+stateOrProvinceName         = "Virginia"
+localityName                = "Richmond"
+organizationName            = "Blah Company"
+organizationalUnitName      = "Blah"
+commonName                  = "blah.io"
+emailAddress                = "blah@blah.io"
+[ v3_req ]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = blah.io
+DNS.2 = blah.com
+DNS.3 = blah.net
+
+
+##############END FILE##############################
+###REFERENCE https://support.citrix.com/article/CTX135602
+
+##########If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+####
+####THANKS GOOGLE!!!!!!!################################################
