@@ -30,3 +30,15 @@ DNS.3 = blah.net
 
 ##########If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+####
 ####THANKS GOOGLE!!!!!!!################################################
+
+
+#####OPENSSL COMMANDS##############################################
+##Check to see if our cert is ASCII or BINARY(DER), if you get back text out then it's ASCII
+openssl x509 -in cert.crt -text -noout
+openssl x509 -in cert.cer -text -noout
+
+##View DER encoded certificates
+openssl x509 -in certificate.der -inform der -text -noout
+
+###Verify cert
+openssl verify cert.crt
