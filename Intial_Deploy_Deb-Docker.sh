@@ -19,3 +19,7 @@ apt update
 apt install docker-ce -y
 sleep 20
 apt update
+cat /run/motd.dynamic
+echo Rebooting...
+sleep 10
+reboot
