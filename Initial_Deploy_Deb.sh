@@ -10,4 +10,5 @@ systemctl start NetworkManager && systemctl enable NetworkManager && systemctl s
 sleep 20
 apt update
 sleep 15
+echo Rebooting...
 reboot
