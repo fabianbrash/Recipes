@@ -10,5 +10,6 @@ systemctl start NetworkManager && systemctl enable NetworkManager && systemctl s
 sleep 20
 apt update
 sleep 15
+cat /run/motd.dynamic
 echo Rebooting...
 reboot
