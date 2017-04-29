@@ -49,3 +49,17 @@ openssl verify cert.crt
 
 #####Creat a self-signed certificate without generating a CSR first############
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
+
+
+####Adding ssl certs ubuntu#######
+##Resource: https://askubuntu.com/questions/645818/how-to-install-certificates-for-command-line
+
+##copy .crt file to
+sudo cp public.crt /usr/local/share/ca-certificates
+sudo update-ca-certificates
+##You should see outout 1 added...
+#then go to
+cd /etc/ssl/certs
+##and you should see your cert there
+###Note of your file is .pem you should be able to easily just rename it to .crt but I need to test that out
+mv cert.pem cert.crt
