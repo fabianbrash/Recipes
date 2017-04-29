@@ -45,3 +45,7 @@ openssl verify cert.crt
 
 ###Good Source material https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file
 ##https://blog.confirm.ch/adding-a-new-trusted-certificate-authority/
+
+
+#####Creat a self-signed certificate without generating a CSR first############
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
