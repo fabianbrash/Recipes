@@ -9,3 +9,5 @@ apt install network-manager openssh-server -y
 systemctl start NetworkManager && systemctl enable NetworkManager && systemctl start ssh & systemctl enable ssh
 sleep 20
 apt update
+sleep 15
+reboot
