@@ -26,3 +26,11 @@ New-Item -path $profile -type file -force
 
 Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize
 Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize > C:\installedApps.txt
+
+
+
+####Get Drive information#########################################
+
+Get-PSDrive C
+#OR
+Get-PSDrive c | Select-Object Used, Free (Just not as pretty)
