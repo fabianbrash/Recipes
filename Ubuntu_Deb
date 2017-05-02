@@ -12,6 +12,10 @@ sudo apt-cache search packagename
 sudo aptitude search all network | less
 
 
+####UPGRADE TO A NEW RELEASE ESPECIALLY IF YOU ARE NOT ON AN LTS VERSION############
+sudo do-release-upgrade
+
+
 #####Set root password#############
 sudo passwd
 
