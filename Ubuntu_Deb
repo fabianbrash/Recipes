@@ -39,6 +39,38 @@ sudo nmtui
 sudo reboot
 ###You should now see the IP that you configured
 
+######NOTE NMTUI GAVE ME A TON OF ISSUES ON UBUNTU SO I REMOVED IT AND JUST DID IT THROUGH THE CONFIG####
+sudo systemctl stop NetworkManager
+sudo apt remove network-manager
+###Then reverse the changes we made /etc/network/interfaces
+sudo reboot
+###Then re-edit /etc/network/interfaces
+
+##############Actual File#################
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto enp3s0
+#iface enp3s0 inet dhcp
+iface enp3s0 inet static
+	address 192.168.1.100
+	network 255.255.255.0
+	gateway 192.168.1.254
+
+dns-nameservers 8.8.8.8
+
+#####END File contents###########
+##There is a bug in 16.04 so a reboot is required
+sudo reboot
+
 ####INSTALL .deb packages###############
 sudo dpkg -i package.deb
 ###remove
