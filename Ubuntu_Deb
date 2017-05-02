@@ -140,3 +140,16 @@ sudo apt list --upgradeable (see all available updates)
  ##First su to root
  su -
  sudo curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+
+
+#######INSTALL WEBMIN################################
+##Let's download it first
+curl -O -L http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb
+sudo apt install -f /path-to-webmin/webmin_1.831_all_deb (-f will get all dependencies required)
+
+###IF ufw is running you need to open port 10000
+sudo ufw allow 10000/tcp
+
+
+
+
