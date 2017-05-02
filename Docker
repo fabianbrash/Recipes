@@ -132,3 +132,23 @@ sudo docker-compose down
 ###Note 'image' and 'ports' must lineup as well as 'volumes' etc...
 
 
+###INSTALL DOCKER WINDOWS SERVER 2016#########################
+#####Note I installed this on Server 2016 core
+##Get a Powershell Prompt
+PS> Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+PS> Install-Package -Name docker -ProviderName DockerMsftProvider (Select 'A')
+PS> Restart-Computer -Force
+
+###Get Installed Version
+PS> Get-Package -Name Docker -ProviderName DockerMsftProvider
+##Get Current Version from Repo
+PS> Find-Package -Name Docker -ProviderName DockerMsftProvider
+
+###Upgrade Docker##################
+PS> Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+PS> Start-Service Docker
+
+
+
+
+
