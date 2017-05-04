@@ -150,6 +150,30 @@ PS> Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
 PS> Start-Service Docker
 
 
+######INSTALL DOCKER-COMPOSE WINDOWS####################
+
+####Replace the version with the current version, as of this writing it's 1.13
+Invoke-WebRequest "https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Windows-x86_64.exe" -UseBasicParsing -OutFile $Env:ProgramFiles\docker\docker-compose.exe
+docker-compose --version
+##You should get the version output
+
+
+
+####INSTALL DOCKER-COMPOSE LINUX#######################
+##You will need to su first
+su -
+curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+exit su
+
+###If you are on a custom linux flavor like say photonOS you can just do this instead
+##got to: https://github.com/docker/compose/releases
+curl -O -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-Linux-x86_64
+mv docker-compose-Linux-x86_64 docker-compose
+su -
+cp docker-compose /usr/local/bin && chmod u+x docker-compose
+exit
+
 
 
 
