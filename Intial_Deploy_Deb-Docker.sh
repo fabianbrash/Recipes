@@ -2,11 +2,12 @@
 
 ##Initial config for Debian based systems i.e Ubuntu and installation of docker-ce
 ##open-vmtools should already be installed with ubuntu server
+##I'm removing the install of network-manager as I found it to be quite buggy
 
 apt update && apt upgrade -y
 sleep 15
-apt install network-manager openssh-server -y
-systemctl start NetworkManager && systemctl enable NetworkManager && systemctl start ssh & systemctl enable ssh
+apt install openssh-server -y
+systemctl start ssh & systemctl enable ssh
 sleep 20
 ##Install AUFS storage driver
 apt install linux-image-extra-$(uname -r) linux-image-extra-virtual -y
