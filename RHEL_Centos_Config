@@ -11,6 +11,14 @@ sudo yum groupinstall "GroupPackage Name"
 #Install Epel packages
 sudo yum install epel-release
 
+
+####DNF######
+##Check to see what updates are available
+sudo dnf check-update
+#this should work too
+sudo yum check-update
+
+
 #Text graphical config of network after making a change you will need to restart network service
 sudo nmtui
 sudo systemctl restart network
