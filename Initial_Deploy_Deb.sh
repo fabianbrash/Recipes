@@ -10,6 +10,9 @@ apt install openssh-server -y
 systemctl start ssh & systemctl enable ssh
 ####If you would like to install Development tools uncomment this line
 #apt install build-essential -y
+###Optionally if you would like webmin un-comment the line(s) below
+##curl -O -L http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb >> /
+##apt install -f /webmin_1.831_all.deb -y
 sleep 20
 apt update
 sleep 15
