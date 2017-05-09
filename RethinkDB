@@ -15,7 +15,9 @@ r.dbCreate("Schools")
 
 r.db("Schools").tableCreate("schooldata")
 
-r.db("Schools").table('schooldata') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/shools.json')) r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+r.db("Schools").table('schooldata') 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/shools.json')) 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
 
 r.db("Schools").table('schooldata')
 
@@ -27,7 +29,8 @@ r.db("Schools").table('schooldata').orderBy('GradeLevel')
 
 r.db("Schools").table('schooldata').orderBy('Subnet')
 
-r.db("Schools").table('schooldata').orderBy('GradeLevel') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+r.db("Schools").table('schooldata').orderBy('GradeLevel') 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
 
 r.db("Schools").table('schooldata')
 
@@ -41,7 +44,8 @@ r.db("Schools").table('schooldata')
 
 r.db("Schools").table('schooldata').orderBy('name')
 
-r.db("Schools").table('schooldata').orderBy('GradeLevel') r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
 
 r.db("Schools").table('schooldata')
 
