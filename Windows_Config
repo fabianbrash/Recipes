@@ -54,7 +54,10 @@ Restart-Service w32time
 
 #Must register this on each DC so you can move Schema master role
 regsvr32 schmmgmt.dll
-#Then load mmc.exe and you should now see an options for schema master
+#Then load mmc.exe and you should now see an options for 'Active Directory Schema'
+###I had an odd issue when attempting to transfer to the schema master role, I kept getting an error
+##Schema master could not be contacted, to fix I made certain the schema master has an alternate DNS server
+##In my case the DNS of the DC I wanted to be the new schema master, ODD!!
 
 
 ################################################################################################################################
