@@ -142,7 +142,7 @@ redirusr ou=UsersOU,dc=mydomain,dc=com
 ##In my case
 redircmp "OU=fbWorkstations,DC=fb,DC=com"
 
-##############################INSTALL .NET FROM DVD###############################################################################
+##############################INSTALL .NET FROM DVD#######################################################################
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:d:\sources\sxs (D is DVD drive)
 
 
@@ -162,6 +162,10 @@ echo $Env:ProgramFiles (Just list the variable for ProgramFiles)
 setx JAVA_HOME "C:\Program Files\Java\jdk1.8.0_121\"
 setx path "%path%;%JAVA_HOME%\bin"
 
+
+############RSOP.MSC REF:https://prajwaldesai.com/modify-group-policy-refresh-interval-windows-computers/###############
+##Log on to local pc and run the below
+rsop.msc
 
 
 
