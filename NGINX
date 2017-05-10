@@ -1,6 +1,7 @@
 ################USING NGINX AS A LB, REVERSE PROXY, CACHING AND SSL TERMINATION SERVER###################
 cd /etc/nginx
-##A couple of important directories here are sites-available and sites-enabled(sites-enabled gets loaded when nginx starts or reloads)
+##A couple of important directories here are sites-available and sites-enabled(sites-enabled gets loaded 
+##when nginx starts or reloads)
 cd /etc/nginx/sites-available
 sudo vim app-name
 
