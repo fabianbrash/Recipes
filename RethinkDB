@@ -114,3 +114,16 @@ r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'}).orderBy('name
 r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'}).orderBy('name')
 
 r.db("Schools").table('schooldata').filter({'GradeLevel': 'Elementary'}).orderBy('name')
+
+######Execute multiple commands###############################################################
+####Let's drop a table, re-create the table, insert data into the table, and then show the table
+r.db('Schools').tableDrop('schooldata');
+r.db('Schools').tableCreate('schooldata');
+r.db("Schools").table('schooldata').insert(r.http('http://NodeIP/imports/schools.json'));
+r.db('Schools').table('schooldata');
+
+
+
+
+
+
