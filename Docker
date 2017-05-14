@@ -201,4 +201,24 @@ networks:
 
 
 
+################SIMPLE APP STACK, MONGODB BACKEND AND A NOJE APP AS THE FRONTEND####################
+
+docker pull mongo:3.4.4
+
+docker run -d --name mymongo mongo:3.4.4
+
+docker pull sdelements/lets-chat
+
+docker run -d --name mylc \
+-p 8080:8080 \
+-p 5222:5222 \
+--link mymongo:mongo \
+sdelements/lets-chat
+
+###########END STACK#############################
+
+
+
+
+
 
