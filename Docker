@@ -201,7 +201,7 @@ networks:
 
 
 
-################SIMPLE APP STACK, MONGODB BACKEND AND A NOJE APP AS THE FRONTEND####################
+################SIMPLE APP STACK, MONGODB BACKEND AND A NODE APP AS THE FRONTEND####################
 
 docker pull mongo:3.4.4
 
