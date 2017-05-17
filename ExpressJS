@@ -27,3 +27,65 @@ app.listen(3000, function(){
 
 
 ###################END CODE##################################
+
+
+##########We could have also called nodejs API#########
+response.write('Hello Express World!!');
+response.end();
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/block', function(request, response) {
+	//Let's create an array
+	var blocks = ['Fixed', 'Movable', 'Rotating'];
+	response.send(blocks);
+	response.json(blocks); //does the same thing
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
+
+
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/block', function(request, response) {
+	//Redirect our users
+	response.redirect('/parts');
+	response.redirect(301, '/parts'); //permanently move our app
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
+
+
+###useful middlewares#########
+##Jade
+##EJS
+
+
+####We can also install express-generator which will install some middleware and would allow us to
+######Generate the basic scaffolding of an app
+
