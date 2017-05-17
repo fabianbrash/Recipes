@@ -88,4 +88,12 @@ app.listen(3000, function(){
 
 ####We can also install express-generator which will install some middleware and would allow us to
 ######Generate the basic scaffolding of an app
+npm install express-generator -g
+cd /app1
+express Testapp1
+cd /Testapp1
+npm install ###Install all our depedencies located in the package.json file
+npm start
+###Then start edited in your /routes and /views folder
+
 
