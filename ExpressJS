@@ -1,0 +1,29 @@
+
+#####ExpressJS code samples#################
+
+##First we need to install express
+npm install express
+or
+npm install express -g(-g means globally while the prior command will only install express in your current working
+directory)
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/', function(request, response) {
+	
+	response.send('Hello Express World!!');
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
