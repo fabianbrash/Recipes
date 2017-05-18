@@ -124,6 +124,11 @@ r.db('Schools').table('schooldata');
 
 
 
+#####Add a new user this is as of version 2.3#######################
+
+r.db("rethinkdb").table("users").insert({id: "skyla", password: "r3dd0t"})
+r.db("test").grant("skyla", {read: true, write: true, config: true})
+
 
 
 
