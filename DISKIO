@@ -1,0 +1,29 @@
+
+
+#################UNDERSTANDING BLOCK SIZES SOURCE: http://www.dhillonblog.com/2014/07/understanding-io-request-block-size/
+
+
+##Higher the I/O size, bigger the throughput will be. On the revere size, IOPS will be lower whereas if the I/O 
+##size is smaller you will get higher IOPS. Remember, the data is stored on the storage device in 
+##size of 512 Bytes (Most common). It take a certain amount of time for storage device to read/write 
+##single sector (512 Bytes for hard disk drives). I suggest that you read http://en.wikipedia.org/wiki/Advanced_Format 
+##to learn more about sector size.
+
+##Now let’s say that you have read I/O request (operations) which is 8KB in size. To complete this request, 
+##disk will have to read 16 sectors. As you can guess, it will take more time to read 16 sectors as compared to 1 
+##sector from the disk drive. If we change the I/O request size to 64KB, 128 sectors will be read to complete the 
+##request and it will take even more time as compared to complete 8KB size request.
+
+
+Application Type	Access Pattern	Read %	Write %	Blocks (In KB)
+Database (transaction processing)	Random	70	30	         8
+Mail Server	                      Random	70	30	         8
+File Copy (SMB)	                  Random	50	50	         64
+Database (log ﬁle)	              Sequential	0	100	       64
+Web Server	                      Random      0	100	       64 (***100% Writes?? shouldn't that be Reads??)
+Backup	                          Sequential	0	100	       64
+Restore	                          Sequential	100	0	       64
+
+
+##I will add more info here as I get it#####
+
