@@ -148,3 +148,15 @@ SoftwarePackage[0]: scsi-iomemory-vsl
 (Get-EsxImageProfile "MyProfile").viblist
 Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile.iso -ExportToIso -Force -noSignatureCheck
 Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile-offline-bundle.zip -ExportToBundle -Force -noSignatureCheck
+
+################SET SAN POLICY WINDOWS VM's#####################################################
+##Launch admin command prompt
+diskpart
+san
+san policy=OnlineAll
+
+###Options san policy=OnlineAll | OfflineAll | OfflineShared
+
+
+
+
