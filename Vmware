@@ -154,6 +154,7 @@ Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile-o
 diskpart
 san
 san policy=OnlineAll
+exit
 
 ###Options san policy=OnlineAll | OfflineAll | OfflineShared
 
