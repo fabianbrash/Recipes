@@ -63,3 +63,19 @@ cd /etc/ssl/certs
 ##and you should see your cert there
 ###Note of your file is .pem you should be able to easily just rename it to .crt but I need to test that out
 mv cert.pem cert.crt
+
+
+
+#############################GENERATE DIFFIE-HELMAN#####################################
+openssl dhparam -out dhparams.pem 2048(can also be 1024, 4096 ofcourse higher is better)
+#or
+openssl dhparam -out /etc/nginx/conf.d/dhparams.pem 2048
+####also good source https://weakdh.org/sysadmin.html
+###also https://cipherli.st/
+####This is a great generator as well from Mozilla: https://mozilla.github.io/server-side-tls/ssl-config-generator/
+
+
+
+
+
+
