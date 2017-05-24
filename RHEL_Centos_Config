@@ -415,4 +415,12 @@ chown -R bob /foo (give bob full rights to folder foo and all subfiles and folde
 useradd jdoe
 
 
+##############CRONTAB
+
+sudo crontab -e
+##head over here to generate your config http://crontab-generator.org/
+
+
+
+
 
