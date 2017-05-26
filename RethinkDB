@@ -131,4 +131,16 @@ r.db("test").grant("skyla", {read: true, write: true, config: true})
 
 
 
+######RUN AS A BACKGROUND PROCESS ON UBUNTU############################
+
+sudo rethinkdb --bind all & 
+#####see all background jobs
+sudo jobs
+##CTRL-Z suspend process and bg to enable
+###bring to foreground
+fg
+
+
+
+
 
