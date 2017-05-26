@@ -139,6 +139,7 @@ sudo jobs
 ##CTRL-Z suspend process and bg to enable
 ###bring to foreground
 fg
+or fg %num(the process you want to bring to the foreground get from 'bg')
 
 
 
