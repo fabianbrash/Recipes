@@ -72,9 +72,12 @@ dns-nameservers 8.8.8.8
 sudo reboot
 
 ####INSTALL .deb packages###############
-sudo dpkg -i package.deb
+sudo dpkg -i package_1_1.deb
 ###remove
-sudo dpkg -r package.deb
+sudo dpkg -r package_1_1.deb
+
+###UPGRADE PACKAGE#####
+sudo dpkg -i package_1.2.deb
 
 sudo dpkg -l | grep 'app looking for'
 sudo dpkg -l | grep plex
