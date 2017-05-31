@@ -130,6 +130,9 @@ r.db("rethinkdb").table("users").insert({id: "skyla", password: "r3dd0t"})
 r.db("test").grant("skyla", {read: true, write: true, config: true})
 
 
+######RETURN ONLY CERTAIN RESULTS#############################
+r.db('testdb').table('testtable').pluck('Name').orderBy('Name')
+r.db('testdb').table('testtable').pluck(['Name', 'DOB']).orderBy('Name')
 
 ######RUN AS A BACKGROUND PROCESS ON UBUNTU############################
 
