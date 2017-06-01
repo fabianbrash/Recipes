@@ -168,3 +168,16 @@ esxli sofware vib update -d /path/to/zip/intel.zip
 esxcli software vib remove --vibname=name (get from esxcli software vib list or esxcli software vib list | grep intel)
 
 
+######################VCSA/PSC CLI installation###################################################################
+cd D: (or wherever your DVD is mounted)
+cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
+.\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\PSC_first_instance_on_ESXi.json
+.\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\vCSA_on_ESXi.json
+
+
+
+
+
+
+
+
