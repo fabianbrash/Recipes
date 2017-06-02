@@ -145,6 +145,21 @@ fg
 or fg %num(the process you want to bring to the foreground get from 'bg')
 
 
+######DRILLING DOWN INTO A JSON OBJECT##########################################
 
+r.db('NASA').table('personsinspace').pluck({
+  people: ['craft', 'name']});
+  
+  ####OR
+  
+  r.db('NASA').table('personsinspace').pluck('people');
+  
+  
+  #####RETURN A PRECISE USER/OBJECT##############################
+  
+  r.db('NASA').table('personsinspace')('people').nth(0).filter(function(name) {
+  return name("name").eq("Thomas Pesquet")});
+  
+  
 
 
