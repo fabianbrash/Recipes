@@ -150,7 +150,7 @@ or fg %num(the process you want to bring to the foreground get from 'bg')
 r.db('NASA').table('personsinspace').pluck({
   people: ['craft', 'name']});
   
-  ####OR
+  ####OR#####
   
   r.db('NASA').table('personsinspace').pluck('people');
   
@@ -160,6 +160,7 @@ r.db('NASA').table('personsinspace').pluck({
   r.db('NASA').table('personsinspace')('people').nth(0).filter(function(name) {
   return name("name").eq("Thomas Pesquet")});
   
-  
+  #####OR######
 
+r.db('NASA').table('personsinspace')('people').nth(0).filter({name: "Thomas Pesquet"});
 
