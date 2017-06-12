@@ -34,3 +34,14 @@ Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uni
 Get-PSDrive C
 #OR
 Get-PSDrive c | Select-Object Used, Free (Just not as pretty)
+
+
+#####GET WINDOWS PRODUCT KEY#################################
+
+(Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
+
+
+
+
+
+
