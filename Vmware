@@ -59,6 +59,14 @@ esxcli software vib list | grep ams
 /etc/init.d/hp-ams.sh stop && chkconfig hp-ams.sh off && services.sh restart
 chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
 
+
+############Restart Management Agents######################################
+/etc/init.d/hostd restart
+
+/etc/init.d/vpxa restart
+
+
+
 ########Enable CDP###############################################################################################
 esxcfg vswitch b vSwitch1
 esxcfg vswitch B both vSwitch1
