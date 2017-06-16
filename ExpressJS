@@ -124,3 +124,5 @@ app.listen(3000);
 
 console.log("Running at Port 3000");
 
+##############RESOURCES:  https://codeforgeek.com/2016/08/node-static-file-server-without-writing-code/#  ##############
+
