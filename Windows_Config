@@ -133,7 +133,22 @@ create partition primary
 format fs=ntfs quick unit=8192 label=data or
 format fs=ntfs quick unit=8k label=data
 
-
+Boot from Windows installation media.
+Press Shift+F10 at the first setup screen to open a command prompt.
+Run the following commands to create the partitions:
+diskpart
+list disk [should only see disk 0]
+select disk 0
+clean all [erase hard disk (slow process)]
+create partition primary size=500 [This will set the size of the System Reserved partition to 500MB (Windows10)]
+active
+format fs=ntfs label=”System Reserved” quick [This performs a quick format of the System Reserved Partition and sets the cluster size to 4096]
+create partition primary                        
+format fs=ntfs label="OS" quick unit=8192 [This performs a quick format of the OS Partition and sets the cluster size to 8192]
+assign
+exit
+exit
+Install OS
 #########CHANGE DEFAULT COMPUTER AND USER OU###########################
 
 ##Computer redirect
