@@ -183,6 +183,11 @@ cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\vCSA_on_ESXi.json
 
 
+########################LIST ALL SERVICES##################################
+chkconfig --list
+
+#########Also useful
+chkconfig -io
 
 
 
