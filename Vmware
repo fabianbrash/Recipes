@@ -190,6 +190,14 @@ chkconfig --list
 chkconfig -io
 
 
+##############CHANGE IN ESXI 6.5#################################
+##Please note in order to see services restart you will need to run an additional command
+
+services.sh restart & tail -f /var/log/jumpstart-stdout.log
+
+##Instead of######
+services.sh restart
+
 
 
 
