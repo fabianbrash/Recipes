@@ -416,6 +416,8 @@ chown root:www-data /foo (give root ownership and the group www-data to folder f
 chown -R root:www-data /foo (give root ownership and the group www-data to folder subfolder and files to foo) -R(Recursively)
 chown -R bob /foo (give bob full rights to folder foo and all subfiles and folders)
 
+chmod -R 0777 /mydirectory ##Grant everyone read & write
+
 
 ###############USER CREATION################################################################
 #Source:  https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-users-add.html
