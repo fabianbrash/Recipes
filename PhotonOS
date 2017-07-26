@@ -34,3 +34,8 @@ networkctl status eth0
 #######Allow root to ssh######################################
 vim /etc/ssh/sshd_config (Find in the file PermitRootLogin and change to yes)
 systemctl restart sshd
+
+
+#######FIREWALL#################################
+#photonOS uses iptables for it's firewall and it's on by default
+systemctl status iptables
