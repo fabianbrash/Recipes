@@ -298,10 +298,11 @@ sudo yum install -y system-config-firewall-tui
 sudo fdisk -l (list all volumes)
 sudo fdisk -l /dev/sda1 (just list that volume)
 sudo fdisk /dev/sda1
+####press g to create a gpt partition#############
 #####press n to create a new partition and follow the prompts################
 #####press l to list the hexcodes###########################################
 ####press t to change partition type#######################################
-#####presss w to write changes#################################
+#####press w to write changes#################################
 sudo mkfs.ext4 /dev/sda1 (lay down our filesystem)
 sudo mkdir /Data
 sudo mount /dev/sda1 /Data
