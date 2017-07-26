@@ -308,6 +308,14 @@ sudo mount /dev/sda1 /Data
 ###EDIT YOUR /ect/fstab file#######
 /dev/sda1  /Data  ext4  defaults 0 0 
 
+
+#####Wipe file system##################
+sudo wipefs /dev/sdb (List the current signature)
+##Wipe command####
+sudo wipefs --all --force /dev/sdb
+##backup before wiping###
+sudo wipefs --all --force --backup /dev/sdb (Saved to $HOME/wipefs-{devname}-{offset}.bak)
+
 ####If your volume uses LVM this is a bit trickier######
 ##PVDISPLAY######
 sudo pvdisplay (for LVM)
