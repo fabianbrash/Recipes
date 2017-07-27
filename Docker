@@ -243,4 +243,19 @@ gitlab_rails['smtp_tls'] = false
 
 
 
+#############GITLAB CONFIG######################
+sudo docker exec mygitlab gitlab-ctl reconfigure (after editing gitlab.rb)
+sudo docker restart mygitlab
+
+#######Send a test email from gitlab##############
+sudo docker exec mygitlab bash
+
+gitlab-rails console
+
+Notify.test_email('blah@gmail.com', 'Message Subject', 'Message Body').deliver_now
+
+
+
+
+
 
