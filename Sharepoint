@@ -17,6 +17,10 @@ iisreset /stop
 ##Click 'Alias' tab then 'Add' select 'TCP/IP' place current server/oldServer in 'Sever Alias' and new server in 'Server Name'
 ##REF: https://www.mssqltips.com/sqlservertip/1620/how-to-setup-and-use-a-sql-server-alias/
 
+###NOTE THE ABOVE CHANGES AFFECT 64-BIT APPS FOR 32-BIT APPS################
+#Navigate to C:\Windows\SysWOW64\cliconfg.exe and repeat the above steps
+
+
 
 ####CHANGE DB INSTANCE WITH POWERSHELL PREFERREED WAY##########################
 $db = get-spdatabase -identity <guid from get-spdatabase>
