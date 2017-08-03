@@ -21,6 +21,8 @@ iisreset /stop
 #Navigate to C:\Windows\SysWOW64\cliconfg.exe and repeat the above steps
 
 
+###YOU CAN ALSO ADD ALIASES USING SQL CONFIG MANAGER BUT AGAIN YOU NEED TO CREATE FOR BOTH 32 AND 64 BIT
+
 
 ####CHANGE DB INSTANCE WITH POWERSHELL PREFERREED WAY##########################
 $db = get-spdatabase -identity <guid from get-spdatabase>
