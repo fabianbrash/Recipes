@@ -187,4 +187,17 @@ rsop.msc
 
 
 
+###WINDOWS UPDATE REBOOT LOOP####
+###Wndows continuosly prompt user to reboot machine to apply an update
+
+##Delete the following reg key
+HKLM/Software/Microsoft/Windows/CurrentVersion/WindowsUpdate/Auto Update
+##Look for "RebootRequired"
+#Delete the entire folder
+##REF: http://www.squidworks.net/2012/06/solved-always-getting-message-windows-cant-update-important-files-and-services-while-the-system-is-using-them/
+
+
+
+
+
 
