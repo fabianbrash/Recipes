@@ -41,6 +41,9 @@ Get-PSDrive c | Select-Object Used, Free (Just not as pretty)
 (Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
 
 
+#######Expire AD user password not tested#####################
+$name = 'jdoe'
+Get-ADUser -Identity $name | Set-ADUser -ChangePasswordAtLogon:$true 
 
 
 
