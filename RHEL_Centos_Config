@@ -399,7 +399,7 @@ curl -i http://www.google.com (get http headers)
 ######SCP################################################
 scp -r /directory/ user@192.168.1.1:/directory (recursively copy all data from /directory on the source to /directory on the destination,
 if the folder does not exist on dest then it will be created)
-
+scp -r . root@server:/data
 
 
 ######################LINUX PERMISSIONS#############################################
