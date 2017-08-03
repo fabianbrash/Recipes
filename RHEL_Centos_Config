@@ -399,7 +399,7 @@ curl -i http://www.google.com (get http headers)
 ######SCP################################################
 scp -r /directory/ user@192.168.1.1:/directory (recursively copy all data from /directory on the source to /directory on the destination,
 if the folder does not exist on dest then it will be created)
-scp -r . root@server:/data
+scp -r . root@server:/data  ###copy all data recursively from the current directory and copy it to /data on remote host
 
 
 ######################LINUX PERMISSIONS#############################################
@@ -423,7 +423,9 @@ chmod -R 0777 /mydirectory ##Grant everyone read & write
 #Source:  https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-users-add.html
 
 
-useradd jdoe
+useradd jdoe  ##Add user joe
+useradd joe -u 1000 ##Add user joe and assign ID of 1000
+passwd joe  ##set password for joe
 
 
 ##############CRONTAB
