@@ -1,0 +1,26 @@
+
+
+##########SHAREPOINT INFO###################################
+
+####SP powershell snippets######################
+get-spdatabase
+
+############MIGRATE SP DB FROM ONE HOST TO THE NEXT###################
+##REF: https://technet.microsoft.com/en-us/library/cc512725.aspx#Man
+##stop IIS
+iisreset /stop
+###Stop all SP services that are running
+##Detach(not offline) all DB's in SQL
+##Copy all .mdf and .ldf files to new server(d: drive .mdf e: .ldf)
+##Attach the DB's on the new server
+##Then you can create a SQL Alias using SQL Config or use cliconfg.exe
+##Click 'Alias' tab then 'Add' select 'TCP/IP' place current server/oldServer in 'Sever Alias' and new server in 'Server Name'
+##REF: https://www.mssqltips.com/sqlservertip/1620/how-to-setup-and-use-a-sql-server-alias/
+
+
+####CHANGE DB INSTANCE WITH POWERSHELL PREFERREED WAY##########################
+$db = get-spdatabase -identity <guid from get-spdatabase>
+$db.ChangeDatabaseInstaqnce("new-sql-server")
+$db.update()
+
+#############YOU HAVE TO DO THIS FOR EACH DB GUID################
