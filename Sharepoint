@@ -36,3 +36,4 @@ $db.update()
 
 #HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa
 #Create a DWORD(32-bit)DisableLoopbackCheck set to 1
+#Then Reboot
