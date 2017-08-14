@@ -17,6 +17,8 @@
 ##Everyone - Read Attributes (Apply onto: This Folder Only)
 ##Everyone - Traverse Folder/Execute File (Apply onto: This Folder Only)
 
+##SHARE PERMISSION IS EVERYONE HAS FULL CONTROL##########
+
 
 #Pay attention when configuring the home directory or folder redirection policies.  If you enable the setting to give the user 
 #exclusive access to the folder, you will override the inherited permissions and need to reset the ACL.
