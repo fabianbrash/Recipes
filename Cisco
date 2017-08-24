@@ -89,6 +89,9 @@ switchport trunk native vlan 99
 #####SHOW VLAN INFORMATION ON A PORT###########################################
 show interfaces Gi1/0/13 switchport
 
+###SHHOW RUNNING CONFIG FOR A SPECIFIC PORT##############
+show run int gi1/0/13
+
 
 #################SHOW TRUNK INFORMATION##############################################
 show interfaces trunk
