@@ -96,6 +96,11 @@ show run int gi1/0/13
 #################SHOW TRUNK INFORMATION##############################################
 show interfaces trunk
 
+#######ALSO#############################
+show interfaces Gi1/0/13 trunk
+
+######ABOVE COMMAND WILL ONLY SHOW DATA IF TRAFFIC IS ACTIVELY PASSING(STATUS LET'S YOU KNOW IT SHOULD SAY 'TRUNKING')
+
 #################################DELETE A VLAN##############################################################################
 
 conf t
