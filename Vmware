@@ -170,7 +170,7 @@ exit
 
 #################VIB INSTALL, LIST, UPDATE, DELETE################################
 
-esxcli software vib install -b /path/to/vib/intel.vib
+esxcli software vib install -v /path/to/vib/intel.vib
 esxcli software vib install -d /path/to/zip/intel.zip
 esxli sofware vib update -d /path/to/zip/intel.zip
 esxcli software vib remove --vibname=name (get from esxcli software vib list or esxcli software vib list | grep intel)
