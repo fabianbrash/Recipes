@@ -92,7 +92,12 @@ show interfaces Gi1/0/13 switchport
 ####SHOW VLAN IP INFORMATION(HELPFUL TO SEE DHCP HELPER ADDRESS###############################
 show ip interface vlan 60
 
-###SHHOW RUNNING CONFIG FOR A SPECIFIC PORT##############
+######ADD IP HELPER ADDRESS TO A VLAN###############################
+conf t
+int vlan 10
+ip helper-address x.x.x.x
+
+###SHOW RUNNING CONFIG FOR A SPECIFIC PORT##############
 show run int gi1/0/13
 
 
