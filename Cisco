@@ -192,3 +192,10 @@ no system mtu jumbo
 reload
 
 
+############CONFIGURE PORT SPEED############################
+conf t
+int Gi1/0/10
+speed ?
+duplex ?
+
+
