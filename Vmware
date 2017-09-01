@@ -198,7 +198,23 @@ services.sh restart & tail -f /var/log/jumpstart-stdout.log
 ##Instead of######
 services.sh restart
 
+###########INSTALL THE NEW POWERCLI MODULES REFERENCE:https://blogs.vmware.com/PowerCLI/2017/04/powercli-install-process-powershell-gallery.html##
+###Lauch Powershell
+##C:\Program Files (x86)\VMware\Infrastructure\
 
 
+######FIRST MAKE CERTAIN YOU REMOVE ALL REMNANCE OF THE OLD INSTALL######
+###AFTER REMOVAL OF THE APP MAKE CERTAIN THE BELOW DIRECTRY HAS BEEN DELETED#####
 
+Find-Module -Name VMware.PowerCLI
+
+####If you haven't installed NuGet you will be prompted to do so######
+Install-Module -Name VMware.PowerCLI -Scope AllUsers(-Scope CurrentUser can also be used)
+
+Get-Module VMware* -ListAvailable
+
+####Then you can get the modules by#####
+Import-Module VMware.PowerCLI
+
+####Now you can also import the individual modules into your scripts#####
 
