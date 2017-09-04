@@ -237,6 +237,8 @@ Set-AdmPwdReadPasswordPermission -OrgUnit "OU=MyComputers,DC=lab,DC=org" -Allowe
 
 ##For scripts to run as SYSTEM make certain domain computers have atleast read and execute rights to the share######################
 
+#######FORCE SYSTEM TO SYNC TIME WITH DC################
 
+net time \\DC_Name_OR_IP /set /y
 
 
