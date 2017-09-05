@@ -242,3 +242,12 @@ Set-AdmPwdReadPasswordPermission -OrgUnit "OU=MyComputers,DC=lab,DC=org" -Allowe
 net time \\DC_Name_OR_IP /set /y
 
 
+###################PROPER PERMISSIONS FOR ABE############################
+##Grant Read privileges to "This folder only" to "Authenticated Users" to the root folder
+###Traverse folder/ execute file
+###List folder /read data
+##Read attributes
+##Read extended attributes
+##Read permissions
+
+##Then assign specific rights to the sub-folders
