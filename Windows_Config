@@ -251,3 +251,23 @@ net time \\DC_Name_OR_IP /set /y
 ##Read permissions
 
 ##Then assign specific rights to the sub-folders
+
+
+######REPAIRING DAMAGED PROFILE###########################
+
+###Log on to the system by using an administrative user account other than the user account that is experiencing the problem.
+##Back up all data in the current user's profile folder if the profile folder still exists, and then delete the profile folder. 
+##By default, the profile resides in the following location:%SystemDrive%\Users\UserName
+##Click Start, type regedit in the Start Search box, and then press ENTER.
+
+##User Account Control permission If you are prompted for an administrator password or for confirmation, type your password, or click Continue.
+##Locate the following registry subkey:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList
+##Under the ProfileList subkey, delete the subkey that is named SID.bak. 
+
+Note SID is a placeholder for the security identifier (SID) of the user account that is experiencing the problem. The SID.bak subkey
+##should contain a ProfileImagePath registry entry that points to the original profile folder of the user account that is experiencing the problem.
+##Exit Registry Editor.
+##Log off the system.
+##Log on to the system again.
+###NOTE IF THE USER LOGS IN AND IS NOT REDIRECTED TRY RUNNING THE OFFLINE FILE FIX AND AFTER REBOOT HAVE THEM LOGIN
+
