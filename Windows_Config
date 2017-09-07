@@ -271,3 +271,12 @@ Note SID is a placeholder for the security identifier (SID) of the user account 
 ##Log on to the system again.
 ###NOTE IF THE USER LOGS IN AND IS NOT REDIRECTED TRY RUNNING THE OFFLINE FILE FIX AND AFTER REBOOT HAVE THEM LOGIN
 
+
+##############INSTALL .MSU FILES########################
+wusa.exe ps.msu
+
+##silent install
+wusa.exe ps.msu /quiet
+
+###Add full path
+wusa.exe c:\msu\ps.msu
