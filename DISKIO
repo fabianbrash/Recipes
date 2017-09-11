@@ -27,3 +27,18 @@ Restore	                          Sequential	100	0	       64
 
 ##I will add more info here as I get it#####
 
+
+
+#################STORAGE DEEP DIVE##############################
+####AHCI BASED SSD'S#########################
+1 I/O = 27,000 cpu cycles
+1 million IOPS = 27,000,000,000(that's 27 Billion)
+
+##Intel E5-2630 V4 = 10 cores @ 2.20GHZ = 10x2.2billion Cycles = 22 Billion
+##OR you need ~13 cores to push 1 million IOPS
+
+
+#####NVME BASED SSD'S##################
+1 I/O = 9100 cpu cycles
+1 million IOPS = 9100 x 1,000,000 = 9,100,000,000(9.1 Billion)
+##OR you need ~ 4 cores to push 1 million IOPS
