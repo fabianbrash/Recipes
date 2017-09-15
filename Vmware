@@ -218,3 +218,19 @@ Import-Module VMware.PowerCLI
 
 ####Now you can also import the individual modules into your scripts#####
 
+
+###########KILL a VM that won't shutdown############################
+
+###List all VM processes on a host###########
+esxcli vm process list
+
+#Now let's kill the process
+esxcli vm process kill --type= [soft,hard,force] --world-id= WorldNumber
+esxcli vm process kill --type=hard --world-id=1234567
+
+###Reference:  https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1014165
+
+
+
+
+
