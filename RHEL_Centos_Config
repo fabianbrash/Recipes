@@ -340,6 +340,9 @@ sudo ls -l /etc/*.conf
 uname -a
 cat /etc/redhat-release
 
+#####Should work on both RHEL and Debian##########
+lsb_release -a
+
 ####Clean up yum cache####
 sudo yum clean all
 
