@@ -280,3 +280,8 @@ wusa.exe ps.msu /quiet
 
 ###Add full path
 wusa.exe c:\msu\ps.msu
+
+
+############AD DATABASE PERFMON COUNTER###################
+###To see if your DC is pulling it's DB from RAM and not disk look at the below counter
+Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs more RAM)
