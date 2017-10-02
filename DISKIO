@@ -37,8 +37,19 @@ Restore	                          Sequential	100	0	       64
 ##Intel E5-2630 V4 = 10 cores @ 2.20GHZ = 10x2.2billion Cycles = 22 Billion
 ##OR you need ~13 cores to push 1 million IOPS
 
+###Another way of doing this##############
+##2.20GHZ / 27,000 = 81,482 IOPS per core
+##1,000,000 / 81,482 = ~12.27 cores required to push 1 million IOPS or 
+##In a server with 2 E5-2630 V4's you would use an entire socket leaving 1 socket for actualy VM's
 
 #####NVME BASED SSD'S##################
 1 I/O = 9100 cpu cycles
 1 million IOPS = 9100 x 1,000,000 = 9,100,000,000(9.1 Billion)
 ##OR you need ~ 4 cores to push 1 million IOPS
+
+###Same as above##################
+2.20GHZ / 9100 = 241,758.2418 IOPS
+##1,000,000 / 241,758.2418 = ~4.14 cores to produce 1 million IOPS
+###On a E5-2630 V4 that leaves 16 cores for work loads
+###REF VMWARE VSPHERE 6.5 HOST RESOURCE DEEP DIVE LOC 3826(Digital Edition)
+
