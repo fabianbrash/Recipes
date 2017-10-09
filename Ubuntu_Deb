@@ -11,6 +11,10 @@ sudo systemctl status ssh(Same as RHEL/CentOS)
 sudo apt-cache search packagename
 sudo aptitude search all network | less
 
+####If you have dependency issues with dpkg or apt################
+sudo apt-get -f install
+##The above should find all dependencies and install them and then install your app
+
 
 ####UPGRADE TO A NEW RELEASE ESPECIALLY IF YOU ARE NOT ON AN LTS VERSION############
 sudo do-release-upgrade
