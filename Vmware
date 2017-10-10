@@ -199,12 +199,12 @@ services.sh restart & tail -f /var/log/jumpstart-stdout.log
 services.sh restart
 
 ###########INSTALL THE NEW POWERCLI MODULES REFERENCE:https://blogs.vmware.com/PowerCLI/2017/04/powercli-install-process-powershell-gallery.html##
-###Lauch Powershell
-##C:\Program Files (x86)\VMware\Infrastructure\
-
+###Launch Powershell
 
 ######FIRST MAKE CERTAIN YOU REMOVE ALL REMNANCE OF THE OLD INSTALL######
 ###AFTER REMOVAL OF THE APP MAKE CERTAIN THE BELOW DIRECTRY HAS BEEN DELETED#####
+
+##C:\Program Files (x86)\VMware\Infrastructure\
 
 Find-Module -Name VMware.PowerCLI
 
