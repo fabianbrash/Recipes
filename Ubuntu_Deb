@@ -205,3 +205,7 @@ sudo apt-get -f install or sudo apt-get autoremove(this will remove old kernels 
 ##after that you should now be able to update your system
 ###you can also @ install time manually create your partitions and create a larger /boot partition
 
+###To see all your kernels#####
+sudo dpkg -l | grep linux-image or dpkg -l linux-image-\* | grep ^ii
+##See linux headers
+sudo dpkg -l | grep linux-headers
