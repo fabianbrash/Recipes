@@ -190,5 +190,18 @@ sudo apt install -f /path-to-webmin/webmin_1.831_all_deb (-f will get all depend
 sudo ufw allow 10000/tcp
 
 
+#############/boot runs out of space##################
+###First check to see how much free space is available @ /boot
+df -h
+####If you are @ 100% then you will have to manually remove some files########
+cd /boot
 
+###and remove all the match peers
+sudo rm abi-4.8.0-53-generic && sudo rm config-4.8.0-53-generic && sudo rm initrd.img-4.8.0-53-generic && sudo rm System.map-4.8.0-53-generic && sudo rm vmlinuz-4.8.0-53-generic
+##Do the above for a few version 4.8.0-55(like that) until and then check /boot again
+df -h
+##then you can run either
+sudo apt-get -f install or sudo apt-get autoremove(this will remove old kernels and free up space)
+##after that you should now be able to update your system
+###you can also @ install time manually create your partitions and create a larger /boot partition
 
