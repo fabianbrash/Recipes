@@ -196,7 +196,7 @@ df -h
 ####If you are @ 100% then you will have to manually remove some files########
 cd /boot
 
-###and remove all the match peers
+###and remove the matching peers(DO NOT DELETE ALL VERSIONS LEAVE A FEW)
 sudo rm abi-4.8.0-53-generic && sudo rm config-4.8.0-53-generic && sudo rm initrd.img-4.8.0-53-generic && sudo rm System.map-4.8.0-53-generic && sudo rm vmlinuz-4.8.0-53-generic
 ##Do the above for a few version 4.8.0-55(like that) until and then check /boot again
 df -h
