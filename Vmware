@@ -87,9 +87,11 @@ esxtop select 'u' for devices
 
 #########################UPDATE ESXI HOST SSH##################################################################
 vim-cmd hostsvc/maintenace_mode_enter
-esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"
+esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"(You might have to use -f or --force)
 vim-cmd hostsvc/maintenance_mode_exit
 reboot
+
+
 
 ###Get all VM ID's
 vim-cmd vmsvc/getall
