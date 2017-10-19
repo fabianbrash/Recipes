@@ -218,6 +218,10 @@ Get-Module VMware* -ListAvailable
 ####Then you can get the modules by#####
 Import-Module VMware.PowerCLI
 
+###Update to the latest version###
+Update-Module 0Name VMware.PowerCLI
+
+
 ####Now you can also import the individual modules into your scripts#####
 
 
