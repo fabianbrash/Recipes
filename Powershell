@@ -35,6 +35,20 @@ Get-PSDrive C
 #OR
 Get-PSDrive c | Select-Object Used, Free (Just not as pretty)
 
+Get-Disk #get the disks
+Get-Partition #get all partitions
+Get-Volume #get all volumes
+Get-Volume | format-table Size, SizeRemaining ##Just show the size and the size remaining
+
+###Clean a disk
+Clear-Disk 1 ##Clear disk 1
+
+Initialize-Disk -Number 1 ##Initialize Disk 1
+New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter E ##Create a new partition
+Format-Volume -DriveLetter E -FileSystem NTFS  ##Lay down our filesystem
+
+
+
 
 #####GET WINDOWS PRODUCT KEY#################################
 
