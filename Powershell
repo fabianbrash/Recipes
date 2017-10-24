@@ -47,7 +47,8 @@ Initialize-Disk -Number 1 ##Initialize Disk 1
 New-Partition -DiskNumber 1 -UseMaximumSize -DriveLetter E ##Create a new partition
 Format-Volume -DriveLetter E -FileSystem NTFS  ##Lay down our filesystem
 
-
+##Resize a Disk
+Resize-Partition -DiskNumber 1 -PartitionNumber 1 -Size 20GB ##Not Tested
 
 
 #####GET WINDOWS PRODUCT KEY#################################
