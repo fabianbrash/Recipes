@@ -264,3 +264,9 @@ esxcli vm process kill --type=hard --world-id=1234567
 ###REF VMWARE VSPHERE 6.5 HOST RESOURCE DEEP DIVE LOC 3826(Digital Edition)
 
 
+#####SILENT INSTALL VMWARE TOOLS##################################
+setup64.exe /s/v"/qn reboot=r"
+##The above will suppress reboot
+setup64.exe /s/v"/qn" ##This will not
+
+
