@@ -199,3 +199,11 @@ speed ?
 duplex ?
 
 
+
+#######ALLOW CISCO SWITCH TO ACCEPT 3RD PARTY SFP+ MODULES##########
+
+service unsupported-transceiver
+no errdisable detect cause gbic-invalid
+#####shut the interface and then bring it back up again####
+
+##REF:https://info.hummingbirdnetworks.com/blog/forcing-cisco-switches-to-use-3rd-party-sfp
