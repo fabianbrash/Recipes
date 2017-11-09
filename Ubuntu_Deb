@@ -209,3 +209,14 @@ sudo apt-get -f install or sudo apt-get autoremove(this will remove old kernels 
 sudo dpkg -l | grep linux-image or dpkg -l linux-image-\* | grep ^ii
 ##See linux headers
 sudo dpkg -l | grep linux-headers
+
+
+#####FLUSH DNS UBUNTU 17.X MIGHT WORK ON 16.X AS WELL########################
+sudo systemd-resolve --flush-caches
+##or
+sudo systemctl restart systemd-resolve
+
+
+
+
+
