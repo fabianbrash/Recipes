@@ -94,3 +94,11 @@ insert into t1
 select * from t1
 
 
+
+#####SQL INSTALL ISSUES#################
+
+###So I ran into an issue completing a SQL Image it which it errored out because of permissions
+###apparently SQL does not like to be installed in the root of a volume, you need to add a folder
+####i.e. D:\(will fail) but D:\SQLDATA(will work)
+
+###REF:https://support.microsoft.com/en-us/help/2867841/permission-error-occurs-when-you-use-a-volume-mount-point-in-sql-serve
