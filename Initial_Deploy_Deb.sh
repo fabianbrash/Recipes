@@ -14,6 +14,7 @@ systemctl start ssh & systemctl enable ssh
 #LOCATION=$PWD
 ##curl -O -L http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb
 ##apt install -f $LOCATION/webmin_1.831_all.deb -y
+##Remove if you are on a VM  sudo apt-get install open-vm-tools
 sleep 20
 apt update
 sleep 15
