@@ -218,7 +218,7 @@ sudo systemctl restart systemd-resolved
 
 
 ######EXTEND A VM STORAGE THAT SITS ON LVM#############################
-###So the first part I am going to cheat download GParted live CD and format your new extent with lvm
+###So the first part I am going to cheat download GParted live CD and format your new extent with lvm pv
 ##Then boot back into your ubuntu/debian vm(or any other distro that uses LVM)
 ##Then get some information
 sudo pvdisplay
