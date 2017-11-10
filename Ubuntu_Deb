@@ -217,6 +217,28 @@ sudo systemd-resolve --flush-caches
 sudo systemctl restart systemd-resolved
 
 
+######EXTEND A VM STORAGE THAT SITS ON LVM#############################
+###So the first part I am going to cheat download GParted live CD and format your new extent with lvm
+##Then boot back into your ubuntu/debian vm(or any other distro that uses LVM)
+##Then get some information
+sudo pvdisplay
+sudo vgdisplay
+sudo lvs
 
+##Then let's extend the volume group(VG for short)
+sudo vgextend ubuntu-srv-vg /dev/sda3 (Or whatever your new extent is you should see this from pvdisplay)
+
+###Now let's extend the logical volume(LV which you get from sudo lvs)
+sudo lvextend /dev/ubuntu-srv-vg/root /dev/sda3
+
+###Now let's resize our filesystem
+sudo resize2fs /dev/ubuntu-srv-vg/root
+
+##And that should work
+##You can also use lvextend to just add some not all space to the logical volume
+sudo lvextend -L8G(Check the docs)
+
+##REF:https://unix.stackexchange.com/questions/284424/increasing-a-volume
+##REF:https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/
 
 
