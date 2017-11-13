@@ -244,3 +244,10 @@ sudo lvextend -L8G(Check the docs)
 #####IF THE FILE SYSTEM IS NOT LVM THEN YOU CAN USE GPARTED########
 ###REF:https://www.youtube.com/watch?v=cDgUwWkvuIY
 
+############EXTEND PARTITION GPARTED###############################
+#boot into gparted
+##if swap is on turn it off
+##then extend the 'extended partition to fill up new space'
+##then 'resize/move' the swap partition to the end
+##then click on 'extended' and resize it to the end
+##then click on your root partition and resize it
