@@ -76,6 +76,8 @@ openssl dhparam -out /etc/nginx/conf.d/dhparams.pem 2048
 
 
 
-
+############INTERCHANGEABLE FILES########################
+##For the most part you can rename a .crt to .pem for import into Linux systems(there are exceptions)
+##Also you can rename .pfx to .p12 to also import into Linux
 
 
