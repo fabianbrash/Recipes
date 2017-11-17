@@ -270,3 +270,8 @@ setup64.exe /s/v"/qn reboot=r"
 setup64.exe /s/v"/qn" ##This will not
 
 
+##############NETWORK COMMANDS#####################################
+##esxcli network ip neighbor list ##Show ARP table
+
+
+
