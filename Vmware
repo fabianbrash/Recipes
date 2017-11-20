@@ -273,5 +273,7 @@ setup64.exe /s/v"/qn" ##This will not
 ##############NETWORK COMMANDS#####################################
 ##esxcli network ip neighbor list ##Show ARP table
 
+#####REF:https://www.tunnelsup.com/networking-commands-for-the-vmware-esxi-host-command-line/###
+
 
 
