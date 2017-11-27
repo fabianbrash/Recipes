@@ -53,3 +53,22 @@ Restore	                          Sequential	100	0	       64
 ###On a E5-2630 V4 that leaves 16 cores for work loads
 ###REF VMWARE VSPHERE 6.5 HOST RESOURCE DEEP DIVE LOC 3826(Digital Edition)
 
+
+
+
+#################CONVERTING IOPS TO MBPS AND VICE-VERSA#####################################
+
+IOPS = (MBps / IO SIZE) * 1024
+MBps = (IOPS * IO SIZE) / 1024
+
+####EXAMPLE###############
+IOPS = (100 / 4(4K block size) ) * 1024
+IOPS = 25 * 1024
+IOPS = 25,600
+
+MBps = (25,600 * 4(4K block siz) ) /1024
+MBps = 102,400 / 1024
+MBps = 100
+
+
+
