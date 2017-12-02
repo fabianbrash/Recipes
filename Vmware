@@ -79,7 +79,16 @@ esxcli storage nfs list
 ##Rescan all storage devices and then
 /etc/init.d/storageRM start
 ##Now lets remove it
-escli storage nfs remove -v "NFS volume name"
+esxcli storage nfs remove -v "NFS volume name"
+
+###List VMFS file system
+esxcli storage filesystem list
+
+##unmount vmfs filesystem
+esxcli storage filesystem unmount -u or -l or -p
+
+##If you get a failure filesystem is busy check to see where your esxi host is keeping it's scratch
+###under advanced setting for the host look for this key ScratchConfig.ConfiguredScratchLocation
 
 #####################VAAI CONFIG##################################################################################
 esxcli storage core device vaai status get
@@ -275,5 +284,16 @@ setup64.exe /s/v"/qn" ##This will not
 
 #####REF:https://www.tunnelsup.com/networking-commands-for-the-vmware-esxi-host-command-line/###
 
+
+####REUSING DISKS AND CAN'T FORMAT IN ESXI##############################
+
+###YOU MIGHT GET THE BELOW ERROR MESSAGE#############
+###The primary GPT table states that the backup GPT is located beyond the end of disk. 
+##This may happen if the disk has shrunk or partition table is corrupted. Fix, 
+####by writing backup table at the end? This will also fix the last usable sector appropriately as per the new
+######reduced size.
+
+####TO FIX SIMPLY##########
+partedUtil setptbl /vmfs/devices/disks/naa.600508b1001c5d5077836c8273f1e372 msdos
 
 
