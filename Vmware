@@ -297,3 +297,10 @@ setup64.exe /s/v"/qn" ##This will not
 partedUtil setptbl /vmfs/devices/disks/naa.600508b1001c5d5077836c8273f1e372 msdos
 
 
+
+##############CHECK STATUS OF SYSTEM MODULES#######################
+esxcli system module list | more
+
+esxcli system module list | grep vmw_ahci  ##Just show me this module
+
+
