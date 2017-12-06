@@ -435,10 +435,19 @@ useradd joe -u 1000 ##Add user joe and assign ID of 1000
 passwd joe  ##set password for joe
 
 
-##############CRONTAB
+##############CRONTAB###################
 
 sudo crontab -e
 ##head over here to generate your config http://crontab-generator.org/
+
+
+###########MOUNT NFS DATASTORE#################################
+sudo yum install -y nfs-utils
+
+sudo mount -t nfs 192.168.1.1:/mnt/data /mnt/data
+
+
+
 
 
 
