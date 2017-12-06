@@ -442,6 +442,7 @@ sudo crontab -e
 
 
 ###########MOUNT NFS DATASTORE#################################
+##########REF: https://www.howtoforge.com/nfs-server-and-client-on-centos-7
 sudo yum install -y nfs-utils
 
 sudo mount -t nfs 192.168.1.1:/mnt/data /mnt/data
