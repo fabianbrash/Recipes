@@ -88,8 +88,12 @@ sudo firewall-cmd --zone=public --permanent --add-service=http
 #Add a port
 sudo firewall-cmd --zone=public --permanent --add-port=5000/tcp
 sudo firewall-cmd --zone=public --permanent --add-port=4990-4999/udp
-#list all permanent ports
-sudo firewall-cmd --zone-public permanent --list-ports
+#list all open ports
+sudo firewall-cmd --list-ports
+#list all open services
+sudo firewall-cmd --list-services
+#list everything
+sudo firewall-cmd --list-all
 
 #Create your own zones
 sudo firewall-cmd --permanent --new-zone=publicweb
