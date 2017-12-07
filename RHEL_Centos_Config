@@ -449,6 +449,21 @@ sudo mount -t nfs 192.168.1.1:/mnt/data /mnt/data
 
 
 
+######MOUNT SMB SHARE###################################
+#1. If your'e joined to a domain create a domain service account(smbtest)
+#2. Give Everyone full control for share access and then give the service account Modify or Full for NTFS
+#3. Now on linux
+#4. Make a directory for our mount point
+sudo /localmntpoint
+
+##Add a user with UID of 5000
+sudo useradd smbtest -u 5000
+##Now create a group to add users to that will have access to
+sudo groupadd -g 6000 sharegroup
+##Now add all users that will have access to the share to that group
+sudo usermod -G sharegroup -a smbtest && sudo usermod -G sharegroup -a user2
+##Now your ready to mount
+sudo mount.cifs \\\\server_DNS_OR_IP\\share /localmntpoint -o user=smbtest,uid=5000,gid=6000,domain=yourdomain
 
 ############WORKING WITH GROUPS##################################
 ##view all members in a group
