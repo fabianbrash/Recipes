@@ -464,6 +464,10 @@ sudo groupadd -g 6000 sharegroup
 sudo usermod -G sharegroup -a smbtest && sudo usermod -G sharegroup -a user2
 ##Now your ready to mount
 sudo mount.cifs \\\\server_DNS_OR_IP\\share /localmntpoint -o user=smbtest,uid=5000,gid=6000,domain=yourdomain
+####NOTE THE DOMAIN IS VERY VERY IMPORTANT OR IT WILL FAIL, FOR ME THAT IS###########################
+####Also from what I can see the user does not have to be on the linux machine###########
+####But is good for consistency##################################################
+
 
 ############WORKING WITH GROUPS##################################
 ##view all members in a group
