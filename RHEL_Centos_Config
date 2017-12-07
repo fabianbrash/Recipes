@@ -450,6 +450,12 @@ sudo mount -t nfs 192.168.1.1:/mnt/data /mnt/data
 
 
 
+############WORKING WITH GROUPS##################################
+##view all members in a group
+getent group group1
+##or if you want to view a user's group
+id user
+
 
 
 
