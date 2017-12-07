@@ -435,6 +435,9 @@ useradd joe -u 1000 ##Add user joe and assign ID of 1000
 passwd joe  ##set password for joe
 
 
+###DELETE USER##############################
+sudo userdel user
+
 ##############CRONTAB###################
 
 sudo crontab -e
