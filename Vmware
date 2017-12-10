@@ -305,7 +305,7 @@ esxcli system module list | grep vmw_ahci  ##Just show me this module
 
 
 
-#########MOVE ESXI SCRATCH LOCATION###################
+#########MOVE ESXI SCRATCH LOCATION REF:https://kb.vmware.com/s/article/1014953##################
 ##You will only have issues with this if you install esxi to a thumb drive or a sd card
 ##on a datastore of your choosing create a folder .locker-esxhostname
 ##then under advanced settings for the host locate the following variable
