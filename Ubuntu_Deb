@@ -281,5 +281,9 @@ sudo mount.cifs \\\\server_DNS_OR_IP\\share /localmntpoint -o user=smbtest,uid=5
 ####ON THE LINUX SYSTEM OR YOU WILL HAVE PERMISSION ISSUES##############
 
 
-
+###MOUNT USB DRIVE################
+sudo /mnt/USB ##create a mount point
+sudo fdisk -l ##find your device
+##mount it
+sudo mount /dev/sdb1 /mnt/USB
 
