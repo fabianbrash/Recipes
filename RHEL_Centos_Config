@@ -476,7 +476,16 @@ getent group group1
 ##or if you want to view a user's group
 id user
 
+###MOUNT USB DRIVE################
+sudo /mnt/USB ##create a mount point
+sudo fdisk -l ##find your device
+##mount it
+sudo mount /dev/sdb1 /mnt/USB
 
+###unmount it#########
+sudo umount /dev/sdb1
+or
+sudo umount /mnt/USB
 
 
 
