@@ -287,3 +287,7 @@ sudo fdisk -l ##find your device
 ##mount it
 sudo mount /dev/sdb1 /mnt/USB
 
+###unmount it#########
+sudo umount /dev/sdb1
+or
+sudo umount /mnt/USB
