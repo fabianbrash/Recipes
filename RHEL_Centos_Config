@@ -488,4 +488,7 @@ or
 sudo umount /mnt/USB
 
 
+#####LET'S TAR A FOLDER##################
+sudo tar -czf name_of_tar.tar.gz /folder_to_tar
+
 
