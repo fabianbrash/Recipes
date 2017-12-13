@@ -300,3 +300,5 @@ Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs mor
 netsh dhcp server export C:\Users\whomever\Desktop\dhcp.txt all ##export scope
 
 netsh dhcp server import C:\Users\whomever\Desktop\dhcp.txt all
+####IF YOU RUN THIS FROM THE COMMAND PROMPT AT IT OUTPUTS NOTHING, TRY POWERSHELL ESPECIALLY IF YOUR BACKUP IS
+#####IN THE .BAK FORMAT###########
