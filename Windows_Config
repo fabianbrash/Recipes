@@ -293,3 +293,10 @@ Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs mor
 ###Under "Private Memory Limit(KB) set it to "0" which means unlimited
 ###This should resolve your isssue
 ##REF: https://social.technet.microsoft.com/Forums/lync/en-US/7226dc0d-e3c5-40c2-817d-048bb0a74980/error-connection-error-click-reset-server-node-to-try-to-connect-to-the-server-again?forum=winserverwsus
+
+
+##############EXPORT AND IMPORT DHCP SCOPES FOR MIGRATION REF:http://www.brycematheson.io/how-to-migrate-dhcp-from-windows-server-2008-to-2012-2016/###############
+
+netsh dhcp server export C:\Users\whomever\Desktop\dhcp.txt all ##export scope
+
+netsh dhcp server import C:\Users\whomever\Desktop\dhcp.txt all
