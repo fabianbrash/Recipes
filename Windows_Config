@@ -302,3 +302,10 @@ netsh dhcp server export C:\Users\whomever\Desktop\dhcp.txt all ##export scope
 netsh dhcp server import C:\Users\whomever\Desktop\dhcp.txt all
 ####IF YOU RUN THIS FROM THE COMMAND PROMPT AT IT OUTPUTS NOTHING, TRY POWERSHELL ESPECIALLY IF YOUR BACKUP IS
 #####IN THE .BAK FORMAT###########
+
+
+#############SET DISK POLICY POWERSHELL##################################################
+Get-StorageSetting | Select-Object NewDiskPolicy  #First let's see the current policy
+
+Set-StorageSetting -NewDiskPolicy OnlineAll  ##Now set the policy
+
