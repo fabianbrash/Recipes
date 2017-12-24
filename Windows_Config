@@ -309,3 +309,17 @@ Get-StorageSetting | Select-Object NewDiskPolicy  #First let's see the current p
 
 Set-StorageSetting -NewDiskPolicy OnlineAll  ##Now set the policy
 
+
+####### DELETE UNWANTED HEALTHY EFI PARTITION#############
+##from ad admin cmd or powershell
+diskpart
+list disk  ###just to see the layout
+list partition
+select partition 2(or whatever it is)
+delete partition override
+
+
+
+
+
+
