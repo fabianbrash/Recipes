@@ -61,5 +61,8 @@ $name = 'jdoe'
 Get-ADUser -Identity $name | Set-ADUser -ChangePasswordAtLogon:$true 
 
 
+################LOAD A POWERSHELL FUNCTION#############################
+. .\function.ps1 ##note the space after the first dot
+
 
 
