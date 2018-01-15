@@ -202,6 +202,9 @@ sudo rm abi-4.8.0-53-generic && sudo rm config-4.8.0-53-generic && sudo rm initr
 df -h
 ##then you can run either
 sudo apt-get -f install or sudo apt-get autoremove(this will remove old kernels and free up space)
+###OR
+sudo apt autoremove(same as above)
+
 ##after that you should now be able to update your system
 ###you can also @ install time manually create your partitions and create a larger /boot partition
 
