@@ -498,3 +498,9 @@ sudo tar -czvf name_of_tar.tar.gz /folder_to_tar
 usermod -aG wheel 'username'
 
 
+#########CHECK OS NAME/VERSION#######################
+hostnamectl
+rpm --query centos-release
+cat /etc/centos-release
+cat /etc/os-release
+
