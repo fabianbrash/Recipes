@@ -493,4 +493,8 @@ sudo tar -czf name_of_tar.tar.gz /folder_to_tar
 ##For large jobs your probably want to add the -v for some verbosity####
 sudo tar -czvf name_of_tar.tar.gz /folder_to_tar
 
+##########ADD USER TO SUDO###########
+##as root
+usermod -aG wheel 'username'
+
 
