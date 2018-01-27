@@ -319,7 +319,10 @@ select partition 2(or whatever it is)
 delete partition override
 
 
+#########SYSPREP COMMANDS###############
 
+cd c:\Windows\System32\Sysprep
+sysprep /oobe /generalize /shutdown
 
 
 
