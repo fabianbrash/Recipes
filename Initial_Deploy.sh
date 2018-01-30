@@ -11,3 +11,15 @@ firewall-cmd --add-service=ntp --permanent
 firewall-cmd --reload
 sleep 30
 yum upgrade -y
+
+#####Docker installation for CENTOS 7.x#####
+###Uncommnet if you would like docker ce installed
+#sudo yum install -y yum-utils \
+#device-mapper-persistent-data \
+#lvm2
+
+#sudo yum-config-manager \
+#--add-repo \
+#https://download.docker.com/linux/centos/docker-ce.repo
+
+#sudo yum install docker-ce
