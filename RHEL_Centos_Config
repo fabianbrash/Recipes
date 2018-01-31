@@ -504,3 +504,6 @@ rpm --query centos-release
 cat /etc/centos-release
 cat /etc/os-release
 
+
+####COPY A FILE WHILE KEEPING PERMISSIONS###################
+sudo cp -rp /some/path /some/otherpath ##-p same as --preserve=mode,ownership,timestamps
