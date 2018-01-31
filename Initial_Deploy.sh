@@ -22,7 +22,7 @@ yum upgrade -y
 #--add-repo \
 #https://download.docker.com/linux/centos/docker-ce.repo
 
-#yum install docker-ce
+#yum install docker-ce -y
 #systemctl start docker && systemctl enable docker
 
 #REF: https://docs.docker.com/install/linux/docker-ce/centos/#set-up-the-repository
