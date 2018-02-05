@@ -255,6 +255,13 @@ gitlab-rails console
 Notify.test_email('blah@gmail.com', 'Message Subject', 'Message Body').deliver_now
 
 
+###################DOCKER SWARM AND STACKS#########################################
+###REF: https://docs.docker.com/get-started/part3/#about-services
+
+
+##Let's have a look at some swarm commands
+docker swarm init ##Initialize a swarm
+docker swarm leave ##Leave a swarm
 
 
 
