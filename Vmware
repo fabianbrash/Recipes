@@ -316,3 +316,5 @@ esxcli storage core device list
 esxcli storage vmfs extent list
 esxcli storage filesystem list  ###VERY USEFUL FOR MOVING YOUR SCRATCH SPACE######
 
+
+#######ESXCLI command REF:https://www.vladan.fr/esxi-commands-list-getting-started/
