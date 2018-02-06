@@ -292,6 +292,10 @@ services:
       - webfront
     deploy:
       replicas: 3
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 2
       resources:
         limits:
           cpus: "0.2"
@@ -312,7 +316,7 @@ networks:
   webfront:
   
   
-  #######END FILE###################################3
+#######END FILE###################################
 
 
 
