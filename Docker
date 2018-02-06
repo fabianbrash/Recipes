@@ -257,6 +257,7 @@ Notify.test_email('blah@gmail.com', 'Message Subject', 'Message Body').deliver_n
 
 ###################DOCKER SWARM AND STACKS#########################################
 ###REF: https://docs.docker.com/get-started/part3/#about-services
+###REF: https://docs.docker.com/compose/compose-file/
 
 
 ##Let's have a look at some swarm commands
