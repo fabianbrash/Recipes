@@ -262,6 +262,25 @@ Notify.test_email('blah@gmail.com', 'Message Subject', 'Message Body').deliver_n
 ##Let's have a look at some swarm commands
 docker swarm init ##Initialize a swarm
 docker swarm leave ##Leave a swarm
+docker swarm join --token 'add token here'
+docker swarm join-token manager ## get instructions to join Swarm as a manager
+docker swarm join-token worker ## get instructions to join as a worker
+
+docker node ls  #List all nodes in the swarm
+
+
+###Let's deploy a stack###########
+docker stack deploy -c stackfile.yml mystack
+
+docker services ls ## list all serivces in the stack
+docker stack ps mystack ##List all process from the stack
+docker stack ls #List all stacks
+
+
+
+
+
+
 
 
 
