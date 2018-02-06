@@ -507,3 +507,18 @@ cat /etc/os-release
 
 ####COPY A FILE WHILE KEEPING PERMISSIONS###################
 sudo cp -rp /some/path /some/otherpath ##-p same as --preserve=mode,ownership,timestamps
+
+
+
+
+####PACKAGES WITH MULTIPLE .DEB FILES#############################
+##I ran into an isssue while attempting to install LibreOffice6, it came with a ton of .deb files
+##So I didn't know which one to start with, after reading the docs I found out you can do this.
+cd /directorywithrpms
+sudo yum install -y *.rpm
+##Or
+sudo rpm -Uvh *.rpm ##Shouldn't this be sudo rpm -ivh *.rpm
+
+##Simple
+
+
