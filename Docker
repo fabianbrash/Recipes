@@ -273,7 +273,7 @@ docker node ls  #List all nodes in the swarm
 ###Let's deploy a stack###########
 docker stack deploy -c stackfile.yml mystack
 
-docker services ls ## list all serivces in the stack
+docker service ls ## list all serivces in the stack
 docker stack ps mystack ##List all process from the stack
 docker stack ls #List all stacks
 
