@@ -522,3 +522,5 @@ sudo rpm -Uvh *.rpm ##Shouldn't this be sudo rpm -ivh *.rpm
 ##Simple
 
 
+#####SSH##############################
+ssh-keygen -f "/home/user/.ssh/known_hosts" -R "IPAddressofRemoteHost"
