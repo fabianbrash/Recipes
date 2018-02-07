@@ -291,6 +291,8 @@ services:
     networks:
       - webfront
     deploy:
+      placement:
+        constraints: [node.role == manager]
       replicas: 3
       restart_policy:
         condition: on-failure
