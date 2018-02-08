@@ -324,3 +324,34 @@ esxcli storage filesystem list  ###VERY USEFUL FOR MOVING YOUR SCRATCH SPACE####
 #This is by far the easiest way
 #path for scp: 1.1.1.1/home/user/VCSA
 #scp: 1.1.1.1/home/user/PSC
+
+
+#####FIX EMAIL ISSUES WITH VCSA#######################
+
+
+1. Type "shell" to switch to the BASH shell
+
+2. Change to the /etc/mail folder:
+
+cd /etc/mail
+
+3. Make a backup copy of submit.cf:
+
+cp submit.cf submit.cf.orig
+
+4. Edit submit.cf using vi, WinSCP, or whatever method you prefer and look for these lines:
+
+# "Smart" relay host (may be null)
+
+DS
+
+After the "DS", enter the FQDN of your SMTP server like this:
+
+# "Smart" relay host (may be null)
+
+DS mailserver.domain.com
+
+5. Then restart the sendmail service by running:
+
+systemctl restart sendmail.service
+
