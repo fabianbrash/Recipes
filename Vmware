@@ -318,3 +318,9 @@ esxcli storage filesystem list  ###VERY USEFUL FOR MOVING YOUR SCRATCH SPACE####
 
 
 #######ESXCLI command REF:https://www.vladan.fr/esxi-commands-list-getting-started/
+
+
+###########BACKUP VCSA & PSC USING SCP#########################
+#This is by far the easiest way
+#path for scp: 1.1.1.1/home/user/VCSA
+#scp: 1.1.1.1/home/user/PSC
