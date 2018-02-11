@@ -421,9 +421,47 @@ volumes:
 
 #####END FILE##########################
 
+#####WP STACK FILE W/SECRETS#######
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    networks:
+      - wp
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_pw
+    secrets:
+      - mysql_pw
+
+  wp:
+    image: wordpress
+    ports:
+      - "80:80"
+    networks:
+      - wp
+    environment:
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/mysql_pw
+    secrets:
+      - mysql_pw
+    links:
+      - mysql
+
+secrets:
+  mysql_pw:
+    external: true
+
+networks:
+  wp:
 
 
 
+###END FILE#############
 
+###WORDPRESS REQUIRES THE DB SERVICE TO BE CALLED 'mysql' I need to learn how to change that
+####maybe aliases??
 
 
