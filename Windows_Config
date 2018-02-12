@@ -164,6 +164,9 @@ create partition msr size=16 (Microsoft Reserverd partition)
 create partition primary
 format quick fs=ntfs label="Windows" unit=8192
 assign
+exit
+exit
+Install OS
 
 
 #########CHANGE DEFAULT COMPUTER AND USER OU###########################
