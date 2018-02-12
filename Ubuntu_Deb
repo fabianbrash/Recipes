@@ -302,3 +302,14 @@ cd /directorywithdebs
 sudo dpkg -i *.deb
 
 ##Simple
+
+
+###########ADD A NEW ROOT CA ON UBUNTU#############################
+####First let's make a directory for our root CA(s)
+###NOTE THIS WAS DONE USING UBUNTU 17.10
+
+sudo mkdir /usr/share/ca-certificates/extra ###extra being the name of our new folder
+sudo cp /certs/my.crt /usr/share/ca-certificates/extra
+sudo dpkg-reconfigure ca-certificates ##Follow prompts to add your new root CA
+
+
