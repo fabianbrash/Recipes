@@ -312,4 +312,5 @@ sudo mkdir /usr/share/ca-certificates/extra ###extra being the name of our new f
 sudo cp /certs/my.crt /usr/share/ca-certificates/extra
 sudo dpkg-reconfigure ca-certificates ##Follow prompts to add your new root CA
 
+####NOTE: EVEN AFTER YOU'VE DONE THIS YOU WILL STILL HAVE TO ADD THE CERT(S) TO FIREFOX AND CHROME#####
 
