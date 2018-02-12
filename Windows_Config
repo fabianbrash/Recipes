@@ -149,6 +149,23 @@ assign
 exit
 exit
 Install OS
+
+########8K BLOCK ON UEFI/EFI SYSTEMS############################################
+###REF: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions
+##Same as above Shif+F10
+list disk
+select disk x
+clean all ##you can just do 'clean' as well
+convert gpt
+create partition efi size=100
+format quick fs=fat32 label="System"
+assign
+create partition msr size=16 (Microsoft Reserverd partition)
+create partition primary
+format quick fs=ntfs label="Windows" unit=8192
+assign
+
+
 #########CHANGE DEFAULT COMPUTER AND USER OU###########################
 
 ##Computer redirect
