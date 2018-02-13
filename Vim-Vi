@@ -4,3 +4,13 @@
 ##HIT ESC type ':' set number
 ###When you exit this setting will not persist to persist
 ##in your home directory create a file called .exrc and add set number to it
+##You can also hit esc and type ':' set all to see all options available
+##REF:http://vimdoc.sourceforge.net/htmldoc/options.html
+
+
+###MY .exrc file######
+
+set number
+set autoindent
+
+##END FILE
