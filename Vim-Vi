@@ -1,0 +1,6 @@
+##USEFUL TIPS FOR VIM OR VI####
+
+##ADD NUMBERS TO LINES
+##HIT ESC type ':' set number
+###When you exit this setting will not persist to persist
+##in your home directory create a file called .exrc and add set number to it
