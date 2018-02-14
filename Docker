@@ -533,4 +533,18 @@ networks:
 
 
 
+##########DOCKER PERMISSIONS#####################################
+##SO THE ABOVE STACK GAVE ME SOME ISSUES AND ALL RELATED TO PERMISSION###################
+##It's always a good idea to check the docker file to see if there are any special permissions
+##A LA jenkins that requires a user called jenkins with an id of 1000
+##Wordpress uses the www-data user so that user must have R/W to the folder on the container host
+##So what I did on photonOS was to create a group called 'docker' and assign it a GID of 999
+##Then I created a group called 'www-data' and gave it a GID of 33
+##Then a user called www-data ID of 33 and added the www-data user to the www-data group
+##Now some of this is special for photonOS and I will test this on centOS and update this doc
+
+
+
+
+
 
