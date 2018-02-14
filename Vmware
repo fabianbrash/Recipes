@@ -355,3 +355,7 @@ DS mailserver.domain.com
 
 systemctl restart sendmail.service
 
+
+####ADD VCSA ROOT CA TO LINU OR MAC###########################
+##REF:https://blogs.vmware.com/vsphere/2015/03/vmware-certificate-authority-overview-using-vmca-root-certificates-browser.html
+##.rO file is the CRL and the .O is the certificate in .PEM format
