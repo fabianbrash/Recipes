@@ -124,6 +124,9 @@ cat /etc/passwd
 ####List users on centos/rhel system
 cat /etc/passwd
 
+###List all groups on centos/rhel system(should work for ubuntu a well
+cat /etc/group
+
 ###Installing Webmin the --no-check-certificate option is necessary if wgt does not trust the cert sourceforge bounces you around######
 download .rpm from http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
 wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
