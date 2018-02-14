@@ -542,7 +542,8 @@ networks:
 ##Then I created a group called 'www-data' and gave it a GID of 33
 ##Then a user called www-data ID of 33 and added the www-data user to the www-data group
 ##Now some of this is special for photonOS and I will test this on centOS and update this doc
-
+##Then I gave www-data R+W to the folder that was exposed to the container
+##Ex. -v /wp:/var/www or volume: - "/wp:/var/www"
 
 
 
