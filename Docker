@@ -427,37 +427,60 @@ version: '3.1'
 services:
 
   mysql:
-    image: mysql:5.7
+    image: mysql:5.7.21
     ports:
       - "3306:3306"
+    volumes:
+      - "/mysql:/var/lib/mysql"
+    deploy:
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2048M
+        reservations:
+          cpus: '0.50'
+          memory: 2048M
     networks:
-      - wp
+      - wpnetwork
     environment:
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_pw
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/my_secret
     secrets:
-      - mysql_pw
+      - my_secret
 
   wp:
     image: wordpress
     ports:
       - "80:80"
+    volumes:
+      - "/wp:/var/www/html"
     networks:
-      - wp
+      - wpnetwork
+    deploy:
+      mode: replicated
+      replicas: 3
     environment:
-      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/mysql_pw
+      - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/my_secret
     secrets:
-      - mysql_pw
-    links:
-      - mysql
+      - my_secret
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - wpnetwork
 
 secrets:
-  mysql_pw:
+  my_secret:
     external: true
 
 networks:
-  wp:
-
-
+  wpnetwork:
 
 ###END FILE#############
 
@@ -483,10 +506,10 @@ services:
         condition: on-failure
       resources:
         limits:
-          cpus: "0.60"
+          cpus: '0.50'
           memory: 2048M
         reservations:
-          cpus: "0.50"
+          cpus: '0.50'
           memory: 2048M
     networks:
       - wpnetwork
@@ -503,6 +526,9 @@ services:
       - "/wp:/var/www/html"
     networks:
       - wpnetwork
+    deploy:
+      mode: replicated
+      replicas: 3
     environment:
       - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/my_secret
     secrets:
@@ -524,6 +550,7 @@ secrets:
 
 networks:
   wpnetwork:
+
 
 
 ####END FILE################################################
