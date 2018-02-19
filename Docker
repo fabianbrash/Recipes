@@ -529,8 +529,19 @@ services:
     networks:
       - wpnetwork
     deploy:
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 3
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
       mode: replicated
-      replicas: 3
+      replicas: 5
     environment:
       - WORDPRESS_DB_PASSWORD_FILE=/run/secrets/my_secret
     secrets:
@@ -555,7 +566,6 @@ secrets:
 
 networks:
   wpnetwork:
-
 
 
 ####END FILE################################################
