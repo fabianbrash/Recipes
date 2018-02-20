@@ -43,3 +43,14 @@ TIMER_AFTER_URL_SLEEP =20
 ###your subnet) IP_ADDR_MAX(Must be real)
 
 
+
+####ANOTHER GREAT TOOL IS Siege located @ https://www.joedog.org/siege-home/
+##Simply run
+cd siege_folder
+sudo ./configure
+sudo make
+sudo make install
+
+##siege will be installed by default to /usr/local/bin
+##USAGE#########
+siege -u http://website -d1 -r10 -c50
