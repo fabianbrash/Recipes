@@ -587,7 +587,10 @@ networks:
 ##Then I gave www-data R+W to the folder that was exposed to the container
 ##Ex. -v /wp:/var/www or volume: - "/wp:/var/www"
 
-
+##############CADVISOR############################################################################
+##The ID's for docker in cadvisor are the container ID's this can be confusing if your stack has
+##multiple replicas
+docker ps -a 
 
 
 
