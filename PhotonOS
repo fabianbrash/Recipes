@@ -44,3 +44,8 @@ systemctl status iptables
 ##############PHOTONOS PERMISSION ISSUES#############
 ##Deploying a gitlab container on photonOS I had to chmod 0777 /Data in order for docker to have the rights
 ###to right to the path
+
+
+#######VERSION 2.0 CHANGES############################################
+##the 99-dhcp file that's generated will regenerate so make certain to set DHCP=no
+##also make certain your new file is 10-static... not 99-static...
