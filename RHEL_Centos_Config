@@ -457,7 +457,28 @@ sudo crontab -e
 ##########REF: https://www.howtoforge.com/nfs-server-and-client-on-centos-7
 sudo yum install -y nfs-utils
 
-sudo mount -t nfs 192.168.1.1:/mnt/data /mnt/data
+sudo mount -t nfs 192.168.1.1:/mnt/data(server mount) /mnt/data(client mount)
+
+
+###########CREATE SIMPLE NFS SERVER AND EXPORT NON 4.0 NFS MOUNT POINT######
+sudo mkdir /nfs
+sudo yum install -y nfs-utils
+sudo systemctl enable nfs-server(This might be all you need to start)
+sudo systemctl enable rpcbind
+sudo systemctl start nfs-server && sudo systemctl start rpcbind(again you might only need to start nfs-server)
+
+##Then you need to edit the exports file#################
+sudo vim /etc/exports
+
+###/etc/exports example#####
+/nfs    192.168.1.5(rw,async,no_root_squash)
+
+###The above will allow 192.168.1.5 to access the nfs mount point(instead of an IP you can add '*' for all)
+sudo systemctl restart nfs-server
+sudo firewall-cmd --zone=public --permanent --add-service=nfs
+sudo firewall-cmd --zone=public --permanent --add-service=mountd
+sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
+sudo firewall-cmd --reload
 
 
 
