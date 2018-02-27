@@ -143,6 +143,12 @@ sudo rpm -q kernel --last
 sudo rpm -q vim --last
 sudo rpm -qa --last
 
+################LIST ALL PACKAGES INSTALLED REF:https://www.tecmint.com/list-installed-packages-in-rhel-centos-fedora/####
+sudo rpm -qa (or just rom -qa)
+sudo rpm -qa | grep -i open(Look for all packages with open in the name)
+
+yum list installed
+yum list installed | grep -i open
 
 #############################DMESG#################################################################
 dmesg is used to write kermel messages to standard out
