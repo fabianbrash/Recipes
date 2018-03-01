@@ -8,3 +8,25 @@ USE dbname;
 SELECT * FROM dbtable;
 
 
+#####LET'S UPDATE THE VALUE OF A TABLE#########################
+
+USE db;
+
+UPDATE table_in_db
+SET column = 'changeme'
+WHERE column = 1;  ##This is usually the value on the far left
+
+SELECT * FROM table_in_db;
+
+###Here is a real example of updating he URL in a wordpress mysql database
+
+USE wpdb;
+
+UPDATE wp_options
+SET option_value = 'http://blog.blog.com:8080'
+WHERE option_id = 1;
+
+SELECT * FROM wp_options;  ##Display our changes
+
+
+
