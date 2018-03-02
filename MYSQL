@@ -28,5 +28,13 @@ WHERE option_id = 1;
 
 SELECT * FROM wp_options;  ##Display our changes
 
+##Show all databases
+show databases;
+
+##Show all tables
+USE dbname;
+show tables;
+
+
 
 
