@@ -571,6 +571,8 @@ sudo nmcli con mod static-prod ipv4.dns "8.8.8.8 8.8.4.4"
 
 sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
 
+###Delete a connection
+sudo nmcli con delete UID  ##Note the UID can be found by running nmcli con show
 
 
 
