@@ -575,5 +575,20 @@ sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
 sudo nmcli con delete UID  ##Note the UID can be found by running nmcli con show
 
 
+#################INSTALL PYTHON3 REF:https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
+###############Since centos 7 only includes stable releases, it comes with python 2.x
+###If you haven't done so already##
+sudo yum install yum-utils -y
+sudo yum groupinstall -y "Development Tools"
+
+###This project is similat to epel-release they have current and edge packages####
+sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum install -y python36u
+sudo yum install -y python36u-pip
+sudo yum -y install python36u-devel
+
+##You can now install packages using
+sudo pip3.6 install packagename
+
 
 
