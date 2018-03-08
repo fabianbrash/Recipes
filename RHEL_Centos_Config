@@ -554,3 +554,24 @@ sudo rpm -Uvh *.rpm ##Shouldn't this be sudo rpm -ivh *.rpm
 
 #####SSH##############################
 ssh-keygen -f "/home/user/.ssh/known_hosts" -R "IPAddressofRemoteHost"
+
+
+
+
+####################USING NMCLI REF:https://www.tecmint.com/configure-network-connections-using-nmcli-tool-in-linux/#####
+sudo nmcli con show ##show all connections
+sudo nmcli dev show ##show all devices
+sudo nmcli con show -a ##only show active connections
+
+#####add a new connection and set it to static#######
+sudo nmcli con add type ethernet con-name static-prod ifname eth0 ip4 192.168.1.10/24 gw4 192.168.1.1 ipv4.dns "192.168.1.1"
+
+####Mod a connection change it's DNS to google#############
+sudo nmcli con mod static-prod ipv4.dns "8.8.8.8 8.8.4.4"
+
+sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
+
+
+
+
+
