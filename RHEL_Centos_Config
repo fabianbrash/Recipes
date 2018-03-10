@@ -591,4 +591,6 @@ sudo yum -y install python36u-devel
 sudo pip3.6 install packagename
 
 
-
+#######CD to user home directory################
+##you can cd into a users' home directory with
+cd ~theuser
