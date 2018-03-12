@@ -2,6 +2,8 @@
 ###########MY ANSIBLE CONFIGS WILL GO HERE#########################################################
 ####First thing is copy your ssh keys to the server(s) you want to manager makes life easier
 
+#####MAKE CERTAIN PYTHON IS INSTALLED ON YOUR DISTRO#############
+
 ####ping a remote host################
 ansible -i hosts all -u root -m ping
 
