@@ -40,5 +40,14 @@ ansible -i hosts DO -u root -m user -a "name=arch comment='Arch Stanton' shell=/
 ansible -i hosts DO -u root -m user -a "name=user2 comment='Arch Stanton' shell=/bin/bash generate_ssh_key=yes ssh_key_bits=2048 ssh_key_comment=user2@test.com"
 
 
+#####UBUNTU##############
+
+ansible -i hosts DO -u root -m apt -a "name=network-manager state=present" ###state=installed(will also work)
+
+
+
+
+
+
 
 
