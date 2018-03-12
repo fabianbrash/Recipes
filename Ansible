@@ -1,0 +1,21 @@
+
+###########MY ANSIBLE CONFIGS WILL GO HERE#########################################################
+####First thing is copy your ssh keys to the server(s) you want to manager makes life easier
+
+####ping a remote host################
+ansible -i hosts all -u root -m ping
+
+####The above will use a file called hosts in the current directory the 'all' means all in the file
+#### -u root use the root user -m ping use the ping module(-m)
+
+ansible -i hosts DO -u root -m ping
+
+#####The above will do the same but only ping machines that are identified with [DO]
+
+############Actual host file############################
+[DO]
+192.168.1.1
+
+#########END FILE#############################
+
+
