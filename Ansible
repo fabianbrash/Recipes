@@ -19,3 +19,8 @@ ansible -i hosts DO -u root -m ping
 #########END FILE#############################
 
 
+#########Let's install something################
+ansible -i hosts DO -u root -m yum -a 'name=epel-release, state=installed'
+###Everything is the same except we are using the yum module and -a are the arguments you want to add to the module
+
+ansible -i hosts DO -u root -m yum -a 'name=nginx state=installed'
