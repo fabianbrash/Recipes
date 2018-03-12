@@ -43,6 +43,7 @@ ansible -i hosts DO -u root -m user -a "name=user2 comment='Arch Stanton' shell=
 #####UBUNTU##############
 
 ansible -i hosts DO -u root -m apt -a "name=network-manager state=present" ###state=installed(will also work)
+ansible -i hosts DO -u root -m apt -a "name=apache2 state=installed"
 
 
 
