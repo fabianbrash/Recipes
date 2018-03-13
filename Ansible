@@ -48,6 +48,33 @@ ansible -i hosts DO -u root -m apt -a "name=network-manager state=present" ###st
 ansible -i hosts DO -u root -m apt -a "name=apache2 state=installed"
 
 
+############NOW LET'S MOVE ON TO PLAYBOOKS#####################
+####I FOUND IT EASIER TO JUST ADD MY HOST ENTRY TO /etc/ansible/hosts
+####EX.
+[DO]
+192.168.1.5
+
+##Then we can simply run
+ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
+
+##########Contents of vim_epel.yml######################
+
+---
+- hosts: DO
+  remote_user: root
+  tasks:
+    - name: install vim
+      yum: name=vim state=latest
+      
+    - name: install epel-release
+      yum: name=epel-release state=installed
+      
+ 
+ 
+ ###End file############################################
+ 
+ 
+ 
 
 
 
