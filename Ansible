@@ -73,6 +73,7 @@ ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
  
  ###End file############################################
  
+ ansible-playbook vim_epel.yml  ##run playbook
  
  
 
