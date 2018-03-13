@@ -4,6 +4,8 @@
 
 #####MAKE CERTAIN PYTHON IS INSTALLED ON YOUR DISTRO#############
 
+###REF: https://ryaneschinger.com/blog/ansible-quick-start/
+
 ####ping a remote host################
 ansible -i hosts all -u root -m ping
 
