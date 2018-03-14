@@ -578,6 +578,7 @@ sudo nmcli con delete UID  ##Note the UID can be found by running nmcli con show
 ###Please note all above commands require NetworkManager to be installed, which should be the default for centos installs##
 hostnamectl status # list current host name
 hostnamectl set-hostname newhstname --static ##set new hostname
+sudo systemctl restart systemd-hostnamed  ##Restart service
 
 
 #################INSTALL PYTHON3 REF:https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
