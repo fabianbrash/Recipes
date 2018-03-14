@@ -602,7 +602,7 @@ cd ~theuser
 
 ##############Check and generate new machine id#################
 ##This is an issue I came across when creating a master template to be cloned, all my clones had the same machine-id
-##Also this applies to CentOS/RHEL 7.1 and above
+##Also this applies to CentOS/RHEL 7.1 and above REF:https://www.thegeekdiary.com/centos-rhel-7-how-to-change-the-machine-id/
 sudo cat /etc/machine-id ##get the machine id
 also
 sudo hostnamectl status ##this will also show the machine id
