@@ -574,6 +574,11 @@ sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
 ###Delete a connection
 sudo nmcli con delete UID  ##Note the UID can be found by running nmcli con show
 
+####USING hostnamectl REF: https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/#########
+###Please note all above commands require NetworkManager to be installed, which should be the default for centos installs##
+hostnamectl status # list current host name
+hostnamectl set-hostname newhstname --static ##set new hostname
+
 
 #################INSTALL PYTHON3 REF:https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
 ###############Since centos 7 only includes stable releases, it comes with python 2.x
@@ -594,3 +599,14 @@ sudo pip3.6 install packagename
 #######CD to user home directory################
 ##you can cd into a users' home directory with
 cd ~theuser
+
+##############Check and generate new machine id#################
+##This is an issue I came across when creating a master template to be cloned, all my clones had the same machine-id
+##Also this applies to CentOS/RHEL 7.1 and above
+sudo cat /etc/machine-id ##get the machine id
+also
+sudo hostnamectl status ##this will also show the machine id
+
+###Now let's generate a new one
+sudo rm /etc/machine-id
+sudo systemd-machine-id-setup
