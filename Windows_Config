@@ -346,3 +346,14 @@ sysprep /oobe /generalize /shutdown
 
 
 
+#############Filter username in eventviewer#####################
+
+##Click on filter and then click on the XML tab
+
+<QueryList>
+<Query Id="0" Path="Security">
+<Select Path="Security">* [EventData[Data[@Name='TargetUserName']='USERNAME']]</Select>
+</Query>
+</QueryList>
+
+
