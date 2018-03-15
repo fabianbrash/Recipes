@@ -365,4 +365,14 @@ sysprep /oobe /generalize /shutdown
   </Query>
 </QueryList>
 
+####Filter for events in the last 7 days###################
+
+<QueryList>
+  <Query Id="0" Path="Security">
+    <Select Path="Security">*[System[TimeCreated[timediff(@SystemTime) &lt;= 604800000]] and EventData[Data[@Name='TargetUserName'] = 'sbanks5'] ]</Select>
+  </Query>
+</QueryList>
+
+
+
 
