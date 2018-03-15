@@ -357,3 +357,12 @@ sysprep /oobe /generalize /shutdown
 </QueryList>
 
 
+###Filter even more here we are looking for event ID 4771 and the user#####
+
+<QueryList>
+  <Query Id="0" Path="Security">
+    <Select Path="Security">*[System[(EventID=4771)] and EventData[Data[@Name='TargetUserName'] = 'testuser']]</Select>
+  </Query>
+</QueryList>
+
+
