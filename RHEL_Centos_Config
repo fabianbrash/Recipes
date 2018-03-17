@@ -611,3 +611,23 @@ sudo hostnamectl status ##this will also show the machine id
 ###Now let's generate a new one
 sudo rm /etc/machine-id
 sudo systemd-machine-id-setup
+
+
+####Changing your shell#######
+##Can be defined in /etc/shells
+echo $SHELL #should tell you you're current shell
+
+###if you download a shell like zsh you can add it to /etc/shells it's usually located @
+##/usr/local/bin/zsh check with
+which zsh
+####Let's change our shell
+chsh -s $(which zsh) or
+chsh -s /bin/bash ##change our shell to bash
+
+
+
+
+
+
+
+
