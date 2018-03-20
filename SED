@@ -1,0 +1,9 @@
+
+
+##############JUST SOME EXPERIMENTATION WITH sed####################################
+
+sed -i.bak 's/This/sed/' sed_test  ###make a backup of sed_test and call it sed_test.bak and then s(subsitute) This with sed
+
+sed -i.bak2 's/s//' sed_test ###make a backup with .bak2 extension and replace the 1st occurence of 's'
+
+sed -i.bak3 's/s//g' sed_test ###make a backup with .bak3 extension and replace all occurences of 's'
