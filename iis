@@ -6,7 +6,7 @@
 ##deploy an app called dnn the app pool identity will be called 'dnn' unless you change it
 
 ##right click on the folder select the security tab in give IIS AppPool\dnn at least modify rights to the folder
-###Make certain you are point to the local machine if you are on a domain joined system with the above command
+###Make certain you are pointing to the local machine if you are on a domain joined system with the above command
 
 ###Or ICACLS
 ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
