@@ -314,3 +314,19 @@ sudo dpkg-reconfigure ca-certificates ##Follow prompts to add your new root CA
 
 ####NOTE: EVEN AFTER YOU'VE DONE THIS YOU WILL STILL HAVE TO ADD THE CERT(S) TO FIREFOX AND CHROME#####
 
+###########UPDATE SELECT PACKAGES##########################
+##So I had an interesting thing to happen I'm using a flavor of ubuntu called Pop_OS from System76
+##Usually I just run sudo apt update and then sudo apt ugrade -y but this time I kept getting an error in regards
+##To to libfreerdp so the system wouldn't just skip over that and install the rest of the packages.  So I needed
+##To upgrade/install specific packages.
+
+sudo apt install packagename
+
+##For me I just ran apt list --upgradable and then select the packages I wanted to upgrade/install
+sudo apt install pop-shop -y ##This will upgrade to the latest version also
+sudo apt install -y pop-shop && sudo apt install -y udev ##this works also
+
+
+
+
+
