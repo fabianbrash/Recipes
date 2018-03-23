@@ -370,6 +370,9 @@ sestatus -b (state of Booleans)
 sestatus -b | grep gluster | grep on$ or off$
 getenforce(See current execution policy)
 sudo setenforce enforcing
+##Modes
+Enforcing, Permissive(watch don't do anything), Disabled
+
 
 
 ##config file location####
