@@ -412,6 +412,8 @@ curl -u ftpuser:ftppass -O ftp://localhost.file.pdf
 curl -v http://www.google.com
 curl -i http://www.google.com (get http headers)
 
+cd /path/todownload && curl -LO http://server/file ##curl to a specific path **trick**
+
 #####SOURCE:  http://www.thegeekstuff.com/2012/04/curl-examples/?utm_source=feedburner
 
 
