@@ -648,6 +648,24 @@ chsh -s $(which zsh) or
 chsh -s /bin/bash ##change our shell to bash
 
 
+######USING ECHO####################
+echo "this is some text" >> /home/user/file.txt ##echo text into a file
+cat txt.txt >> /home/user/file.txt ##cat contents of a file into another file
+
+
+#####MORE COMPLEX BASH SCRIPTING######################
+###REF: https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+
+if [ ! -d /home/user/.ssh ]
+ then
+     mkdir /home/user/.ssh
+fi
+
+if [ -d /home/user/.ssh ]
+ then
+    echo "/home/user/.ssh exists"
+fi
+
 
 
 
