@@ -484,7 +484,7 @@ sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
 sudo firewall-cmd --reload
 
 
-#####CREATE SIMPLE NFSV4.0#####################
+#####CREATE SIMPLE NFSV4.0 NOT WORKING!!#####################
 sudo mkdir /nfsv4
 sudo yum install -y nfs-utils nfs4-acl-tools portmap
 sudo vim /etc/exports
