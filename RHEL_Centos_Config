@@ -481,6 +481,26 @@ sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
 sudo firewall-cmd --reload
 
 
+#####CREATE SIMPLE NFSV4.0#####################
+sudo mkdir /nfsv4
+sudo yum install -y nfs-utils nfs4-acl-tools portmap
+sudo vim /etc/exports
+##add entries into the /etc/exports file
+/sales  192.168.1.10(rw,async,no_root_squash,fsid=0)
+sudo systemctl enable nfs-server(This might be all you need to start)
+sudo systemctl enable rpcbind
+sudo systemctl enable nfs-idmap
+sudo systemctl start nfs-server && sudo systemctl start rpcbind(again you might only need to start nfs-server)
+sudo systemctl start nfs-idmap
+sudo vim /etc/sysconfig/nfs
+##set RPCNFSDCOUNT=16 OR 64
+sudo firewall-cmd --zone=public --permanent --add-service=nfs
+sudo firewall-cmd --zone=public --permanent --add-service=mountd
+sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
+sudo firewall-cmd --zone=public --permanent --add-port=2049/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=2049/udp
+sudo firewall-cmd --reload
+
 
 ######MOUNT SMB SHARE###################################
 #1. If your'e joined to a domain create a domain service account(smbtest)
