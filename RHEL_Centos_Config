@@ -575,7 +575,7 @@ sudo rpm -Uvh *.rpm ##Shouldn't this be sudo rpm -ivh *.rpm
 ##Simple
 
 
-#####SSH##############################
+#####SSH REMOVE ENTRY FROM KNOW_HOSTS FILE##############################
 ssh-keygen -f "/home/user/.ssh/known_hosts" -R "IPAddressofRemoteHost"
 
 
