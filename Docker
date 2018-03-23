@@ -593,4 +593,37 @@ networks:
 docker ps -a 
 
 
+##########DOCKER VOLUME COMMANDS#########################
+docker volume create jenkins ##create a volume using default options
+docker volume ls ##list all volumes
+
+##Run a container using the volume###
+
+docker run -d --name jdv -p 8080:8080 -p 50000:50000 \
+-v jenkins:/var/jenkins_home \
+de9cce074248
+
+
+
+####Migrate to another volume############
+##stop and destroy the above container
+docker stop jdv && docker rm -f jdv
+
+docker volume create jenkins2
+cd /var/lib/docker/volumes/jenkins/data
+cp -Rp . /var/lib/docker/volumes/jenkins2/_data ##-R(recursive) p(copy permissions)
+docker volume rm jenkins
+
+##Run a container using the new volume###
+
+docker run -d --name jdv -p 8080:8080 -p 50000:50000 \
+-v jenkins2:/var/jenkins_home \
+de9cce074248
+
+
+
+
+
+
+
 
