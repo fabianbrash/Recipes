@@ -1,0 +1,30 @@
+
+##########SIMPLE MINIO CONFIGS###################
+
+#REF:https://docs.minio.io/docs/minio-client-complete-guide
+
+##In order to work on buckets properly you need to install the mc client
+##on ubuntu I did the below
+mkdir minio
+cd minio
+wget https://dl.minio.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+./mc version
+
+#########To test run#############
+./mc ls play  ##this is a test server run by minio
+
+####Add your own local instance#################
+./mc config host add myalias http://SERVERIP_OR_DNS YOUR_ACCESS_KEY YOUR_SECRET
+##config is located in /home/user/.mc/config.json
+
+#######List policy on a bucket###########
+./mc policy youralias/bucketname
+./mc policy list youralias/bucketname
+
+########Set a policy, minio uses S3 bucket policies i.e. [none, download, upload, public]
+./mc policy download youralias/bucketname
+./mc policy pubic youralias/bucketname
+
+###Then you can access content in the bucket with
+curl -LO http://IP_OR_DNS_OF_SERVER/bucketname/file_to_download
