@@ -78,7 +78,8 @@ sudo reboot
 ####INSTALL .deb packages###############
 sudo dpkg -i package_1_1.deb
 ###remove
-sudo dpkg -r package_1_1.deb
+sudo dpkg --remove webmin #or whatever package
+sudo dpkg --purge webmin #or whatever package
 
 ###UPGRADE PACKAGE#####
 sudo dpkg -i package_1.2.deb
