@@ -28,3 +28,6 @@ chmod +x mc
 
 ###Then you can access content in the bucket with
 curl -LO http://IP_OR_DNS_OF_SERVER/bucketname/file_to_download
+
+####NOTE: without setting a policy on the bucket you will have to create a share link, which can be done from the UI
+##########but sharing is only for 7 days MAX, not good if you have automation scripts pulling files from a bucket
