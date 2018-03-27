@@ -9,6 +9,7 @@ sudo systemctl status ssh(Same as RHEL/CentOS)
 
 ####Searching
 sudo apt-cache search packagename
+apt-cache search cockpit ##find all cockpit packages
 sudo aptitude search all network | less
 
 ####If you have dependency issues with dpkg or apt################
