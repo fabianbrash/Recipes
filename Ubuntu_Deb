@@ -329,5 +329,12 @@ sudo apt install -y pop-shop && sudo apt install -y udev ##this works also
 
 
 
+#################FIND PORTS THAT ARE BEING LISTENED ON#########################
+################THIS WOULD BE EASIER IF EVERYTHING WAS CONTAINERIZED#########
+
+sudo netstat -tulpn | grep LISTEN
+sudo lsof -i -P -n | grep LISTEN
+
+
 
 
