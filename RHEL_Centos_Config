@@ -669,7 +669,11 @@ if [ -d /home/user/.ssh ]
 fi
 
 
+###########Yum searching
 
+yum search cockpit ##search for all cockpit packages or packages with cockpit in the name
+yum search all cockpit
+yum search all | grep -i open ##search all packages with open in the name not very good with it's results
 
 
 
