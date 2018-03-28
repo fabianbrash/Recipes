@@ -669,11 +669,19 @@ if [ -d /home/user/.ssh ]
 fi
 
 
-###########Yum searching
+###########Yum searching####################
 
 yum search cockpit ##search for all cockpit packages or packages with cockpit in the name
 yum search all cockpit
 yum search all | grep -i open ##search all packages with open in the name not very good with it's results
+
+####echo >> ##################
+##Just a quick note on the difference between > & >>
+echo "Testing.." > a.tst #This will echo Testing to a file a.tst
+echo "Testing again..." > a.tst ##This will overwrite everthing in the file with Testing again...
+echo "Testing.." >> a.tst ##This will append to the file a.tst so the final file would consist of both
+##Testing again... and Testing..
+
 
 
 
