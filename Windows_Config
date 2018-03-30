@@ -33,6 +33,10 @@ Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole
  
 ######Set TrustedHost this is required to remotely manage a server when both systems are not apart of a Domain##################### 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘IP,IP’ –Force
+
+#####Get Trusted Hosts###################################
+Get-Item WSMan:\localhost\Client\TrustedHosts
 
 #Get windows features
 Get-Windowsfeature
