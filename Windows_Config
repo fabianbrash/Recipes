@@ -373,9 +373,20 @@ sysprep /oobe /generalize /shutdown
 
 <QueryList>
   <Query Id="0" Path="Security">
-    <Select Path="Security">*[System[TimeCreated[timediff(@SystemTime) &lt;= 604800000]] and EventData[Data[@Name='TargetUserName'] = 'sbanks5'] ]</Select>
+    <Select Path="Security">*[System[TimeCreated[timediff(@SystemTime) &lt;= 604800000]] and EventData[Data[@Name='TargetUserName'] = 'user1'] ]</Select>
   </Query>
 </QueryList>
+
+
+
+####Force Win10 Server 2016 to re-check WSUS/WindowsUpdate Server###################
+##So the issue I have is that if you deploy a new server from a template, there can be a gap
+##Before the VM is joined to AD, well in that time Windows would have downloaded updates from
+##Windows update, but if you don't want servers in our environment to have newer updates than
+##have been approved by your Enteprise how do you force Windows to re-check WSUS after you join it to the
+##Domain, well the below one-liner will get you there
+
+(New-Object -ComObject Microsoft.Update.AutoUpdate).DetectNow()
 
 
 
