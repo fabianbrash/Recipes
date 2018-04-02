@@ -337,5 +337,11 @@ sudo netstat -tulpn | grep LISTEN
 sudo lsof -i -P -n | grep LISTEN
 
 
+###EXPORT PATH ZSH####################
+
+export PATH=/home/david/pear/bin:$PATH
+
+
+
 
 
