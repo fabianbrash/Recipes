@@ -15,6 +15,8 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
 #####STEP BY STEP############################
 #Add data drive to server this is going to be where all apps are located
+##Create a folder and remove inheritance
+##Create sub-folders for each app
 ##Create a new site in IIS
 ##Add the IIS AppPool user to the folder i.e. "IIS AppPool\AppA
 ##*VERY IMPORTANT IF THE SERVER IS PART OF A DOMAIN THEN THE "WINDOWS AUTHENTICATION" IIS FEATURE MUST BE INSTALLED
