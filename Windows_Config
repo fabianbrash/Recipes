@@ -398,6 +398,8 @@ SYSTEM\CurrentControlSet\Services\LanmanServer\Shares
 #######CERTIFICATE AUTO-ENROLLMENT###############################
 ##REF: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd379529(v=ws.10)
 
-
+##Also I had an issue when attempting to enroll a certificate when I added the server to an AD group and gave the group
+##enroll rights it would not work, but when I gave the machine enroll rights to the certificate template it worked
+##I need to investigate why groups are not working.
 
 
