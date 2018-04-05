@@ -24,7 +24,7 @@ chmod +x mc
 
 ########Set a policy, minio uses S3 bucket policies i.e. [none, download, upload, public]
 ./mc policy download youralias/bucketname
-./mc policy pubic youralias/bucketname
+./mc policy public youralias/bucketname
 
 ###Then you can access content in the bucket with
 curl -LO http://IP_OR_DNS_OF_SERVER/bucketname/file_to_download
