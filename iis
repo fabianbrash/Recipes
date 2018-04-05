@@ -1,12 +1,22 @@
 ####Simple config information for IIS#########################
 
 
-##If you deploy a new .NET app you will need to add teh app pool user to the security of the folder
+##If you deploy a new .NET app you will need to add the app pool user to the security of the folder
 
 ##deploy an app called dnn the app pool identity will be called 'dnn' unless you change it
 
-##right click on the folder select the security tab in give IIS AppPool\dnn at least modify rights to the folder
+##right click on the folder select the security tab and give IIS AppPool\dnn at least modify rights to the folder
 ###Make certain you are pointing to the local machine if you are on a domain joined system with the above command
 
 ###Or ICACLS
 ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
+
+
+
+#####STEP BY STEP############################
+#Add data drive to server this is going to be where all apps are located
+##Create a new site in IIS
+##Add the IIS AppPool user to the folder i.e. "IIS AppPool\AppA
+##*VERY IMPORTANT IF THE SERVER IS PART OF A DOMAIN THEN THE "WINDOWS AUTHENTICATION" IIS FEATURE MUST BE INSTALLED
+##AND ENABLED FOR THIS TO WORK
+##Test App
