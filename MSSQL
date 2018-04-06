@@ -102,3 +102,6 @@ select * from t1
 ####i.e. D:\(will fail) but D:\SQLDATA(will work)
 
 ###REF:https://support.microsoft.com/en-us/help/2867841/permission-error-occurs-when-you-use-a-volume-mount-point-in-sql-serve
+
+
+###Also during image prep SQL when you are asked for the 'Instance ID' I use the default instance name MSSQLSERVER
