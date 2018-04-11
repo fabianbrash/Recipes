@@ -403,3 +403,17 @@ SYSTEM\CurrentControlSet\Services\LanmanServer\Shares
 ##I need to investigate why groups are not working.
 
 
+
+###Powershell curl equivalent##############
+##More than one way to do this###########
+
+
+(New-Object System.Net.WebClient).DownloadFile($URL, $filename)
+
+##OR
+
+(New-Object System.Net.WebClient).DownloadFile('http://server/file.js', 'C:\output\file.js')
+
+
+
+
