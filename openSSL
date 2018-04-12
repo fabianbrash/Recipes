@@ -81,3 +81,22 @@ openssl dhparam -out /etc/nginx/conf.d/dhparams.pem 2048
 ##Also you can rename .pfx to .p12 to also import into Linux
 
 
+
+##########EXPORT PRIVATE KEY FROM .PFX FILE######################################
+
+##Export private key from pfx file
+openssl pkcs12 -in C:\keys\filename.pfx -nocerts -out C:\keys\key.pem
+##Make sure you can remember your passwords...
+
+##Extract public key##
+openssl pkcs12 -in C:\keys\filename.pfx -clcerts -nokeys -out C:\keys\cert.pem
+
+##Remove password from private key
+openssl rsa -in C:\keys\key.pem -out C:\keys\server.pem
+
+
+
+
+
+
+
