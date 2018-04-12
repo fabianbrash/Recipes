@@ -29,3 +29,6 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 ###Anonymous is set to 'enabled" and then double click to see what user account is being used
 ###Then make certain that user account has read rights to the above folder, or in my case
 ##One level above all my app folders
+
+
+########MAKE CERTAIN THAT IF THE WINDOWS FIREWALL IS ON YOU ARE ALLOWING THE PORTS YOU NEED!!###########
