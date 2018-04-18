@@ -52,9 +52,11 @@ sudo make
 sudo make install
 
 ##siege will be installed by default to /usr/local/bin
-##USAGE#########
+##USAGE the max -c is 255 so adjust the retrys#########
 siege -u http://website -d1 -r10 -c50
+siege -u https://website -d1 -r50 -c 255
 
 ##Log files are sent to /usr/local/var/siege.log
 ##If /usr/local/var does not exists, create it then run
 sudo siege -u http://website -d1 -r10 -c50
+sudo siege -u https://website -d1 -r50 -c 255
