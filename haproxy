@@ -5,4 +5,120 @@
 sudo yum install -y haproxy
 
 ##config file is located @ /etc/haproxy/haproxy.cfg
+cd /etc/haproxy
+sudo mv haproxy.cfg haproxy.cfg.ORIGIN
+sudo cp haproxy.cfg.ORIGIN haproxy.cfg
+
+####Verify that there is a haproxy user and a haproxy group on the system
+sudo cat /etc/passwd
+sudo cat /etc/group
+
+
+####Remember to setup firewalld###############
+sudo firewall-cmd --zone=public --permanent --add-service=http
+sudo firewall-cmd --reload
+
+##OR
+
+sudo firewall-cmd --zone=public --permanent --add-port=8181/tcp
+sudo firewall-cmd --reload
+
+
+#####So I used some of the defaul settings from the original config file#################
+
+
+#######START FILE##########################################
+
+
+#---------------------------------------------------------------------
+# Example configuration for a possible web application.  See the
+# full configuration options online.
+#
+#   http://haproxy.1wt.eu/download/1.4/doc/configuration.txt
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option http-server-close
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          1m
+    timeout server          1m
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 3000
+
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+frontend  minio_front 
+  bind *:80
+  stats uri /haproxy?stats
+  default_backend minio
+
+#---------------------------------------------------------------------
+# static backend for serving up images, stylesheets and such
+#---------------------------------------------------------------------
+
+
+#---------------------------------------------------------------------
+# round robin balancing between the various backends
+#---------------------------------------------------------------------
+backend minio
+  balance first  
+  server minio1  server_IP:80 check
+
+####################END FILE######################################
+
+##You can password protect the stats page
+##Add this to the .cfg file and remove the stats info from the 'front_end' directive
+##Also make certain to add the port to the firewall
+
+listen stats
+   bind *:8181
+   stats enable
+   stats uri /
+   stats realm Haproxy\ Statistics
+   stats auth admin:password
 
