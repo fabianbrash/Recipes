@@ -26,6 +26,8 @@ sudo firewall-cmd --reload
 
 #####So I used some of the defaul settings from the original config file#################
 
+##REF:https://www.upcloud.com/support/haproxy-load-balancer-centos/
+
 
 #######START FILE##########################################
 
