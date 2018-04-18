@@ -1,0 +1,8 @@
+
+
+###HAPROXY configs##########################################
+
+sudo yum install -y haproxy
+
+##config file is located @ /etc/haproxy/haproxy.cfg
+
