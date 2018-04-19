@@ -237,3 +237,11 @@ backend minio
 
 
 ####REF: https://www.digitalocean.com/community/tutorials/how-to-implement-ssl-termination-with-haproxy-on-ubuntu-14-04
+
+
+###More REFS
+##REF: https://www.gilesorr.com/blog/reencrypting-haproxy.html
+##REF: https://www.upcloud.com/support/haproxy-load-balancer-debian/
+
+
+
