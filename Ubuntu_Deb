@@ -12,6 +12,10 @@ sudo apt-cache search packagename
 apt-cache search cockpit ##find all cockpit packages
 sudo aptitude search all network | less
 
+###Get info about package
+sudo apt-cache show cockpit
+apt-cache show cockpit
+
 ####If you have dependency issues with dpkg or apt################
 sudo apt-get -f install
 ##The above should find all dependencies and install them and then install your app
