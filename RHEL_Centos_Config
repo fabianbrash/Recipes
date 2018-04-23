@@ -678,6 +678,10 @@ yum search all | grep -i open ##search all packages with open in the name not ve
 ##Yum check version in upstream repo####################
 sudo yum info cockpit
 
+####Search yum to see which package has a command#############
+sudo yum provides nslookup
+##Good REF:https://www.tecmint.com/20-linux-yum-yellowdog-updater-modified-commands-for-package-mangement/
+
 ####echo >> ##################
 ##Just a quick note on the difference between > & >>
 echo "Testing.." > a.tst #This will echo Testing to a file a.tst
