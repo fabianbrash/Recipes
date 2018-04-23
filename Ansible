@@ -77,6 +77,87 @@ ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
  
  
 
+###WINDOWS MANAGEMENT#################
+##REF: https://argonsys.com/learn-microsoft-cloud/articles/configuring-ansible-manage-windows-servers-step-step/
+##REF: https://github.com/ansible/ansible/issues/16478
+##REF: https://github.com/ansible/ansible/tree/devel/examples/scripts ##Download the ps script from here########
+
+###NOTE I HAVE DONE THIS WITH DOMAIN JOINED MACHINES##############
+###ALSO MAKE CERTAIN WHEN YOU EDIT THE FILE /etc/krb5.conf make certain lines you are using are not commented out
+##I had a closing curly brace that was still commented out
+
+##########MY krb5.conf FILE############################
+
+####START####################################
+# Configuration snippets may be placed in this directory as well
+includedir /etc/krb5.conf.d/
+
+[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+ dns_lookup_realm = yes
+ ticket_lifetime = 24h
+ renew_lifetime = 7d
+ forwardable = true
+ rdns = false
+ default_realm = LAB.TEST
+ default_ccache_name = KEYRING:persistent:%{uid}
+
+[realms]
+ LAB.TEST = {
+  kdc = lab-dc-01.lab.test
+#  admin_server = kerberos.example.com
+ }
+
+[domain_realm]
+ .lab.test = LAB.TEST
+ lab.test = LAB.TEST
+ 
+ #############END FILE##############
+ 
+ ###GET A KERBEROS TICKET##########
+ kinit adminuser@lab.test
+ 
+ ###See ticket
+ klist
+ 
+ #####ON CENTOS MACHINE INSTALL#############
+ 
+ sudo yum -y install python-devel krb5-devel krb5-libs krb5-workstation
+ sudo yum -y install python-pip
+ sudo yum -y install bind-utils ##If you don't already have this
+ 
+ sudo pip install pywinrm ##This will install Kerberos
+ 
+ ######This can be done in a few ways############
+ 
+ sudo mkdir /etc/ansible/group_vars
+ touch /etc/ansible/group_vars/windows.yml
+ 
+ sudo vim /etc/ansible/grou_vars/windows.yml
+
+######START FILE#########
+---
+ansible_user: Administrator
+ansible_password: Abcd1234
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+#####END FILE#########
+
+##NOTE I WAS ONLY ABLE TO GET THIS TO WORK WITH THE LOCAL ADMIN ACCOUNT, NOT WITH A DOMAIN ADMIN###
+##I NEED TO DO SOME MORE RESEARCH AS TO WHY#######
+
+
+
+ 
+ 
+
+
 
 
 
