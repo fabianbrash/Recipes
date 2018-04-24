@@ -149,6 +149,17 @@ ansible_winrm_server_cert_validation: ignore
 
 #####END FILE#########
 
+###The second way of setting variables is to add them to the /tc/ansible/hosts file#########
+[windows]
+1.1.1.1
+
+[windows:vars]
+ansible_user: Administrator
+ansible_password: Abcd1234
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
 ##NOTE I WAS ONLY ABLE TO GET THIS TO WORK WITH THE LOCAL ADMIN ACCOUNT, NOT WITH A DOMAIN ADMIN###
 ##I NEED TO DO SOME MORE RESEARCH AS TO WHY#######
 
