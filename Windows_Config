@@ -415,5 +415,9 @@ SYSTEM\CurrentControlSet\Services\LanmanServer\Shares
 (New-Object System.Net.WebClient).DownloadFile('http://server/file.js', 'C:\output\file.js')
 
 
+################BACKUP DHCP SERVER###########################################
+netsh dhcp server \\dhcpserver dump > c:\DHCP-config.txt
+
+
 
 
