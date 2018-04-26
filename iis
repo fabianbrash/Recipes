@@ -32,3 +32,23 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
 
 ########MAKE CERTAIN THAT IF THE WINDOWS FIREWALL IS ON YOU ARE ALLOWING THE PORTS YOU NEED!!###########
+
+
+
+########STEPS TO SETUP NEW IIS SERVER FOR DEV-QA AND PROD @ for .NET APPS#########################
+
+1. DBA has to grant access to the new server to the affected Databases
+
+2. IIS has to be installed on the target server (build an ansible playbook to set this up)
+
+3. Install Feature Windows Process Activation Service and select all sub-features(again use an ansible playbook for this)
+
+4. Create a folder to host all .NET apps remove inherited permissions and assign appropriate rights to developers and 
+
+5. Make certain app pool identity user has modify/fullcontrol of app folder with above examples
+
+6. Check the app to see what user(usually:IUSR) is being used for anonymous conections and give that user read permission to the app folder or 
+   give that user read to the root folder so rights will automatically flow down to all apps as they are provisioned (Test this if this is in a domain you might not have to assign the
+   IUSR read rights to the folder - An IIS expert would better be able to answer this one)
+   
+7. Make certain Windows Authentication is enabled
