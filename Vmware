@@ -359,3 +359,19 @@ systemctl restart sendmail.service
 ####ADD VCSA ROOT CA TO LINU OR MAC###########################
 ##REF:https://blogs.vmware.com/vsphere/2015/03/vmware-certificate-authority-overview-using-vmca-root-certificates-browser.html
 ##.rO file is the CRL and the .O is the certificate in .PEM format
+
+
+
+####So I had an issue deploying an OVA from Cisco, during validation it kept giving errors
+###About missing key values, so fater some Googling I found this cool solution
+##You can convert an OVA to VMX and then to an OVF using the ovftool
+###cd to directory where ovftool is installed
+
+ovftool C:\path_to_ova\appliance.ova C:\destinationpath\appliance.vmx
+
+##Once finished make a directory to store final OVF files
+ovftool C:\destinationpath\appliance.vmx C:\OVFexport\appliance.ovf
+
+##Once everything was finished I was able to successfully import the appliance.
+
+##REF: https://ripplesinharmony.wordpress.com/2017/09/19/installing-ise-2-3-on-esxi-6-x/
