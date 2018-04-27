@@ -42,7 +42,8 @@ Get-Item WSMan:\localhost\Client\TrustedHosts
 Get-Windowsfeature
 Get-WindowsFeature | more
 Get-WindowsFeature -Name AD*, Web*  ##Get all features with AD and web in the name
-Get-WindowsFeature | Where installed #just get installed features
+Get-WindowsFeature | Where Installed #just get installed features
+Get-WindowsFeature | Where Installed | Select Name  ##Just give me the names so we can pipe to a file
 
 #Install windows feature
 Install-Windowsfeature -Name 'FeatureName' -IncludeAllSubFeature -IncludeManagementTools
