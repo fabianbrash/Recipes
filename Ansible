@@ -164,5 +164,37 @@ ansible_winrm_server_cert_validation: ignore
 ##I NEED TO DO SOME MORE RESEARCH AS TO WHY#######
 
 
+######ENCRYPTING DATA#####################
+
+ansible-vault encrypt_string password123 --ask-vault-pass
+
+##You will be prompted for a vault password
+
+#Then you will get back something like this###
+
+!vault |
+$ANSIBLE_VAULT;1.1;AES256
+66386439653236336462626566653063336164663966303231363934653561363964363833
+3136626431626536303530376336343832656537303632313433360a626438346336353331
+Encryption successful
+
+#####Then to use this simply swap out the above############
+
+######START FILE#########
+---
+ansible_user: Administrator
+ansible_password: !vault |
+$ANSIBLE_VAULT;1.1;AES256
+66386439653236336462626566653063336164663966303231363934653561363964363833
+3136626431626536303530376336343832656537303632313433360a626438346336353331
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+#####END FILE#########
+
+#####THEN RUN###################
+
+ansible-playbook play.yml --ask-vault-pass
 
 
