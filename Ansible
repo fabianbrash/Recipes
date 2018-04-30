@@ -198,3 +198,5 @@ ansible_winrm_server_cert_validation: ignore
 ansible-playbook play.yml --ask-vault-pass
 
 
+###REF:https://stackoverflow.com/questions/30209062/ansible-how-to-encrypt-some-variables-in-an-inventory-file-in-a-separate-vault
+
