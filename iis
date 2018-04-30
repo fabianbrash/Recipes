@@ -51,4 +51,6 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
    give that user read to the root folder so rights will automatically flow down to all apps as they are provisioned (Test this if this is in a domain you might not have to assign the
    IUSR read rights to the folder - An IIS expert would better be able to answer this one)
    
-7. Make certain Windows Authentication is enabled
+7. Make certain Windows Authentication is enabled(Note if you set this at the root of the IIS server all apps will inherit this setting and there would be one less thing to remember
+   for each app deployed
+
