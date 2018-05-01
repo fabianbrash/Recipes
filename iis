@@ -55,3 +55,28 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 7. Make certain Windows Authentication is enabled(Note if you set this at the root of the IIS server all apps will inherit this setting and there would be one less thing to remember
    for each app deployed
 
+
+
+
+
+
+
+
+
+###############PERMISSION ISSUES######################################################################
+##Again I had massive issues with permissions when I added a second drive and added my apps under it
+##This time for some reason on first launch it generated a webconfig file and then when I attempted to 
+###Add permissions after the webconfig was generated it gave me permission errors, I had to explicitly
+##Assign rights to the webconfif file and everything started to work--Ironically I deleted the webconfig
+##file and it never regenerated, which is fine because I don't need it I was building an api server
+
+
+
+###What I have noticed is that you need to add your permissions first and then run the app
+###Also at the root I added both the IUSR and IIS_IUSRS with read permissions
+
+
+
+
+
+
