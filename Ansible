@@ -119,7 +119,9 @@ includedir /etc/krb5.conf.d/
  #############END FILE##############
  
  ###GET A KERBEROS TICKET##########
- kinit adminuser@lab.test
+ kinit adminuser@lab.test  ##Do not run with sudo
+ ### If the above does not work try
+ kinit adminuser@LAB.TEST
  
  ###See ticket
  klist
