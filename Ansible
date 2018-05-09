@@ -149,7 +149,7 @@ ansible_winrm_server_cert_validation: ignore
 
 #####END FILE#########
 
-###The second way of setting variables is to add them to the /tc/ansible/hosts file#########
+###The second way of setting variables is to add them to the /etc/ansible/hosts file#########
 [windows]
 1.1.1.1
 
