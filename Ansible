@@ -135,6 +135,7 @@ includedir /etc/krb5.conf.d/
  sudo pip install pywinrm ##This will install Kerberos *YOU MIGHT NOT NEED THIS, JUST THE ONE BELOW**
  #####YOU MUST INSTALL THIS FOR KERBEROS TO BE USED IF NOT ANSIBLE WILL DEFAULT TO 'BASIC' AUTH#####
  sudo pip install pywinrm[kerberos]
+ ###REF: http://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#kerberos
  
  ######This can be done in a few ways############
  
