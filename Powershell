@@ -65,4 +65,11 @@ Get-ADUser -Identity $name | Set-ADUser -ChangePasswordAtLogon:$true
 . .\function.ps1 ##note the space after the first dot
 
 
+####ENABLE OR DISABLED A DEVICE#############################3
+Enable-PnPDevice -InstanceID 'ID' -Confirm:$false ##don't get prompted for confirmation
+Disable-PnpDevice -InstanceID 'ID'
+
+Get-PnPDevice -FriendlyName 'HID*' | fl  ##This is how you can get the instance ID
+
+
 
