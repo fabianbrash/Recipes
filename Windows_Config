@@ -432,3 +432,10 @@ repadmin /replsummary   ##show replication sumary
 repadmin /syncall /A /d /e /P  ###Syncall all changes from this particular DC outward to all other DC's
 
 ####REF: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc835086(v%3dws.11)
+
+
+
+#####Get model number from a device##################
+wmic csproduct get name
+
+
