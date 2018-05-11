@@ -72,4 +72,19 @@ Disable-PnpDevice -InstanceID 'ID'
 Get-PnPDevice -FriendlyName 'HID*' | fl  ##This is how you can get the instance ID
 
 
+####So I had interesting thing I had to do and I needed to get the value of an object
+
+$obj = Get-PnPDevice -FriendlyName 'HID-compliant touch screen' | Select InstanceID
+
+###The above code will get the instanceid but it gets the entire object, I just wanted the value so
+
+$obj = Get-PnPDevice -FriendlyName 'HID-compliant touch screen' | Select -ExpandProperty InstanceID
+
+###As simple as that in a way I wish there was a .value property on all objects then I could just use that
+###But someone a lot smarter than myself can explain why that would be a bad idea
+
+
+
+
+
 
