@@ -49,3 +49,13 @@ systemctl status iptables
 #######VERSION 2.0 CHANGES############################################
 ##the 99-dhcp file that's generated will regenerate so make certain to set DHCP=no
 ##also make certain your new file is 10-static... not 99-static...
+
+
+#####TDNF###########################
+
+tdnf repolist            ##List all repos
+tdnf clean all           ##clear all cache
+tdnf check-update        ##check for updates
+tdnf -y install gcc      ##install/update gcc only
+tdnf distro-sync         ##synchronizes the machine's RPMs with the latest version of all the packages in the repository.
+
