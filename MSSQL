@@ -105,3 +105,19 @@ select * from t1
 
 
 ###Also during image prep SQL when you are asked for the 'Instance ID' I use the default instance name MSSQLSERVER
+
+
+###ASSIGN A COMPUTER OBJECT RIGHTS TO A DB#############
+
+##Right click logins then 'New Login'
+##Under 'Login name' enter 
+##Domain\ComputerName$
+##Under 'User Mapping' assign the machine with the rights required to the appropriate DB
+##That's it, I've also seen DBA's explicitly assign rights to the DB itself
+###Right click the DB and select 'Permissions' Note you must do the above first or the user/computer object
+##Will not show up here; then select the user/computere object and assign 'Explicit Rights' you can also
+##See the 'Effective' permissions for the highlighted object as well
+
+
+
+
