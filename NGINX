@@ -246,7 +246,8 @@ server {
 
 
 
-
+###You can also add a new disk to your VM partition and format it and mount it and server your web data from
+###that mount point
 
 
 
