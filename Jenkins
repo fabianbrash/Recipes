@@ -22,4 +22,19 @@ refs/heads/Jenkins ####This will watch a repo called Jenkins on your git server
 ##generate a Java error on the client
 
 
+######################ACCESSING API############################
+
+##Each user in jenkins receives a unique API key and it can be fond @
+##http://jenkins_URL/me/configure or
+##http://jenkins_URL/user/YOUR_USERNAME/configure
+##Also from the UI head over to the user section and it's under there
+
+###Once you have the token then you can make a rest call using cURL or my favorite postman
+##URL will look like####
+http://YOUR_USERNAME:API_TOKEN@JENKINS_URL/job/JOB_NAME/api/json?pretty=true
+
+###Let's just get all jobs###
+http://YOUR_USERNAME:API_TOKEN@JENKINS_URL/api/json?pretty=true
+
+
 
