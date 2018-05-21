@@ -37,4 +37,15 @@ http://YOUR_USERNAME:API_TOKEN@JENKINS_URL/job/JOB_NAME/api/json?pretty=true
 http://YOUR_USERNAME:API_TOKEN@JENKINS_URL/api/json?pretty=true
 
 
+###Now Let's build by making an API call##############
+##First we need to get a 'crumb' REF:https://support.cloudbees.com/hc/en-us/articles/219257077-CSRF-Protection-Explained
+
+curl -X POST -u "user:USER_TOKEN_OR_PASSWORD" 'http://JENKINS_URL:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,":",//crumb)'
+
+##You should receive a Jenkins-Crump
+
+##Then you can trigger a build with
+curl -X POST -u "user:USER_TOKEN_OR_PASSWORD" -H ".crumb:JENKINS_CRUMB_FROM_ABOVE_OUTPUT" http://JENKINS_URL:8080/job/MY_JOB/build
+
+
 
