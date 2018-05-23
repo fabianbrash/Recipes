@@ -43,3 +43,13 @@ ssh-add /location/name_of_private_key ##add a non default key
 ssh-add -l ##List all managed keys.
 
 ##REF:http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-6.html
+
+##CHANGE SSH PORT########################
+vi /etc/sshd_config  ##Make sure you are confuguring the correct file
+##Find line 
+#Port 22 and change to whatever make certain that port is free and that you allow it through the firewall
+##iptables, firewalld, or ufw(ubuntu)
+
+ssh user@server -p 1000
+
+
