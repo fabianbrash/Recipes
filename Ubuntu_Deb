@@ -346,6 +346,9 @@ sudo lsof -i -P -n | grep LISTEN
 export PATH=/home/david/pear/bin:$PATH
 
 
+###Check SHA256 of a file#####################
+
+sha256sum /dir/file/iso
 
 
 
