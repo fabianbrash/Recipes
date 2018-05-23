@@ -1,6 +1,9 @@
 #Initial Git Config
 git config --global user.name "Full Name"
 git config --global user.email test@test.com
+##List config
+git config --list
+
 #Clone repository
 git clone http://repo or ssh:
 #Add file
