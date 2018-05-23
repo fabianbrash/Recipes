@@ -34,3 +34,10 @@ sudo systemctl restart sshd
 
 ##############SSH MOTD############################
 sudo vim /etc/motd
+
+
+####ADDING SSH KEYS TO SSH-AGENT###########
+ssh-agent bash ##launch a bash shell for ssh-agent
+ssh-add ##adds a private key to be managed
+ssh-add /location/name_of_private_key ##add a non default key
+ssh-add -l ##List all managed keys.
