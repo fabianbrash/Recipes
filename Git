@@ -18,3 +18,13 @@ git checkout <branchname>
 
 #############DELETE A BRANCH#################
 git branch -d <branchname>
+
+
+###Changing branch from http/https to ssh############
+
+git remote -v ##List all our branches
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git(Note you get this from the gitlab/github web ui)
+
+##If everything works you should be able to authenitcate with SSH keys if you've uploaded any
+
+##REF: https://help.github.com/articles/changing-a-remote-s-url/#switching-remote-urls-from-ssh-to-https
