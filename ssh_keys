@@ -52,4 +52,8 @@ vi /etc/sshd_config  ##Make sure you are confuguring the correct file
 
 ssh user@server -p 1000
 
+###Remove host from known_hosts#######
+
+ssh-keygen -f "/home/user/.ssh/known_hosts" -R "host_DNS_OR_IP"
+
 
