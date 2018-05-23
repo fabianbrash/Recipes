@@ -41,3 +41,5 @@ ssh-agent bash ##launch a bash shell for ssh-agent
 ssh-add ##adds a private key to be managed
 ssh-add /location/name_of_private_key ##add a non default key
 ssh-add -l ##List all managed keys.
+
+##REF:http://sshkeychain.sourceforge.net/mirrors/SSH-with-Keys-HOWTO/SSH-with-Keys-HOWTO-6.html
