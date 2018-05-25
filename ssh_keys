@@ -86,3 +86,10 @@ Host 192.168.1.5
  
  #####I haven't fully tested the above yet
  
+ 
+ ###Also I had an odd issue when I attempted to ssh into a server I kept getting asked to accept the key
+ ###And everytime I accepted the key it would ask again, but it did tell me that the offending key
+ ### in known_hosts was line 32, and the matching key was line 44, so I used vim and turned on number
+ ### with 'esc' ':' 'set line' and deleted line 32 and now it's all happy
+ 
+ 
