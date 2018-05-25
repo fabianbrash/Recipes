@@ -1,0 +1,7 @@
+
+
+###Adding cURL command to Postman for use in Jenkins#########
+
+###Select Import > Paste Raw Text
+###Then choose Basic Auth and enter username and password in my case my API TOKEN
+##And that should do it
