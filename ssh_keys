@@ -57,3 +57,32 @@ ssh user@server -p 1000
 ssh-keygen -f "/home/user/.ssh/known_hosts" -R "host_DNS_OR_IP"
 
 
+###Disable SSH host key checking
+
+cd ~user/.ssh
+touch config
+
+##In the file add
+
+Host *
+   StrictHostKeyChecking no
+   UserKnownHostsFile=/dev/null
+   
+ #The above will do this for all hosts VERY VERY DANGEROUS!!!!!!!!
+ 
+##You can do this
+
+Host 192.168.1.5
+   StrictHostKeyChecking no
+   UserKnownHostsFile=/dev/null
+   
+ ##Just that host or
+ 
+ Host 192.168.0.*
+   StrictHostKeyChecking no
+   UserKnownHostsFile=/dev/null
+   
+ ##The entire 192.168.0.0/24
+ 
+ #####I haven't fully tested the above yet
+ 
