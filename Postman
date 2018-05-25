@@ -5,3 +5,6 @@
 ###Select Import > Paste Raw Text
 ###Then choose Basic Auth and enter username and password in my case my API TOKEN
 ##And that should do it
+
+
+#REF: https://stackoverflow.com/questions/27957943/simulate-a-specific-curl-in-postman
