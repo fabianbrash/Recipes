@@ -84,7 +84,8 @@ Host 192.168.1.5
    
  ##The entire 192.168.0.0/24
  
- #####I haven't fully tested the above yet
+ #####I haven't fully tested the above yet########
+ ####REF:  https://www.shellhacks.com/disable-ssh-host-key-checking/
  
  
  ###Also I had an odd issue when I attempted to ssh into a server I kept getting asked to accept the key
