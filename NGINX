@@ -267,4 +267,27 @@ sudo vim nginx.conf
 include /etc/nginx/sites-enabled/*.conf;
 server_names_hash_bucket_size 64; #REF:http://nginx.org/en/docs/http/server_names.html
 
+##Note because of the above config your config files in /etc/nginx/sites-available must end with .conf
+##Then create a .conf file and symlink it in /etc/nginx/sites-enabled
+##Note a simple conf file to serve up a sailsjs api would look like this
+
+#######Contents of api.conf############
+###I'm no expert here but maybe I don't need the 1337 in the proxy_pass directive, but hell it works so who cares####
+
+server {
+         listen 1337;
+         location / {
+           proxy_pass "http://127.0.0.1:1337"
+         }
+}
+
+#####End file contents#######
+
+
+###Then as I said symlink that conf file and make certain to reload nginx and open that port in your firewall###
+sudo firewall-cmd --zone=public --permanent --add-port=1337/tcp 
+sudo firewall-cmd --reload
+
+
+
 
