@@ -1,0 +1,29 @@
+
+
+####My Experience with SailsJS #######
+##REF: sailsjs.com#######
+
+
+###Install#########
+sudo npm install -g sails
+
+##make a directory where you want your app
+mkdir -p /home/user/api
+
+cd api
+
+sails new my-project
+
+cd my-project
+
+sails lift
+
+###If everything is working right you should be able to visit http://127.0.0.1:1337###
+###Note if you are using an headless Linux server you will need to run a reverse-proxy/loadbalancer like nginx###
+
+####Now let's generate an api#######
+
+###in the app directory in our case my-project###
+sails generate api my-project
+
+##Then visit http://localhost:1337/my-project
