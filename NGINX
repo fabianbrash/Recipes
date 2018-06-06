@@ -252,5 +252,14 @@ server {
 
 
 
+############CENTOS7/RHEL7###############################################
+
+###After installing nginx from epel-release you might have to create both the sites-available and sites-enabled folders##
+cd /etc/nginx
+
+sudo mkdir sites-available
+sudo mkdir sites-enabled
+
+
 
 
