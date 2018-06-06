@@ -253,6 +253,7 @@ server {
 
 
 ############CENTOS7/RHEL7###############################################
+###REF:https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-on-centos-7
 
 ###After installing nginx from epel-release you might have to create both the sites-available and sites-enabled folders##
 cd /etc/nginx
@@ -260,6 +261,10 @@ cd /etc/nginx
 sudo mkdir sites-available
 sudo mkdir sites-enabled
 
+sudo vim nginx.conf
 
+##Add the below to the end of the http{} directive
+include /etc/nginx/sites-enabled/*.conf;
+server_names_hash_bucket_size 64; #REF:http://nginx.org/en/docs/http/server_names.html
 
 
