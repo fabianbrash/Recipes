@@ -27,3 +27,30 @@ sails lift
 sails generate api my-project
 
 ##Then visit http://localhost:1337/my-project
+
+
+
+####################Connect SailsJS to a DB###################################
+
+npm install --save sails-mongo  ###We are installing the mongo adapter there are many more available
+###REF: https://sailsjs.com/documentation/reference/configuration/sails-config-datastores
+###REF: https://sailsjs.com/documentation/reference/configuration/sails-config-datastores
+
+##From the my-project folder
+cd /config
+vim datastores.js
+
+##Under defaults add your db connection
+
+adapter: require('sails-mongo'),
+    url: 'mongodb://mongo_DNS_OR_IP:27017/directory_db',
+    
+
+##If the database does not exists it will be created also note the above does not have a username or password
+
+##Restart your app and go to /my-project and you should see '[]' 
+##Simply insert documents into your mongodb and they will start showing up
+
+
+
+
