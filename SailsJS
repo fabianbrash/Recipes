@@ -38,6 +38,7 @@ npm install --save sails-mongo  ###We are installing the mongo adapter there are
 
 ##From the my-project folder
 cd /config
+####Note this is a change as of v1.0 from what I can see####
 vim datastores.js
 
 ##Under defaults add your db connection
