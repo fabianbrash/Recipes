@@ -17,3 +17,32 @@ db.collection.find()  ##So if you have a collection called articles
 db.articles.find() ##Returns all documents in articles
 
 
+###Insert single document into a collection######
+
+db.products.insert( { item: "card", qty: 15 } )
+
+##Let's explicitly add an id####
+db.products.insert( { _id: 10, item: "box", qty: 20 } )
+
+
+###Insert multiple documents into a collection###
+
+db.products.insert(
+   [
+     { _id: 11, item: "pencil", qty: 50, type: "no.2" },
+     { item: "pen", qty: 20 },
+     { item: "eraser", qty: 25 }
+   ]
+)
+
+##This should work as well
+db.products.insert(
+   [
+     { _id: 11, "item": "pencil", "qty": 50, "type": "no.2" },
+     { "item": "pen", "qty": 20 },
+     { "item": "eraser", "qty": 25 }
+   ]
+)
+
+
+
