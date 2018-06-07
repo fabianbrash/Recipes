@@ -1,0 +1,19 @@
+
+
+#####Basic mongoDB commands from mongo shell or from a mongo client#######
+##REF: https://docs.mongodb.com/manual/reference/mongo-shell/
+
+List all DB's
+
+show dbs
+
+###List all collections
+
+show collections
+
+##View documents in a collection
+
+db.collection.find()  ##So if you have a collection called articles
+db.articles.find() ##Returns all documents in articles
+
+
