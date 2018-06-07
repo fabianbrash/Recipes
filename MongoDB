@@ -16,6 +16,9 @@ show collections
 db.collection.find()  ##So if you have a collection called articles
 db.articles.find() ##Returns all documents in articles
 
+##OR#####
+db.getCollection("articles").find({})
+
 
 ###Insert single document into a collection######
 
