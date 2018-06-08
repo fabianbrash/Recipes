@@ -52,6 +52,101 @@ adapter: require('sails-mongo'),
 ##Restart your app and go to /my-project and you should see '[]' 
 ##Simply insert documents into your mongodb and they will start showing up
 
+#######Set schema#####################
+cd to my-project/api/models
+##and define your models in the my-project.js ###(note this will be called whataver your API is called)
+
+######Actual file data#####
+
+module.exports = {
+
+  attributes: {
+
+    Name: { type: 'string', required: true },
+
+    DirectLine: { type: 'string' },
+
+    Extension: { type: 'string' }
+
+    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+
+
+    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
+    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
+    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
+
+
+    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
+  },
+
+};
+
+
+##End file data####
+
+##The above shows that my schema/model will take 3 inputs, Name, DirectLine, Extension and that Name is required##
+
+###Next make a backup of homepage.ejs and then delete all from it and then you can begin to build your
+##Front end
+cd my-project/views/layouts
+vim layout.ejs  ##Again you can back this up before you start working on it
+
+##And add any code you would like to persist across all your pages###
+##For me that's adding all my bootstrap code as I will be using bootstrap for my frontend###
+
+###Actual file data############
+
+ <!---Bootstrap CSS --->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+ <!--DO NOT ADD CODE THE STYLES TAG BELOW -->
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <a class="navbar-brand" href="/">RPS API Gateway</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/directory">StaffDirectory</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="container">
+    <%- body %>
+  </div>
+
+
+<!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <!--SCRIPTS END-->
+    
+    <!--DO NOT ADD CODE TO THE SCRIPT TAG ABOVE -->
+    <!--JQuery first, then Popper.js, then Boostrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+
+#####End file data###########################
+
 
 
 
