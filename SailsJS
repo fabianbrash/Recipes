@@ -149,4 +149,14 @@ vim layout.ejs  ##Again you can back this up before you start working on it
 
 
 
+###########IMPORTANT#############################
+##I will assume this is a change in V1.0
+###In order for Sails to automatically load controllers/actions you need turn it on by going to###
+vim /my-project/config/blueprint.js
+##And turn on "Automatically expose routes for every action in your app"
+actions: true,
+
+###Then restart Sails
+
+
 
