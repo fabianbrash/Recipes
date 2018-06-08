@@ -64,3 +64,20 @@ db.getCollection("testCollection").deleteOne({
 ##You insert() into the collection
 
 
+
+####Update a record#############################################
+###Very simple way I'm sure this can get very complex########
+
+
+db.getCollection("testCollection2").update(
+
+  { _id: ObjectId("5b195d9da4e20bfb79655537") },
+  {
+      $set: {
+          Name: "Sun"
+      }
+  });
+
+
+
+####The above changes the Name of_id 5b195d9da4e20bfb79655537 to Sun######
