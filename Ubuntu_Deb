@@ -352,3 +352,6 @@ sha256sum /dir/file/iso
 
 
 
+##########Add a user##############
+sudo adduser user ###Instead of useradd
+
