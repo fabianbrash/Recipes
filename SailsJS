@@ -156,7 +156,72 @@ vim /my-project/config/blueprint.js
 ##And turn on "Automatically expose routes for every action in your app"
 actions: true,
 
-###Then restart Sails
+###Then restart Sails###
+##Then restart Sails and Then restart Sails....########
+
+###Let's do something interesting and let's loop through data in mongo########
+
+###Contents of list.ejs############
+
+
+<h3 class="display-4">ICTS Staff Directory</h3>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>DirectLine</th>
+        <th>Extension</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Directory.forEach(function(directoryeach){ %>
+       <tr>
+         <td><%= directoryeach.id %></td>
+         <td><%= directoryeach.Name %></td>
+         <td><%= directoryeach.DirectLine %></td>
+         <td><%= directoryeach.Extension %></td>
+       </tr>
+       <% }); %>
+
+ </tbody>
+
+</table>
+
+
+#####END FILE CONTENTS#########################
+
+###Now let's build our controller logic######
+
+####Contents of DirectoryController.js##################
+
+module.exports = {
+    list: function(req, res) {
+       Directory.find({}).exec(function(err, Directory) {
+         if(err) {
+           res.send(500, {error: 'Database Error'});
+         }
+         res.view('pages/list', {Directory:Directory});
+      });
+    }
+
+
+};
+
+
+
+###############END FILE CONTENTS##################
+
+##REF: https://www.smashingmagazine.com/2015/11/sailing-sails-js-mvc-style-framework-node-js/
+##REF: http://www.programwitherik.com/five-tips-when-working-with-routes-on-sails-js/
+##REF: https://scotch.io/tutorials/use-ejs-to-template-your-node-application
+
+
+
+       
+
 
 
 
