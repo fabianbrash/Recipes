@@ -355,3 +355,11 @@ sha256sum /dir/file/iso
 ##########Add a user##############
 sudo adduser user ###Instead of useradd
 
+
+
+#########INSTALL DOCKER UBUNTU 18.04 LTS########################################
+
+###NOTE DO NOT FOLLOW MY ABOVE INSTALL METHOD OR DOCKERS'
+sudo apt-get install -y docker.io  ##should be the latest stable build####
+
+
