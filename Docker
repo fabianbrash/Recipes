@@ -622,6 +622,13 @@ de9cce074248
 
 
 
+########MONGO WITH AUTHENTICATION################
+
+
+docker run -d -p 27017:27017 --name mongo -v mongodata:/data/db -e MONGO_INITDB_ROOT_USERNAME='mongoadmin' -e MONGO_INITDB_ROOT_PASSWORD='secret_pass' 5651314706c2
+
+#####NOTE THIS CAN ALSO BE DONE WITH SECRETS##########################
+
 
 
 
