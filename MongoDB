@@ -81,3 +81,19 @@ db.getCollection("testCollection2").update(
 
 
 ####The above changes the Name of_id 5b195d9da4e20bfb79655537 to Sun######
+
+
+
+
+##### MULTIPLE DB'S AND COLLECTIONS####################
+## I ran into an issue where when I attempted to insert data into a collection, some weird things occured
+## to be safe always use use dbname to switch to the correct db
+
+use db1
+db.getCollection("collection1").insert(
+{"Name": "Joe", "Age": "45"}
+)
+
+####AGAIN WITHOUT THIS YOU GET SOME WEIRD RESULTS#######################
+
+
