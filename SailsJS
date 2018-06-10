@@ -94,6 +94,10 @@ module.exports = {
 ##End file data####
 
 ##The above shows that my schema/model will take 3 inputs, Name, DirectLine, Extension and that Name is required##
+##REF:  https://sailsjs.com/documentation/concepts/models-and-orm/models
+##if we wanted to indicate a numeric value we could use
+age: { type: number }
+
 
 ###Next make a backup of homepage.ejs and then delete all from it and then you can begin to build your
 ##Front end
