@@ -12,3 +12,10 @@ npm install (You only need this if you deploy your app in prod and the system ne
 
 
 
+#######Auto restart your server#########
+
+##You can use nodemon or pm2
+sudo npm install -g nodemon
+
+###OR#####
+sudo npm install -g pm2  ##I prefer pm2
