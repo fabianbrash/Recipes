@@ -226,7 +226,8 @@ module.exports = {
 ##REF: http://www.programwitherik.com/five-tips-when-working-with-routes-on-sails-js/
 ##REF: https://scotch.io/tutorials/use-ejs-to-template-your-node-application
 
-
+######during development you can turn of the annoying message about database migration by editing
+#####/config/models.js
 
        
 
