@@ -46,6 +46,10 @@ vim datastores.js
 adapter: require('sails-mongo'),
     url: 'mongodb://mongo_DNS_OR_IP:27017/directory_db',
     
+######NOTE IF YOU ARE USING AUTHENTICATION WITH MONGODB YOUR URL SHOULD LOOK LIKE THIS
+    url: 'mongodb://user:password@mongo_DNS_OR_IP:27017/directory_db?authSource=admin',
+##REF: https://sailsjs.com/documentation/concepts/extending-sails/adapters/available-adapters
+    
 
 ##If the database does not exists it will be created also note the above does not have a username or password
 
