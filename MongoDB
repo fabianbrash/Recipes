@@ -94,6 +94,16 @@ db.getCollection("collection1").insert(
 {"Name": "Joe", "Age": "45"}
 )
 
-####AGAIN WITHOUT THIS YOU GET SOME WEIRD RESULTS#######################
+########AGAIN WITHOUT THIS YOU GET SOME WEIRD RESULTS#######################
 
 
+#######Basic Searching######################################
+
+use movies_db
+
+db.getCollection("movies").find({
+    title: 'Caught'
+    
+    });
+    
+ 
