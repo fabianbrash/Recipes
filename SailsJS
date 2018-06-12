@@ -265,3 +265,81 @@ module.exports = {
 
 ###########END FILE############################################################
 
+
+
+#####Contents of MoviesController.js###########################################
+
+/**
+ * MoviesController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+
+        raw: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                 res.send(500, {error: 'Database error'});
+                        }
+
+                        res.json(Movies);
+                });
+        },
+
+        ui: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                res.send(500, {error: 'Database error'});
+                        }
+
+                        res.view('pages/ui', {Movies:Movies});
+
+                });
+        }
+};
+
+
+############Contents of ui.ejs#######################
+
+<h3 class="display-3">Wikipedia Movies Directory</h3>
+
+<div class="table-responsive-md">
+
+<table class="table table-striped table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+       <!--<th>#</th> -->
+       <th>Title</th>
+       <th>Year</th>
+       <th>Director</th>
+       <th>Cast</th>
+       <th>Genre</th>
+       <th>Notes</th>
+
+  </tr>
+
+ </thead>
+
+ <tbody>
+
+  <% Movies.forEach(function(movie) { %>
+    <tr>
+      <!--<td><%= movie.id %></td> -->
+      <td><%= movie.title %></td>
+      <td><%= movie.year %></td>
+      <td><%= movie.director %></td>
+      <td><%= movie.cast %></td>
+      <td><%= movie.genre %></td>
+      <td><%= movie.notes %></td>
+
+   </tr>
+   <% }); %>
+
+ </tbody>
+
+</table>
+
+</div>
