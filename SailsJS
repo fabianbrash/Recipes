@@ -234,5 +234,31 @@ module.exports = {
 
 
 
+#####CONFIGURE A ROUTE CALLED /raw AND RETURN SOME JSON########################################
 
+################BEGIN FILE MoviesController.js#######################
+
+/**
+ * MoviesController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+
+        raw: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                 res.send(500, {error: 'Database error'});
+                        }
+
+                        res.json(Movies);
+                });
+        }
+};
+
+
+
+###########END FILE############################################################
 
