@@ -232,6 +232,9 @@ module.exports = {
        
 #########BY DEFAULT BLUEPRINTS ONLY RETURNS THE FIRST 30 RECORDS IN A DB USE THE .LIMIT() METHOD TO RETURN WHAT YOU NEED
 
+###Visit the following to see all your DB entries##############
+http://APP_DNS_OR_IP:1337/app/?limit=10000
+
 
 
 #####CONFIGURE A ROUTE CALLED /raw AND RETURN SOME JSON########################################
