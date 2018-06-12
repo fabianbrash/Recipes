@@ -230,6 +230,8 @@ module.exports = {
 #####/config/models.js
 
        
+#########BY DEFAULT BLUEPRINTS ONLY RETURNS THE FIRST 30 RECORDS IN A DB USE THE .LIMIT() METHOD TO RETURN WHAT YOU NEED
+
 
 
 
