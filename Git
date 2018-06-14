@@ -31,3 +31,23 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git(Note you get th
 ##If everything works you should be able to authenitcate with SSH keys if you've uploaded any
 
 ##REF: https://help.github.com/articles/changing-a-remote-s-url/#switching-remote-urls-from-ssh-to-https
+
+
+######NOTE THIS MUST BE DONE ON AN EMPTY REPO(TECHNICALLY) SO DON'T ADD A LICENSE FILE OR README FROM THE WEB UI
+cd /path/with/code
+git init
+git add .
+git commit -m "YOUR MESSAGE"
+git remote add origin https://github.com/fabianbrash/movies-app.git ###OR whatever your empty REPO is called
+git remote -v  ##See our remote repo's
+git push -u origin master
+
+
+
+#####FROM GITHUB WHEN YOU GENERATE AN EMPTY REPO
+echo "# movies-app" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/fabianbrash/movies-app.git
+git push -u origin master
