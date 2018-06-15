@@ -690,6 +690,9 @@ echo "Testing.." >> a.tst ##This will append to the file a.tst so the final file
 ##Testing again... and Testing..
 
 
+#######Check if a user has permission to a path###############
+
+sudo -u nginx stat ~user/express-apps/rp/
 
 
 
