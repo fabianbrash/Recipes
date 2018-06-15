@@ -386,4 +386,6 @@ ovftool C:\destinationpath\appliance.vmx C:\OVFexport\appliance.ovf
 ###After 10.2.x(I think please check VMware's site)
 ##Then you can upgrade VMware Tools on the guests using VUM as well under "VM Baselines"
 
+###Note wait about 5 minutes or so and then your VM's should start showing that they are out of date
+###No reboot of host(s) or VM(s) required
 
