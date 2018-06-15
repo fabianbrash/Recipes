@@ -375,3 +375,15 @@ ovftool C:\destinationpath\appliance.vmx C:\OVFexport\appliance.ovf
 ##Once everything was finished I was able to successfully import the appliance.
 
 ##REF: https://ripplesinharmony.wordpress.com/2017/09/19/installing-ise-2-3-on-esxi-6-x/
+
+
+############UPDATE VMWARETOOLS ON A HOST USING VUM###########
+########REF: https://vinfrastructure.it/2018/01/add-vmware-tools-v10-2-vsphere-environment/
+
+###Simpliy import the Offline VIB into VUM by selecting "Patch Repository" > "Import" 
+####And create a Baseline and then just attach it to a host or a cluster, Note for a single host
+###This should work as maintenance mode is not required--Also this Offline VIB was made available
+###After 10.2.x(I think please check VMware's site)
+##Then you can upgrade VMware Tools on the guests using VUM as well under "VM Baselines"
+
+
