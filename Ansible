@@ -14,6 +14,8 @@ ansible -i hosts all -u root -m ping
 
 ansible -i hosts DO -u root -m ping
 
+ansible DO -u root -m ping ###Did Ansible make a change, this works but the above does not
+
 #####The above will do the same but only ping machines that are identified with [DO]
 
 ############Actual host file############################
