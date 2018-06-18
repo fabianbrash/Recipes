@@ -77,7 +77,8 @@ ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
  
  ansible-playbook vim_epel.yml  ##run playbook
  
- 
+ #####If you don't have SSH key/pairs setup
+ ansible-playbook vim_epel.yml --ask-pass
 
 ###########WINDOWS MANAGEMENT#################
 ##REF: https://argonsys.com/learn-microsoft-cloud/articles/configuring-ansible-manage-windows-servers-step-step/
