@@ -441,6 +441,6 @@ wmic csproduct get name
 
 ###################DHCP IMPORT##################################
 ##If you use net use dhcp dump to backup your DHCP server(s) you will need to run 
-##netsh exec dhcpfile.txt to re-import your scopes, if you get an error then more than likely
-##the file is in UNICODE format and you need to convert to ANSI; just open the file in notepad and "Save As" ANSI
+##netsh exec dhcpfile.txt to re-import your scopes, if you get an error "The following command was not found"
+##then more than likely the file is in UNICODE format and you need to convert to ANSI; just open the file in notepad and "Save As" ANSI
 
