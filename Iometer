@@ -1,0 +1,5 @@
+
+#####My tests with Iometer###############
+
+###16 IO threads with Reads seem to be the sweet spot on my server i.e. could be cpu
+### <=16 works best with Writes
