@@ -297,6 +297,11 @@ sudo firewall-cmd --reload
 sudo setenforce Permissive
 sestatus
 
+############NOTE: During reboot this will change back##############
+cd /etc/selinux ##On centos check your linux flavor
+vi config ##and change the default to permissive
+
+
 #########ALSO I SET MY RP CONFIG IN TEH MAIN nginx.conf file in CENTOS7 I will have to figure out
 #######How to create my own file as when you install nginx from upstream in Cent7 sites-available and sites-enabled
 ###Folders are not present and I had to create them manually
