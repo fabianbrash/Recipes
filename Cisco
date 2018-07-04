@@ -207,3 +207,18 @@ no errdisable detect cause gbic-invalid
 #####shut the interface and then bring it back up again####
 
 ##REF:https://info.hummingbirdnetworks.com/blog/forcing-cisco-switches-to-use-3rd-party-sfp
+
+
+
+###Show running config of a vlan or interface############
+en or enable
+conf t
+vlan xx
+do sh run int vlan xx
+
+###For interface
+en or enable
+conf t
+int Gi1/0/22
+do sh run int Gi1/0/22
+
