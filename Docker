@@ -631,6 +631,24 @@ docker run -d -p 27017:27017 --name mongo -v mongodata:/data/db -e MONGO_INITDB_
 
 
 
+###############SIMPLE TRICK TO USE NFS WITH DOCKER CONTAINER###################################
+#############NOTE THE PERFORMANCE OF THIS MIGHT BE TERRIBLE SO NO GOOD FOR PRODUCTION######
+##REF: https://blog.leandot.com/2017/03/24/changing-storage-location-for-docker-volume.html
+
+####Mount the NFS share on the container host
+mkdir /nfs
+mount -t nfs nfsIP_OR_DNS:/path /nfs
+
+###CentOS install location of docker; check your linux distro
+cd /
+sudo find . -name docker
+
+cd /var/lib/docker/volumes/
+ln -s /nfs nfsserver ##volume-name
+docker volume create --name nfsserver
+
+##And now your files will be on the remote nfs server
+
 
 
 
