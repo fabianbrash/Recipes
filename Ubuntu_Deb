@@ -266,7 +266,7 @@ sudo lvextend -L8G(Check the docs)
 sudo apt install nfs-common
 su -
 mkdir /mynfs
-mount -t nfs serverIPorDNS:/mntpoint
+mount -t nfs serverIPorDNS:/mntpoint /mynfs
 
 
 ####MOUNT SMB SHARE############
