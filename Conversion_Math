@@ -16,3 +16,6 @@
 ## For terabytes we would do 1024^4 or 1024 * 1024 * 1024 * 1024
 
 ## 9000000000 / (1024^4) = 0.00818 TB
+
+
+###REF: http://www.matisse.net/bitcalc/
