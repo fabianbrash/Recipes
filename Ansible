@@ -170,6 +170,8 @@ ansible_winrm_server_cert_validation: ignore
 
 ##NOTE I WAS ONLY ABLE TO GET THIS TO WORK WITH THE LOCAL ADMIN ACCOUNT, NOT WITH A DOMAIN ADMIN###
 ##I NEED TO DO SOME MORE RESEARCH AS TO WHY#######
+###The reason domain accounts were not working is becuase I was missing the below package###
+sudo pip install pywinrm[kerberos]
 
 
 ######ENCRYPTING DATA#####################
