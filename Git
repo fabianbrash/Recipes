@@ -51,3 +51,12 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/fabianbrash/movies-app.git
 git push -u origin master
+
+
+
+#########Merge branches###############################################
+###Here we will merge a branch called Jenkins into the master branch#####
+git checkout master
+git merge Jenkins
+
+####If everything is good both master should now be merged with Jenkins
