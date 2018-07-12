@@ -58,5 +58,6 @@ git push -u origin master
 ###Here we will merge a branch called Jenkins into the master branch#####
 git checkout master
 git merge Jenkins
+git push
 
 ####If everything is good both master should now be merged with Jenkins
