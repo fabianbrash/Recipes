@@ -61,3 +61,8 @@ git merge Jenkins
 git push
 
 ####If everything is good both master should now be merged with Jenkins
+
+
+git log  ##See all commits
+
+git log -p -2 ##Show all patches for the last 2 commits helpful to see what has changed and who changed it
