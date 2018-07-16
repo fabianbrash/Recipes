@@ -66,3 +66,7 @@ git push
 git log  ##See all commits
 
 git log -p -2 ##Show all patches for the last 2 commits helpful to see what has changed and who changed it
+
+####You can also use git diff with git log to get changes
+git log 
+git diff commitID1 commitID2
