@@ -59,3 +59,33 @@ tdnf check-update        ##check for updates
 tdnf -y install gcc      ##install/update gcc only
 tdnf distro-sync         ##synchronizes the machine's RPMs with the latest version of all the packages in the repository.
 
+
+###########EXTEND ROOT PARTITION#######################
+###Add additional space to the vmdk via GUI
+tdnf install -y parted
+
+##Rescan device to see new space withour rebooting
+echo 1 > /sys/class/block/sda/device/rescan
+
+fdisk -l ##List all devices
+####We are going to be working with /dev/sdb
+
+parted /dev/sdb
+
+##If you get a message about the device not using all the space type "Fix"
+
+print  ###To list the partition we will be extending the filesystem usually '2'
+
+resizepart 2 
+Yes
+38000 ###here we are making the disk size 38GB
+quit
+
+resize2fs /dev/sdb2
+
+df -h
+
+##REF: https://myfabrix.com/community/tech-notes/photonos-expanding-disk-partition/
+##REF: https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/
+###Note in the first REF he uses the command 'resizepart 2 100%' that will generate an error
+
