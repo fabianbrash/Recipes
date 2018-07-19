@@ -8,3 +8,12 @@
 
 
 #REF: https://stackoverflow.com/questions/27957943/simulate-a-specific-curl-in-postman
+
+
+##########SET CUSTOM CONTENT-TYPE###########################
+
+###After selection Application/JSON under RAW for your 'Body'###########
+##Click on "Headers" and in the 'Value' for Content-Type enter your custom Content-Type###
+## Ex. application/vnd.api+json or whatever your API requires; this will change your content-type under RAW####
+##To 'Text'
+##REF: https://github.com/postmanlabs/postman-app-support/issues/1498
