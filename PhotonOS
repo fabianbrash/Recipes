@@ -89,3 +89,12 @@ df -h
 ##REF: https://www.tecmint.com/parted-command-to-create-resize-rescue-linux-disk-partitions/
 ###Note in the first REF he uses the command 'resizepart 2 100%' that will generate an error
 
+
+######Photon OS 1.x /root partition full###########
+
+##Ran into an issue today in which our gitlab server running in a docker container using 
+##VMware's photonOS 1.x ran our of disk space on the /root partition by default this partition
+##is only ~15GB; while the container was still running and I could log into gitlab
+##I couldn't clone any repos.  The solution, simply add space to the disk in vCenter
+##and boot the Vm into GParted live an extend /dev/sda1 in my case, reboot, and all was good
+##Thank goodness for GParted Live
