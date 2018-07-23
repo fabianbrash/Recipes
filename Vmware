@@ -192,7 +192,7 @@ cd D: (or wherever your DVD is mounted)
 cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\PSC_first_instance_on_ESXi.json
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\vCSA_on_ESXi.json
-
+.\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip --verify-only C:\path\to\json\file\vCSA_on_ESXi.json ##Verify file
 
 ########################LIST ALL SERVICES##################################
 chkconfig --list
