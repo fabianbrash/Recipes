@@ -76,6 +76,10 @@ ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
  ###End file############################################
  
  ansible-playbook vim_epel.yml  ##run playbook
+ ansible-playbook vim_epel.yml -f 10 ##Run on 10 systems default is 5
+ 
+ ##REF: https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html?highlight=ansible%20playbook
+ ##REF: https://www.ansible.com/blog/ansible-performance-tuning
  
  #####If you don't have SSH key/pairs setup
  ansible-playbook vim_epel.yml --ask-pass
