@@ -393,3 +393,9 @@ ovftool C:\destinationpath\appliance.vmx C:\OVFexport\appliance.ovf
 ###Note wait about 5 minutes or so and then your VM's should start showing that they are out of date
 ###No reboot of host(s) or VM(s) required
 
+
+########Upgrade PSC/VCSA######################
+##You can obviously use the VAMI
+##Or head to VMware.com log in and then from top right menu select "Products > Product Patches", select VC and then the version
+##Then you can download the .ISO file
+##The third way is download the update bundle.zip file and place it on a web server but I need to test this way out.
