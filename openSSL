@@ -95,8 +95,11 @@ openssl pkcs12 -in C:\keys\filename.pfx -clcerts -nokeys -out C:\keys\cert.pem
 openssl rsa -in C:\keys\key.pem -out C:\keys\server.pem
 
 
+###Combine public key and private key into a .PFX file
 
+openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt
 
+##Note the -certfile CACert.crt is optional and references if your have intermediate certificates
 
 
 
