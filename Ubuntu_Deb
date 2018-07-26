@@ -377,3 +377,10 @@ echo $PATH
 export PATH=/usr/local/go/bin:$PATH
 
 ##I need to check to see if the above would be permanent or like zsh there is a file we need to edit
+
+###Using find
+cd /
+sudo find . -name "*.go" ##find all golang files on the system
+sudo find . -name "go"   ##find anyting with go on the system
+
+
