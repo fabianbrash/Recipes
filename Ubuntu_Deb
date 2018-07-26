@@ -363,3 +363,17 @@ sudo adduser user ###Instead of useradd
 sudo apt-get install -y docker.io  ##should be the latest stable build####
 
 
+
+##Add folder to your $PATH zsh###
+vim ~user/.zshrc
+
+###Add
+export PATH=/usr/local/go/bin:$PATH
+##Here we are adding go to our PATH
+##Then simply launch another terminal window and the changes so show up
+echo $PATH
+
+###On BASH something like this should work
+export PATH=/usr/local/go/bin:$PATH
+
+##I need to check to see if the above would be permanent or like zsh there is a file we need to edit
