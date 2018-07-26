@@ -399,3 +399,19 @@ ovftool C:\destinationpath\appliance.vmx C:\OVFexport\appliance.ovf
 ##Or head to VMware.com log in and then from top right menu select "Products > Product Patches", select VC and then the version
 ##Then you can download the .ISO file
 ##The third way is download the update bundle.zip file and place it on a web server but I need to test this way out.
+
+
+
+###VCSA backup issues#####
+
+##So I had an issue backing up the VCSA in which it did a validation and returned the below
+##Error:  Invalid vCenter Server Status: All required services are not up! Stopped services: 'vmonapi'.
+##So after a quick Google REF:https://vpxd.wordpress.com/2017/01/13/vcsa-vcenter-server-appliance-6-5-backup-troubleshooting/
+##SSH into the VCSA login @ root
+##If BASH isn't enabled follow the direction toenable it
+##Then
+service-control --status
+##This should show running and not running services
+#Then
+service-control --start vmonapi(or whatever service the backup requires)
+
