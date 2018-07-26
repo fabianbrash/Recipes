@@ -101,5 +101,5 @@ openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificat
 
 ##Note the -certfile CACert.crt is optional and references if your have intermediate certificates
 
-
+##REF: https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files
 
