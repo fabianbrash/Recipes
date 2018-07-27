@@ -444,3 +444,25 @@ wmic csproduct get name
 ##netsh exec dhcpfile.txt to re-import your scopes, if you get an error "The following command was not found"
 ##then more than likely the file is in UNICODE format and you need to convert to ANSI; just open the file in notepad and "Save As" ANSI
 
+
+
+####Cleanly remove old root CA
+##REF: https://mssec.wordpress.com/2013/03/19/manually-remove-old-ca-references-in-active-directory/
+##NOTE: The very last instruction gave me issues, so just load the PKI snappin from mmc.exe
+##Which you can only get from the new root CA
+###Also I added the CA role and did the cleanup after the fact; if I had not installed the role maybe the last command
+##Would have worked for me.
+###TODO: Add steps here incase the above site goes down
+
+####Also how I knew that ldaps was still using the old cert; I simply ran this command, kudos to the guy who posted this
+
+openssl s_client -connect myldapsserver.domain.com:636
+
+##of course the above requires that you have openssl installed on your system
+#REF: https://social.technet.microsoft.com/Forums/windowsserver/en-US/06c2a9cc-bd43-4bcd-9ade-b121c797d1f9/how-to-check-what-certificate-is-being-used-for-ssl-ldaps-connections?forum=winserversecurity
+
+
+
+
+
+
