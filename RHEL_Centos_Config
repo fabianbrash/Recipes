@@ -692,14 +692,16 @@ echo "Testing.." >> a.tst ##This will append to the file a.tst so the final file
 
 #######Check if a user has permission to a path###############
 
+sudo -u nginx stat ~user/express-apps/rp/
+
+
 
 ###Install and enable denyhosts from https://www.activecountermeasures.com/blog/
 sudo yum install -y denyhosts && sudo systemctl enable --now denyhosts
 ##Now if an attacker tries a dictionary attack on your SSH/SFTP server, they will be added to 
 /etc/hosts.deny if it was a legitimate user you can simply remove ther IP entry from the hosts.deny file
 
-
-sudo -u nginx stat ~user/express-apps/rp/
+####This also runs on debian based systems
 
 
 
