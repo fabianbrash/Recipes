@@ -76,6 +76,11 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 ###Also at the root I added both the IUSR and IIS_IUSRS with read permissions
 
 
+###Great artcle on creating URL rewrite for http to https
+##REF:https://www.namecheap.com/support/knowledgebase/article.aspx/9953/38/setting-up-an-httphttps-redirect-in-iis
+
+
+
 
 
 
