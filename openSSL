@@ -103,3 +103,12 @@ openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificat
 
 ##REF: https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files
 
+###Convert a DER encoded .cer file to .crt#####
+##Note in Windows when you go to export a CA you are given 2 choices, Der encoded or BASE64
+##The below is if you selected the first option; I need to see if you select the 2nd choice
+##If you can just rename the file from .cer to .crt
+openssl x509 -inform DER -in ssl_certificate.cer -out ssl_certificate.crt
+
+
+
+
