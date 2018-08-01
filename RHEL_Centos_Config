@@ -704,4 +704,8 @@ sudo yum install -y denyhosts && sudo systemctl enable --now denyhosts
 ####This also runs on debian based systems
 
 
+##Add a user to the wheel group i.e. sudo rights#################
+##REF: https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server
+
+sudo gpasswd -a user1 wheel
 
