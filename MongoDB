@@ -76,7 +76,9 @@ db.getCollection("testCollection2").update(
       $set: {
           Name: "Sun"
       }
-  });
+  }
+  
+)
 
 
 
