@@ -343,3 +343,13 @@ module.exports = {
 </table>
 
 </div>
+
+
+###################CSS######################
+
+###So I had an issue where I did some css inline on my layout.ejs file and when I rebooted
+###my app the css was gone, so simple fix create a file in /myapp/assets/styles
+##and the css will be automatically included in your layout.
+
+
+
