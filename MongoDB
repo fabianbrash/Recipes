@@ -3,6 +3,11 @@
 #####Basic mongoDB commands from mongo shell or from a mongo client#######
 ##REF: https://docs.mongodb.com/manual/reference/mongo-shell/
 
+
+#####Get mongo version#####
+db.version()
+
+
 #####List all DB's######
 
 show dbs
