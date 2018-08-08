@@ -424,5 +424,17 @@ service-control --start vmonapi(or whatever service the backup requires)
 ##Also upgrade can be done using the .ISO image; there is also the offline bundle, which can be imported into VUM
 ##But I have not done it that way before.
 
+#########So I had a weird issue after I upgraded one of our hosts and after the update completed
+###vSphere HA agent failed to install with the error 'vSphere HA agent cannot be installed or configured'
+##I tried to 'Reconfigure HA Agent' from the right mouse click, but that didn't work, I also restarted all
+##services to no avail, then I found the below article which instructed me to turn of HA on the cluster and then
+##turn it back on again, and viola that fixed the issue
+##REF: https://anotheritguy.com/index.php/2017/08/vsphere-ha-agent-has-an-error-vsphere-ha-agent-cannot-be-installed-or-configured/
+
+
+
+
+
+
 
 
