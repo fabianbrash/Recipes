@@ -417,7 +417,7 @@ service-control --start vmonapi(or whatever service the backup requires)
 
 
 
-#########Using VUm to upgrade Esxi#############################
+#########Using VUM to upgrade Esxi#############################
 ##Download your specific ISO from vmware.com, then upload into VUM
 ###Then create a base line and attach to a host or a cluster not you will have to disable admission control if
 ##it is enabled
