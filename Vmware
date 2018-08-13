@@ -434,7 +434,12 @@ service-control --start vmonapi(or whatever service the backup requires)
 
 
 
+####So I had an issue with an esxi host where as the host had ssh locked out because of too many bad password
+###attempts, so here are some commands to help out
+##This will have to be run from the DCUI
 
+pam_tally2 --user root ##see how many bad attempts and who is causing it
+pam_tally2 uuser root --reset
 
 
 
