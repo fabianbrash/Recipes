@@ -1,4 +1,17 @@
 ####BASIC MSSQL COMMANDS####################################
+
+##List all DB's
+
+SELECT * FROM sys.DATABASES
+
+###OR###
+
+SELECT name FROM master.sys.databases
+
+###Exclude system DB's
+SELECT name FROM master.dbo.sysdatabases
+WHERE dbid > 4
+
 ####Create A DB
 CREATE DATABASE testdb;
 ###Let's create a table####
