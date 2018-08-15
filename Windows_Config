@@ -463,6 +463,24 @@ openssl s_client -connect myldapsserver.domain.com:636
 
 
 
+########Get logon DC##########################
+##REF: https://www.technipages.com/windows-how-to-switch-domain-controller
+
+nltest /dsgetdc:enterprise.com ## or whatever domain
+
+###This is more accurate than
+set l
+and 
+echo %LOGONSERVE%
+
+####Let's switch a clients domain controller without a reboot##
+nltest /Server:ClientComputerName /SC_RESET:DomainName\DomainControllerName
+##OR
+
+nltest /Server:computer01 /SC_RESET:enterprise.com\enterprise-dc-01
+
+
+
 
 
 
