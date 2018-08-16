@@ -484,6 +484,7 @@ nltest /Server:computer01 /SC_RESET:enterprise.com\enterprise-dc-01
 ###########DHCP SERVER IMPORT ISSUES AGAIN###########################
 ######NOTE IF THE NEW DHCP SERVER HAS A DIFFERENT NAME THEN SIMPLY DO A SEARCH AND REPLACE AND CHANGE THE .TXT FILE TO REFLECT THE NEW NAME
 #####AND THEN RUN THE BELOW COMMAND#################
+###REF:https://www.petenetlive.com/KB/Article/0001177
 
 netsh exec c:\temp\dhcp.txt  ###Import from a .txt file
 
