@@ -147,3 +147,16 @@ db.getCollection("testCollection").update(
         }
     )
     
+
+#####Simple sort in mongo###################
+use mydb
+db.getCollection("mycollect").find().sort(
+{
+  Name: 1
+}
+);
+
+
+##REF:https://docs.mongodb.com/manual/reference/method/cursor.sort/#cursor.sort
+
+
