@@ -393,6 +393,8 @@ sysprep /oobe /generalize /shutdown
 
 (New-Object -ComObject Microsoft.Update.AutoUpdate).DetectNow()
 
+usoclient StartScan
+
 
 ####Location of shares in the registry##################
 
