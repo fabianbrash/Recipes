@@ -384,6 +384,14 @@ sysprep /oobe /generalize /shutdown
 
 
 
+###################Search for user lockout in a Windows Domain#################################
+##Go to he PDC emulator in our forest/domain
+##And search the eventviewer security logs for event id 4740
+##You can also run the above query string to find all events for a particulat user#####
+##REF: https://community.spiceworks.com/how_to/128213-identify-the-source-of-account-lockouts-in-active-directory?page=2 
+
+
+
 ####Force Win10 Server 2016 to re-check WSUS/WindowsUpdate Server###################
 ##So the issue I have is that if you deploy a new server from a template, there can be a gap
 ##Before the VM is joined to AD, well in that time Windows would have downloaded updates from
