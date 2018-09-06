@@ -499,3 +499,16 @@ nltest /Server:computer01 /SC_RESET:enterprise.com\enterprise-dc-01
 netsh exec c:\temp\dhcp.txt  ###Import from a .txt file
 
 
+
+
+###FSMO in a forest and a domain#############
+#REF:  https://social.technet.microsoft.com/Forums/ie/en-US/119a167c-26fc-474b-9efd-9698758bbe92/how-many-pdc-emulator?forum=winserverDS
+
+##The important bit
+
+##Considering single Forest with 12 domains, how many FSMO role in total exist?
+##Total FSMO roles in this scenario = 38
+
+##12 X 3 = 36 (PDC, RID, Infrastructure) Master
+##2 For each Forest (Domain Naming Master and Schema Master per Forest)
+##Total = 38
