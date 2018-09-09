@@ -409,6 +409,20 @@ usoclient StartScan
 HKEY_LOCAL_MACHINE subtree, go to the following key:
 SYSTEM\CurrentControlSet\Services\LanmanServer\Shares
 
+#####Migrate a FileServer while keeping the original servers name and or IP#####
+
+##In my case I'm just keeping the original name and let DNS handle the IP change#####
+##After using Robocopy to copy over all files and permissions, you can export the key above
+##Then during a down time rename the current server and reboot and then run
+
+ipconfig /registerdns
+
+###Then name the new server the same as the old one and reboot; then run
+
+ipconfig /registerdns
+
+###If everything is okay your users should not know that the change was made####
+
 
 #######CERTIFICATE AUTO-ENROLLMENT###############################
 ##REF: https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd379529(v=ws.10)
