@@ -709,3 +709,10 @@ sudo yum install -y denyhosts && sudo systemctl enable --now denyhosts
 
 sudo gpasswd -a user1 wheel
 
+####Also if you add a user to wheel and they still don't have admin rights try####
+visudo  
+
+###Then you can add the user and mirror 'root' or look and see if the option to add wheel users
+###To run all commands are commented out
+
+
