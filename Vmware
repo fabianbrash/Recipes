@@ -282,6 +282,8 @@ setup64.exe /s/v"/qn reboot=r"
 ##The above will suppress reboot
 setup64.exe /s/v"/qn" ##This will not
 
+##The above works with all .exe installers for vmware tools
+
 
 ##############NETWORK COMMANDS#####################################
 ##esxcli network ip neighbor list ##Show ARP table
