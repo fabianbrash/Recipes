@@ -455,7 +455,7 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 ##(stay within 1 NUMA Node). Don´t count Hyperthreading!
 ##EX. 2 socket 10 cores per socket = 20 cores
 ##12vCPU VM would be configured as 2 sockets w/6 cores
-
+##REF: https://itnext.io/vmware-vsphere-why-checking-numa-configuration-is-so-important-9764c16a7e73
 
 
 
