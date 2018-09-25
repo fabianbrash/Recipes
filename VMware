@@ -450,3 +450,12 @@ pam_tally2 uuser root --reset
 ##4 * 6 * 4 - 128 or ~32GB is the size the VM has to be
 ##REF: VMware session "Monster VM's" video @ 45:18
 
+####More NUMA info###########################
+Assign less or equal amount of vCPU´s to VMs than the total number of physical cores of a single CPU Socket
+##(stay within 1 NUMA Node). Don´t count Hyperthreading!
+##EX. 2 socket 10 cores per socket = 20 cores
+##12vCPU VM would be configured as 2 sockets w/6 cores
+
+
+
+
