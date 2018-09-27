@@ -464,4 +464,4 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 ##QAVG(Queue Average latency) - time spent waiting in a queue inside the vSphere Storage Stack
 
 ##REF: https://blogs.vmware.com/vsphere/2012/05/troubleshooting-storage-performance-in-vsphere-part-1-the-basics.html
-
+##REF: https://www.petri.com/avoid-stroage-io-bottlenecks
