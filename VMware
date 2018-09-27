@@ -446,6 +446,7 @@ pam_tally2 uuser root --reset
 
 
 #####CALCULATE NUMA SIZE OF A VM############################################
+##Formula = MAX_VM_MEMORY = Host RAM - (num sockets * num cores * NUM NUMA NODES)
 ##4 sockets, 6 cores, 4 NUMA nodes, 128GB RAM
 ##4 * 6 * 4 - 128 or ~32GB is the size the VM has to be
 ##REF: VMware session "Monster VM's" video @ 45:18
