@@ -457,5 +457,11 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 ##12vCPU VM would be configured as 2 sockets w/6 cores
 ##REF: https://itnext.io/vmware-vsphere-why-checking-numa-configuration-is-so-important-9764c16a7e73
 
+#####VMware performance#################
 
+##KAVG(Kernel Average latency) - time an I/O request spent waiting inside the vSphere storage stack.
+##GAVG(Guest Average latency) - total latency as seen from vSphere(KAVG + DAVG)
+##QAVG(Queue Average latency) - time spent waiting in a queue inside the vSphere Storage Stack
+
+##REF: https://blogs.vmware.com/vsphere/2012/05/troubleshooting-storage-performance-in-vsphere-part-1-the-basics.html
 
