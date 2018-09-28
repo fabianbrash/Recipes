@@ -445,7 +445,8 @@ pam_tally2 uuser root --reset
 
 
 
-#####CALCULATE NUMA SIZE OF A VM############################################
+#####CALCULATE NUMA SIZE OF A VM ############################################
+###I NEED TO CHECK THIS I THINK IT'S WRONG################
 ##Formula = MAX_VM_MEMORY = Host RAM - (num sockets * num cores * NUM NUMA NODES)
 ##4 sockets, 6 cores, 4 NUMA nodes, 128GB RAM
 ##4 * 6 * 4 - 128 or ~32GB is the size the VM has to be
@@ -466,3 +467,9 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 
 ##REF: https://blogs.vmware.com/vsphere/2012/05/troubleshooting-storage-performance-in-vsphere-part-1-the-basics.html
 ##REF: https://www.petri.com/avoid-stroage-io-bottlenecks
+
+
+
+#######NUMA EXPOSED OS VM OS####################
+####NUMA layout is only exposed the guest os if a vm is configured for 8vcpu's or above and cpu hot add
+###is not enabled
