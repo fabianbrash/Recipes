@@ -479,6 +479,13 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 https://vcsa_IP_OR_DNS/apiexplorer
 
 ####Grow VCSA disk using the api###################
-###REF: https://www.virtuallyghetto.com/2016/11/updates-to-vmdk-partitions-disk-resizing-in-vcsa-6-5.html
+####Obviously your first step would be to backup the PSC and the VSCA
+##Then add storage to the affected disks in vCenter
+####Visit https://VCSA_IP_OR_DNS/apiexplorer
+###Select 'Appliance' and then 'login'
+###Then under 'system/storage' '/appliance/system/storage/resize click the "Try it" button
+###And then run df -h in the VCSA and you should have expanded your storage
+
+####REF: https://www.virtuallyghetto.com/2016/11/updates-to-vmdk-partitions-disk-resizing-in-vcsa-6-5.html
 
 
