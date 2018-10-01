@@ -473,3 +473,12 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 #######NUMA EXPOSED OS VM OS####################
 ####NUMA layout is only exposed the guest os if a vm is configured for 8vcpu's or above and cpu hot add
 ###is not enabled
+
+
+#######VCSA API##################################
+https://vcsa_IP_OR_DNS/apiexplorer
+
+####Grow VCSA disk using the api###################
+###REF: https://www.virtuallyghetto.com/2016/11/updates-to-vmdk-partitions-disk-resizing-in-vcsa-6-5.html
+
+
