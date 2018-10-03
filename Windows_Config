@@ -526,3 +526,10 @@ netsh exec c:\temp\dhcp.txt  ###Import from a .txt file
 ##12 X 3 = 36 (PDC, RID, Infrastructure) Master
 ##2 For each Forest (Domain Naming Master and Schema Master per Forest)
 ##Total = 38
+
+##Troubleshooting folder redirection
+##Check Eventviewer and look under Application logs 'Folder Redirection' under source
+##Or you can filter for EventID 500-530(Just to be safe)
+
+
+
