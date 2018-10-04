@@ -456,6 +456,7 @@ sudo userdel user
 
 sudo crontab -e
 ##head over here to generate your config http://crontab-generator.org/
+##REF: https://crontab.guru/
 
 
 ###########MOUNT NFS DATASTORE#################################
