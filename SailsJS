@@ -353,3 +353,36 @@ module.exports = {
 
 
 
+########Sorting by Name######################################
+
+/**
+ * DirectoryController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+    list: function(req, res) {
+       Directory.find({}).sort({ Name: 1 }).exec(function(err, Directory) {
+         if(err) {
+           res.send(500, {error: 'Database Error'});
+         }
+         res.view('pages/list', {Directory:Directory});
+      });
+    },
+
+   raw:  function(req, res) {
+         Directory.find({}).exec(function(err, Directory) {
+           if(err) {
+             res.send(500, {error: 'Database Error'});
+           }
+           return res.json(Directory);
+        });
+
+  }
+
+};
+
+
+
