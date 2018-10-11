@@ -310,6 +310,7 @@ vi config ##and change the default to permissive
 
 #####NGINX TLS termination#################################################
 ##These instructions are for centos 7.4+ Debian/Ubuntu could be different
+##REF: https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-tcp/
 ##look @ /etc/nginx.conf
 sudo mkdir /etc/pki/nginx
 sudo mkdir -p /etc/pki/nginx/private
