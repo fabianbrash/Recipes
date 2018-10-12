@@ -386,3 +386,5 @@ cp private.key /etc/pki/nginx/private
     }
     
     sudo systemctl reload nginx
+    
+    ###REF: https://bjornjohansen.no/redirect-to-https-with-nginx
