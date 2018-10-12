@@ -358,3 +358,31 @@ cp private.key /etc/pki/nginx/private
   sudo firewall-cmd --reload
   
   ##That should be it
+  
+  ####Now let's forward all HTTP -> HTTPS
+  
+  server {
+        listen       80 default_server;
+        listen       [::]:80 default_server;
+        server_name  _;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+            proxy_pass http://127.0.0.1:1337;
+
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+        return 301 https://$host$request_uri;
+    }
+    
+    sudo systemctl reload nginx
