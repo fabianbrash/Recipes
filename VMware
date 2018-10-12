@@ -459,6 +459,17 @@ Assign less or equal amount of vCPU´s to VMs than the total number of physical 
 ##12vCPU VM would be configured as 2 sockets w/6 cores
 ##REF: https://itnext.io/vmware-vsphere-why-checking-numa-configuration-is-so-important-9764c16a7e73
 
+
+##############More NUMA##############################################
+####REF:  http://www.exitthefastlane.com/2016/04/vsphere-design-for-numa-architecture.html
+##To see how many NUMA nodes are assigned to a VM 
+esxtop
+m then f then g 
+##And look for "NHN"(Numa Home Node)
+###While NUMA is exposed with 8VCPU's if those 8 fit within 1 NUMA node then from task manager
+##On Windows, NUMA will still be disabled, this will only be enabled if you crose NUMA borderies
+##This is regardless of if you use cores or sockets
+
 #####VMware performance#################
 
 ##KAVG(Kernel Average latency) - time an I/O request spent waiting inside the vSphere storage stack.
