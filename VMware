@@ -492,6 +492,31 @@ https://vcsa_IP_OR_DNS/apiexplorer
 ####Grow VCSA disk using the api###################
 ####Obviously your first step would be to backup the PSC and the VSCA
 ##Then add storage to the affected disks in vCenter
+
+
+###Match virtual disks to physical disks in Windows####
+
+Get-WmiObject Win32_DiskDrive | select-object DeviceID,{$_.size/1024/1024/1024},scsiport,scsibus,scsitargetid,scsilogicalunit
+
+##Output to a file####
+Get-WmiObject Win32_DiskDrive | select-object DeviceID,{$_.size/1024/1024/1024},scsiport,scsibus,scsitargetid,scsilogicalunit | out-file -FilePath c:\OutputPhysicalDrive.txt
+
+###If the drives are the same size and you need to delete the correct drive, match the 
+###scscitargetid with the disk ID in vCenter i.e.
+###SCSI(X:Y) usually you see 0:0 which means scsi port 0(or 1 for humans) and disk ID 0
+###If you add another SCSI adapter in vCenter then it becomes 1:0, 2:0, 3:0 this will exhaust your 4 scsi controllers
+###You are matching he number to the right of the colon; so after running the above command
+####scsitargetif of 2 would be a disk that looks like 1:2, or 0:2, or 3:2, then mathc up your device ID's
+
+
+#####I need to see how I can do this in Linux as well###########################################################
+###Note the above comes in really handy if you have a VM with a lot of drives and quite a few of them are the 
+####same size
+
+
+
+
+
 ####Visit https://VCSA_IP_OR_DNS/apiexplorer
 ###Select 'Appliance' and then 'login'
 ###Then under 'system/storage' '/appliance/system/storage/resize click the "Try it" button
