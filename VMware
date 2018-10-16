@@ -494,6 +494,19 @@ https://vcsa_IP_OR_DNS/apiexplorer
 ##Then add storage to the affected disks in vCenter
 
 
+
+
+
+####Visit https://VCSA_IP_OR_DNS/apiexplorer
+###Select 'Appliance' and then 'login'
+###Then under 'system/storage' '/appliance/system/storage/resize click the "Try it" button
+###And then run df -h in the VCSA and you should have expanded your storage
+
+####REF: https://www.virtuallyghetto.com/2016/11/updates-to-vmdk-partitions-disk-resizing-in-vcsa-6-5.html
+
+
+
+
 ###Match virtual disks to physical disks in Windows####
 
 Get-WmiObject Win32_DiskDrive | select-object DeviceID,{$_.size/1024/1024/1024},scsiport,scsibus,scsitargetid,scsilogicalunit
@@ -513,15 +526,12 @@ Get-WmiObject Win32_DiskDrive | select-object DeviceID,{$_.size/1024/1024/1024},
 ###Note the above comes in really handy if you have a VM with a lot of drives and quite a few of them are the 
 ####same size
 
+#####REF: http://2ninjas1blog.com/how-to-match-and-correlate-windows-scsi-disk-ids-with-vmware-vmdks/
 
 
 
 
-####Visit https://VCSA_IP_OR_DNS/apiexplorer
-###Select 'Appliance' and then 'login'
-###Then under 'system/storage' '/appliance/system/storage/resize click the "Try it" button
-###And then run df -h in the VCSA and you should have expanded your storage
 
-####REF: https://www.virtuallyghetto.com/2016/11/updates-to-vmdk-partitions-disk-resizing-in-vcsa-6-5.html
+
 
 
