@@ -533,3 +533,8 @@ netsh exec c:\temp\dhcp.txt  ###Import from a .txt file
 
 
 
+###Remove a directory with a lot of read-only files############
+rmdir C:\directory /s ###/s removes the entire tree
+##REF: https://www.computerhope.com/rmdirhlp.htm
+
+
