@@ -581,3 +581,6 @@ if(Test-Path $KEY_x64)  {
 
 Write-Host ""
 
+
+#####Log out of windows core##########
+logoff
