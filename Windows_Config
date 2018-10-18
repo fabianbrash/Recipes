@@ -538,3 +538,9 @@ rmdir C:\directory /s ###/s removes the entire tree
 ##REF: https://www.computerhope.com/rmdirhlp.htm
 
 
+###Powershell Get services####
+##REF: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-service?view=powershell-6
+Get-Service  ##get all our services
+Get-Service -DisplayName "*arb*"  ##Get services with name arb in it
+
+
