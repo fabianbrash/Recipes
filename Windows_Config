@@ -544,3 +544,40 @@ Get-Service  ##get all our services
 Get-Service -DisplayName "*arb*"  ##Get services with name arb in it
 
 
+###Get installed applications using Powershell
+Get-WmiObject -Class Win32_Product
+
+###You can also use these reg keys
+$KEY_x86 = 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*'
+$KEY_x64 = 'HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*'
+
+##You can do something like this
+
+[int]$isInstalled=0
+
+        if(Get-ItemProperty $KEY_x86 | Where-Object {$_.DisplayName -like $TheApp})
+            {
+                $isInstalled=1
+            }
+        else
+            {
+                $isInstalled=0
+            }
+
+
+##Or just output the values of those keys
+
+
+Write-Host "================================================ 32-bit Keys====================================================="
+
+Get-ItemProperty $KEY_x86 | Select-Object DisplayName, DisplayVersion | Format-Table -AutoSize
+Write-Host "================================================================================================================="
+
+if(Test-Path $KEY_x64)  {
+    Write-Host "================================================ 64-bit Keys====================================================="
+    Get-ItemProperty $KEY_x64 | Select-Object DisplayName, DisplayVersion | Format-Table -AutoSize
+    Write-Host "================================================================================================================="
+}
+
+Write-Host ""
+
