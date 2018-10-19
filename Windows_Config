@@ -323,6 +323,19 @@ Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs mor
 ###This should resolve your isssue
 ##REF: https://social.technet.microsoft.com/Forums/lync/en-US/7226dc0d-e3c5-40c2-817d-048bb0a74980/error-connection-error-click-reset-server-node-to-try-to-connect-to-the-server-again?forum=winserverwsus
 
+####TEMP FIX FOR WSUS#########
+
+Net stop wsusservice
+IISReset /Stop
+IISReset /Start
+Net start wsusservice
+
+######CONFIGURE WSUS GPO#########
+##The port number must be in your GPO settings or it will not work as of Server 2012R2 & 2016
+##http: 8530
+##https: 8531
+##ex. http://wsus.enterprise.com:8530
+
 
 ##############EXPORT AND IMPORT DHCP SCOPES FOR MIGRATION REF:http://www.brycematheson.io/how-to-migrate-dhcp-from-windows-server-2008-to-2012-2016/###############
 
