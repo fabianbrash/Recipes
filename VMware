@@ -529,6 +529,15 @@ Get-WmiObject Win32_DiskDrive | select-object DeviceID,{$_.size/1024/1024/1024},
 #####REF: http://2ninjas1blog.com/how-to-match-and-correlate-windows-scsi-disk-ids-with-vmware-vmdks/
 
 
+#######Find open ports on PSC/VCSA################
+
+###ssh into the PSC/VCSA an enable bash shell if it is not already
+
+netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT"
+
+###Netstat REF: https://www.tecmint.com/20-netstat-commands-for-linux-network-management/"
+
+#####awk Ref: https://www.tutorialspoint.com/awk/awk_basic_examples.htm
 
 
 
