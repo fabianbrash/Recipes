@@ -541,6 +541,11 @@ netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT
 
 
 
+#######CPU Ready or %RDY##############
+###REF: https://www.vladan.fr/what-is-vmware-cpu-ready/
+##%RDY should be below 5%, note the more processors the more time it takes to schedule SMP
+##Note in the GUI you want to select Readiness from custom as CPU Ready is in ms
+
 
 
 
