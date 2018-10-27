@@ -194,6 +194,9 @@ cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\vCSA_on_ESXi.json
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip --verify-only C:\path\to\json\file\vCSA_on_ESXi.json ##Verify file
 
+#####Get supported deployment sizes great to see for different version of vcenter
+.\vcsa-deploy --supported-deployment-sizes
+
 ##REF: https://www.vgemba.net/vmware/VCSA-CLI-Install/ 
 ##REF: https://www.altaro.com/vmware/vcenter-server-appliance-6-5-u1-linux/
 ##REF: https://docs.vmware.com/en/VMware-vSphere/6.7/vsphere-vcenter-server-67-installation-guide.pdf  
