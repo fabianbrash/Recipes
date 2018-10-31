@@ -551,4 +551,5 @@ netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT
 
 
 
-
+#########HOST PROFILES########################
+##REF: https://www.altaro.com/vmware/an-introduction-to-vmware-host-profiles/
