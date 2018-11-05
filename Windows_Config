@@ -597,3 +597,8 @@ Write-Host ""
 
 #####Log out of windows core##########
 logoff
+
+###Find Smb version note the Get-SmbConnection ##commandlet must be run after the client makes a ##connection to the server. If you run this command ##let without making a connection it will return ##zip, nada
+
+Get-SmbConnection
+Get-SmbConnection | Select-Object Property *
