@@ -603,4 +603,4 @@ logoff
 ##Note this requires Server 2012 and higher
 
 Get-SmbConnection
-Get-SmbConnection | Select-Object Property *
+Get-SmbConnection | Select-Object -Property *
