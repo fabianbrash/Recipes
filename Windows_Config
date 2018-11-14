@@ -618,7 +618,7 @@ $Env:USERDOMAIN ##Logon Domain
 
 cd $Env:USERPROFILE  ## cd into the user's home directory
 
-
+& "$Env:CommonProgramFiles\Microsoft Shared\MSInfo\msinfo32.exe"
 
 
 
