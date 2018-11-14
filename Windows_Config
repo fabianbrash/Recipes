@@ -604,3 +604,22 @@ logoff
 
 Get-SmbConnection
 Get-SmbConnection | Select-Object -Property *
+
+#####Get Environment vars in powershell###################
+
+Get-ChildItem Env: ## List all that is available
+Get-ChildItem Env: | ft -Wrap -Autosize ###format nicely
+
+$Env:windir  ##Will get you the windows directory
+$Env:SystemRoot ##Will get you the system root
+$Env:USERNAME ##Current logged on user
+$Env:USERDNSDOMAIN ##FQDN of logon domain
+$Env:USERDOMAIN ##Logon Domain
+
+cd $Env:USERPROFILE  ## cd into the user's home directory
+
+
+
+
+
+
