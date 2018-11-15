@@ -557,3 +557,10 @@ netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT
 ######Naming logic##############
 ##pc(Private Cloud) ex. pcplvcsa
 ##hc(Hybrid Cloud)  ex. hctw16dockerm(Hybrid Cloud, Test Windows, Docker, Manager)
+
+
+########Custum Alerts#############
+
+##REF:https://www.virten.net/vmware/vcenter-events/
+
+
