@@ -564,3 +564,13 @@ netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT
 ##REF:https://www.virten.net/vmware/vcenter-events/
 
 
+
+###Content libray improvements with 6.5###########
+#REF: https://www.altaro.com/vmware/vsphere-6-5-content-libraries/
+
+# - guest customization
+# - update an existing template
+# I'll add more here as a expirement
+
+
+
