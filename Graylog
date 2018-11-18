@@ -53,5 +53,5 @@ touch graylog.conf
 #REF: https://marketplace.graylog.org/addons/a47beb3b-0bd9-4792-a56a-33b27b567856
 
 
-
+systemctl restart rsyslog
 
