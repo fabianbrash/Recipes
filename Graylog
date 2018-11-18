@@ -9,7 +9,8 @@
 
 sysctl -w vm.max_map_count=262144
 
-##The above worked on ubuntu, shoud work on centos and I will test on photonOS
+##The above worked on ubuntu, shoud work on centos and I will test on photonOS(sysctl is available 
+###on photonOS so the above works)
 ##REF:https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 
 ##The next issue I had was getting the web ui to show up, I kep getting an error message, so after looking
