@@ -98,3 +98,14 @@ df -h
 ##I couldn't clone any repos.  The solution, simply add space to the disk in vCenter
 ##and boot the Vm into GParted live an extend /dev/sda1 in my case, reboot, and all was good
 ##Thank goodness for GParted Live
+
+
+
+######SLOW BOOT TIMES FOR PHOTONOS 2.0##########
+##REF: https://github.com/vmware/photon/issues/774
+## as root
+systemd-analzye ## this will tell us what caused the long boot time
+
+
+
+
