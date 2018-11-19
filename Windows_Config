@@ -610,6 +610,8 @@ Get-SmbConnection | Select-Object -Property *
 Get-ChildItem Env: ## List all that is available
 Get-ChildItem Env: | ft -Wrap -Autosize ###format nicely
 
+gci Env: | sort name #short hand for Get-ChildItem and then sort output by name
+
 $Env:windir  ##Will get you the windows directory
 $Env:SystemRoot ##Will get you the system root
 $Env:USERNAME ##Current logged on user
