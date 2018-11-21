@@ -623,5 +623,6 @@ cd $Env:USERPROFILE  ## cd into the user's home directory
 & "$Env:CommonProgramFiles\Microsoft Shared\MSInfo\msinfo32.exe"
 
 
-
+#####Active Directory Based Activation(ADBA)######
+##REF: https://www.thirdphasecomputing.com/en/blog/how-to-configure-active-directory-based-activation
 
