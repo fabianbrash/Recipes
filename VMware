@@ -574,3 +574,22 @@ netstat -atp | awk {'print $1","$4","$5","$6","$7'} | grep -Ev "ESTABLISHED|WAIT
 
 
 
+#####################VCSA STOP/START/RESTART SERVICES##################
+##REF: https://kb.vmware.com/s/article/2147152
+
+service-control --status  ##List all services running
+
+##############PHOTONOS STOP/START/RESTART SERVICES####################
+
+systemctl start service
+
+systemctl stop service
+
+systemctl restart service
+
+systemctl status service
+
+systemctl list-units --type service --all
+
+
+
