@@ -592,4 +592,11 @@ systemctl status service
 systemctl list-units --type service --all
 
 
+##Webui not accepting password################
+
+##So I ran into an interesting issue today, I did a fresh install of Esxi 6.5U2-HPE, and could
+##Login into the DCUI without any issues, but when I tried to log into the webui
+##It said my password was incorrect; after a quick Google I saw that others had the same issue
+##And the fix was to log back into the DCUI select "Troubleshooting Options" and "Restart Management Agents"
+##And viola I could login, let's see if the issue shows itself again, and do I need to re-install from scratch
 
