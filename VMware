@@ -604,3 +604,8 @@ systemctl list-units --type service --all
 
 ###Good blog##########
 ##REF: http://blog.jgriffiths.org/
+
+
+###Configure vcsa 5.5 ############
+/opt/vmware/share/vami/vami_config_net
+
