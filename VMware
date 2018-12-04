@@ -611,6 +611,6 @@ systemctl list-units --type service --all
 
 ###SSO migration REFERENCE###
 
-https://docs.vmware.com/en/VMware-vSphere/5.5/com.vmware.vsphere.vcenterhost.doc/GUID-689AC3F1-6654-4EE2-A146-663BD157FDC2.html
+#REF: https://docs.vmware.com/en/VMware-vSphere/5.5/com.vmware.vsphere.vcenterhost.doc/GUID-689AC3F1-6654-4EE2-A146-663BD157FDC2.html
 
 
