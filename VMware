@@ -614,3 +614,8 @@ systemctl list-units --type service --all
 #REF: https://docs.vmware.com/en/VMware-vSphere/5.5/com.vmware.vsphere.vcenterhost.doc/GUID-689AC3F1-6654-4EE2-A146-663BD157FDC2.html
 
 
+####Good article on repointing in vSphere 6.0 U1######################
+###REF: https://blogs.vmware.com/vsphere/2015/10/reconfiguring-and-repointing-deployment-models-in-vcenter-server-6-0-update-1.html
+
+
+
