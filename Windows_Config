@@ -632,3 +632,11 @@ cd $Env:USERPROFILE  ## cd into the user's home directory
 
 I will re-write here soon
 
+
+#####Creating FQDN's for a new or existing forest#####
+## it is possible to create a root domain as corp.contoso.com
+## instead of just contoso.com so you can then create a child
+## domain ad and then have ad.corp.contoso.com or create
+## ad.contoso.com and then create a child domain as itbu 
+## so it becomes itbu.ad.contoso.com 
+
