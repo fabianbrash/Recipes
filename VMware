@@ -197,6 +197,11 @@ cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 #####Get supported deployment sizes great to see for different version of vcenter
 .\vcsa-deploy --supported-deployment-sizes
 
+##Get template examples help####
+.\vcsa-deploy install --template-help
+.\vcsa-deploy upgrade --template-help
+.\vcsa-deploy migrate --template-help
+
 ##REF: https://www.vgemba.net/vmware/VCSA-CLI-Install/ 
 ##REF: https://www.altaro.com/vmware/vcenter-server-appliance-6-5-u1-linux/
 ##REF: https://docs.vmware.com/en/VMware-vSphere/6.7/vsphere-vcenter-server-67-installation-guide.pdf  
