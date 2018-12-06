@@ -627,4 +627,9 @@ systemctl list-units --type service --all
 ###REF: https://blogs.vmware.com/vsphere/2015/10/reconfiguring-and-repointing-deployment-models-in-vcenter-server-6-0-update-1.html
 
 
+############Get-View####################################################
+##REF: https://blogs.vmware.com/PowerCLI/2015/02/get-view-part-1-introduction.html
 
+$VMProps = Get-View -ViewType VirtualMachine -filter @{"Name"="test"}
+
+$VMProps
