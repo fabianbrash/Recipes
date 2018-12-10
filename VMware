@@ -633,3 +633,11 @@ systemctl list-units --type service --all
 $VMProps = Get-View -ViewType VirtualMachine -filter @{"Name"="test"}
 
 $VMProps
+
+
+####Host xxxxx is not compatible with the vDS version######################################
+###So I ran across this in my home lab today when I attempted to add a host to a vDS it gave me the above message
+###The issue had to do with the fact that I had upgraded the host from 5.5 to 6.5; the fix is quite simple
+###Just "Disconnect" the host, "Remove from Inventory" and then just re-add it
+##REF: https://vm.knutsson.it/2018/04/host-xxx-xxx-xxx-xxx-is-not-compatible-with-the-vds-version/
+
