@@ -640,3 +640,8 @@ I will re-write here soon
 ## ad.contoso.com and then create a child domain as itbu 
 ## so it becomes itbu.ad.contoso.com 
 
+
+######RDP error '2308' Schannel SSL error############
+##REF:https://cloudriots.wordpress.com/2013/08/27/rdp-connection-errors-and-tlsssl-hardening/
+##Set 'Enabled=1' HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
