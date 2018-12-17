@@ -84,7 +84,9 @@ $obj = Get-PnPDevice -FriendlyName 'HID-compliant touch screen' | Select -Expand
 ###But someone a lot smarter than myself can explain why that would be a bad idea
 
 
-
+#######Set-PowerCLIConfiguration######################
+Get-PowerCLIConfiguration ##Let's see what's configured first
+Set-PowerCLIConfiguration -DefaultVIServerMode Multiple ##Now set it(Multiple,Single)
 
 
 
