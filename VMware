@@ -655,4 +655,13 @@ $VMProps
 #Get PSC VCSA is pointing to#####
 /usr/lib/vmware-vmafd/bin/vmafd-cli get-ls-location --server-name localhost
 
+###Repoint VCSA 6.5+ with External PSC to another External PSC in the same site####################
+
+cmsso-util repoint -repoint-psc FQDN_OF_PSC
+
+/usr/lib/vmware-vmafd/bin/vmafd-cli get-ls-location --server-name localhost
+
+##The Above should show the new PSC
+##REF: https://davidring.ie/2018/06/07/vcenter-vcsa-6-5-repoint-to-new-psc/
+
 
