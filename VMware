@@ -641,3 +641,17 @@ $VMProps
 ###Just "Disconnect" the host, "Remove from Inventory" and then just re-add it
 ##REF: https://vm.knutsson.it/2018/04/host-xxx-xxx-xxx-xxx-is-not-compatible-with-the-vds-version/
 
+
+
+########Get your SSO name and Site name##################################
+##REF: https://davidring.ie/2016/11/16/vcsa-6-0u2-lookup-sso-domain-name-site-name/
+
+##Get SSO Name
+/usr/lib/vmware-vmafd/bin/vmafd-cli get-domain-name --server-name localhost
+
+##Get Site Name
+/usr/lib/vmware-vmafd/bin/vmafd-cli get-site-name --server-name localhost
+
+
+
+
