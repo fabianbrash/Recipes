@@ -652,6 +652,7 @@ $VMProps
 ##Get Site Name
 /usr/lib/vmware-vmafd/bin/vmafd-cli get-site-name --server-name localhost
 
-
+#Get PSC VCSA is pointing to#####
+/usr/lib/vmware-vmafd/bin/vmafd-cli get-ls-location --server-name localhost
 
 
