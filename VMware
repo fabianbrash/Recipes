@@ -665,3 +665,20 @@ cmsso-util repoint -repoint-psc FQDN_OF_PSC
 ##REF: https://davidring.ie/2018/06/07/vcenter-vcsa-6-5-repoint-to-new-psc/
 
 
+##vSAN orphaned VM's
+##REF: http://www.vmwarearena.com/manage-and-troubleshoot-vsan-cluster-using-rvc/
+##REF: https://www.ivobeerens.nl/2017/03/21/fix-orphaned-vsan-objects/
+###Enable RVC##################
+##Login into the vCenter that is managing your vSAN cluster
+
+rvc administrator@vsphere.local@localhost
+
+##Follow the prompts; note this might require an internet connection so if your vCenter is firewalled off this might not
+##Work; but I am not 100% certain about the req for internet connectivity
+
+###So I had to fix some orphaned VM's in vSAN and the only way so far to do this is via the RVC(Ruby vSphere Console####
+##Once you've followed the instructions above to enable the console simply run
+
+ vsan.check_state -r /localhost/YOUR_DATACENTER/computers/YOUR_VSAN_CLUSTER
+
+
