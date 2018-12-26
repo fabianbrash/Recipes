@@ -89,4 +89,28 @@ Get-PowerCLIConfiguration ##Let's see what's configured first
 Set-PowerCLIConfiguration -DefaultVIServerMode Multiple ##Now set it(Multiple,Single)
 
 
+#####Ways of assigning values to a hash table#############
+##REF: https://code.vmware.com/forums/2530/vsphere-powercli#584008
+
+$hs = @{}
+$hs.'Name' = "Name"
+$hs.'datastore' = 
+ 
+ try {
+   ##Do something here
+ }
+ catch {
+   ##Some error
+ }
+ 
+ $hs.'data' = 
+ 
+   $anotherHash=@{}
+   $anotherHash.'moredata' = "blah"
+   $anotherHash.'whatever' = $someVar
+   
+ @hs
+ 
+ 
+ 
 
