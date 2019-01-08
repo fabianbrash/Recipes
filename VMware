@@ -682,3 +682,12 @@ rvc administrator@vsphere.local@localhost
  vsan.check_state -r /localhost/YOUR_DATACENTER/computers/YOUR_VSAN_CLUSTER
 
 
+####Find lock files##############
+##Works from ESXi 5.5PO5 and later########
+
+cd /bin
+
+vmfsfilelockinfo -p /vmfs/volumes/path_to_vmdk -v VC_IP_OR_DNS -u administrator@vsphere.local(or whatever your SSO is)
+
+###Then reboot the affecting house###########
+
