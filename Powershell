@@ -112,5 +112,19 @@ $hs.'datastore' =
  @hs
  
  
+ ####Install chocolatey
  
+ Get-PackageProvider -Name chocolatey
+ 
+ ##Now Let's install an app
+ 
+ Install-Package Openssl.Light
+ 
+ ##For this app run the .batch file located in C:\chocolatey\bin\Win64OpenSSL_Light-1_1_1.bat
+ 
+ ##Follow the prompts note if you install to default location it will install to C:\Program Files\OpenSSL-Win64 if
+ ##You choose the second option it will install to C:\OpenSSL-Win64
+ 
+ ##I Will have to do a follow up on installing more apps with chocolatey which is a package manager for Windows
+ ##Think apt-get or yum
 
