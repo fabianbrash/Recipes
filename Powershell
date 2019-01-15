@@ -125,6 +125,11 @@ $hs.'datastore' =
  ##Follow the prompts note if you install to default location it will install to C:\Program Files\OpenSSL-Win64 if
  ##You choose the second option it will install to C:\OpenSSL-Win64
  
+ ###Where ever you installed it cd into the bin directory and you can create certs, see man openssl recipes or 
+ ##I just learned you can hash passwords with
+ 
+ openssl passwd -1 "MyPassword"
+ 
  ##I Will have to do a follow up on installing more apps with chocolatey which is a package manager for Windows
  ##Think apt-get or yum
 
