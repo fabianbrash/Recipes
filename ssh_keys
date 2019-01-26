@@ -99,3 +99,9 @@ Host 192.168.1.5
  ssh -o VisualHostKey=yes user@server   ##Will show the VisualHostkey
  
  ###Or you can add this to your user/.ssh/config file
+ 
+ 
+ ######SSH Log file location#######################
+ 
+ cd /var/log/auth.log
+ cat /var/log/auth.log | grep -i sshd  ##Just give me ssh related entries
