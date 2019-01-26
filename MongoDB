@@ -16,6 +16,10 @@ show dbs
 
 show collections
 
+##Also
+use testdb
+show collections
+
 ##View documents in a collection
 
 db.collection.find()  ##So if you have a collection called articles
