@@ -651,4 +651,10 @@ docker volume create --name nfsserver
 
 
 
+###I USED THE DOCKER VOLUME PLUGIN FROM VMWARE AND I COULDN'T FINE WHERE MY DATA WAS, THEN I FIGURED IT OUT######
+cd /var/lib/docker/plugins/'unique id will be here'/propagated-mount/your_volume_name@vsanDatastore
+
+###Note the above assumes the use of vmware's photonOS for your docker host and I am using vSAN for my clusted storage
+
+
 
