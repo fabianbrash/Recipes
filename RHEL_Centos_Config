@@ -717,3 +717,8 @@ visudo
 ###To run all commands are commented out
 
 
+##Mount CD-ROM########
+mount /dev/cdrom /mnt
+
+
+
