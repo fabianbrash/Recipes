@@ -712,3 +712,6 @@ esxcfg-info > /vmfs/volumes/localdiskname_or_whereever_you_want_to_store_this/ou
 ####Then simply download from the datastore and open in something like Notepad++ or Visual Studio Code and
 ####Do a search on CDP
 
+####REF:https://blogs.vmware.com/PowerCLI/2017/06/spotlight-new-drs-cmdlets.html
+
+
