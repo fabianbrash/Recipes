@@ -692,6 +692,7 @@ vmfsfilelockinfo -p /vmfs/volumes/path_to_vmdk -v VC_IP_OR_DNS -u administrator@
 ###Then reboot the affecting house###########
 
 ####GET CDP info CLI#########################
+###REF:https://kb.vmware.com/s/article/1007069
 ###ssh into a host and run the below
 
 vim-cmd hostsvc/net/query_networkhint
@@ -699,4 +700,15 @@ vim-cmd hostsvc/net/query_networkhint
 ###For a specific vmnic######
 
 vim-cmd hostsvc/net/query_networkhint --pnic-name=vmnic0(or whatever your vmnic is)
+
+#########OR######################
+
+esxcfg-info | less
+
+##The above is terrrible to look at so I did this
+
+esxcfg-info > /vmfs/volumes/localdiskname_or_whereever_you_want_to_store_this/output.logs
+
+####Then simply download from the datastore and open in something like Notepad++ or Visual Studio Code and
+####Do a search on CDP
 
