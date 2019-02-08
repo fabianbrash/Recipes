@@ -691,3 +691,12 @@ vmfsfilelockinfo -p /vmfs/volumes/path_to_vmdk -v VC_IP_OR_DNS -u administrator@
 
 ###Then reboot the affecting house###########
 
+####GET CDP info CLI#########################
+###ssh into a host and run the below
+
+vim-cmd hostsvc/net/query_networkhint
+
+###For a specific vmnic######
+
+vim-cmd hostsvc/net/query_networkhint --pnic-name=vmnic0(or whatever your vmnic is)
+
