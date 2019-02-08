@@ -658,3 +658,22 @@ cd /var/lib/docker/plugins/'unique id will be here'/propagated-mount/your_volume
 
 
 
+###SAMPLE DOCKERFILE##########################
+
+##Contents of Dockerfile###########
+
+FROM centos:7
+
+RUN yum upgrade -y && yum install wget curl perl python -y
+
+RUN mkdir /test
+WORKDIR /test
+COPY test.html .
+
+EXPOSE 8080
+
+CMD ["python", "-m", "SimpleHTTPServer", "8080"]
+
+
+
+
