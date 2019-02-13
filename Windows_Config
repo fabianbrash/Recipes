@@ -650,3 +650,8 @@ I will re-write here soon
 
 Test-NetConnection servername -Port 3389 -InformationLevel Quiet
 
+
+####Powershell get system uptime#############
+
+Get-CimInstance -ClassName win32_operatingsystem | Select csname, lastbootuptime
+
