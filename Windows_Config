@@ -655,3 +655,11 @@ Test-NetConnection servername -Port 3389 -InformationLevel Quiet
 
 Get-CimInstance -ClassName win32_operatingsystem | Select csname, lastbootuptime
 
+
+###BGINFO###########
+####HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+##Add a new String Value "REG_SZ" Named "BgInfo" then edit and add
+##C:\BGInfo\Bginfo.exe C:\BGInfo\default.bgi /timer:0 /silent /nolicprompt
+##Of course change the path and names to match your environment
+
+
