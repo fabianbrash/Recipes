@@ -720,3 +720,18 @@ esxcfg-info > /vmfs/volumes/localdiskname_or_whereever_you_want_to_store_this/ou
 ##Also make certain your Domain and Forest Function levels are supported i.e. Server 2012 R2
 ##Also the user account just use username not enterprise\username
 ##REF: https://communities.vmware.com/thread/546744
+
+###List installed software on VCSA/PSC(photonOS version only)
+##ssh into the appliance and enable "bash"
+
+tdnf list all | more
+
+##Note the above won't list everything!!
+
+#####Find the version of Jetty(Eclipse/Jetty which is a Java web server used by VUM)
+
+cd /usr/lib/vmware-updatemgr/bin/jetty
+vi VERSION.txt
+
+
+
