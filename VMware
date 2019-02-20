@@ -714,4 +714,9 @@ esxcfg-info > /vmfs/volumes/localdiskname_or_whereever_you_want_to_store_this/ou
 
 ####REF:https://blogs.vmware.com/PowerCLI/2017/06/spotlight-new-drs-cmdlets.html
 
-
+####Join PSC 6.0 to AD##########################
+##So ran into this issue while joining a 6.0 PSC to AD it can only be done from vCenter
+##Under Administration > System COnfig > Nodes > PSC > Manage > Active Directory
+##Also make certain your Domain and Forest Function levels are supported i.e. Server 2012 R2
+##Also the user account just use username not enterprise\username
+##REF: https://communities.vmware.com/thread/546744
