@@ -663,3 +663,6 @@ Get-CimInstance -ClassName win32_operatingsystem | Select csname, lastbootuptime
 ##Of course change the path and names to match your environment
 
 
+
+#####Server 2012R2 MPIO #########################
+##REF:https://www.experts-exchange.com/articles/18225/Windows-Server-2012-and-Multipath-I-O-to-Storage-Area-Network.html
