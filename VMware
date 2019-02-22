@@ -16,6 +16,14 @@ cd /usr/lib/vmware-vmdir/bin
 #Show current replication status
 ./vdcrepadmin -f showpartnerstatus -h localhost -u administrator
 
+##Force remove PSC from replication
+/usr/lib/vmware-vmdir/bin/vdcleavefed -h psc_FQDN -u administrator
+
+##Note the above did not work for me I had an error while deploying a PSC 6.0 it failed on first boot
+##So after trying all above I just re-deployed the appliance and it worked, I'm thinking it was a
+##Time issue with the first PSC being set to UTC instead of EST??
+##REF:https://techbrainblog.com/2015/10/02/issues-and-errors-when-decommissioning-the-vcenter-server-or-a-platform-services-controller-vcsa-6-0/
+
 #Display storage capabilities i.e. SCSI UNMAP
 esxcli storage core device list (-d optional if you want to target a particulat device)
 esxcli storage core device vaai status get
