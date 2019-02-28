@@ -742,4 +742,12 @@ cd /usr/lib/vmware-updatemgr/bin/jetty
 vi VERSION.txt
 
 
+###VCSA has storage removed non-gracefully######################
+#The VCSA will boot into emergency mode and the type
+##You should see a prompt that looks like :/#
+##REF: https://nolabnoparty.com/en/vcsa-6-5-fails-to-start-file-system-check-and-network-service-errors/
+
+fsck /dev/sda3
+##answer yes to everything
+reboot -f
 
