@@ -720,5 +720,8 @@ visudo
 ##Mount CD-ROM########
 mount /dev/cdrom /mnt
 
-
+####COPY entire directory##########
+cp -R dir newdir/
+##Note that adding a forward slash to the source will extract everything in the destination
+cp -R dir/ newdir/
 
