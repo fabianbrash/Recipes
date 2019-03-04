@@ -76,7 +76,7 @@ parted /dev/sdb
 
 print  ###To list the partition we will be extending the filesystem usually '2'
 
-resizepart 2 
+resizepart 2 100% ##Note this is for the root partition without the 100% is for second volume here /dev/sdb
 Yes
 38000 ###here we are making the disk size 38GB
 quit
