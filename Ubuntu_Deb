@@ -12,6 +12,12 @@ sudo apt-cache search packagename
 apt-cache search cockpit ##find all cockpit packages
 sudo aptitude search all network | less
 
+##Let's find what package provides the killall utility
+##This did not work in a docker container of ubuntu
+##I need to test in a full blown ubuntu install
+
+sudo apt-get update && apt-cache search killall
+
 ###Get info about package
 sudo apt-cache show cockpit
 apt-cache show cockpit
