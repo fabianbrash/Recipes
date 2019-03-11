@@ -58,6 +58,7 @@ tdnf clean all           ##clear all cache
 tdnf check-update        ##check for updates
 tdnf -y install gcc      ##install/update gcc only
 tdnf distro-sync         ##synchronizes the machine's RPMs with the latest version of all the packages in the repository.
+tdnf updateinfo info     ##Get info about updates that are available
 
 
 ###########EXTEND ROOT PARTITION#######################
