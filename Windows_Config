@@ -666,3 +666,6 @@ Get-CimInstance -ClassName win32_operatingsystem | Select csname, lastbootuptime
 
 #####Server 2012R2 MPIO #########################
 ##REF:https://www.experts-exchange.com/articles/18225/Windows-Server-2012-and-Multipath-I-O-to-Storage-Area-Network.html
+
+#####Useful time commands########################
+w32tm.exe /query /status   ###get status of last or any sync with any time servers
