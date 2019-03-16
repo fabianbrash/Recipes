@@ -751,3 +751,20 @@ fsck /dev/sda3
 ##answer yes to everything
 reboot -f
 
+
+############SSO SSPI issues with VCSA 6.5+##################################
+##REF:https://kb.vmware.com/s/article/2118543
+##So I was messing around with invoke-vmscript and I noticed that I was being prompted for creds when authenticating
+##to my 2 vcsa's, my psc's were both joined to AD and I had set the AD domain as default, but still I was being prompted
+##for creds, after some looking around I realized that I had to also join the VCSA's to AD, note only if you have external
+##psc's if you are using embedded you don't need this extra step, the thing is you can't join the vcsa from the UI
+##you have to do it from the command line so the below is command will fix your issue(hopefully)
+
+/opt/likewise/bin/domainjoin-cli join vmware.local Administrator Passw0rd
+
+##Note the above did not work for me as when I entered the username and password the command just returned nothing
+##So I did this
+
+/opt/likewise/bin/domainjoin-cli join vmware.local Administrator
+
+##Which prompted me for a password and then that worked
