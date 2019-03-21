@@ -669,3 +669,8 @@ Get-CimInstance -ClassName win32_operatingsystem | Select csname, lastbootuptime
 
 #####Useful time commands########################
 w32tm.exe /query /status   ###get status of last or any sync with any time servers
+
+###Activate windows behind a firewall##########
+##Run the below command on the server
+slui 4
+##Follow the prompts
