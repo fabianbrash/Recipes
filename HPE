@@ -9,3 +9,5 @@
 ##Then we create a Network Sets > which is a container for 
 ## your A, and B side so we group all our A vlans together
 ## all of our B vlans together 
+
+##Next we add Logical interconnect groups(LIGS)
