@@ -5,3 +5,7 @@
 ### Networks > Create A and B side for Ethernet and fibre channel##
 ## also we describe our VLANS here and we can also give the traffic
 ## a type i.e. Mgmt, VMotion###
+
+##Then we create a Network Sets > which is a container for 
+## your A, and B side so we group all our A vlans together
+## all of our B vlans together 
