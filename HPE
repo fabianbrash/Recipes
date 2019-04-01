@@ -34,3 +34,11 @@
 ##We also have 2 interconnect modules interconnect A and interconnect B
 ##Interconnects can be Pass-Thru modules which are dumb also you can have FC Pass-Thru modules or we can have
 ##Virtual connect FlexFabric modules which are smart and use less ports
+
+
+####Terminology for Fibre############################
+##For reference I am on version 4.20.01-0380241
+##For fibre the choices we have are 'Fabric Attached' or 'Direct Attached'
+##'Fabric Attached' is for a traditional setup where we have a fibre fabric switch
+##'Direct Attached' means we have a compatible 3Par or HPE StoreServer Array that has been zoned
+##into HP OneView
