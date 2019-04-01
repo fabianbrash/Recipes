@@ -2,7 +2,7 @@
 
 ## HP OneView config#######
 
-### Networks > Create A and B side for Ethernet and fibre channel##
+### Networks(think VLANs) > Create A and B side for Ethernet and fibre channel##
 ## also we describe our VLANS here and we can also give the traffic
 ## a type i.e. Mgmt, VMotion###
 
