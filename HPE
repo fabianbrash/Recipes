@@ -32,5 +32,5 @@
 ##and configure using CLI
 
 ##We also have 2 interconnect modules interconnect A and interconnect B
-##Interconnects can be Pass-Thru modules which are dumb or we can have
+##Interconnects can be Pass-Thru modules which are dumb also you can have FC Pass-Thru modules or we can have
 ##Virtual connect FlexFabric modules which are smart and use less ports
