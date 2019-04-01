@@ -13,3 +13,11 @@
 ##Next we add Logical interconnect groups(LIGS)
 ##LIGS have uplink sets which is our path out to the world whether it's 'Ethernet or FC' again we separate
 ##via A side, B side, A FC, B FC
+##When creating our 'uplink sets' and pairing them with 'uplink ports' we use2 ports for 'A side'
+##and then 2 ports for 'B side' i.e. 
+##Ethernet uplink-A
+## bay 1 Q1.1, Q1.2 B 
+#Ethernet uplink-B
+## bay 2 Q1.1, Q1.2
+###This is using the 'HP VC FlexFabric-20/40 F8 Module'
+##Note that we are using bay 1 for A side and bay 2 for B side
