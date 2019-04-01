@@ -42,3 +42,15 @@
 ##'Fabric Attached' is for a traditional setup where we have a fibre fabric switch
 ##'Direct Attached' means we have a compatible 3Par or HPE StoreServer Array that has been zoned
 ##into HP OneView
+
+
+###Terminology for Networks#########
+##When you create a 'Network' it can be of 3 types 'tagged', 'untagged', and 'tunnel'
+##'tagged' is carrying a series of VLAN's or 1 VLAN i.e. VLAN id 10 or VLAN id 10-20
+##'untagged' is simply an access port
+##'tunnel' seems to be a switch to switch trunk which can carry all 4094 VLANs
+
+
+
+
+
