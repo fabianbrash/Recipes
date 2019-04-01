@@ -24,3 +24,9 @@
 
 ###Next we create an 'Enclosure Group' and pair it with our LIG and then as we add new C7000 enclosures
 ##we can just add the 'Enclosure Group' to it and it will inherit all of our network settings
+
+
+##C7000 enclosure has 2 OA(Onboard Administrator) we need to configure these with an IP
+##So we can begin configuration of our chasis note the OA is an Active/Passive pair you can
+##configure this on the screen on the front of teh enclosure or directly console in and 
+##and configure using CLI
