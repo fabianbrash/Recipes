@@ -11,3 +11,5 @@
 ## all of our B vlans together 
 
 ##Next we add Logical interconnect groups(LIGS)
+##LIGS have uplink sets which is our path out to the world whether it's 'Ethernet or FC' again we separate
+##via A side, B side, A FC, B FC
