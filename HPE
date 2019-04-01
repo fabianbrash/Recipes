@@ -21,3 +21,6 @@
 ## bay 2 Q1.1, Q1.2
 ###This is using the 'HP VC FlexFabric-20/40 F8 Module'
 ##Note that we are using bay 1 for A side and bay 2 for B side
+
+###Next we create an 'Enclosure Group' and pair it with our LIG and then as we add new C7000 enclosures
+##we can just add the 'Enclosure Group' to it and it will inherit all of our network settings
