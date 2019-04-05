@@ -6,6 +6,11 @@
 ## also we describe our VLANS here and we can also give the traffic
 ## a type i.e. Mgmt, VMotion###
 
+###For Networks there is a limit as to how many VLANs you can create I think it's 1000
+##So if your organization utilizes > 1000 VLANS then you need to create a tunnel instead
+##tunnels can cay all 4094 VLANs on them
+##i.e. Tunnel-a, tunnel-b
+
 ##Then we create a Network Sets > which is a container for 
 ## your A, and B side so we group all our A vlans together
 ## all of our B vlans together 
