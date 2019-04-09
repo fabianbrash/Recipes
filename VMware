@@ -768,3 +768,12 @@ reboot -f
 /opt/likewise/bin/domainjoin-cli join vmware.local Administrator
 
 ##Which prompted me for a password and then that worked
+
+
+####Wireshark for Esxi######
+##REF:https://blogs.vmware.com/vsphere/2018/12/esxi-network-troubleshooting-tools.html
+###REF:https://kb.vmware.com/s/article/2051814
+##Capture output from a vmk interface
+pktcap-uw --vmk vmk0 -o /tmp/test.pcap
+
+
