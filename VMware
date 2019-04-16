@@ -777,3 +777,125 @@ reboot -f
 pktcap-uw --vmk vmk0 -o /tmp/test.pcap
 
 
+#######Manually rename a VM and all files######################
+###This is useful if you only have 1 datastore and called do a storage vMotion#########
+##REF:https://kb.vmware.com/s/article/1029513
+
+Renaming virtual machine files in-place using the console
+
+Warning: Before proceeding, ensure that:
+The virtual machine has a current backup and that it has been powered down.
+The virtual machine does not have snapshots or virtual disks shared with other virtual machines.
+To manually rename files of the virtual machine:
+Log in to the VMware vSphere Client.
+Locate the virtual machine in your host inventory.
+Power down the virtual machine.
+Right-click on the virtual machine and click Remove from inventory.
+Open a console to the ESXi/ESX host. For more information, see Unable to connect to an ESX host using Secure Shell (SSH) (1003807) or Using Tech Support Mode in ESXi 4.1 and ESXi 5.x (1017910).
+Navigate to the directory containing the virtual machine. 
+
+For example:
+
+# cd /vmfs/volumes/DatastoreName/originalname
+
+Rename the virtual disk (VMDK) files using the vmkfstools -E command:
+
+# vmkfstools -E "originalname.vmdk" "newname.vmdk"
+
+
+For more information, see Renaming a virtual machine disk (VMDK) via the vSphere Management Assistant (vMA) or vSphere CLI (vCLI) (1002491).
+
+
+Notes:
+In some cases, it may be required to clone (copy) a virtual disk. To clone a virtual disk to a new virtual disk, run this command:
+
+# vmkfstools -i "originalname.vmdk" "newname.vmdk"
+
+This leaves the original virtual disk untouched. You need enough space available to clone the virtual disk in the destination directory. In the preceding command, the new virtual disk is created in the current directory but a different directory can be specified.
+
+You need not rename the originalname-flat.vmdk file after running the vmkfstools command. The vmkfstools command renames both VMDK files and updates the reference within the descriptor.
+
+Do not use the cp or mv commands to rename virtual disk files. Instead, use VMware utilities such as vmkfstools.
+
+Copy the virtual machine configuration file (.vmx) using the command:
+
+# cp "originalname.vmx" "newname.vmx"
+
+Open the file new virtual machine configuration (for example, newname.vmx) in a text editor. 
+
+For more information, see Editing configuration files in VMware ESXi and ESX (1017022).
+
+For example:
+
+# vi "newname.vmx"
+
+Within the configuration file, modify all old instances of the virtual machine's file names to the new file names. At a minimum, modify these values (more may exist):
+
+nvram = " newname.nvram"
+displayName = " newname "
+extendedConfigFile = " newname .vmxf"
+scsi0:0.fileName = " newname .vmdk"
+[...]
+migrate.hostlog = "./ newname -UUID.hlog"
+
+Repeat this process for each virtual machine disk. For example:
+
+scsi0:1.fileName = " newname _1.vmdk"
+scsi0:2.fileName = " newname _2.vmdk"
+
+Correct the VMkernel swap file reference. 
+
+For example:
+
+sched.swap.derivedName = "/vmfs/volumes/DatastoreUUID/ newname/ newname-UUID.vswp
+
+Note: Ensure that you rename both the .vswp file and the directory name for the swap file in bold.
+
+Correct any other remaining lines referencing the original path or file names.
+Save the file and exit the editor.
+Rename all the remaining files, except the .vmx configuration file, to the new names.
+
+For example:
+
+# mv "originalname.nvram" "newname.nvram"
+
+Change directory to the parent directory:
+
+# cd ..
+
+Rename the directory for the virtual machine:
+
+# mv "originalname" "newname"
+
+Using the VMware vSphere Client, browse the datastore and navigate to the renamed virtual machine directory.
+Right-click the virtual machine's new configuration file (for example, newname.vmx) and select Add to inventory.
+
+Alternatively, you can use this command to add the virtual machine to the inventory:
+
+For ESX:
+
+# vmware-cmd -s register "/vmfs/volumes/DatastoreName/newname/newname.vmx"
+
+For ESXi:
+
+# vim-cmd solo/registervm /vmfs/volumes/DatastoreName/newname/newname.vmx
+
+Power on the virtual machine.
+A question for the virtual machine displays in the Summary tab during power-on. To review the question:
+
+Click the Summary tab.
+Right-click the virtual machine in your inventory and select Answer question.
+
+When prompted, select I moved it, then click OK.
+
+Warning: Selecting I copied it results in a change of the virtual machine's UUID and MAC address, which may have detrimental effects on guest applications that are sensitive to MAC address changes, and virtual machine backups that rely on UUIDs.
+
+Optionally delete the original virtual machine configuration file.
+
+For example:
+
+# rm /vmfs/volumes/DatastoreName/newname/originalname.vmx
+
+
+
+
