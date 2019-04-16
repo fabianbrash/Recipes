@@ -897,5 +897,14 @@ For example:
 # rm /vmfs/volumes/DatastoreName/newname/originalname.vmx
 
 
+####NFS esxi troubleshooting######################
+
+cat /var/log/vobd.log | less
+
+###You can also look here for general storage issue####
+
+cat /var/log/vmkernel.log |grep -i nfs | less
+
+cat /var/log/vmkernel.log |grep -i | less
 
 
