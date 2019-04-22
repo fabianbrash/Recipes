@@ -108,5 +108,39 @@ df -h
 systemd-analzye ## this will tell us what caused the long boot time
 
 
+##########ISSUES WITH CORPORATE NETWORKS#####################
+##REF:https://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
+#REF:https://github.com/vmware/photon/issues/592
+##The first issue is getting tdnf to work simply go to
+cd /etc/yum/repos.d 
+##and replace https with http in *.repo
+##then try 
+tdnf check-update
+##then
+tdnf upgrade -y
+##then
+tdnf install -y openssl-c_rehash
+##Then copy your corporate root CA if it is self-signed to your photon is machine and run
+## cp the .pem file or files to /etc/ssl/certs then 
+/usr/bin/rehash_ca_certificates.sh
+reboot 
+##after the reboot check and see if you can run docker run hello-world if so your certs are good
+##again you only need to mess with the certs if your company is doing SSL inspection with a firewall/web filter
+##appliance
+##Now once that is working you might run into another issue, even though you have set a DNS server in
+## /etc/systemd/networkd.10-static... when you run cat /etc/resolv.conf you see 127.xx address
+##if you do then docker exec into your container and run cat /etc/resolv.conf and you should see Googles DNS servers
+## 8.8.8.8 8.8.4.4
+##The quick fix for this is head over to /etc/docker and see if you have a daemon.json file if you don't
+touch daemon.json
+## and add
+{
+  "dns" : ["WHATEVER_MY_DNS_SERVER_IP_IS", "SECONDARY_IF_YOU_WANT"]
+}
+
+docker stop my_container
+systemctl restart docker
+docker restart my_container
+
 
 
