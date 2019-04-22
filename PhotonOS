@@ -120,8 +120,10 @@ tdnf check-update
 tdnf upgrade -y
 ##then
 tdnf install -y openssl-c_rehash
-##Then copy your corporate root CA if it is self-signed to your photon is machine and run
-## cp the .pem file or files to /etc/ssl/certs then 
+##Then copy your corporate root CA if it is self-signed to your photon os machine and run
+## cp cert.pem file or files to /etc/ssl/certs 
+##Note if you need to convert .cer to .pem I have a recipe for that also
+##then 
 /usr/bin/rehash_ca_certificates.sh
 reboot 
 ##after the reboot check and see if you can run docker run hello-world if so your certs are good
