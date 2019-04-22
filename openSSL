@@ -110,5 +110,9 @@ openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificat
 openssl x509 -inform DER -in ssl_certificate.cer -out ssl_certificate.crt
 
 
+###Convert .cer to .pem####
+##REF:https://support.aerofs.com/hc/en-us/articles/205007260-How-Do-I-Convert-My-SSL-Certificate-File-To-PEM-Format-
+openssl x509 -inform der -in certificate.cer -out certificate.pem
+
 
 
