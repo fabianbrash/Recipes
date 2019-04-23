@@ -278,6 +278,8 @@ docker stack deploy -c stackfile.yml mystack
 docker service ls ## list all serivces in the stack
 docker stack ps mystack ##List all process from the stack
 docker stack ls #List all stacks
+docker service logs my_service ##get logs for your service docker service ls will give you your service(s)
+docker service logs -f my_service ##tail and follow the logs
 
 
 
