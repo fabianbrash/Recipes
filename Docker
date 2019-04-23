@@ -281,7 +281,8 @@ docker stack ls #List all stacks
 docker service logs my_service ##get logs for your service docker service ls will give you your service(s)
 docker service logs -f my_service ##tail and follow the logs
 
-
+##We can destroy our stack with####
+docker stack rm my_stack
 
 #################ACTUAL STACK FILE#######################################
 
