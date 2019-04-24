@@ -910,7 +910,7 @@ cat /var/log/vmkernel.log |grep -i | less
 
 
 
-#######Get Esxi version CLI######
-vmware -l
-
+#######Get Esxi version & build # CLI######
+vmware -l ##esxi version
+vmware -v ##build number
 
