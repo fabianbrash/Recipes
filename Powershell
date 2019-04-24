@@ -134,6 +134,7 @@ $hs.'datastore' =
  ##Think apt-get or yum
  
  ###Get SMB Mapping info#########
+ ##REF:https://docs.microsoft.com/en-us/powershell/module/smbshare/get-smbmapping?view=win10-ps
  
  Get-SmbMapping
  
