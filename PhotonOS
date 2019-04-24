@@ -125,6 +125,8 @@ tdnf install -y openssl-c_rehash
 ##Note if you need to convert .cer to .pem I have a recipe for that also
 ##then 
 /usr/bin/rehash_ca_certificates.sh
+
+## check /etc/pki/tls/certs/ca-bundle.crt to see if your certs are there using cat & grep I would still reboot
 reboot 
 ##after the reboot check and see if you can run docker run hello-world if so your certs are good
 ##again you only need to mess with the certs if your company is doing SSL inspection with a firewall/web filter
