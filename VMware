@@ -909,3 +909,8 @@ cat /var/log/vmkernel.log |grep -i nfs | less
 cat /var/log/vmkernel.log |grep -i | less
 
 
+
+#######Get Esxi version CLI######
+vmware -l
+
+
