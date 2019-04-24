@@ -132,4 +132,13 @@ $hs.'datastore' =
  
  ##I Will have to do a follow up on installing more apps with chocolatey which is a package manager for Windows
  ##Think apt-get or yum
+ 
+ ###Get SMB Mapping info#########
+ 
+ Get-SmbMapping
+ 
+ ##More useful##
+ 
+ Get-SmbMapping || Export-Csv -Path C:\mapping.csv
+ 
 
