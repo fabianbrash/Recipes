@@ -725,3 +725,15 @@ cp -R dir newdir/
 ##Note that adding a forward slash to the source will extract everything in the destination
 cp -R dir/ newdir/
 
+##Set a password to never expire##############
+chage -l user ##Let's see what the expiry currently is
+
+passwd -x -1 user  ###set to never expire
+
+or
+chage -M -1 user
+
+chage -l user
+
+
+
