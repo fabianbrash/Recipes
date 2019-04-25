@@ -746,5 +746,9 @@ chage -M -1 user
 
 chage -l user
 
+###Add pre login message##########
+##REF:https://www.cyberciti.biz/faq/howto-change-login-message/
+vi /etc/issue
 
+##There is also a issue.net which is used for SSH messages
 
