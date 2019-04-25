@@ -148,3 +148,19 @@ docker restart my_container
 
 
 
+########Getting Cron on photonOS################
+
+tdnf install -y cronie
+
+systemctl enable cron
+systemctl start cron
+sysetmctl status cron
+
+####After that you can use crontab -e####
+crontab -e
+
+##Then
+crontab -l  ##List our jobs
+
+###we can use https://crontab-generator.org/ to help us generate our jobs
+
