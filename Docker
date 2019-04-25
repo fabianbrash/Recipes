@@ -694,6 +694,8 @@ servicename=$(docker service ls --format {{".Name"}})
 docker service scale myservice=6
 docker service scale myservice=1
 
+###Run a command in a running container
 
+docker exec -it container_NAME_OR_ID /usr/local/vmware-umds/bin/vmware-umds -D
 
 
