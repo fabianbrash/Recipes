@@ -679,6 +679,7 @@ CMD ["python", "-m", "SimpleHTTPServer", "8080"]
 
 
 #####Let's get our docker process ID#####
+##REF:https://docs.docker.com/engine/reference/commandline/ps/
 docker ps --format {{".ID"}}
 
 ##We can store it in a variable###
@@ -686,6 +687,7 @@ containerid=$(docker ps --format {{".ID"}})
 echo $containerid
 
 ##Let's get our service####
+##REF:https://docs.docker.com/engine/reference/commandline/service_ls/
 docker service ls --format {{".Name"}}
 servicename=$(docker service ls --format {{".Name"}})
 
