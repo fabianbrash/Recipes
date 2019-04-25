@@ -701,3 +701,10 @@ docker service scale myservice=1
 docker exec -it container_NAME_OR_ID /usr/local/vmware-umds/bin/vmware-umds -D
 
 
+
+###Clean up docker ############
+##REF:https://docs.docker.com/engine/reference/commandline/system_prune/
+
+docker system prune
+
+docker system prune -f ##do not ask for permission
