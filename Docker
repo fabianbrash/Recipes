@@ -685,13 +685,14 @@ docker ps --format {{".ID"}}
 containerid=$(docker ps --format {{".ID"}})
 echo $containerid
 
+##Let's get our service####
+docker service ls --format {{".Name"}}
+servicename=$(docker service ls --format {{".Name"}})
+
 ####Docker Swarm##################
 
 docker service scale myservice=6
 docker service scale myservice=1
-
-
-
 
 
 
