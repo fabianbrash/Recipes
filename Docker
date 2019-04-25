@@ -678,5 +678,21 @@ EXPOSE 8080
 CMD ["python", "-m", "SimpleHTTPServer", "8080"]
 
 
+#####Let's get our docker process ID#####
+docker ps --format {{".ID"}}
+
+##We can store it in a variable###
+containerid=$(docker ps --format {{".ID"}})
+echo $containerid
+
+####Docker Swarm##################
+
+docker service scale myservice=6
+docker service scale myservice=1
+
+
+
+
+
 
 
