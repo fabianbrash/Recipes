@@ -180,12 +180,23 @@ egrep 'CPU|eno123xxx' /proc/interrupts
 
 
 ######################ADDING ROOT CA TO RHEL/CENTOS#############################################
-##I HAVE NOT TESTED THIS YET
+##Before you do this make a backup of the crt bundle so you can run diff against it
+cd /etc/pki/ca-trust/extracted/pem
+cp tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
+
+##Then add the cert with the below commands##################
 ##Export your root CA to .crt if on Windows it'll be exported as .cer you can use openssl to convert or if you exported the file
 ##as DER not "DER Binary" you can just change the extension
 ###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchor
-##Then run update-ca-trust
-#####HOPEFULLY I WILL BE ABLE TO TEST THIS SOON.##########
+##Then run 
+update-ca-trust
+
+cd cd /etc/pki/ca-trust/extracted/pem
+diff tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
+
+###You should hopefully see a difference between the 2 files, i.e. the certs you added
+#####I CAN CONFIRM THIS WORKS########################################################################################
+
 
 
 
