@@ -321,6 +321,8 @@ sudo dpkg -i *.deb
 ###NOTE THIS WAS DONE USING UBUNTU 17.10
 
 sudo mkdir /usr/share/ca-certificates/extra ###extra being the name of our new folder
+##Shouldn't the above be ??
+suod mkdir -p /usr/share/ca-certificates/extra
 sudo cp /certs/my.crt /usr/share/ca-certificates/extra
 sudo dpkg-reconfigure ca-certificates ##Follow prompts to add your new root CA
 
