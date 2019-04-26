@@ -752,3 +752,9 @@ vi /etc/issue
 
 ##There is also a issue.net which is used for SSH messages
 
+
+###Only allow root to login with an ssh key pair########
+#REF:http://man7.org/linux/man-pages/man5/sshd_config.5.html
+vi /etc/ssh/sshd_config
+##Add below line
+PermitRootLogin prohibit-password
