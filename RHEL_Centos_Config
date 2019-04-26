@@ -758,3 +758,11 @@ vi /etc/issue
 vi /etc/ssh/sshd_config
 ##Add below line
 PermitRootLogin prohibit-password
+
+
+###more grep#####
+
+##The below will search all files in the current directory for http and -R will tell us which files have the entry
+grep -iR http
+
+
