@@ -88,6 +88,15 @@ sudo yum install -y docker-ce
 ######BUILDING YOUR FIRST DOCKER IMAGES##########################
 sudo docker build -t firstimage . (the . denotes where your Dockerfile is in this case in the current working directory)
 
+####Now let's push it to docker hub#############
+docker login
+
+##let's tag our image
+docker tag firstimage your_docker_username/firstimage:1.0
+
+##now let's push it
+docker push your_docker_username/firstimage:1.0
+
 
 ##########SAMPLE DOCKER FILE#####################
 
