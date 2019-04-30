@@ -717,3 +717,18 @@ docker exec -it container_NAME_OR_ID /usr/local/vmware-umds/bin/vmware-umds -D
 docker system prune
 
 docker system prune -f ##do not ask for permission
+
+
+#####Swarm restart issues#################
+##So I had an issue with a container I built it usesd nginx and when I rebooted the host the container
+##failed to restart when I used docker run and set --restart always everything worked fine
+##in my stack file I had restart_policy condition:on-failure
+##I also had another stack that used python simplehttpserver and when I rebooted the host that stack came back up
+##no issues, well I finally figured it out when nginx exited it exited with a 0 exit code(exited(0)) which
+##will never restart the container because there was no failure so I changed the restart_policy to condition:any
+##so be careful how your container exits because if they container does not fail and your condition
+## is 'on-failure' then you are crap out of luck, note the default policy is 'any'
+
+
+
+
