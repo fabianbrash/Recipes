@@ -674,3 +674,11 @@ w32tm.exe /query /status   ###get status of last or any sync with any time serve
 ##Run the below command on the server
 slui 4
 ##Follow the prompts
+
+
+#####Configure VLAN on windows NIC##############
+##REF:https://community.mellanox.com/s/article/howto-configure-multiple-vlans-on-windows-2012-server
+##Head into the advance settings for the NIC and scroll down to see VLAN and add your VLAN ID
+
+
+
