@@ -730,5 +730,8 @@ docker system prune -f ##do not ask for permission
 ## is 'on-failure' then you are crap out of luck, note the default policy is 'any'
 
 
+#########Specifying users in docker#####################
+REF#https://stackoverflow.com/questions/27701930/add-user-to-docker-container
 
+docker exec -it -user myuser containerid command
 
