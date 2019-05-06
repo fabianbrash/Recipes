@@ -915,3 +915,13 @@ cat /var/log/vmkernel.log |grep -i | less
 vmware -l ##esxi version
 vmware -v ##build number
 esxcli system version get
+
+
+
+###Network troubleshooting####################
+#REF:https://www.jortechnologies.com/vcsa-6-5-photon-network-commands-and-troubleshooting/
+#REF:https://blogs.vmware.com/vsphere/2018/12/esxi-network-troubleshooting-tools.html
+
+#nc -zv IP port
+nc -zv 192.168.1.1 80
+
