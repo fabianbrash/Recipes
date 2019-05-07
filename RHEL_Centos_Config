@@ -765,4 +765,8 @@ PermitRootLogin prohibit-password
 ##The below will search all files in the current directory for http and -R will tell us which files have the entry
 grep -iR http
 
+###useful####
+/var/log/messages | less
+
+
 
