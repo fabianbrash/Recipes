@@ -143,5 +143,13 @@ to enter the passphrase in the console each time the application using it is res
 
 openssl x509 -in cert.crt(or cert.pem) -noout -text(note this is the public key)
 
+##Check what cert is being using#####
+
+openssl s_client -connect myldapsserver.domain.com:636
+
+
+##I just learned you can hash passwords with####
+ 
+ openssl passwd -1 "MyPassword"
 
 
