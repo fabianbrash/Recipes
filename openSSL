@@ -57,6 +57,9 @@ openssl req -x509 -newkey rsa:2048 -sha256 -nodes -keyout key.pem -out cert.pem 
 ##Another option
 openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout key.key -out cert.crt -days 365
 
+###Option with a SAN .cnf file(note I would recommend this for all certs###############
+openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout key.key -out cert.crt -days 365 -config path_to_cnf/cert.cnf
+
 ####Adding ssl certs ubuntu#######
 ##Resource: https://askubuntu.com/questions/645818/how-to-install-certificates-for-command-line
 
@@ -124,4 +127,10 @@ openssl x509 -inform der -in certificate.cer -out certificate.pem
 
 -nodes: Create a certificate that does not require a passphrase. If this option is excluded, you will be required 
 to enter the passphrase in the console each time the application using it is restarted.
+
+##### more openssl options###################
+
+openssl x509 -in cert.crt(or cert.pem) -noout -text(note this is the public key)
+
+
 
