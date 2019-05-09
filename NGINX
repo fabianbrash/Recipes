@@ -388,3 +388,18 @@ cp private.key /etc/pki/nginx/private
     sudo systemctl reload nginx
     
     ###REF: https://bjornjohansen.no/redirect-to-https-with-nginx
+
+
+
+###Some differences between nginx on centos & on ubuntu###########
+## config
+/etc/nginx #for both
+/etc/nginx/sites-available && /etc/nginx/sites-enabled ##there by default on ubuntu, not on centos
+
+/etc/nginx/sites-available/default ##on ubuntu this is the default server and location block
+/etc/nginx/nginx.conf ##available on both ubuntu and centos but on centos this is the default server and location block
+
+##Note on both ubuntu and centos /etc/nginx/nginx.conf is the "main" config file this is where worker processes
+##and the nginx user is defined
+
+
