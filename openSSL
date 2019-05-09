@@ -85,6 +85,15 @@ openssl dhparam -out /etc/nginx/conf.d/dhparams.pem 2048
 ###also https://cipherli.st/
 ####This is a great generator as well from Mozilla: https://mozilla.github.io/server-side-tls/ssl-config-generator/
 
+##nginx add this point to our above generated file#####
+ssl_dhparam /etc/nginx/certs/dhparam.pem;
+
+##Generate DH parameters with at least 2048 bits. If you use 4096 bits for your TLS certificate
+##you should match it in DH parameters too.
+##REF:https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0
+
+####Please check your webserver docs to configure DH i.e. apache etc.#####
+
 
 
 ############INTERCHANGEABLE FILES########################
