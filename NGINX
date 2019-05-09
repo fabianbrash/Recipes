@@ -401,5 +401,6 @@ cp private.key /etc/pki/nginx/private
 
 ##Note on both ubuntu and centos /etc/nginx/nginx.conf is the "main" config file this is where worker processes
 ##and the nginx user is defined
+##Also on centos there is a /etc/nginx/default.d where you can place a .conf file for default server block
 
 
