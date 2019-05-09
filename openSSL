@@ -30,6 +30,8 @@ DNS.3 = blah.net
 ##############END FILE##############################
 ###REFERENCE https://support.citrix.com/article/CTX135602
 
+##Save the above file with a .cnf extension
+
 ##########If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+####
 ####THANKS GOOGLE!!!!!!!################################################
 
