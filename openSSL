@@ -155,6 +155,7 @@ openssl s_client -connect myldapsserver.domain.com:636
  openssl rand -base64 6
  
  ##and put it together
+ ##REF:https://edvoncken.net/2011/03/tip-encrypted-passwords-just-add-salt/
  
  openssl passwd -1 -salt $(openssl rand -base64) mypassword
  
