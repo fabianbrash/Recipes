@@ -117,5 +117,8 @@ openssl x509 -inform DER -in ssl_certificate.cer -out ssl_certificate.crt
 ##REF:https://support.aerofs.com/hc/en-us/articles/205007260-How-Do-I-Convert-My-SSL-Certificate-File-To-PEM-Format-
 openssl x509 -inform der -in certificate.cer -out certificate.pem
 
+###### -nodes option#######################
 
+-nodes: Create a certificate that does not require a passphrase. If this option is excluded, you will be required 
+to enter the passphrase in the console each time the application using it is restarted.
 
