@@ -152,4 +152,10 @@ openssl s_client -connect myldapsserver.domain.com:636
  
  openssl passwd -1 "MyPassword"
 
+ openssl rand -base64 6
+ 
+ ##and put it together
+ 
+ openssl passwd -1 -salt $(openssl rand -base64) mypassword
+ 
 
