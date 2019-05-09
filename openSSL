@@ -54,6 +54,9 @@ openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout key.pem -out cert.pem 
 
 openssl req -x509 -newkey rsa:2048 -sha256 -nodes -keyout key.pem -out cert.pem -days 365
 
+##Another option
+openssl req -x509 -newkey rsa:2048 -sha256 -nodes -keyout key.key -out cert.crt -days 365
+
 ####Adding ssl certs ubuntu#######
 ##Resource: https://askubuntu.com/questions/645818/how-to-install-certificates-for-command-line
 
