@@ -1,4 +1,4 @@
-#Install RHEl or centos with the Development packages
+#Install RHEL or centos with the Development packages
 #If you forgot you can use yum group install
 
 sudo yum upgrade
