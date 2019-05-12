@@ -923,4 +923,6 @@ systemctl restart dhcpd
 
 ##If everything is good dhcpd should start without errors and your client(s) should be getting IP's
 
-
+##allow firewall for dhcp ####
+sudo firewall-cmd --permanent --zone=public --add-service=dhcp 
+sudo firewall-cmd --reload
