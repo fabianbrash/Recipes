@@ -925,3 +925,33 @@ esxcli system version get
 #nc -zv IP port
 nc -zv 192.168.1.1 80
 
+
+######Resize root partition################################################################
+##REF:http://www.enterprisedaddy.com/2016/08/expand-vmfs-datastore-command-line/#prettyPhoto
+##REF:https://kb.vmware.com/s/article/2002461
+###While you can expand the local datastore of the partition that esxi is not installed on
+###you have to use the cli to expand a local datastore that has esxi on it##
+
+esxcfg-scsidevs -m   ##let's get our scsi disks
+
+partedUtil getptbl /vmfs/devices/disk/....  ##this is from the above output
+
+####If you receive an error message about the back partition is not at the end then run this
+
+partedUtil fix /vmfs/devices/disk/....
+
+partedUtil getUsableSectors /vmfs/devices/disk/....
+
+partedUtil resize /vmfs/devices/disk/.... 3(this number is usually for vmfs again you get from getptbl)(start-block we also get from
+getptbl) (end-block we get from getUsablkeSectors)
+
+vmkfstools --growfs /vmfs/devices/disk/....:3 /vmfs/devices/disk/....:3
+
+##If you did everything correctly then you should have more space on the vmfs partition to place VM's
+vmkfstools -V  ##refresh everthing
+
+
+
+
+
+
