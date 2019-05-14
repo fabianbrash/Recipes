@@ -392,3 +392,13 @@ sudo find . -name "*.go" ##find all golang files on the system
 sudo find . -name "go"   ##find anyting with go on the system
 
 
+####quick note I added a user to the docker group and when I logged off and back on again I still couldn't run
+####docker commands so I found this
+###REF:https://stackoverflow.com/questions/48568172/docker-sock-permission-denied
+
+newgrp docker
+
+##Also you can do this
+usermod -aG docker username
+systemctl restart docker
+
