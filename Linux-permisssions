@@ -1,0 +1,26 @@
+
+#####REF:https://www.guru99.com/file-permissions.html
+
+##let's give everyone read access to a file###
+
+chmod 644 file.log
+
+###########Permission desciptors###################
+
+Number     Permission Type               Symbol
+0	         No Permission	               ---
+1	         Execute	                     --x
+2	         Write	                       -w-
+3	         Execute + Write	             -wx
+4	         Read	                         r--
+5	         Read + Execute	               r-x
+6	         Read +Write	                 rw-
+7	         Read + Write +Execute	       rwx
+
+
+##So from the above of chmod 644 file.log
+
+##So 6 = rw for the user, 4 = Read for the group, 4 = Read for everyone
+
+##and from the above chmod 644 file.log since we are not specifying anyone then it's for the current user
+##for me this is root because that's who I am logged into at the moment############
