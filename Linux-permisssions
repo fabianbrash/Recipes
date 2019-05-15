@@ -24,3 +24,7 @@ Number     Permission Type               Symbol
 
 ##and from the above chmod 644 file.log since we are not specifying anyone then it's for the current user
 ##for me this is root because that's who I am logged into at the moment############
+
+
+###Now let's remove read permissions from everyone#####
+chmod 640 file.log
