@@ -737,6 +737,7 @@ docker exec -it -user myuser containerid command
 
 
 #####Docker storage issues#####################
+##REF:https://docs.docker.com/storage/bind-mounts/
 ##using the -v /hostdata:/containerdata will only work if the containerdata is an empty folder
 ##if you say use /hostdata:/usr/sbin you will get an empty folder and the container will break
 ##note is you use a named volume you can do the above i.e. docker volume create container_sbin
