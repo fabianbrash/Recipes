@@ -735,3 +735,14 @@ REF#https://stackoverflow.com/questions/27701930/add-user-to-docker-container
 
 docker exec -it -user myuser containerid command
 
+
+#####Docker storage issues#####################
+##using the -v /hostdata:/containerdata will only work if the containerdata is an empty folder
+##if you say use /hostdata:/usr/sbin you will get an empty folder and the container will break
+##note is you use a named volume you can do the above i.e. docker volume create container_sbin
+##it seems this has been working for me out of dumb lock as I have been bind mounting directories in the container
+##that were empty, so the question is how does docker want us to persist data
+##Use a vendors volume driver, or we shouldn't be messing with the files in a container like /etc /usr ...
+##But if that's the case then why does it work with a named volume.
+
+
