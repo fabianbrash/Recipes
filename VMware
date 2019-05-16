@@ -952,6 +952,10 @@ vmkfstools -V  ##refresh everthing
 
 
 
+##########NIC issues######################
 
+##It is very important to make certain that if you have 2 or 3 o N nics on a vswitch or vDS that they are configured
+##exactly the same, i.e. if 1 is set to auto negotiate they should all be or if you hard code the speed, hard code all
+##the same.
 
 
