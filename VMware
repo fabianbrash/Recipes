@@ -945,6 +945,9 @@ partedUtil getUsableSectors /vmfs/devices/disk/....
 partedUtil resize /vmfs/devices/disk/.... 3(this number is usually for vmfs again you get from getptbl)(start-block we also get from
 getptbl) (end-block we get from getUsablkeSectors)
 
+#EX.
+partedUtil resize /vmfs/devices/disk/mpx.vmhba0... 3 1000 5000
+
 vmkfstools --growfs /vmfs/devices/disk/....:3 /vmfs/devices/disk/....:3
 
 ##If you did everything correctly then you should have more space on the vmfs partition to place VM's
