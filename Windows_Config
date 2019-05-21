@@ -681,4 +681,10 @@ slui 4
 ##Head into the advance settings for the NIC and scroll down to see VLAN and add your VLAN ID
 
 
+####Windows Firewall####################
+
+##So I had a weird issue where I could not ping a machine nor RDP to it, but it could ping out and it was joined to the 
+##domain, well after poking around I noticed that I could not see firewall information, so sure enough
+##the firewall service was stopped, so I started it up and everything started to work
+##so it's good to know that windows firrewall fails closed and blocks all inbound traffic
 
