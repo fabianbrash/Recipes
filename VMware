@@ -962,3 +962,17 @@ vmkfstools -V  ##refresh everthing
 ##the same.
 
 
+##Install PowerCLI offline###############
+##REF: https://blogs.vmware.com/PowerCLI/2018/01/powercli-offline-installation-walkthrough.html
+##The article above worked for me make sure that both the source server and the destination is
+##running powershell 5.x if not you could have some issues desscribed in the article
+##also run the below command to see the PSModulePath
+
+$env:PSModulePath
+
+##I then copied the folders to the C:|Program Files\... from the above output
+
+
+
+
+
