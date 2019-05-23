@@ -688,3 +688,19 @@ slui 4
 ##the firewall service was stopped, so I started it up and everything started to work
 ##so it's good to know that windows firrewall fails closed and blocks all inbound traffic
 
+
+####Move folder back to it's original location###########
+##So I collegue showed me this say a user moves a folder from it's original location to another
+##and say that folder is huge do the following
+
+###map a drive to where the folder should be
+##then check to make certain that no one is using the share i.e the folder that was moved
+##that would be bad, if they are kick them off
+##then go to the folder and drop it on the mapped share where it should be, the one you created earlier
+##use the left pane under "THIS PC" to drop it on that
+###you should see the file copy window but it instead of taking hours to transfer it should take about 5 - 15 minutes
+##depending on the network, but the users will have full access immediately
+##Note moving a folder should keep all it's permissions so moving it back will make things much easier as all
+##permissions will still be there..
+
+
