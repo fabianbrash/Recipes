@@ -926,3 +926,17 @@ systemctl restart dhcpd
 ##allow firewall for dhcp ####
 sudo firewall-cmd --permanent --zone=public --add-service=dhcp 
 sudo firewall-cmd --reload
+
+####See available file systems##########
+##Should work on Debian systems as well####
+
+cat /proc/filesystems
+
+##Note the above is a partial list so also do####
+ls -la /lib/modules/$(uname -r)/kernel/fs
+
+##The 2 should give you a complete image of the supported filesystems
+
+
+
+
