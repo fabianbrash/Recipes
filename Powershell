@@ -140,6 +140,6 @@ $hs.'datastore' =
  
  ##More useful##
  
- Get-SmbMapping || Export-Csv -Path C:\mapping.csv
+ Get-SmbMapping | Export-Csv -Path C:\mapping.csv
  
 
