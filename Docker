@@ -747,3 +747,33 @@ docker exec -it -user myuser containerid command
 ##But if that's the case then why does it work with a named volume.
 
 
+###Using docker volume create on a device####
+
+####First add a new disk to your VM or physical server and format I will use the example of
+##/dev/sdb is the device and /dev/sdb1 is the ext4 partition
+##then you can do this
+
+
+docker volume create --driver local --opt type=ext4 --opt device=/dev/sdb1 volumedevice
+
+##Now when you run docker volume inspect you will see that the mount point is still /var/lib/docker/volumes...
+
+##Now do this
+
+docker run -d -it --name sdb volumedevice:/data centos:7
+docker exec -it sdb bash
+
+cd /data
+
+###Now anything you save to /data will be stored on your physical device /dev/sdb
+##Test with
+
+dd if=/dev/zero of=text2.txt count=1024 bs=2048576
+###create a few files and confirm that /dev/sdb1 is being filled up
+
+
+
+
+
+
+
