@@ -765,14 +765,19 @@ docker exec -it sdb bash
 
 cd /data
 
+####This will also work####
+docker volume create --driver local \
+      --opt type=none \
+      --opt device=/home/user/test \
+      --opt o=bind \
+      test_vol
+
+
 ###Now anything you save to /data will be stored on your physical device /dev/sdb
 ##Test with
 
 dd if=/dev/zero of=text2.txt count=1024 bs=2048576
 ###create a few files and confirm that /dev/sdb1 is being filled up
-
-
-
 
 
 
