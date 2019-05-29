@@ -190,5 +190,19 @@ New style:
 Esxcli ssacli cmd -q “Controller slot=0 pd show detail”
 
 
+####Get iLO info###########################
+##REF:https://support.hpe.com/hpsc/doc/public/display?docId=emr_na-c05184297&docLocale=en_US
+
+###Just like above if you have the custom Esxi ISO installed you can do the following
+cd /opt/tools
+
+./hponcfg --all
+
+####If the above does not give you the iLO IP then do this
+
+./hponcfg -w config.xml
+
+cat config.xml
+
 
 
