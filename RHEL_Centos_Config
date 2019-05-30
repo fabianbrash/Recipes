@@ -187,7 +187,7 @@ cp tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
 ##Then add the cert with the below commands##################
 ##Export your root CA to .crt if on Windows it'll be exported as .cer you can use openssl to convert or if you exported the file
 ##as DER not "DER Binary" you can just change the extension
-###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchor
+###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchors
 ##Then run 
 update-ca-trust
 
