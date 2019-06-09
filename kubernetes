@@ -28,3 +28,9 @@ kubectl expose deployment/nginx-deployment
 ####Run a simple deployment without a yaml file
 kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 
+###you can run the kubectl proxy command but it's best to look at services
+kubectl proxy ##run in a different terminal
+curl http://localhost:8001/version
+
+###delete deployment
+kubectl delete deployment my-deployment
