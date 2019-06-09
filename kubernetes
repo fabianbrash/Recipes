@@ -1,0 +1,19 @@
+
+######My kubernetes journey#################################
+##REF:https://kubernetes.io/docs/tasks/
+
+
+kubectl version
+kubectl api-versions
+
+kubectl get namespaces
+kubectl get namespaces -A ##get all namespaces even system namespaces by default all your pods are created in the default namespace
+kubectl get pods
+kubectl get deployments
+
+####After you create a deployment you can create a service so external users can access it
+##But first after we deploy our deployment lets get the IP of the pods
+kubectl get pods -o wide
+
+###or to specify a label from our deployment
+kubectl get pods -l app=nginx -o wide
