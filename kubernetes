@@ -17,3 +17,8 @@ kubectl get pods -o wide
 
 ###or to specify a label from our deployment
 kubectl get pods -l app=nginx -o wide
+
+##you can expose the service with
+kubectl expose deployment/nginx-deployment
+
+##or with a yaml file check my yaml repo
