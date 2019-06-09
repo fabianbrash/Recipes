@@ -4,12 +4,14 @@
 
 
 kubectl version
+kubectl version --short
 kubectl api-versions
 
 kubectl get namespaces
 kubectl get namespaces -A ##get all namespaces even system namespaces by default all your pods are created in the default namespace
 kubectl get pods
 kubectl get deployments
+kubectl get services or kubectl get svc
 
 ####After you create a deployment you can create a service so external users can access it
 ##But first after we deploy our deployment lets get the IP of the pods
@@ -22,3 +24,7 @@ kubectl get pods -l app=nginx -o wide
 kubectl expose deployment/nginx-deployment
 
 ##or with a yaml file check my yaml repo
+
+####Run a simple deployment without a yaml file
+kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
+
