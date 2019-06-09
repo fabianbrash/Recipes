@@ -13,6 +13,12 @@ kubectl get pods
 kubectl get deployments
 kubectl get services or kubectl get svc
 
+
+#kubectl get - list resources
+#kubectl describe - show detailed information about a resource
+#kubectl logs - print the logs from a container in a pod
+#kubectl exec - execute a command on a container in a pod
+
 ####After you create a deployment you can create a service so external users can access it
 ##But first after we deploy our deployment lets get the IP of the pods
 kubectl get pods -o wide
