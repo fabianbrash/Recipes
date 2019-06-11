@@ -40,3 +40,30 @@ curl http://localhost:8001/version
 
 ###delete deployment
 kubectl delete deployment my-deployment
+
+###Create a custom namespace#############
+#REF:https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/
+kubectl create namespace mynamespace
+
+###YAML###########
+apiVersion: v1
+kind: Namespace
+metadata:
+   name: mynamespace
+   
+##END YAML
+
+###Deploy a pod into our namespace
+kubectl run ns-pod --image=nginx --port=80 --generator=run-pod/v1 -n mynamespace
+
+kubectl get pods --namespace mynamespace
+
+##Delete the pods in the namespace
+kubectl delete pods --all --namespace mynamespace
+
+##Delete namespace
+kubectl delete namespace mynamespace
+   
+
+
+
