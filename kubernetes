@@ -13,6 +13,9 @@ kubectl get pods
 kubectl get deployments
 kubectl get services or kubectl get svc
 
+##Get current context
+kubectl config view
+kubectl config current-context
 
 #kubectl get - list resources
 #kubectl describe - show detailed information about a resource
@@ -63,7 +66,30 @@ kubectl delete pods --all --namespace mynamespace
 
 ##Delete namespace
 kubectl delete namespace mynamespace
-   
+
+###Add to our .kube/config so we can switch namespaces
+#REF:https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
+
+##Get current context
+kubectl config view
+kubectl config current-context
+
+##You populate the below from the results of the 2 commands above
+
+kubectl config set-context dev --namespace=development \
+  --cluster=lithe-cocoa-92103_kubernetes \
+  --user=lithe-cocoa-92103_kubernetes
+
+kubectl config set-context prod --namespace=production \
+  --cluster=lithe-cocoa-92103_kubernetes \
+  --user=lithe-cocoa-92103_kubernetes
 
 
+kubectl config view
 
+kubectl config use-context dev
+
+kubectl config current-context
+
+####Now switch to prod
+kubectl config use-context prod
