@@ -938,5 +938,17 @@ ls -la /lib/modules/$(uname -r)/kernel/fs
 ##The 2 should give you a complete image of the supported filesystems
 
 
+##Create command alias#################
+vim .bashrc ## note this is in your home directory
+#or
+vim ~/.bashrc
+##got to the end and add your alias to the file
+alias k='kubectl'
+
+##then 
+wq!
+
+##apply without the need to log out and back in again
+source ~/.bashrc
 
 
