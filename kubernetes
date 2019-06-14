@@ -98,6 +98,7 @@ kubectl config use-context prod
 
 #########################KUBERNETES INSTALL NOTES####################################################
 ###I will turn this into a bash script soon and then hopefully an ansible playbook####
+##Thanks to REF:https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md
 
 su -
 
