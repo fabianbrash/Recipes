@@ -280,6 +280,11 @@ docker swarm join-token worker ## get instructions to join as a worker
 
 docker node ls  #List all nodes in the swarm
 
+##Let's create a service on the fly
+docker service create --name redis --replicas=5 redis:3.0.6
+
+docker service create --name redis --constraint 'node.role == worker' --publish 6379:6379 --replicas=5 redis:3.0.6
+
 
 ###Let's deploy a stack###########
 docker stack deploy -c stackfile.yml mystack
