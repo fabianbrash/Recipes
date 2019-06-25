@@ -9,3 +9,7 @@ sed -i.bak 's/This/sed/' sed_test  ###make a backup of sed_test and call it sed_
 sed -i.bak2 's/s//' sed_test ###make a backup with .bak2 extension and replace the 1st occurence of 's'
 
 sed -i.bak3 's/s//g' sed_test ###make a backup with .bak3 extension and replace all occurences of 's'
+
+###Replace all occurrences of DHCP=yes to DHCP=no 
+sed -i 's/DHCP=yes/DHCP=no/g' /etc/systemd/network/99-dhcp-en.network  
+
