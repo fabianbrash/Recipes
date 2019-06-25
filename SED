@@ -13,3 +13,6 @@ sed -i.bak3 's/s//g' sed_test ###make a backup with .bak3 extension and replace 
 ###Replace all occurrences of DHCP=yes to DHCP=no 
 sed -i 's/DHCP=yes/DHCP=no/g' /etc/systemd/network/99-dhcp-en.network  
 
+##Remove the spurious CR characters. You can do it with the following command:
+
+sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
