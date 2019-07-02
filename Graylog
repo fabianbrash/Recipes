@@ -4,7 +4,7 @@
 ##Home: https://www.graylog.org/
 ###Docker home: http://docs.graylog.org/en/2.4/pages/installation/docker.html
 
-####Most of the config they have is correct or launching a docker container, excpet
+####Most of the config they have is correct or launching a docker container, except
 ###I had issues with elasticsearch and memory you have to run the following command in linux
 
 sysctl -w vm.max_map_count=262144
