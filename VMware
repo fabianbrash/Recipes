@@ -974,5 +974,13 @@ $env:PSModulePath
 
 
 
-
+#############HOST PROFILES ISSUES###########################################
+###So I was messing around with host profiles and ran into a couple of issues
+##1. make sure the vmk ports matching from the host you captured the profile from
+##to the host(s) you are attempting to apply it to I received the error
+##"Host unable to check compliance" ref:https://communities.vmware.com/thread/440433
+##sure enough I had different # vmk's so I captured the profile from the host that was having the issue
+##as the other nodes were all the same
+##2. When configured a syslog server in the host profile, make certain the "SYSLOG SERVER IS UP AND RUNNING"
+##If not it will fail to apply the profile
 
