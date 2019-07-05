@@ -984,6 +984,9 @@ $env:PSModulePath
 ##2. When configured a syslog server in the host profile, make certain the "SYSLOG SERVER IS UP AND RUNNING"
 ##If not it will fail to apply the profile
 
+####Also strip out as many things as possible from the profile, network,storage etc.. the less in the profile
+###The better
+
 
 #########CREATE VM ENCRYPTION POLICY##############
 ###When creating an VM encryption policy you must select under "Encryption" "Custom" > "Provider" > 
