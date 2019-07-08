@@ -708,7 +708,7 @@ slui 4
 #########Create self-signed certificate PS###############################
 ##REF:https://docs.microsoft.com/en-us/powershell/module/pkiclient/new-selfsignedcertificate?view=win10-ps
 ##REF:https://serverfault.com/questions/892193/how-to-create-self-signed-san-certificate-in-iis
-New-SelfSignedCertificate -DnsName "localhost", "site", "site.enterprise.com" -FriendlyName "siteSAN" -CertStoreLocation cert:\localmachine\my
+New-SelfSignedCertificate -DnsName "localhost", "site", "site.enterprise.com" -FriendlyName "siteSAN" -Subject "CN=site" -CertStoreLocation cert:\localmachine\my
 
 ###now the only issue with this is that you will have to export the cert to .pfx and then import it into the the trusted root store
 
