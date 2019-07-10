@@ -206,3 +206,35 @@ cat config.xml
 
 
 
+###HPE OneView API calls##########################
+##REF:http://h17007.www1.hpe.com/docs/enterprise/servers/oneview4.0/cic-api/en/index.html#rest/login-sessions
+
+
+###Authenticate to REST API###################
+
+##https://APPL/rest/login-sessions
+##{{ HEADERS }}
+
+Content-Type : application/json
+X-Api-Version: 600
+
+##{{ BODY }}
+
+{
+
+    "password": "myPass",
+    "userName": "admin"
+}
+
+
+
+#####Now we have a token let's make a simple GET call##################
+
+##https://APPL/rest/remote-syslog
+##{{ HEADERS }}
+
+Content-Type : application/json
+X-Api-Version: 600
+Auth: OUR TOKEN
+
+
