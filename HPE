@@ -256,3 +256,6 @@ $Server = Get-HPOVServer | Select *
 
 Get-HPOVRemoteSyslog
 
+##Now let's configure a syslog server
+Set-HPOVRemoteSyslog -Destination 1.1.1.1 -SendTestMessage -Async | Wait-HPOVTaskComplete
+
