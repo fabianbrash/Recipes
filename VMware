@@ -994,3 +994,16 @@ $env:PSModulePath
 ##If you don't you will see VM's with encrypted home directories, but not encrypted Hard drives
 
 
+
+###This sure came in handy my root password to the VCSA appliance password expired and I had to reset it
+##REF:https://www.virten.net/2018/05/vcenter-service-appliance-6-7-tips-and-tricks/
+
+##reboot appliance and then hit 'e' when you see the photon os splash screen
+##then enter at the end of linux line(after consoleblank=0) rw init=/bin/bash and hit f10
+##then passwd
+##then umount /
+##then reboot -f
+
+##Then once you log back in change the default 90 days expiration, I turned it off
+
+
