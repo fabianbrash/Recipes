@@ -240,6 +240,7 @@ Auth: OUR TOKEN
 
 
 #####Using POSH Powershell Modules##################
+##REF:https://github.com/HewlettPackard/POSH-HPOneView/wiki
 ##install from powershell gallery
 
 Install-Module -Name HPOneView.410
