@@ -1006,4 +1006,5 @@ $env:PSModulePath
 
 ##Then once you log back in change the default 90 days expiration, I turned it off
 
-
+##Get WWN's
+##REF:https://nutzandbolts.wordpress.com/2013/02/25/get-hba-wwn-for-hosts-using-powercli/
