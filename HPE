@@ -252,5 +252,7 @@ Connect-HPOVMgmt -Hostname onserview_DNS_OR_IP
 
 $Server = Get-HPOVServer | Select *
 
+##Let's get our Syslog server
 
+Get-HPOVRemoteSyslog
 
