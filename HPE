@@ -238,3 +238,18 @@ X-Api-Version: 600
 Auth: OUR TOKEN
 
 
+
+#####Using POSH Powershell Modules##################
+##install from powershell gallery
+
+Install-Module -Name HPOneView.410
+##Note you might have to use -AllowClobber
+
+##Then log in
+
+Connect-HPOVMgmt -Hostname onserview_DNS_OR_IP
+
+$Server = Get-HPOVServer | Select *
+
+
+
