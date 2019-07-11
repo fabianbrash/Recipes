@@ -264,3 +264,6 @@ Get-HPOVAuditLog
 
 ##Get appliance version
 Get-HPOVVersion
+
+##Get server hardware type
+Get-HPOVServerHardwareType
