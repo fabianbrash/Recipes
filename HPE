@@ -267,3 +267,9 @@ Get-HPOVVersion
 
 ##Get server hardware type
 Get-HPOVServerHardwareType
+
+
+###OBA CLI##################
+
+Reset Server 1(this is the bay #)
+reset server 12(this woule be bay 12)
