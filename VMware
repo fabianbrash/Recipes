@@ -968,6 +968,8 @@ vmkfstools -V  ##refresh everthing
 ##running powershell 5.x if not you could have some issues desscribed in the article
 ##also run the below command to see the PSModulePath
 
+Save-Module -Name VMware.PowerCLI -Path C:\Modules
+
 $env:PSModulePath
 
 ##I then copied the folders to the C:|Program Files\... from the above output
