@@ -142,4 +142,6 @@ $hs.'datastore' =
  
  Get-SmbMapping | Export-Csv -Path C:\mapping.csv
  
+##also run the below command to see the PSModulePath
 
+$env:PSModulePath
