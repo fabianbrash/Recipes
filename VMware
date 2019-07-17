@@ -1025,3 +1025,10 @@ esxcli network vswitch standard portgroup add --portgroup-name=Automation-SPG --
 esxcli network vswitch standard portgroup set --portgroup-name=Automation-SPG --vlan-id=1000
 
 
+############iSCSI port binding links##################################
+##REF:https://kb.vmware.com/s/article/2045040
+##REF: https://kb.vmware.com/s/article/2038869
+
+
+
+
