@@ -1010,3 +1010,18 @@ $env:PSModulePath
 
 ##Get WWN's
 ##REF:https://nutzandbolts.wordpress.com/2013/02/25/get-hba-wwn-for-hosts-using-powercli/
+
+
+######ESXCLI NETWORK COMMANDS##############################################
+
+esxcli network vswitch standard add --vswitch-name=vSwitch4 --ports=24
+
+esxcli network vswitch standard uplink add --uplink-name=vmnic3 --vswitch-name=vSwitch4
+
+esxcli network vswitch standard policy failover set --active-uplinks=vmnic3 --vswitch-name=vSwitch4
+
+esxcli network vswitch standard portgroup add --portgroup-name=Automation-SPG --vswitch-name=vSwitch4
+
+esxcli network vswitch standard portgroup set --portgroup-name=Automation-SPG --vlan-id=1000
+
+
