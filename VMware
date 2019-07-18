@@ -1030,5 +1030,11 @@ esxcli network vswitch standard portgroup set --portgroup-name=Automation-SPG --
 ##REF: https://kb.vmware.com/s/article/2038869
 
 
+##Get host PSP###################
+##REF:https://pubs.vmware.com/vsphere-50/index.jsp?topic=%2Fcom.vmware.vcli.ref.doc_50%2Fesxcli_storage.html
+
+
+esxcli storage nmp device list
+
 
 
