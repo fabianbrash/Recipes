@@ -1038,6 +1038,8 @@ esxcli storage nmp device list
 
 
 ###NVME ISSUES WITH ESXI 6.7U1 and above#########
+##REF:https://vm.knutsson.it/2019/02/vsan-downgrading-nvme-driver-in-esxi-6-7-update-1/amp/
+
 ##So this happened to after upgrading to 6.7U1 ESXi no longer
 ##recognized by HP NVME ssd so I found an article that said to
 ##Simply take the NVME drivers from the ESXi 6.7 GA iso
