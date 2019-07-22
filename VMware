@@ -1037,4 +1037,17 @@ esxcli network vswitch standard portgroup set --portgroup-name=Automation-SPG --
 esxcli storage nmp device list
 
 
+###NVME ISSUES WITH ESXI 6.7U1 and above#########
+##So this happened to after upgrading to 6.7U1 ESXi no longer
+##recognized by HP NVME ssd so I found an article that said to
+##Simply take the NVME drivers from the ESXi 6.7 GA iso
+## and install it effectively downgrading the driver, and it worked
+
+esxcli software vib install -v VMware_bootbank.....nvme-plugin.vib
+
+esxcli software vin install -v VMW-bootbank_nvme.....vib 
+
+reboot
+
+
 
