@@ -1057,6 +1057,8 @@ reboot
 ##REF:https://www.altaro.com/vmware/scripted-deployment-esxi-part-1/
 ##REF:https://www.altaro.com/vmware/scripted-deployment-esxi-part-2/
 ##REF:https://www.techcrumble.net/2017/08/esxi-kickstart-installation-scripted-weasel-installation/
+##REF:http://buildvirtual.net/configure-advanced-bootloader-and-kernel-options/
+##REF:https://kb.vmware.com/s/article/2004582
 
 ##BEGIN FILE#####################
 
