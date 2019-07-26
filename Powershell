@@ -145,3 +145,39 @@ $hs.'datastore' =
 ##also run the below command to see the PSModulePath
 
 $env:PSModulePath
+
+
+
+#####Invoke-Command with outside variables####################
+##So I ran into this using variables and Invoke-Command ex.
+##REF:https://www.pdq.com/blog/invoke-command-and-remote-variables/
+
+$Var = @("1","2","3")
+$Size = $Var.Length
+
+Invoke-Command -ComputerName "pc1" -ScriptBlock {$Size}
+
+###The above will print nothing becuase it can't see the variable
+###The fix is this
+
+
+##Powershell 3.x and above
+$Var = @("1","2","3")
+$Size = $Var.Length
+
+Invoke-Command -ComputerName "pc1" -ScriptBlock {$Using:Size}
+
+
+##Powershell 2.x
+
+$Var = @("1","2","3")
+$Size = $Var.Length
+
+Invoke-Command -ComputerName "pc1" -ArgumentList $Size -ScriptBlock {
+Param( $LocalVariable )
+$LocalVariable
+
+}
+
+
+
