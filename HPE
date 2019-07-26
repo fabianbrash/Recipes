@@ -273,3 +273,32 @@ Get-HPOVServerHardwareType
 
 Reset Server 1(this is the bay #)
 reset server 12(this woule be bay 12)
+
+####ILO4/5 RESTAPI(Redfish)###############
+##REF:https://ilorestfulapiexplorer.ext.hpe.com/
+##REF:https://developer.hpe.com/platform/ilo-restful-api/home
+##Base information is here
+
+GET > https://IP_OR_DNS_OF_ILO/redfish/v1/
+
+#####Now to do anything worth while you need to get a token###################
+POST > https://IP_OR_DNS_OF_ILO/redfish/v1/SessionService/Sessions/
+
+HEADER Content-Type: Application/json
+
+BODY
+
+{
+   "UserName": "",
+   "Password": ""
+}
+
+###then you can use the token with all other requests like so#####
+
+HEADER X-Auth-Token: "'YOUR_TOKEN_FROM_ABOVE"
+
+GET > https://IP_OR_DNS_OF_ILO/redfish/v1/Systems/1/
+
+
+###FYI apparently you can't get WWNN/WWPN's from GEN9 servers only Gen10
+##But if you are using HP Oneview you can use POSH to get that data
