@@ -402,3 +402,7 @@ newgrp docker
 usermod -aG docker username
 systemctl restart docker
 
+
+###check sha256sum########
+
+sha256sum ubuntu-9.10-dvd-i386.iso
