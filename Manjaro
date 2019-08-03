@@ -1,0 +1,7 @@
+####Useful Manjaro commands############
+
+##update system
+sudo pacman -Syu
+
+##install package#########
+sudo pacman -S screenfetch
