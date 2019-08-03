@@ -5,3 +5,55 @@ sudo pacman -Syu
 
 ##install package#########
 sudo pacman -S screenfetch
+
+
+##To search the Manjaro repositories for available packages you can use the command pacman -Ss keyword. It will search both the package name and the description for the keyword. For example, to search for packages containing the keyword smplayer you could use:
+
+pacman -Ss smplayer
+
+
+##You can search your installed packages in the same manner using -Qs instead of -Ss. To search your installed packages for smplayer:
+
+pacman -Qs smplayer
+
+
+##Once you have found a package you can use pacman -Qi to get more information about an installed packages or pacman -Si for packages in the repos. Following the example above you could use
+
+pacman -Si smplayer
+
+
+##Finally, for a list of all installed packages on your system, enter the following command:
+
+pacman -Ql
+
+
+ ##Warning: Never install a package without updating the system first. On a rolling release this can lead to an unbootable system
+
+
+###To install a software package, the basic syntax is pacman -S packagename. However, installing a package 
+##without updating the system will lead to a partial upgrade situation so all the examples here 
+##will use pacman -Syu packagename which will install the package and ensure the system is up to date. 
+###For example, to sinatll smplayer the command is:
+
+sudo pacman -Syu smplayer
+
+
+##You will then be presented a list of software to install. You may notice 
+##this list has more packages than you requested. This is because many packages also have dependencies 
+##which are packages that must be installed in order for the software you selected to function properly.
+
+
+##Pacman can also directly install packages from the local system or a location on the internet. 
+##The format of that command is pacman -U packagelocation. For example, to install a copy of your package 
+##cache you could do something like:
+
+sudo pacman -U /var/cache/pacman/pkg/smplayer-19.5.0-1-x86_64.pkg.tar.xz
+
+##Alternatively, you could get it directly from one of Manjaro's mirrors:
+
+sudo pacman -U https://mirror.alpix.eu/manjaro/stable/community/x86_64/smplayer-19.5.0-1-x86_64.pkg.tar.xz
+
+
+##Warning: When using pacman -U it is up to you to ensure that the package you are installing is fully compatible with your system.
+
+
