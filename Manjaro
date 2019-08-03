@@ -17,7 +17,8 @@ pacman -Ss smplayer
 pacman -Qs smplayer
 
 
-##Once you have found a package you can use pacman -Qi to get more information about an installed packages or pacman -Si for packages in the repos. Following the example above you could use
+##Once you have found a package you can use pacman -Qi to get more information about an installed packages or 
+##pacman -Si for packages in the repos. Following the example above you could use
 
 pacman -Si smplayer
 
@@ -55,5 +56,56 @@ sudo pacman -U https://mirror.alpix.eu/manjaro/stable/community/x86_64/smplayer-
 
 
 ##Warning: When using pacman -U it is up to you to ensure that the package you are installing is fully compatible with your system.
+
+
+ ##Warning: Always review the package list before confirming when removing packages. 
+ ##If you are not careful you can easily remove your entire desktop due to dependencies.
+
+
+##To remove a software package, the basic syntax is sudo pacman -R packagename. 
+##We could remove the smplayer package we installed above with:
+
+sudo pacman -R smplayer
+
+
+##This will remove the package, but will leave all the dependencies behind. If you also want to remove the unneeded dependencies you could use pacman -Rsu packagename as seen in this example:
+
+sudo pacman -Rsu smplayer
+
+
+##Sometimes when you try to remove a package you will not be able to because there are other packages which depend on it. You can use pacman -Rc packagename to remove a package and everything that depends on it. Be careful to heed the above warning when using this option.
+
+sudo pacman -Rc smplayer
+
+
+##The most nuclear option is pacman -Rcs packagename. This will remove everything that depends on packagename and continue to do so on it's dependencies. This should really only be used in exceptional circumstances such as when removing an entire desktop environment and trying not to leave anything behind.
+
+
+##Pacman usually also creates backup configuration files when deleting packages. To remove those, you can add n to any of the examples above. For example:
+
+sudo pacman -Rn smplayer
+sudo pacman -Rsun smplayer
+sudo pacman -Rcn smplayer
+
+
+##Viewing and Removing Orphans
+
+##To list all orphans, installed packages that are not used by anything else and should no longer be needed:
+
+pacman -Qdt
+
+
+##To remove all the orphans:
+
+sudo pacman -Rs $(pacman -Qdtq)
+
+
+##Downloading Packages without Installing
+
+##In some cases it may be useful to download a package without installing. For example, to install on a different system that is not connected to the internet. This can be done with pacman -Sw packagename. For example:
+
+sudo pacman -Sw smplayer
+
+
 
 
