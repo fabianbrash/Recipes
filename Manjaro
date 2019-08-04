@@ -112,3 +112,29 @@ sudo pacman -Sw smplayer
 
 sudo pacman -Sc
 
+
+####Install Powershell Core#######
+##REF:https://ephos.github.io/posts/2018-9-17-Pwsh-ArchLinux
+
+sudo pacman -Syu git
+
+git clone https://aur.archlinux.org/powershell-bin.git
+
+cd powershell-bin
+
+##Read what it's about to do also I was able to figure out that this will be installed to /opt/microsoft
+cat PKGBUILD
+
+makepkg -si
+
+###Once finished####
+cd /opt/microsoft/powershell/6
+
+pwsh
+
+##The above will start the powershell shell then to test
+Get-Process | ft -Autosize
+
+
+
+
