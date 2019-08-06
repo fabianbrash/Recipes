@@ -181,3 +181,17 @@ $LocalVariable
 
 
 
+######Powershell Linux/MACOS#############
+
+##So I installed powershell on my Mac and tried to install a module using Install-Module from
+##The powershell gallery I saw a quick flash and then everything returned to the command prompt
+###I couldn't find where the module(s) were but then I found the below
+##REF: https://github.com/PowerShell/PowerShell/issues/5948
+
+$env:PSModulePath
+
+##The above should work on your favourite flavor of linux as well
+
+
+
+
