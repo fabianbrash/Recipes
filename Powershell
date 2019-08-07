@@ -192,6 +192,8 @@ $env:PSModulePath
 
 ##The above should work on your favourite flavor of linux as well
 
+##Get installed modules
 
+Get-Module -ListAvailable
 
 
