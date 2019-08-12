@@ -215,6 +215,18 @@ Find-Module -Tag PSEdition_Core
 
 ##The above will return 'ae'
 
+##To capitalize
+
+'{0:X}' -f 174
+
+##To add precision
+
+'{0:X4}' -f 174
+
+##The above will output 4 places and add zeros to the left to pad
+
+
+
 
 
 
