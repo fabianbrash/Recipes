@@ -203,3 +203,21 @@ Find-Module -Tag PSEdition_Desktop
 ##Find all modules that are compatible with Core
 
 Find-Module -Tag PSEdition_Core
+
+
+##Convert values to HEX################
+#REF:https://www.powershellmagazine.com/2012/10/12/pstip-converting-numbers-to-hex/
+
+##If you type the below at the PS prompt you will get back '174'
+0xAE
+##Now let's go the other way####
+'{0:x}' -f 174
+
+##The above will return 'ae'
+
+
+
+
+
+
+
