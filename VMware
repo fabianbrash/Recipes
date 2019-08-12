@@ -1139,7 +1139,11 @@ reboot
 
 
 
+####MINIMUM RIGHTS to GET VIB's from ESXI################
+##REF:https://blogs.vmware.com/vsphere/2013/04/minimum-privileges-to-query-vibs-on-an-esxi-host.html
 
+##Global.Settings is all you need
+##so I just created a modified Read-Only Role and added it to that.
 
 
 
