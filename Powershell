@@ -239,7 +239,12 @@ get-alias
 
 get-alias ?
 
+##Rmeove {} from an array of objects###############
+##REF:https://stackoverflow.com/questions/44593175/how-to-remove-curly-brackets-from-the-powershell-output?rq=1
+@{n='firmwareVersion';e={($_.managerBays.fwVersion -join ",")}}
 
+##The managerBays is an array of objects {4.60, 4.60} but I just want 4.60,4.60
+##Well the above code accomplishes this
 
 
 
