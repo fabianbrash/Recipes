@@ -246,6 +246,8 @@ get-alias ?
 ##The managerBays is an array of objects {4.60, 4.60} but I just want 4.60,4.60
 ##Well the above code accomplishes this
 
+###Check to see which methods can use -Filter#######
 
+Get-Command -ParameterName Filter
 
 
