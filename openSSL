@@ -160,3 +160,10 @@ openssl s_client -connect myldapsserver.domain.com:636
  openssl passwd -1 -salt $(openssl rand -base64) mypassword
  
 
+
+####Generate random password########
+
+openssl rand -base64 14
+
+###the above creates a random 14 character password
+
