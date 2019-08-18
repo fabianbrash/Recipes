@@ -4,4 +4,4 @@
 ####BASIC DEPLOYMENT#######
 
 
-##Create a ResourceGroup > Virtual Networks > Global Network > Subnets > Network Security Group > Public IP > VM
+##Create a ResourceGroup > Virtual Networks > Global Network > Subnets > Network Security Group(Under Network Interfaces) > Public IP > VM
