@@ -1,0 +1,7 @@
+###Notes for deploying resources into AZURE, hopefully this will help me to take and pass the
+##"Micosoft Azure Administrator AZ-103" 
+
+####BASIC DEPLOYMENT#######
+
+
+##Create a ResourceGroup > Virtual Networks > Global Network > Subnets > Network Security Group > Public IP > VM
