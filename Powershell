@@ -250,4 +250,11 @@ get-alias ?
 
 Get-Command -ParameterName Filter
 
+###Get list of commands from a module####
+##Note your mileage will vary on PS Core###
+
+Get-Command -Module Microsoft.PowerShell.Host
+###Count how many commands are in a module##
+(Get-Command -Module Microsoft.PowerShell.Host).count
+
 
