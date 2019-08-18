@@ -257,4 +257,5 @@ Get-Command -Module Microsoft.PowerShell.Host
 ###Count how many commands are in a module##
 (Get-Command -Module Microsoft.PowerShell.Host).count
 
-
+##This worked for me####
+ Get-Command | ? {$_.Name -like "*Azure*"} | ft -AutoSize
