@@ -785,5 +785,6 @@ dd if=/dev/zero of=text2.txt count=1024 bs=2048576
 ###create a few files and confirm that /dev/sdb1 is being filled up
 
 
-
+##Get container ID###
+docker ps --format {{".ID"}}
 
