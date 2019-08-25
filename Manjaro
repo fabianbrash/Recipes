@@ -136,5 +136,12 @@ pwsh
 Get-Process | ft -Autosize
 
 
+####Install Virtual Box#################
+##REF:https://wiki.manjaro.org/index.php?title=VirtualBox
 
+##Install from app manjaro app store then I installed the guest and kernel modules by checking
+uname -r
+##I installed the LTS I don't know if that's good or bad, then you can either reboot our run
+sudo vboxreload
+##The above will reload kernel modules
 
