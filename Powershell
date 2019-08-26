@@ -12627,5 +12627,11 @@ End time: 20190824194113
  #####Get Network adapter info server 2008 R2(old powershell version#######
  Get-WmiObject Win32_NetworkAdapter -Filter 'NetEnabled=True' | Select-Object -Property MACAddress, Name, @{n=Speed(Gbps);e={"{0:N2}" -f ($_.Speed/1gb)}}, AdapterType | ft -AutoSize
  
+ #######Let's also get the IP info####################
  
- 
+Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE | Select-Object *
+##let's see everything
+
+Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE | Select-Object -Property IPAddress, MACAddress, Description, DNSHostname, WINSPrimaryServer, IPSubnet | ft -AutoSize
+
+
