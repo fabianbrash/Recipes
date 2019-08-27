@@ -12654,3 +12654,10 @@ Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE | 
 Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter IPEnabled=TRUE | Select-Object -Property IPAddress, MACAddress, Description, DNSHostname, WINSPrimaryServer, IPSubnet | ft -AutoSize
 
 
+
+###Get help from powershell
+
+Get-Help about_Automatic_Variables-ShowWindow
+
+##Also you can write $_. as $PSItem did not know that 
+
