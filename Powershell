@@ -12661,3 +12661,7 @@ Get-Help about_Automatic_Variables-ShowWindow
 
 ##Also you can write $_. as $PSItem did not know that 
 
+##REF:https://devops-collective-inc.gitbook.io/the-big-book-of-powershell-gotchas/a-crowd-isnt-an-individual
+
+
+
