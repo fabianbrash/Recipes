@@ -261,6 +261,23 @@ Get-Command -Module Microsoft.PowerShell.Host
  Get-Command | ? {$_.Name -like "*Azure*"} | ft -AutoSize
  
  
+ ######WINRM config###################
+ 
+ winrm e winrm/config/listener
+ 
+ winrm quickconfig
+ 
+ ##Get current config in XML format
+ winrm get winrm/config -format:pretty
+ 
+ ##Non XML format
+ winrm get winrm/config
+ 
+ ##Configure trusted hosts
+ 
+ winrm set winrm/config/client @{TrustedHosts="*"}
+ 
+ winrm set winrm/config/client @{TrustedHosts="IP_ADDRESS"}
  
  
  ####Out-put from Start-Transcript########
