@@ -275,9 +275,11 @@ Get-Command -Module Microsoft.PowerShell.Host
  
  ##Configure trusted hosts
  
- winrm set winrm/config/client @{TrustedHosts="*"}
+ winrm set winrm/config/client '@{TrustedHosts="*"}'
  
- winrm set winrm/config/client @{TrustedHosts="IP_ADDRESS"}
+ winrm set winrm/config/client '@{TrustedHosts="IP_ADDRESS"}'
+ 
+ winrm set winrm/config/client '@{TrustedHosts="IP_ADDRESS, IP_ADDRESS2"}' ##This should work also
  
  
  ####Out-put from Start-Transcript########
