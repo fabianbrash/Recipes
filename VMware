@@ -1136,6 +1136,9 @@ reboot
 ##Note this is an initial attempt and I was able to install ESXI but I think because there was no DHCP server
 ### only what was above #Firstboot section 1 was executed and nothing below it, I will have to run more tests.
 
+####UPDATE THE ISSUE IS SECURE BOOT IF SECURE BOOT IS ENABLED ONLY WHAT'S ABOVE Fristboot 1 will be executed
+###TURN OF SECURE BOOT AND RUN AGAIN AND EVERYTHING SHOULD BE FINE
+
 
 
 
