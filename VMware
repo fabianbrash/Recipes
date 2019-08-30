@@ -1148,5 +1148,15 @@ reboot
 ##Global.Settings is all you need
 ##so I just created a modified Read-Only Role and added it to that.
 
+###VUM update issues###
+##REF#http://jasonnash.com/esx-host-cant-download-patches-from-update-manager/
+##If you see the below error message while scanning for or applying updates###
+
+
+#Host cannot download files from VMware vSphere Update Manager patch store. 
+#Check the network connectivity and firewall setup, and check esxupdate logs for details.
+
+##Check your DNS I had the wrong DNS server configured, once I made the change, viola!!!!!
+
 
 
