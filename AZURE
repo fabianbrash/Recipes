@@ -5,3 +5,16 @@
 
 
 ##Create a ResourceGroup > Virtual Networks > Global Network > Subnets > Network Security Group(Under Network Interfaces) > Public IP > VM
+
+#####I am using the Az moduels are they are build on .Net core and Powerrshell core and are cross-platform but there are
+###Azure(old powershell modules), AzureRM(new modules), and then Az(newest modules based on .net core and PS core)
+
+###Let's log into our Azure account######
+LoginAzAccount
+
+Get-AzVM ###If you have 1 resourcegroup this is fine
+
+Get-AzVM -ResourceGroupName "Test"
+
+####Let's delete a VM#####
+Remove-AzVM -ResourceGroupName "Test" -Name "MYVM" -Confirm:$false -Force
