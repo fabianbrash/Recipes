@@ -713,5 +713,7 @@ New-SelfSignedCertificate -DnsName "localhost", "site", "site.enterprise.com" -F
 ###now the only issue with this is that you will have to export the cert to .pfx and then import it into the the trusted root store
 
 
+###Get the SHA256 Hash from aa file#################
 
+Get-FileHash RVTools3.11.9.msi
 
