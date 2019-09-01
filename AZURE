@@ -16,5 +16,8 @@ Get-AzVM ###If you have 1 resourcegroup this is fine
 
 Get-AzVM -ResourceGroupName "Test"
 
+###Also
+Get-AzVM -Status
+
 ####Let's delete a VM#####
 Remove-AzVM -ResourceGroupName "Test" -Name "MYVM" -Confirm:$false -Force
