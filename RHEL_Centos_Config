@@ -951,4 +951,8 @@ wq!
 ##apply without the need to log out and back in again
 source ~/.bashrc
 
+##Get file hash############
 
+sha256sum CentOS-6.5-x86_64-minimal.iso
+
+##The above may/should work on Debian ans arch distros as well
