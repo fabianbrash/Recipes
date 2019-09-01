@@ -21,3 +21,7 @@ Get-AzVM -Status
 
 ####Let's delete a VM#####
 Remove-AzVM -ResourceGroupName "Test" -Name "MYVM" -Confirm:$false -Force
+
+
+###Let's logout####
+Logout-AzAccount
