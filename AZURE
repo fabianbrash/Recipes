@@ -19,6 +19,10 @@ Get-AzVM -ResourceGroupName "Test"
 ###Also
 Get-AzVM -Status
 
+##Create a resource Group
+New-AzResourceGroup -Name TestResourceGroup -Location centralus
+
+
 ####Let's delete a VM#####
 Remove-AzVM -ResourceGroupName "Test" -Name "MYVM" -Confirm:$false -Force
 
@@ -30,3 +34,18 @@ Logout-AzAccount
 ###Get all our resources from a resource group
 
 Get-AzResource -ResourceGroupName "Test" | ft
+
+
+##Get network resources
+
+Get-AzNetworkInterface
+
+##Now let's remove a network interface
+Remove-AzNetworkInterface -ResourceGroupName "Test" -Name WebServers -Confirm:$false -Force
+
+##Get our security group(s)
+Get-AzNetworkSecurityGroup
+
+##Get our Virtual Network
+Get-AzVirtualNetwork -ResourceGroupName "Test"
+
