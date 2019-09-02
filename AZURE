@@ -25,3 +25,8 @@ Remove-AzVM -ResourceGroupName "Test" -Name "MYVM" -Confirm:$false -Force
 
 ###Let's logout####
 Logout-AzAccount
+
+
+###Get all our resources from a resource group
+
+Get-AzResource -ResourceGroupName "Test" | ft
