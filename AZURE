@@ -1,6 +1,9 @@
 ###Notes for deploying resources into AZURE, hopefully this will help me to take and pass the
 ##"Micosoft Azure Administrator AZ-103" 
 
+#REF:https://docs.microsoft.com/en-us/azure/virtual-machines/windows/tutorial-manage-vm
+##REF:https://docs.microsoft.com/en-us/powershell/module/azurerm.compute/?view=azurermps-6.13.0#vm_images
+
 ####BASIC DEPLOYMENT#######
 
 
