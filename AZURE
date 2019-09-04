@@ -71,12 +71,12 @@ Get-AzVMImageSku -PublisherName MicrosoftWindowsServer -Location "centralus" -Of
 
 ####Now we can deploy a VM with the below
 
-$cred = Get-Credentials
+$cred = Get-Credential
 
 New-AzVm `
     -ResourceGroupName "myResourceGroupVM" `
     -Name "myVM2" `
-    -Location "EastUS" `
+    -Location "CentralUS" `
     -VirtualNetworkName "myVnet" `
     -SubnetName "mySubnet" `
     -SecurityGroupName "myNetworkSecurityGroup" `
