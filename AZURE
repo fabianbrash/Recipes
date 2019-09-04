@@ -52,3 +52,35 @@ Get-AzNetworkSecurityGroup
 ##Get our Virtual Network
 Get-AzVirtualNetwork -ResourceGroupName "Test"
 
+
+##Get all image publishers in the central region###
+Get-AzVMImagePublisher -Location "CentralUS"
+
+##From East US etc...
+Get-AzVMImagePublisher -Location "EastUS"
+
+##Get Image offer publisher name is required but you get that from the above command##
+##Note for Microsoft they have a ton so look around####
+
+Get-AzVMImageOffer -Location "CentralUS" -PublisherName MicrosoftWindowsServer 
+
+###Now let's get our SKU#####
+
+Get-AzVMImageSku -PublisherName MicrosoftWindowsServer -Location "centralus" -Offer WindowsServer
+
+
+####Now we can deploy a VM with the below
+
+$cred = Get-Credentials
+
+New-AzVm `
+    -ResourceGroupName "myResourceGroupVM" `
+    -Name "myVM2" `
+    -Location "EastUS" `
+    -VirtualNetworkName "myVnet" `
+    -SubnetName "mySubnet" `
+    -SecurityGroupName "myNetworkSecurityGroup" `
+    -PublicIpAddressName "myPublicIpAddress2" `
+    -ImageName "MicrosoftWindowsServer:WindowsServer:2016-Datacenter-with-Containers:latest" `
+    -Credential $cred `
+    -AsJob
