@@ -12677,6 +12677,9 @@ Find-PackageProvider
 ##Let's find a package
 Find-Package
 
+#OR##
+Find-Package | Where-Object{$_.Name -like *openssl*}
+
 ##Now let's install chocolatey
 Get-PackageProvider chocolatey
 
