@@ -12667,3 +12667,15 @@ Get-Help about_Automatic_Variables-ShowWindow
 ###Get the SHA256 Hash from aa file#################
 
 Get-FileHash RVTools3.11.9.msi
+
+
+####Package Providers###
+##Introduced in PS 5.x and PS Core###
+
+Find-PackageProvider
+
+##Now let's install chocolatey
+Get-PackageProvider chocolatey
+
+
+
