@@ -12674,8 +12674,15 @@ Get-FileHash RVTools3.11.9.msi
 
 Find-PackageProvider
 
+##Let's find a package
+Find-Package
+
 ##Now let's install chocolatey
 Get-PackageProvider chocolatey
 
+###Now we can install a package
+Install-Package OpenSSL.light
 
 
+##Since we installed the chocolatey provider our app will be in C:\Chocolatey\bin
+##Note depending on the app it could be an old .batch file(the irony)
