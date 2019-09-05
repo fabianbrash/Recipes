@@ -956,3 +956,10 @@ source ~/.bashrc
 sha256sum CentOS-6.5-x86_64-minimal.iso
 
 ##The above may/should work on Debian ans arch distros as well
+
+
+##Special characters####
+#REF:https://www.shellscript.sh/escape.html
+##So I was using openssl passwd -1 "myfancypassord" to generate a password that had a special character
+##but of course it generated the wrong password you have to use a \ to escape the special character
+
