@@ -12689,3 +12689,16 @@ Install-Package OpenSSL.light
 
 ##Since we installed the chocolatey provider our app will be in C:\Chocolatey\bin
 ##Note depending on the app it could be an old .batch file(the irony)
+
+
+
+###Useful####
+Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} | ft -AutoSize
+##Also the above returns a column "LogPipelineExecutionDetails" ????
+
+###Now count them###
+Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} | measure
+
+##Fore some reason if I sort on $_.Name -eq "*VMware.*" I get nothing which is odd
+
+
