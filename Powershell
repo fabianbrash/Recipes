@@ -12694,7 +12694,9 @@ Install-Package OpenSSL.light
 
 ###Useful####
 Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} | ft -AutoSize
-##Also the above returns a column "LogPipelineExecutionDetails" ????
+##Or
+
+Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} | Select-Object -Property Name, Path, Version, Description | ft -AutoSize
 
 ###Now count them###
 Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} | measure
