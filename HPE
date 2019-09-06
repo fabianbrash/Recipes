@@ -302,3 +302,43 @@ GET > https://IP_OR_DNS_OF_ILO/redfish/v1/Systems/1/
 
 ###FYI apparently you can't get WWNN/WWPN's from GEN9 servers only Gen10
 ##But if you are using HP Oneview you can use POSH to get that data
+
+
+##There is also the HPEiLO PS module 
+
+Install-Module -Name HPEiLOCmdlets
+
+##Nice little command
+Get-Command -Name *HPE* | measure
+
+Get-Command -Name *VM* | measure
+
+###Let's update our firmare###
+##REF:https://www.vgemba.net/microsoft/powershell/Update-HPE-iLO-Firmware/
+
+$iLOs = "10.10.1.100-120"
+$iLOType = "Integrated Lights-Out 4 (iLO 4)"
+$firmwareVersion = "2.60"
+$firmwareFile = "C:\Temp\ilo4_260.bin"
+$username = "Administrator"
+$password = ConvertTo-SecureString -String "Password1" -AsPlainText -Force
+$credential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $username,$password
+
+$foundServers = Find-HPEiLO $iLOs | Where-Object -Property PN -eq $iLOType | Where-Object -Property FWRI -ne $FirmwareVersion
+
+##WARNING: It might take a while to search for all the iLOs if the input is a very large range.Use Verbose for more information
+
+
+$foundServers
+
+$Connection = $foundServers | Connect-HPEiLO -Credential $credential
+Update-HPEiLOFirmware -Connection $connection -Location $firmwareFile -Confirm:$false
+
+##WARNING: Update is in progress, this might take several minutes.
+
+
+
+Get-HPEiLOFirmwareVersion -Connection $connection
+
+Disconnect-HPEiLO -Connection $Connection
+
