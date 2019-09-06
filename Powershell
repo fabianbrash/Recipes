@@ -12703,4 +12703,8 @@ Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} 
 
 ##Fore some reason if I sort on $_.Name -eq "*VMware.*" I get nothing which is odd
 
+###Didn't realize you could do this with where-object###
+
+Get-NetAdapter | Where-Object -Property LinkSpeed -eq "1 Gbps"
+
 
