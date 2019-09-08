@@ -102,3 +102,15 @@ New-AzVirtualNetwork -Name "LabNetwork" -ResourceGroupName "Lab" -Location "east
 Get-AzPublicIpAddress -ResourceGroupName "Alexander" 
 
 Get-AzPublicIpAddress -ResourceGroupName "Alexander" -Name *Web*
+
+
+##View the IPprefix this only works if you have running VM's as they will have public IP's assigned
+
+Get-AzPublicIpPrefix -ResourceGroupName "Alexander" -Name *Web*
+
+Get-AzPublicIpPrefix -ResourceGroupName "Alexander"
+
+##New public IP address
+New-AzPublicIpAddress -ResourceGroupName "Lab" -Name "jumphost"  -Location "eastus" -IpAddressVersion "IPv4" -AllocationMethod Dynamic 
+
+
