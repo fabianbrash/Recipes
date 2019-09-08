@@ -84,3 +84,21 @@ New-AzVm `
     -ImageName "MicrosoftWindowsServer:WindowsServer:2016-Datacenter-with-Containers:latest" `
     -Credential $cred `
     -AsJob
+
+
+#####Create a new empty resource group and tag it######
+
+New-AzResourceGroup -Name "Lab" -Location "eastus" -Tag @{Name="Lab"} 
+
+$mgmtsubnet = New-AzVirtualNetworkSubnetConfig -Name "Jumphosts" -AddressPrefix "10.0.99.0/24"
+
+$infrasubnet = New-AzVirtualNetworkSubnetConfig -Name "Infra" -AddressPrefix "10.0.40.0/24"
+
+New-AzVirtualNetwork -Name "LabNetwork" -ResourceGroupName "Lab" -Location "eastus" -AddressPrefix "10.0.0.0/16" -Subnet $mgmtsubnet,$infrasubnet
+
+
+##View public IP addresses
+
+Get-AzPublicIpAddress -ResourceGroupName "Alexander" 
+
+Get-AzPublicIpAddress -ResourceGroupName "Alexander" -Name *Web*
