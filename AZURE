@@ -94,7 +94,7 @@ New-AzVm `
     -Location "EastUS" `
     -VirtualNetworkName "LabNetwork" `
     -SubnetName "Jumphosts" `
-    -SecurityGroupName "myNetworkSecurityGroup" `
+    -SecurityGroupName "jumphostsRDP" `
     -PublicIpAddressName "jumphost" `
     -ImageName "MicrosoftWindowsServer:WindowsServer:2016-Datacenter-with-Containers:latest" `
     -Credential $cred `
