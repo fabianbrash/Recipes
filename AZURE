@@ -85,6 +85,22 @@ New-AzVm `
     -Credential $cred `
     -AsJob
 
+##################################################################################################################
+
+
+New-AzVm `
+    -ResourceGroupName "Lab" `
+    -Name "PBCJMP01" `
+    -Location "EastUS" `
+    -VirtualNetworkName "LabNetwork" `
+    -SubnetName "Jumphosts" `
+    -SecurityGroupName "myNetworkSecurityGroup" `
+    -PublicIpAddressName "jumphost" `
+    -ImageName "MicrosoftWindowsServer:WindowsServer:2016-Datacenter-with-Containers:latest" `
+    -Credential $cred `
+    -AsJob
+    
+    
 
 #####Create a new empty resource group and tag it######
 
@@ -113,4 +129,9 @@ Get-AzPublicIpPrefix -ResourceGroupName "Alexander"
 ##New public IP address
 New-AzPublicIpAddress -ResourceGroupName "Lab" -Name "jumphost"  -Location "eastus" -IpAddressVersion "IPv4" -AllocationMethod Dynamic 
 
+###See all network security groups##
+
+Get-AzNetworkSecurityGroup -ResourceGroupName "Alexander"
+
+Get-AzNetworkSecurityGroup -ResourceGroupName "Alexander" -Name *Mgmt*
 
