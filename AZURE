@@ -135,3 +135,13 @@ Get-AzNetworkSecurityGroup -ResourceGroupName "Alexander"
 
 Get-AzNetworkSecurityGroup -ResourceGroupName "Alexander" -Name *Mgmt*
 
+###build one#####
+
+##First let's define a rule#####
+$RuleRDP = New-AzNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP from my IP only" -Access Allow -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix "72.82.
+60.19/32" -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389
+
+##Then we can apply it to our Network Security Group
+##Note the -SecurityRules can accept a comma separated list of rules
+
+New-AzNetworkSecurityGroup -ResourceGroupName "Lab" -Location "eastus" -Name "jumphostsRDP" -SecurityRules $RuleRDP
