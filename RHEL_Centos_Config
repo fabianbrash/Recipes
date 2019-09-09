@@ -963,3 +963,7 @@ sha256sum CentOS-6.5-x86_64-minimal.iso
 ##So I was using openssl passwd -1 "myfancypassord" to generate a password that had a special character
 ##but of course it generated the wrong password you have to use a \ to escape the special character
 
+
+##View log files taht are .gz######
+
+zcat log.log.gz | grep -i error
