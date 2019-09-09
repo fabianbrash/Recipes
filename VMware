@@ -1160,3 +1160,9 @@ reboot
 
 
 
+##View log files taht are .gz######
+
+zcat vpxd-1234.log.gz | grep -i error
+
+
+
