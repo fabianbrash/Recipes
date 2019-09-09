@@ -12707,4 +12707,8 @@ Get-Module | Select-Object * | Where-Object {$_.CompanyName -eq "VMware, Inc."} 
 
 Get-NetAdapter | Where-Object -Property LinkSpeed -eq "1 Gbps"
 
+##Let's filter our redfish cmdlets
+Get-Command -Name *HPE* | Where -Property Source -NotLike HPERedfishCmdlets
+
+
 
