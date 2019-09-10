@@ -964,6 +964,7 @@ sha256sum CentOS-6.5-x86_64-minimal.iso
 ##but of course it generated the wrong password you have to use a \ to escape the special character
 
 
-##View log files taht are .gz######
+##View log files that are .gz######
+#REF:https://www.cyberciti.biz/faq/unix-linux-cat-gz-file-command/
 
 zcat log.log.gz | grep -i error
