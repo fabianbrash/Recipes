@@ -145,3 +145,8 @@ $RuleRDP = New-AzNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RD
 ##Note the -SecurityRules can accept a comma separated list of rules
 
 New-AzNetworkSecurityGroup -ResourceGroupName "Lab" -Location "eastus" -Name "jumphostsRDP" -SecurityRules $RuleRDP
+
+
+##Get VM sizes in a region####
+
+Get-AzVMSize -Location "eastus"
