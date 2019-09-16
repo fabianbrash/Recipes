@@ -1165,4 +1165,9 @@ reboot
 zcat vpxd-1234.log.gz | grep -i error
 
 
+######vmk1 unknown using vmkping###
+##REF:https://vlenzker.net/2016/03/how-to-do-the-esxi-vmkernel-ping-unknown-interface-invalid-argument/
 
+##This is due to changing the default tcpip stack in my case to vmotion so you have to do this instead
+
+vmkping -I vmk1 xx.xx.xx.xx -S vmotion
