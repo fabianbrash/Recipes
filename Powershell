@@ -12711,4 +12711,18 @@ Get-NetAdapter | Where-Object -Property LinkSpeed -eq "1 Gbps"
 Get-Command -Name *HPE* | Where -Property Source -NotLike HPERedfishCmdlets
 
 
+#####Get and set MPIO IO Policy####
+##Note the default is RR but some vendors will ask it to be changed
+##i.e. Pure Storage recommends LQD
+##REF:https://docs.microsoft.com/en-us/powershell/module/mpio/set-msdsmglobaldefaultloadbalancepolicy?view=win10-ps
+
+Get-MSDSMGlobalLoadBalancePolicy
+
+Set-MSDSMGlobalLoadBalancePolicy -Policy LQD
+
+Get-MSDSMGlobalLoadBalancePolicy
+
+##Reboot is not required but in order to do this you must have MPIO feature installed
+##That does require a reboot
+
 
