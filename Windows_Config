@@ -717,3 +717,12 @@ New-SelfSignedCertificate -DnsName "localhost", "site", "site.enterprise.com" -F
 
 Get-FileHash RVTools3.11.9.msi
 
+
+####list routes########
+netstat -nr
+
+###add static route#####
+route add 192.168.99.0 mask 255.255.255.0 10.0.0.250 -p (-p = permanent)
+
+##delete static route###
+route delete 192.168.99.0
