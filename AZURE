@@ -189,4 +189,8 @@ az resource list --resource-group LAB -o table
 The above will return everything in table format
 -o or —output can be json, jsonc, none, table, tsv, yaml. Default is json
 
+##Now let's delete a resource group and all it's resources
+##Our resource group name is Lab
+##REF:https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete
 
+az group delete -n Lab --yes
