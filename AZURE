@@ -150,3 +150,35 @@ New-AzNetworkSecurityGroup -ResourceGroupName "Lab" -Location "eastus" -Name "ju
 ##Get VM sizes in a region####
 
 Get-AzVMSize -Location "eastus"
+
+
+#####Azure cli(aka azure bash)############
+
+PowerShell vs CLI in Azure
+
+PS                                                  CLI
+—                                                   —-
+Get-Az					    az verb list
+New-Az					    az verb create
+Delete-Az                                     az verb delete
+
+
+
+
+Also we can have verbs that are sub of something else like
+az network vnet list vnet is a sub of network
+az —help will get you help
+az returns JSON
+You can also do 
+az group list —help
+
+az group list -o table
+
+az resource list -o table
+
+az resource list --resource-group LAB -o table
+
+The above will return everything in table format
+-o or —output can be json, jsonc, none, table, tsv, yaml. Default is json
+
+
