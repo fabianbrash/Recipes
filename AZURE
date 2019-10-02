@@ -158,23 +158,31 @@ PowerShell vs CLI in Azure
 
 PS                                                  CLI
 —                                                   —-
-Get-Az					    az verb list
-New-Az					    az verb create
-Delete-Az                                     az verb delete
+Get-Az					                            az verb list
+New-Az					                            az verb create
+Delete-Az                                           az verb delete
 
 
 
 
-Also we can have verbs that are sub of something else like
+##Also we can have verbs that are sub of something else like
 az network vnet list vnet is a sub of network
 az —help will get you help
-az returns JSON
-You can also do 
+#az returns JSON
+#You can also do 
+
+az group list ##Note group is the top level to see all resource groups, or to delete
+
+##az group
+    \
+     \
+      resource
+
 az group list —help
 
 az group list -o table
 
-az resource list -o table
+az resource list -o table ###resource is below group
 
 az resource list --resource-group LAB -o table
 
