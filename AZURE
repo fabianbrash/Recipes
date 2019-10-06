@@ -194,3 +194,30 @@ The above will return everything in table format
 ##REF:https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-delete
 
 az group delete -n Lab --yes
+
+
+###Azure works under a premise of Resource providers in order to use some services you must have 
+##that resource provider registered with your account
+##REF:https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-register-provider-errors
+##GUI can be used as well
+
+Get-AzResourceProvider | ft
+
+##See what location support the Microsoft.Web provider###
+
+((Get-AzResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
+
+##Get supported API version
+((Get-AzResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
+
+##Let's register the Microsoft CDN Provider to our account
+
+Register-AzResourceProvider -ProviderNamespace Microsoft.Cdn
+
+
+##Azure CLI
+
+az provider list -o table
+
+##Register Microsoft CDN
+az provider register --namespace Microsoft.Cdn
