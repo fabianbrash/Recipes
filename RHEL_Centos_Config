@@ -968,3 +968,17 @@ sha256sum CentOS-6.5-x86_64-minimal.iso
 #REF:https://www.cyberciti.biz/faq/unix-linux-cat-gz-file-command/
 
 zcat log.log.gz | grep -i error
+
+
+##More linux permissions
+##REF:https://ss64.com/bash/chmod.html
+
+###We can make the contents of a folder readable to all by doing
+chmod a+r myfolder/
+##OR
+chmod a+rw myfolder/
+
+
+
+
+
