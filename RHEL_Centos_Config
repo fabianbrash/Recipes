@@ -1,3 +1,9 @@
+###RHEL/CENTOS related information###
+
+######REFS#######################################################################################
+##REF:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Step_by_Step_Guide/s1-navigating-ownership.html
+##REF:https://ss64.com/bash/chmod.html
+
 #Install RHEL or centos with the Development packages
 #If you forgot you can use yum group install
 
