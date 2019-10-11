@@ -1,5 +1,10 @@
 #### Info regarding configuring blades, enclosures, etc.###
 
+######REFS#####################################################################################################
+##REF:https://github.com/HewlettPackard/POSH-HPOneView/wiki/Get-HPOVServerProfileConnectionList
+##REF:https://github.com/DungKHoang/Import-Export-OneView-Resources/blob/master/Export-OVResources.ps1
+##REF:https://www.vgemba.net/microsoft/powershell/Update-HPE-iLO-Firmware/
+
 ## HP OneView config#######
 
 ### Networks(think VLANs) > Create A and B side for Ethernet and fibre channel##
