@@ -1,3 +1,12 @@
+###VMware related info#####
+
+###REFS###################################################################################
+##REF:https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html
+##REF:https://be-virtual.net/automated-installation-with-vmware-esxi-5-56-06-5/
+##REF:https://blogs.vmware.com/vsphere/2019/02/using-the-vmware-update-manager-download-service-umds.html
+##REF:https://code.vmware.com/forums/2530/vsphere-powercli#571112
+##REF:https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.install.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html
+
 #In case you have a failed PSC or failed VCSA we need to clean things up
 cmsso-util unregister --node-pnid FQDN_of_failed_PSC_or_vCenter --username administrator@your_domain_name --passwd vCenter-Single-Sign-On-password
 
