@@ -221,3 +221,7 @@ az provider list -o table
 
 ##Register Microsoft CDN
 az provider register --namespace Microsoft.Cdn
+
+##using cli to list VM skus available to you####
+
+az vm image list -o table
