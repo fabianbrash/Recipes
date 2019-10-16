@@ -12726,3 +12726,24 @@ Get-MSDSMGlobalLoadBalancePolicy
 ##That does require a reboot
 
 
+####So apparently Write-Host is not the best way to outout information to the screen
+###you should use Write-Output, this also resolves my issue when outputing information
+##when manipulating objects
+
+$data = Invoke-RestMethod -URI http://myapi/all/
+
+Write-Host "Here is my data.."
+$data
+
+##The above will out put the data but the text will not appear where you think, it will be at the end on a new line
+
+$data = Invoke-RestMethod -URI http://myapi/all/
+
+Write-Output "Here is my data.."
+$data
+
+##Now this will output the information text and then output our api object
+##I will move to write-output for everything moving forward
+##REF:https://www.jsnover.com/blog/2013/12/07/write-host-considered-harmful/
+
+
