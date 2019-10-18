@@ -1180,3 +1180,15 @@ zcat vpxd-1234.log.gz | grep -i error
 ##This is due to changing the default tcpip stack in my case to vmotion so you have to do this instead
 
 vmkping -I vmk1 xx.xx.xx.xx -S vmotion
+
+
+
+##Get CDP information from Esxi CLI####
+##REF:https://kb.vmware.com/s/article/1007069
+
+vim-cmd hostsvc/net/query_networkhint --pnic-name=vmnic0  ##just query vmnic0
+
+##Get all PNICS
+
+vim-cmd hostsvc/net/query_networkhint
+
