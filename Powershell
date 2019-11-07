@@ -12747,3 +12747,15 @@ $data
 ##REF:https://www.jsnover.com/blog/2013/12/07/write-host-considered-harmful/
 
 
+#####Powershell help###########
+
+Get-Help Set-Process
+
+Get-Help Set-Process -Examples
+
+Get-Help Set-Process -Full (this will show the ouput as it is on MS site which is very helpful for seeing what parameters can accept)
+
+
+
+
+
