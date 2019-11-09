@@ -161,6 +161,9 @@ ansible_winrm_server_cert_validation: ignore
 
 #####END FILE#########
 
+##NOTE the file name above windows.yml must match the [windows] so a file called
+###windows.yml and a host section called [win_clients] won't work
+
 ###The second way of setting variables is to add them to the /etc/ansible/hosts file#########
 [windows]
 1.1.1.1
