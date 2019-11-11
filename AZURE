@@ -225,3 +225,14 @@ az provider register --namespace Microsoft.Cdn
 ##using cli to list VM skus available to you####
 
 az vm image list -o table
+
+
+
+##Remove Network security rule######
+
+$nsg = Get-AzNetworkSecurityGroup -Name "NSG-DevOPS" -ResourceGroupName "DevOPS"    
+
+Remove-AzNetworkSecurityRuleConfig -Name "rdp-rule" -NetworkSecurityGroup $nsg | Set-AzNetworkSecurityGroup
+
+
+
