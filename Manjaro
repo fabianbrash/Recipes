@@ -127,6 +127,10 @@ cat PKGBUILD
 
 makepkg -si
 
+
+##If you get the error message "Error: Cannot find fakeroot" you need the below package
+install sudo pacman -S base-devel
+
 ###Once finished####
 cd /opt/microsoft/powershell/6
 
