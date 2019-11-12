@@ -1192,3 +1192,19 @@ vim-cmd hostsvc/net/query_networkhint --pnic-name=vmnic0  ##just query vmnic0
 
 vim-cmd hostsvc/net/query_networkhint
 
+
+####Disable vSAN on a cluster###############
+
+## Move all VM's off of the vSAN datastore and any data that you may want to keep
+## Disable HA and for good measure DRS
+## Then on each host delete the disk group and when asked to move the data say no movement(this will be destructive)
+## Turn off 'vSAN' on the cluster
+
+##If you would just like to remove a host or a couple of hosts then
+## Place the host(s) in maintenance mode and do a 'Full data Migration'
+## Once migration is complete and the host(s) are in maintenance mode then remove the disk group(s) from the host(s)
+## then remove the host(s) from the cluster and those host(s) can be re-used.
+
+
+
+
