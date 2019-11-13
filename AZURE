@@ -236,5 +236,5 @@ Remove-AzNetworkSecurityRuleConfig -Name "rdp-rule" -NetworkSecurityGroup $nsg |
 
 
 
-###Make all Windows VM's "B2s" if available in the region I am deploying in
+###Make all Windows VM's "B2s"  "Standard_B2s" if available in the region I am deploying in
 
