@@ -215,7 +215,7 @@ Get-AzResourceProvider | ft
 Register-AzResourceProvider -ProviderNamespace Microsoft.Cdn
 
 
-##Azure CLI
+############Azure CLI############
 
 az provider list -o table
 
@@ -226,6 +226,11 @@ az provider register --namespace Microsoft.Cdn
 
 az vm image list -o table
 
+az vm image list -o table --all ##Note the --all will download the latest list, and take a while
+
+az vm image list --all --offer WindowsServer -o table
+
+az group create -l eastus -n rg1
 
 
 ##Remove Network security rule######
