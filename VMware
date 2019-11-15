@@ -1206,5 +1206,9 @@ vim-cmd hostsvc/net/query_networkhint
 ## then remove the host(s) from the cluster and those host(s) can be re-used.
 
 
+###Disable datastore heartbeat warning on a cluster#############
+##You might have to reconfigure HA
 
+das.ignoreInsufficientHbDatastore  
+set to 'true' #no quotes
 
