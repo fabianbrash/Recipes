@@ -149,3 +149,12 @@ uname -r
 sudo vboxreload
 ##The above will reload kernel modules
 
+####Install Azure CLI###########
+
+sudo pacman -Syu libffi
+
+sudo curl -L https://aka.ms/InstallAzureCli | bash
+
+###and follow prompts
+
+
