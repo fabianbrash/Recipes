@@ -1208,6 +1208,7 @@ vim-cmd hostsvc/net/query_networkhint
 
 ###Disable datastore heartbeat warning on a cluster#############
 ##You might have to reconfigure HA
+##REF:https://www.petenetlive.com/KB/Article/0001202
 
 das.ignoreInsufficientHbDatastore  
 set to 'true' #no quotes
