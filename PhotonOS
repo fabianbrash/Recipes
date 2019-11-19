@@ -101,6 +101,34 @@ df -h
 ##Thank goodness for GParted Live
 
 
+##########ROOT PARTITION######################
+##REF:https://unix.stackexchange.com/questions/358326/increase-root-size
+
+##Add the space to the disk in vCenter or the web client
+
+##Rescan device to see new space withour rebooting
+echo 1 > /sys/class/block/sda/device/rescan
+
+fdisk -l  ##You should see the newly added space
+
+parted /dev/sda  ##this was the root parition for me
+
+print
+
+print free  ##this will show you you're free space pay attention to the "End" in my case 48.3GB
+
+resizepart 2 100%  ##note the 100% threw an error just ignore it
+
+##make the "End" what you saw from before my case 48.3GB you can use less of course
+
+quit
+
+resize2fs /dev/sda2  ##Again this will be unique to your environment
+
+##This also assumes you are not using LVM
+
+df -h
+
 
 ######SLOW BOOT TIMES FOR PHOTONOS 2.0##########
 ##REF: https://github.com/vmware/photon/issues/774
