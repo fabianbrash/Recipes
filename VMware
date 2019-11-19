@@ -1213,3 +1213,12 @@ vim-cmd hostsvc/net/query_networkhint
 das.ignoreInsufficientHbDatastore  
 set to 'true' #no quotes
 
+
+##Install UMDS Windows Server 2016##########
+##REF:http://10.143.5.210/umds_store/
+##note the above isn't entirely correct it seems just like on Linux there is no longer a requirement
+##for a DB as of 6.7U3
+##So just install IIS, mount the windows iso and install UMDS service...
+
+
+
