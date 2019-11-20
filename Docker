@@ -160,6 +160,7 @@ PS> Start-Service Docker
 
 
 ######Install docker Windows Server 2019###########
+##REF:https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 
 Install-Package -name docker -ProviderName DockerMsftProvider -Force ##You can also add -RequiredVersion 18.03 which would install 18.03
