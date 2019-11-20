@@ -11,6 +11,8 @@
 ###Or ICACLS
 ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
+##This is the 'Name' under application pools
+
 ####When installing the Web-WebServer Role I had issues with IIS, so I just installed the Web-Server role and everything was okay######
 
 
