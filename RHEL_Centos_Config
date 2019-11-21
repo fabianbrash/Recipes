@@ -984,6 +984,10 @@ chmod a+r myfolder/
 ##OR
 chmod a+rw myfolder/
 
+####See cpu cores this should work on almost all flavors of linux###
+##REF:https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/
+
+lscpu
 
 
 
