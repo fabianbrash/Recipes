@@ -734,3 +734,22 @@ Get-StorageSetting
 
 Set-StorageSetting -NewDiskPolicy OnlineAll
 
+
+###Extend basic volume diskpart#########
+
+diskpart
+
+list disk
+
+select disk 0
+
+list partition  ##You are looking for the primary partition
+
+select partition 4(or whatever)
+
+extend size=MB
+
+###Note under list disk you can see the free space and that's what you will be extending
+##Must be a way to do this with PS
+
+
