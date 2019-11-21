@@ -752,4 +752,17 @@ extend size=MB
 ###Note under list disk you can see the free space and that's what you will be extending
 ##Must be a way to do this with PS
 
+#####some PS disk logic###########
+Get-Disk
+
+Get-Disk | Select *
+
+$free = Get-Disk -Number 0 | Select-Object -ExpandProperty LargestFreeExtend
+
+$freeMB = $free / 1024
+
+$freeMB
+
+
+
 
