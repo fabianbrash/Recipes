@@ -763,6 +763,11 @@ $freeMB = $free / 1024
 
 $freeMB
 
+####Entend disk the PS way#########
+
+$MaxSize = (Get-PartitionSupportedSize -DriveLetter c).sizeMax
+
+Resize-Partition -DriveLetter c -Size $MaxSize
 
 
 
