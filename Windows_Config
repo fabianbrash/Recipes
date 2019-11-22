@@ -795,3 +795,14 @@ Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
 ###Add all machines on your domain
 Set-Item WSMan:\localhost\Client\TrustedHosts *.yourdomain.com
 
+
+
+##Invoke-WebRequest server core install###
+
+Invoke-WebReuest -URI http://blah.com
+
+##The above will generate an error about IE not be configured
+
+Invoke-WebReuest -UseBasicParsing -URI http://blah.com
+
+
