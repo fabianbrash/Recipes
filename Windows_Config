@@ -777,4 +777,21 @@ Import-Certificate -FilePath "C:\Users\Xyz\Desktop\BackupCert.Cer" -CertStoreLoc
 ##the above installs the cert to the machines trusted root store
 
 
+####Check some basic winrm issues###########
+##REF:https://www.dtonias.com/add-computers-trustedhosts-list-powershell/
+winrm quickconfig
+
+Get-Item WSMan:\localhost\Client\TrustedHosts
+
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value 10.10.10.1,[0:0:0:0:0:0:0:0]
+
+###IPv4 and IPV6
+
+##Add all machines probably not a good idea###
+
+Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
+
+
+###Add all machines on your domain
+Set-Item WSMan:\localhost\Client\TrustedHosts *.yourdomain.com
 
