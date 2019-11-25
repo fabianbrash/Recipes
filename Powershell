@@ -12757,5 +12757,38 @@ Get-Help Set-Process -Full (this will show the ouput as it is on MS site which i
 
 
 
+#####IIS config###############
+##REF:https://docs.microsoft.com/en-us/powershell/module/iisadministration/get-iissite?view=win10-ps
+#REF:https://docs.microsoft.com/en-us/iis/manage/powershell/powershell-snap-in-changing-simple-settings-in-configuration-sections
+
+
+Get-IISAppPool
+
+Get-IISSite
+
+Get-IISSite "Default Web Site"
+
+Get-WebVirtualDirectory
+
+
+New-WebVirtualDirectory -Site "Default Web Site" -Name Contoso -PhysicalPath E:\contoso
+
+###Get current directory browsing status for the default web site
+
+Get-WebConfigurationProperty -filter /system.webServer/directoryBrowse -name enabled -PSPath 'IIS:\Sites\Default Web Site'
+
+
+Get-WebConfigurationProperty -filter /system.webServer/directoryBrowse -name enabled -PSPath 'IIS:\Sites\Default Web Site\Contoso'
+
+###Now let's set it
+
+Set-WebConfigurationProperty -filter /system.webServer/directoryBrowse -name enabled -Value True -PSPath 'IIS:\Sites\Default Web Site\Contoso'
+
+
+##Add a mime-type####
+
+add-webconfigurationproperty //staticContent -name collection -value @{fileExtension='.frjb'; mimeType='application/octet-stream'}
+
+
 
 
