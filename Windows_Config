@@ -806,3 +806,15 @@ Invoke-WebReuest -URI http://blah.com
 Invoke-WebReuest -UseBasicParsing -URI http://blah.com
 
 
+
+
+#####Run powershell command from cmd.exe#####
+
+powershell -Command Get-Process
+
+powershell -NoProfile -Command Get-Process
+
+
+
+
+
