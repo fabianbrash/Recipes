@@ -1,3 +1,8 @@
+##REFS###########
+
+###REF:https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples
+#REF:https://docs.docker.com/engine/reference/builder/#escape
+#REF:https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
 
 
 ####URLs#################################
