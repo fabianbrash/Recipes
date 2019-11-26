@@ -3,6 +3,7 @@
 ###REF:https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples
 #REF:https://docs.docker.com/engine/reference/builder/#escape
 #REF:https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+#REF:https://medium.com/@sebagomez/windows-containers-personal-cheat-sheet-95c1c4d6bdf5
 
 
 ####URLs#################################
