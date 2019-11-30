@@ -158,3 +158,11 @@ sudo curl -L https://aka.ms/InstallAzureCli | bash
 ###and follow prompts
 
 
+
+###Install useful network tools ##
+
+sudo pacman -Syu traceroute 
+
+sudo pacman -Syu bind-tools ##nslookup comes with this
+
+
