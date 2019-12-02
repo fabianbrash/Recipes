@@ -1230,4 +1230,9 @@ set to 'true' #no quotes
 https://{{vc}}/rest/com/vmware/cis/session
 
 
+####Let's get all our VM's(I think this is limited to the first 1000)
+###And add a header key value pair of vmware-api-session-id:token_received_from_above
+
+##Send a GET request to https://{{vc}}/rest/vcenter/vm
+
 
