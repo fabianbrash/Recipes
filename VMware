@@ -1240,7 +1240,9 @@ https://{{vc}}/rest/com/vmware/cis/session
 ##Send a GET request to https://{{vc}}/rest/vcenter/vm?filter.power_states=POWERED_ON
 
 
+###Get details for a specific VM
 
+##Send a GET request to https://{{vc}}/rest/vcenter/vm/vm-xxx
 
 
 
