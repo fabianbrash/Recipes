@@ -1225,6 +1225,7 @@ set to 'true' #no quotes
 
 ###########REST API##############################
 ##Let's get a token using a rest client i.e. postman, talend api testers
+##REF:https://creativeview.co.uk/VMware-vCenter-REST-API-Part-2/#.XeUTMvVKhPY
 
 ##Send a POST request to the below URL and use basic auth with your vc creds
 https://{{vc}}/rest/com/vmware/cis/session
