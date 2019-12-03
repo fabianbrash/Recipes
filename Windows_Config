@@ -815,6 +815,14 @@ powershell -Command Get-Process
 powershell -NoProfile -Command Get-Process
 
 
+###Generate CSR if web role not available through AD####
+##REF:https://www.namecheap.com/support/knowledgebase/article.aspx/9854/14/how-to-generate-a-csr-code-on-a-windowsbased-server-without-iis-manager
+
+##Follow the example above but basically load certifcates in the MMC and under personal certificates > all tasks > advanced operations
+## > create custom request leave everything default but remember under details click the properties button and fill out 
+## at least common name, and DNS so you can have a valid SAN
+
+
 
 
 
