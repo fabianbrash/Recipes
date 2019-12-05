@@ -12793,6 +12793,7 @@ add-webconfigurationproperty //staticContent -name collection -value @{fileExten
 ###Encrypt a password using a certificate
 ##REF:https://sid-500.com/2017/10/29/powershell-encrypt-and-decrypt-data/
 ##REF:https://docs.microsoft.com/en-us/powershell/module/pkiclient/import-pfxcertificate?view=win10-ps
+##REF:https://powershell.org/forums/topic/allow-multiple-users-to-access-credentials-stored-using-export-clixml/
 
 ##First we have to create a self-signed cert
 
