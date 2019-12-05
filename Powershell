@@ -12790,5 +12790,35 @@ Set-WebConfigurationProperty -filter /system.webServer/directoryBrowse -name ena
 add-webconfigurationproperty //staticContent -name collection -value @{fileExtension='.frjb'; mimeType='application/octet-stream'}
 
 
+###Encrypt a password using a certificate
+##REF:https://sid-500.com/2017/10/29/powershell-encrypt-and-decrypt-data/
+
+##First we have to create a self-signed cert
+
+New-SelfSignedCertificate -DnsName "mykey -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsage KeyEncipherment,DataEncipherment, KeyAgreement -Type DocumentEncryptionCert
+
+##Now we have our cert
+
+PS:>cd Cert:\CurrentUser\My
+
+ls
+###This is where we stored our key plus have a look at the Subject you will need it to sign it
+
+##Now let's sign a message with that cert including creating a password!!!
+
+"Password123" | Protect-CmsMessage -To cn=mykey -OutFile -Path C:\Temp\secret.cred
+
+
+###Now let's decrypt our message
+
+$Pass = Unprotect-CmsMessage -Path C:\Temp\secret.cred
+
+##Now you have the password unencrypted for the duration of your powershell session
+
+
+
+
+
+
 
 
