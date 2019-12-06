@@ -1206,6 +1206,17 @@ vim-cmd hostsvc/net/query_networkhint
 ## then remove the host(s) from the cluster and those host(s) can be re-used.
 
 
+####Clone VM###############
+#1. Clone VM
+#2. Delete NIC
+#3. Login and change admin password
+#4. Unjoin from domain you can then reboot and then rename the server and reboot again, or just rename after the unjoin
+##Note under most circumstances you will replace step 4 with a sysprep generalize
+
+##Also in a VMware environment before you re-add the NIC log into the VM and under device manager enable hidden devices
+##And delete the vmxnet device, don't delete the driver, this way when you add the NIC it will be a fresh device
+
+
 ###Disable datastore heartbeat warning on a cluster#############
 ##You might have to reconfigure HA
 ##REF:https://www.petenetlive.com/KB/Article/0001202
