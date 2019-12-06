@@ -1229,10 +1229,13 @@ set to 'true' #no quotes
 
 ##Send a POST request to the below URL and use basic auth with your vc creds
 https://{{vc}}/rest/com/vmware/cis/session
+##vCenter uses Basic auth, so will have to set that up with you're preferred client
+##usually though it's pretty easy to set that up with your REST client
 
 
 ####Let's get all our VM's(I think this is limited to the first 1000)
 ###And add a header key value pair of vmware-api-session-id:token_received_from_above
+##Header {Authorization: Basic xxx}
 
 ##Send a GET request to https://{{vc}}/rest/vcenter/vm
 
