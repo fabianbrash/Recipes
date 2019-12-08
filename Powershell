@@ -12820,6 +12820,12 @@ $Pass = Unprotect-CmsMessage -Path C:\Temp\secret.cred
 
 
 ###Get system uptime/boot time####
+##REF:https://www.windowscentral.com/how-check-your-computer-uptime-windows-10
+
+###Note: the above gives an example of using gcim which works fine in PS 5.x
+###But did not work in pwsh 7.x beta I had to use the full Get-CimInstance,
+##So be careful using aliases, also this a warning when you use VS Code it warns against
+##Using aliases i.e. ft instead of Format-Table
 
 (Get-Date) - (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
 
