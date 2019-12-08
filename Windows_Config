@@ -823,6 +823,13 @@ powershell -NoProfile -Command Get-Process
 ## at least common name, and DNS so you can have a valid SAN
 
 
+###Get system uptime
+
+SystemInfo | find "System Boot Time"
+
+
+
+
 
 
 
