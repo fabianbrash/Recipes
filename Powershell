@@ -12819,8 +12819,17 @@ $Pass = Unprotect-CmsMessage -Path C:\Temp\secret.cred
 
 
 
+###Get system uptime/boot time####
 
+(Get-Date) - (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
 
+##This will work too
+
+(Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+
+$minutes = (Get-Date) - (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
+
+$minutes | Select-Object -Property TotalMinutes, Minutes
 
 
 
