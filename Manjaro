@@ -181,6 +181,16 @@ sudo systemctl start snapd
 sudo systemctl enable --now snapd.socket ##with this you won't have to do the systemctl start
 
 
+####Manjaro equivalent of whatprovides#########
+
+sudo pacman -Syu pkgfile
+
+sudo pkgfile --update
+
+sudo pkgfile iostat   ##see what provides iostat note it could return multiples so you might still want to validate with
+                      ##with the GUI util
+
+
 
 
 
