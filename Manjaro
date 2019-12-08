@@ -165,4 +165,21 @@ sudo pacman -Syu traceroute
 
 sudo pacman -Syu bind-tools ##nslookup comes with this
 
+########SNAP#################
+###It seems on the latest version of Manjaro snap is installed by default
+
+sudo snap install postman
+
+##If not
+
+sudo pacman -Syu snapd
+sudo systemctl enabled snapd
+sudo systemctl start snapd
+
+##Or
+sudo systemctl enable --now snapd.socket ##with this you won't have to do the systemctl start
+
+
+
+
 
