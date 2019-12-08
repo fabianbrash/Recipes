@@ -166,6 +166,7 @@ sudo pacman -Syu traceroute
 sudo pacman -Syu bind-tools ##nslookup comes with this
 
 ########SNAP#################
+##Snap Store:https://snapcraft.io/store
 ###It seems on the latest version of Manjaro snap is installed by default
 
 sudo snap install postman
