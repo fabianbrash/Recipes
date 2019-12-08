@@ -192,5 +192,11 @@ sudo pkgfile iostat   ##see what provides iostat note it could return multiples 
 
 
 
+sudo pkgfile iotop
 
+sudo pacman -Syu iotop
+
+
+###The above will install iotop so we can get some disk performance data
+sudo iotop -o
 
