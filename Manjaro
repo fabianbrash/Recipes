@@ -197,6 +197,8 @@ sudo pkgfile iotop
 sudo pacman -Syu iotop
 
 
-###The above will install iotop so we can get some disk performance data
+###The above will install iotop so we can get some disk performance data##
+##REF:https://www.opsdash.com/blog/disk-monitoring-linux.html
+
 sudo iotop -o
 
