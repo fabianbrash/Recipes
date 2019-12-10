@@ -1260,4 +1260,13 @@ https://{{vc}}/rest/com/vmware/cis/session
 ##Send a GET request to https://{{vc}}/rest/vcenter/vm/vm-xxx
 
 
+#####Export VM logs#######
+#REF:https://communities.vmware.com/thread/445844
+##SSH to the host and cd to the datastore
+cd /vmfs/vols/vol1/vm1
+
+###The current log is vmware.log but that file is locked so try this
+cat vmware.log > vmware_cur.log
+
+
 
