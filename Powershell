@@ -12838,4 +12838,12 @@ $minutes = (Get-Date) - (Get-CimInstance Win32_OperatingSystem).LastBootUpTime
 $minutes | Select-Object -Property TotalMinutes, Minutes
 
 
+####Truncated output from scheduled task##############################################################
+##So I ran into an issue when I scheduled a PS script to output to a file
+##Apparently the default width is 80 characters so my output was being truncated
+###After some searching this fixed my issue
+
+$data | Format-Table -AutoSize | Out-File -FilePath C:\... -Width 10000
+
+###The above sets the width to 10K and this fixed my issue.
 
