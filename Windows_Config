@@ -830,6 +830,8 @@ SystemInfo | find "System Boot Time"
 
 
 
-
+####FTP########
+##Ran into an issue when setting up ftp after making my changes I still could not log in to the ftp server
+##Apparently after making rules changes you need to restart the ftp service in services.msc
 
 
