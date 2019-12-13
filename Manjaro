@@ -202,3 +202,18 @@ sudo pacman -Syu iotop
 
 sudo iotop -o
 
+
+##Connecting to switches######
+##REF:https://linuxconfig.org/connect-your-ubuntu-linux-machine-to-cisco-serial-console
+sudo pkgfile screen
+
+sudo pacman -Syu screen
+
+sudo dmesg | grep -i tty
+
+sudo screen /dev/ttyUSB0 ##this is what I saw also the FTDI USB Serial converter is a dead giveaway
+
+##Also screen must be run as root just screen /dev/ttyUSB0 will generate an error 'screen terminating'
+##Maybe I can add my user to a group so I don't have to use sudo
+
+
