@@ -12848,3 +12848,7 @@ $data | Format-Table -AutoSize | Out-File -FilePath C:\... -Width 10000
 
 ###The above sets the width to 10K and this fixed my issue.
 
+###Get command by Module#####
+
+Get-Command -Module *VMWa*
+
