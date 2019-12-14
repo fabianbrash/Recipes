@@ -149,6 +149,15 @@ uname -r
 sudo vboxreload
 ##The above will reload kernel modules
 
+###Also you need to add your user to the vboxusers group
+sudo usermod -aG vboxusers user1
+
+sudo reboot
+
+###Then head on over to virtual box and download the extension pack for your version, without this
+###you will not be able to use USB 2.0 or USB 3.0
+###From virtual box go to file > preferences > extension and point to your downloaded extension pack
+
 ####Install Azure CLI###########
 
 sudo pacman -Syu libffi
