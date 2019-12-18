@@ -342,7 +342,8 @@ Update-HPEiLOFirmware -Connection $connection -Location $firmwareFile -Confirm:$
 ##WARNING: Update is in progress, this might take several minutes.
 
 
-
+####HPE Global OneView#####
+##REF:https://rudimartinsen.com/2019/04/23/hpe-oneview-global-dashboard-powershell-module/
 Get-HPEiLOFirmwareVersion -Connection $connection
 
 Disconnect-HPEiLO -Connection $Connection
