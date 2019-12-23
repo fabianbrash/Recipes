@@ -846,6 +846,8 @@ SystemInfo | find "System Boot Time"
 
 Install-Module -Name PSWindowsUpdate
 
+Show-WindowsUpdate -Confirm:$false #???
+
 Get-WindowsUpdate -Verbose | Format-Table AutoSize
 
 Get-WindowsUpdate -Verbose -Install -AutoReboot -AcceptAll
