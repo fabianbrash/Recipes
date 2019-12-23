@@ -802,3 +802,17 @@ dd if=/dev/zero of=text2.txt count=1024 bs=2048576
 ##Get container ID###
 docker ps --format {{".ID"}}
 
+
+######docker history######
+###This is quite helpful for windows containers to see what updates have been applied to the container image
+
+docker history <IMAGE ID>
+
+
+
+
+
+
+
+
+
