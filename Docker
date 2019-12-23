@@ -804,6 +804,7 @@ docker ps --format {{".ID"}}
 
 
 ######docker history######
+###REF:https://social.msdn.microsoft.com/Forums/en-US/eeba07f5-1ee1-41cb-b003-4fb2919e8bef/update-windows-containers?forum=windowscontainers
 ###This is quite helpful for windows containers to see what updates have been applied to the container image
 
 docker history <IMAGE ID>
