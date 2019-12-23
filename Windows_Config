@@ -841,5 +841,23 @@ SystemInfo | find "System Boot Time"
 ##REF:https://support.microsoft.com/en-us/help/4480961/windows-10-update-kb4480961
 
 
+###Installing Windows updates PSModules####
+##REF:https://www.itechtics.com/run-windows-update-cmd/
+
+Install-Module -Name PSWindowsUpdate
+
+Get-WindowsUpdate -Verbose | Format-Table AutoSize
+
+Get-WindowsUpdate -Verbose -Install -AutoReboot -AcceptAll
+
+Get-Command -Name *WindowsUpdate*
+
+####Note with the install above you actually get something resemblying a progress bar##
+##Also some of these Functions are aliases so check the docs
+
+Get-Help Get-WindowsUpdate -Full
+
+
+
 
 
