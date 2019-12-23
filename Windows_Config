@@ -859,7 +859,10 @@ Get-Command -Name *WindowsUpdate*
 
 Get-Help Get-WindowsUpdate -Full
 
+####Get Hotfixes######
+##REF:https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/get-hotfix?view=powershell-5.1
 
+Get-HotFix | Format-Table -AutoSize
 
 
 
