@@ -415,4 +415,10 @@ sha256sum ubuntu-9.10-dvd-i386.iso
 ##when the subnet says its a /24
 
 
+######cgroups note everything below should work on most all distros########
+##Reference this tutorial https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process
+
+cd /sys/fs/cgroup
+
+
 
