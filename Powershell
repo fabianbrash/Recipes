@@ -12863,6 +12863,18 @@ Get-Acl -Path C:\temp
 
 
 
+#####Trust a powershell repository######
+
+Get-PSRepository
+
+Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+
+Get-PSRepository
+
+
+
+
+
 
 
 
