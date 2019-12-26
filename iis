@@ -110,7 +110,13 @@ Get-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.w
 
 
 
+###Create a new virtual directory
 
+New-WebVirtualDirectory -Site 'Default Web Site' -Name CoHost -PhysicalPath C:\inetpub\wwwroot\cohost
+
+##Let's enable directory browsing the the above virtual directory
+
+Set-WebConfigurationProperty -Filter /system.webserver/directoryBrowse -Name enabled True -PSPath "IIS\Sites\Default Web Site\Cohost"
 
 
 
