@@ -85,5 +85,40 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
 
 
+##When you add the web role/feature you should also have the PS modules for management
+##REF:https://serverfault.com/questions/554140/editing-setting-mime-types-with-powershell
+
+
+##Add new mimetype
+
+Add-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." -Value @{ fileExtension='.zip'; mimeType='application/x-zip-compressed' }
+
+##Edit mimetype
+
+Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent/mimeMap[@fileExtension='.zip']" -Name "fileExtension" -Value ".example"
+
+##Delete mimetype
+
+Remove-WebConfigurationProperty  -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." -AtElement @{ fileExtension= '.zip' }
+
+##Read and get an existing mimetype
+$getSetting = Get-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "."
+$getSetting.Collection | Where-Object { $_.fileExtension -eq ".zip"}
+#OR
+Get-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." | Where-Object { $_.fileExtension -eq ".zip"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
