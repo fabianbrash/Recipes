@@ -12873,7 +12873,10 @@ Get-PSRepository
 
 
 
+#####Taking advantage of [System.Environment]#####
 
+[System.Environment]::  ##just tab complete to see what's available
+[System.Environment]::Is64BitOperationgSystem ##returns True on 64-bit OSes
 
 
 
