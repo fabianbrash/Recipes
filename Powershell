@@ -12879,6 +12879,8 @@ Get-PSRepository
 [System.Environment]::Is64BitOperationgSystem ##returns True on 64-bit OSes
 
 
+#####Get windows version#####
 
+(Get-WmiObject -Class Win32_OperatingSystem).Caption
 
 
