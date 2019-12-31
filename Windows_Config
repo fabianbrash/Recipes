@@ -875,6 +875,7 @@ New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\s
 
 #####INSTALL DOCKER WINDOWS SERVER 2016#########################
 #####Note I installed this on Server 2016 core
+###Also you must install the 'Containers' role/feature
 ###Source: https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server
 ##Get a Powershell Prompt
 PS> Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
@@ -892,6 +893,7 @@ PS> Start-Service Docker
 
 
 ######Install docker Windows Server 2019###########
+###Also you must install the 'Containers' role/feature
 ##REF:https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 
