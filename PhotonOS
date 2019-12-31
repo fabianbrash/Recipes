@@ -226,4 +226,11 @@ sysctl --help
 ##REF:https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 
 
+####Install Powershell####
+tdnf install -y powershell
+
+pwsh
+
+###It seems this is a 64-bit version of Powershell so everything should work out of the box##
+Install-Module -Name VMware.PowerCLI
 
