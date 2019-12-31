@@ -872,3 +872,31 @@ New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\s
 ##Note the above will create the key if it doesn't exist best to check if it is there first
 
 
+
+#####INSTALL DOCKER WINDOWS SERVER 2016#########################
+#####Note I installed this on Server 2016 core
+###Source: https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server
+##Get a Powershell Prompt
+PS> Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+PS> Install-Package -Name docker -ProviderName DockerMsftProvider (Select 'A')
+PS> Restart-Computer -Force
+
+###Get Installed Version
+PS> Get-Package -Name Docker -ProviderName DockerMsftProvider
+##Get Current Version from Repo
+PS> Find-Package -Name Docker -ProviderName DockerMsftProvider
+
+###Upgrade Docker##################
+PS> Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
+PS> Start-Service Docker
+
+
+######Install docker Windows Server 2019###########
+##REF:https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
+Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
+
+Install-Package -name docker -ProviderName DockerMsftProvider -Force ##You can also add -RequiredVersion 18.03 which would install 18.03
+Start-Service -Name docker
+
+
+
