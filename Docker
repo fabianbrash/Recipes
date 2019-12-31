@@ -812,8 +812,21 @@ docker ps --format {{".ID"}}
 docker history <IMAGE ID>
 
 
+####ELASTICSEARCH AND Container Host configuration####
+###Note the below is only good as long as the system does not reboot
+##To persist on most version of linux this should be located @ /etc/sysctl.conf
+##Note on photonOS that file does not exist
+###I had issues with elasticsearch and memory you have to run the following command in linux
 
+sysctl -w vm.max_map_count=262144
 
+sysctl -p
+
+sysctl --help
+
+##The above worked on ubuntu, shoud work on centos and I will test on photonOS(sysctl is available 
+###on photonOS so the above works)
+##REF:https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 
 
 
