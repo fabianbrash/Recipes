@@ -815,6 +815,7 @@ docker history <IMAGE ID>
 ####ELASTICSEARCH AND Container Host configuration####
 ###Note the below is only good as long as the system does not reboot
 ##To persist on most version of linux this should be located @ /etc/sysctl.conf
+##Also check /proc/sys
 ##Note on photonOS that file does not exist
 ###I had issues with elasticsearch and memory you have to run the following command in linux
 
