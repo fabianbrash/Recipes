@@ -809,8 +809,9 @@ docker ps --format {{".ID"}}
 ###REF:https://social.msdn.microsoft.com/Forums/en-US/eeba07f5-1ee1-41cb-b003-4fb2919e8bef/update-windows-containers?forum=windowscontainers
 ###This is quite helpful for windows containers to see what updates have been applied to the container image
 
-docker history <IMAGE ID>
-
+docker history <IMAGE ID or image name>
+docker history --no-trunc <IMAGE ID or image name>
+docker history --no-trunc --format "{{.ID}}: {{.CreatedBy}}" <IMAGE ID or image name>
 
 ####ELASTICSEARCH AND Container Host configuration####
 ###Note the below is only good as long as the system does not reboot
@@ -828,7 +829,6 @@ sysctl --help
 ##The above worked on ubuntu, shoud work on centos and I will test on photonOS(sysctl is available 
 ###on photonOS so the above works)
 ##REF:https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
-
 
 
 
