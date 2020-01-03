@@ -901,4 +901,14 @@ Install-Package -name docker -ProviderName DockerMsftProvider -Force ##You can a
 Start-Service -Name docker
 
 
+####Disassociate a file exentsion with a program
+##REF:https://www.raymond.cc/blog/how-unassociate-windows-vista-7-file-type/
+
+##what worked for me was the last part 
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer \FileExts\.extension 
+
+##also before you do the above delete the value in 'value data' below
+HKEY_CLASSES_ROOT\.extension
+
 
