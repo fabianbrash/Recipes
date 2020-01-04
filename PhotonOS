@@ -234,3 +234,8 @@ pwsh
 ###It seems this is a 64-bit version of Powershell so everything should work out of the box##
 Install-Module -Name VMware.PowerCLI
 
+
+###Running containers on port 53####
+##So I had an issue running coredns on port 53 turns out that photonOS
+##uses systemd-resolved, so you need to stop that service so you can bind on udp 53
+systemctl stop systemd-resolved
