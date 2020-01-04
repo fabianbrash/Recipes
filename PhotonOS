@@ -236,6 +236,7 @@ Install-Module -Name VMware.PowerCLI
 
 
 ###Running containers on port 53####
+#REF:https://serverfault.com/questions/973868/how-do-i-bind-to-udp-port-53-in-gce-container-optimized-os
 ##So I had an issue running coredns on port 53 turns out that photonOS
 ##uses systemd-resolved, so you need to stop that service so you can bind on udp 53
 systemctl stop systemd-resolved
