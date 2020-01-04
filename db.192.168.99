@@ -1,0 +1,15 @@
+$TTL    604800
+@       IN      SOA     dns.lab.io. mail.lab.io. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+; name servers - NS records
+        IN      NS      dns.lab.io.
+
+;
+; PTR Records
+254     IN      PTR     dns.lab.io.    ; 192.168.99.254
+253     IN      PTR     test.lab.io.    ; 192.168.99.253
