@@ -17,6 +17,9 @@ sudo yum groupinstall "GroupPackage Name"
 #Install Epel packages
 sudo yum install epel-release
 
+##list all versions of dhcp that's available
+yum list dhcp --show-duplicates
+
 
 ####DNF######
 ##Check to see what updates are available
