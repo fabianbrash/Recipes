@@ -786,6 +786,8 @@ sudo yum install dhcp
 sudo vim /etc/sysconfig/dhcpd
 
 HDCPDARGS="whatever_your_interface_is"
+##Update as of 01-05-2020 that variable is no longer in the above file so
+##the above change is no longer required
 
 ##then su to root I had issues when I attempted to complete the below steps with sudo##
 
