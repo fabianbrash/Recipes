@@ -839,3 +839,16 @@ sysctl --help
 systemctl stop systemd-resolved
 
 
+##docker attach###
+docker attach containername
+
+
+##docker cp###
+
+docker cp id_rsa.pub container1:/data
+
+
+
+
+
+
