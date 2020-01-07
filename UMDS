@@ -1,4 +1,5 @@
 ###UMDS config info#####
+##REF:https://www.definit.co.uk/2019/03/configuring-update-manager-download-service-6-7-on-centos-rhel-7-with-ssl-certificates/
 
 ####Let's remove uneccessary downloads
 
