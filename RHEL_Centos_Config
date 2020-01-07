@@ -995,5 +995,26 @@ chmod a+rw myfolder/
 lscpu
 
 
+####Configure NTP#########
+##REF:https://www.tecmint.com/install-ntp-server-in-centos/
+
+sudo yum install -y ntp
+
+##then edit /etc/ntp.conf
+
+###Add your pool from pool.ntp.org
+sudo firewall-cmd --add-service=ntp --permanent
+sudo firewall-cmd --reload
+
+sudo systemctl enable --now ntpd.service
+
+ntpq -p
+
+date -R
+
+
+
+
+
 
 
