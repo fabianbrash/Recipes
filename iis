@@ -12,6 +12,7 @@
 ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
 ##Please note if you run the above in a PS shell you need to do this###
+##REF:https://serverfault.com/questions/516324/unable-to-assign-group-permissions-with-icacls-on-windows-server-2012
 
 ICACLS `"d:\web\dnn`" /grant `"IIS AppPool\dnn`":F /t(for recursive)
 
