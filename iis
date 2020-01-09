@@ -16,6 +16,9 @@ ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
 
 ICACLS `"d:\web\dnn`" /grant `"IIS AppPool\dnn`":F /t(for recursive)
 
+##Actaully it seems we need to do this
+ICACLS `"d:\web\dnn`" /grant "IIS AppPool\dnn":(OI)(CI)(F) /T(for recursive)
+
 ###Powershell does odd things with quotes and older commands...
 
 ##This is the 'Name' under application pools
