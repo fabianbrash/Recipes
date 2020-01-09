@@ -921,3 +921,10 @@ HKEY_CLASSES_ROOT\.extension
 ##From the above output you can match the number with the abovve 1st link
 
 
+##check when a VM crashed you can look for event ID 6008 and make sure you read the time in the message
+##as it will tell the actual time and not the time the event was logged in Windows i.e. the log date and time
+##might say 1-1-2020 but the details inside will have the 'real time' this is the 'System' log
+
+
+
+
