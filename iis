@@ -26,6 +26,10 @@ ICACLS `"d:\web\dnn`" /grant "IIS AppPool\dnn:(OI)(CI)(F)" /L /T(for recursive)
 ##I don't remember having to add the IUSR group when I used a folder on another drive letter i.e. D
 ##But keep that in mind
 
+##Also it seem there are 2 things happening here Authentication and Authorization
+IUSR is used to Authenticate the session and then the appPool identity is used for the Authorization to the assets/files
+##In the web directory
+
 
 ###Powershell does odd things with quotes and older commands...
 
