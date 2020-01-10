@@ -62,6 +62,12 @@ kubectl delete deployment my-deployment
 #REF:https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/
 kubectl create namespace mynamespace
 
+##services##
+#we can edit a service with
+kubectl edit svc ng1
+#also if we are editing a service in a different namespace 
+kubectl -n mynamespace edit svc ng1 
+
 ###YAML###########
 apiVersion: v1
 kind: Namespace
