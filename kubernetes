@@ -81,6 +81,8 @@ kubectl edit svc ng1
 #also if we are editing a service in a different namespace 
 kubectl -n mynamespace edit svc ng1 
 
+kubectl -n kube-system get pod coredns-345ab -o yaml 
+
 ###YAML###########
 apiVersion: v1
 kind: Namespace
