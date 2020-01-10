@@ -32,6 +32,9 @@ kubectl get pods -l app=nginx -o wide
 ##you can expose the service with
 kubectl expose deployment/nginx-deployment
 
+##Or you can do 
+kubectl expose deployment mydeployment --type=NodePort
+
 ##or with a yaml file check my yaml repo
 
 ####Run a simple deployment without a yaml file
