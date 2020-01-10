@@ -102,6 +102,9 @@ kubectl delete namespace mynamespace
 
 kubectl describe podname 
 
+#get all pods with the label run=ng1
+kubectl get pods -l run=ng1 
+
 ###Add to our .kube/config so we can switch namespaces
 #REF:https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
 
