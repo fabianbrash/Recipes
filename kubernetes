@@ -57,6 +57,12 @@ kubectl delete deployement 'our deployment name'
 ##Also let's delete deployment and service for ng1 and ng2##
 kubectl delete deployment,service ng1 ng2
 
+kubectl delete pod mypod 
+#note the above only works if you created the pod with
+#a yaml file and the type was pod, if you use
+#kubectl run ... this actually creates a deployment
+#on the fly so you will have to use kubectl delete deployment 
+
 
 ###you can run the kubectl proxy command but it's best to look at services
 kubectl proxy ##run in a different terminal
