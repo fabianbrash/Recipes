@@ -44,6 +44,9 @@ kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcam
 kubectl get deployments
 kubectl delete deployement 'our deployment name'
 
+##Also let's delete deployment and service for ng1 and ng2##
+kubectl delete deployment,service ng1 ng2
+
 
 ###you can run the kubectl proxy command but it's best to look at services
 kubectl proxy ##run in a different terminal
