@@ -13,6 +13,10 @@ kubectl get pods
 kubectl get deployments
 kubectl get services or kubectl get svc
 
+kubectl get all -o wide
+
+watch kubectl get all -o wide
+
 ##Get current context
 kubectl config view
 kubectl config current-context
