@@ -17,6 +17,9 @@ kubectl get all -o wide
 
 watch kubectl get all -o wide
 
+kubectl get events # get all events
+
+
 ##Get current context
 kubectl config view
 kubectl config current-context
