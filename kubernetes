@@ -20,6 +20,10 @@ watch kubectl get all -o wide
 kubectl get events # get all events
 
 
+## Label a node###
+kubectl label node mymode1 ssdpresent=true
+
+
 ##Get current context
 kubectl config view
 kubectl config current-context
