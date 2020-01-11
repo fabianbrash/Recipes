@@ -49,6 +49,8 @@ kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcam
 
 kubectl run myshell -it --image busybox -- sh 
 
+kubectl run myshell -it --rm --image busybox -- sh 
+
 #Also
 kubectl create deployment ng1 --image=nginx:stable-alpine
 
