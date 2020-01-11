@@ -23,6 +23,9 @@ kubectl get events # get all events
 ## Label a node###
 kubectl label node mymode1 ssdpresent=true
 
+##find nodes with a label 
+kubectl get nodes -l ssdpresent=true 
+
 
 ##Get current context
 kubectl config view
