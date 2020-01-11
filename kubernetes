@@ -47,6 +47,8 @@ kubectl expose deployment mydeployment --type=NodePort
 ####Run a simple deployment without a yaml file
 kubectl run kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1 --port=8080
 
+kubectl run myshell -it --image busybox -- sh 
+
 #Also
 kubectl create deployment ng1 --image=nginx:stable-alpine
 
