@@ -72,6 +72,9 @@ kubectl delete pod mypod
 kubectl proxy ##run in a different terminal
 curl http://localhost:8001/version
 
+kubectl port-forward podname 8080:80
+
+
 ###delete deployment
 kubectl delete deployment my-deployment
 
