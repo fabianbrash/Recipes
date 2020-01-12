@@ -110,6 +110,10 @@ sudo firewall-cmd --permanent --new-zone=publicweb
 ##Reload the firewall
 sudo firewall-cmd --reload
 
+
+####NOTE IF YOU ARE NOT USING THE --permanent command DO NOT RELOAD AS IT WILL WIPE OUT THE RULE!!!
+###I LEARNED THIS THE HARD WAY!!!!!!
+
 #Install python packages get pip first
 sudo yum install python-pip
 
