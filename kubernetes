@@ -28,6 +28,12 @@ kubectl get nodes -l ssdpresent=true
 
 kubectl get node node1 --show-labels
 
+kubectl get ingress
+#or 
+kubectl get ing 
+kubectl describe ing 
+
+
 
 ##Get current context
 kubectl config view
