@@ -26,6 +26,8 @@ kubectl label node mymode1 ssdpresent=true
 ##find nodes with a label 
 kubectl get nodes -l ssdpresent=true 
 
+kubectl get node node1 --show-labels
+
 
 ##Get current context
 kubectl config view
