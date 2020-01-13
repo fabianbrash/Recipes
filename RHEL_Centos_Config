@@ -1020,6 +1020,14 @@ date -R
 
 
 
+#####Install binary easily#############
+##Say you make .sh file and you want it to be available on your path
+chmod +x myawesomescript.sh
+sudo install myawesomescript /usr/local/bin
+
+
+
+
 
 
 
