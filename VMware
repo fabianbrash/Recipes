@@ -1268,5 +1268,7 @@ cd /vmfs/vols/vol1/vm1
 ###The current log is vmware.log but that file is locked so try this
 cat vmware.log > vmware_cur.log
 
+########Remove a host to be renamed from vCenter when attached to a vDS####
+###REMOVE THE HOST CLEANLY FROM THE  vDS FIRST TO SAVE YOURSELF FROM THE PAIN THAT COMES IF YOU DON'T
 
 
