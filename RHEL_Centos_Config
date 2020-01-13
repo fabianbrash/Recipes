@@ -204,6 +204,8 @@ cp tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
 ##Then run 
 update-ca-trust
 
+##Note .pem files works also no need to convert
+
 cd cd /etc/pki/ca-trust/extracted/pem
 diff tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
 
