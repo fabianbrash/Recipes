@@ -1272,3 +1272,42 @@ cat vmware.log > vmware_cur.log
 ###REMOVE THE HOST CLEANLY FROM THE  vDS FIRST TO SAVE YOURSELF FROM THE PAIN THAT COMES IF YOU DON'T
 
 
+#####Accessing vPostgress database#######
+##REF:http://www.vmwarearena.com/basic-commands-interact-vcsa-6-5-embedded-vpostgres-database/
+##REF:https://thinkvirtualblog.wordpress.com/2015/04/04/how-to-connect-to-vcsavcva-postgres-database/
+###SSH into the VCSA and get type shell
+
+cd /etc/vmware-vpx
+cat embedded_db.cfg
+###note i had a weird issue when I used the password from the above file, maybe I just fat fingered it
+/opt/vmware/vpostgres/current/bin/psql -d VCDB -U postgres
+
+##as long as your password worked you should be at the below prompt
+VCDB=#
+
+VCDB=#\l+  ##list all db instances
+VCDB=#\d+  ##list all tables
+VCDB=#\df  ##list all functions
+
+##We can run queries as well
+
+select * from vpx_version;
+
+select * from vpx_host;  ##this outputs a lot of crap I need to fifure out how to format nicely in postgres
+
+select pg_size_pretty (pg_database_size('VCDB'));  ##get the size of the VCDB database
+
+VCDB=# \q  ##quit
+
+
+
+
+
+
+
+
+
+
+
+
+
