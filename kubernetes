@@ -112,6 +112,9 @@ kubectl -n kube-system get pod coredns-345ab -o yaml
 
 kubectl edit namespace dev
 
+kubectl get cs ##component status
+
+
 ###YAML###########
 apiVersion: v1
 kind: Namespace
