@@ -110,6 +110,8 @@ kubectl -n mynamespace edit svc ng1
 
 kubectl -n kube-system get pod coredns-345ab -o yaml 
 
+kubectl edit namespace dev
+
 ###YAML###########
 apiVersion: v1
 kind: Namespace
