@@ -114,6 +114,8 @@ kubectl edit namespace dev
 
 kubectl get cs ##component status
 
+kubectl get pv # get persistence volume
+
 
 ###YAML###########
 apiVersion: v1
