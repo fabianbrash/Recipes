@@ -119,6 +119,8 @@ kubectl get cs ##component status
 
 kubectl get pv # get persistence volume
 
+kubectl exec pod/container name ls 
+
 
 ###YAML###########
 apiVersion: v1
