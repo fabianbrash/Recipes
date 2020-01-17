@@ -205,7 +205,7 @@ cp tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
 update-ca-trust
 
 ##Note .pem files works also no need to convert
-
+##Also this works on CentOS 8.x
 cd cd /etc/pki/ca-trust/extracted/pem
 diff tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
 
