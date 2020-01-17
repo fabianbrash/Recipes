@@ -1,0 +1,6 @@
+####Some I find out about dig#############
+
+
+dig myname.com
+
+dig -x 192.168.99.1   ###get a hostname from a PTR record
