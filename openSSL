@@ -5,6 +5,16 @@
 ##REF:https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309
 
 
+###Create root private key
+openssl genrsa -des3 -out rootCA.key 4096
+
+###Create and self-sign root CA
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.crt
+
+
+##Note a su - to root to do the above for optimal security???
+
+
 ##########BEGIN FILE#####################################
 
 [ req ]
