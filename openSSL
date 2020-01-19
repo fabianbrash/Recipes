@@ -1,6 +1,8 @@
 ######CREATE A SELF-SIGNED CERT WITH SAN(Subject Alternative Name) use in conjunction with openssl.ps1####
 
 ##REF:https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
+##REF:https://gist.github.com/Soarez/9688998
+
 
 ##########BEGIN FILE#####################################
 
