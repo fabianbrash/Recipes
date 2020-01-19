@@ -179,6 +179,31 @@ kubectl config current-context
 kubectl config use-context prod
 
 
+###Rolling upgrades#####
+
+kubectl rollout status deployment my-deploy
+
+kubectl rollout history deploy my-deploy
+
+kubectl set image deploy my-deploy nginx=1.15  ##upgrade the version of nginx in our deployment
+
+kubectl annotate deploy my-deploy kubernetes.io/change-cause="Updated to version 1.15" ## annotate the change
+
+##Or###
+kubectl set image deploy my-deploy nginx=1.15 --record
+
+kubectl rollout history deploy my-deploy --revision 1  ##lookup revision 1
+
+##Undo a rolling upgrade and specify to what revision
+
+kubectl rollout undo deploy my-deploy --to-revision=2 
+
+###Pause rollout
+
+kubectl rollout pause deploy my-deploy
+kubectl rollout resume deploy my-deploy
+
+
 
 #########################KUBERNETES INSTALL NOTES####################################################
 ###I will turn this into a bash script soon and then hopefully an ansible playbook####
