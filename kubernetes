@@ -150,6 +150,10 @@ kubectl get pods -l run=ng1
 
 kubectl scale deployment ng1 --replicas=3
 
+##To get kubectl up and running you need to copy the admin.conf file from
+##/etc/kubernetes on one of the master nodes into a directory ~/.kube
+##in your home directory and then you need to rename admin.conf to config
+
 ##the above will scale our deployment but u should update your YAML file
 
 
