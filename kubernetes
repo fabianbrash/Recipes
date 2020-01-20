@@ -7,6 +7,8 @@ kubectl version
 kubectl version --short
 kubectl api-versions
 
+kubectl version --client --short
+
 kubectl get namespaces
 kubectl get namespaces -A ##get all namespaces even system namespaces by default all your pods are created in the default namespace
 kubectl get pods
