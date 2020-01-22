@@ -621,6 +621,9 @@ sudo nmcli con add type ethernet con-name static-prod ifname eth0 ip4 192.168.1.
 ####Mod a connection change it's DNS to google#############
 sudo nmcli con mod static-prod ipv4.dns "8.8.8.8 8.8.4.4"
 
+##Add DHCP connection####
+nmcli con add type ethernet con-name prod-enp0s3 ifname enp0s3
+
 sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
 
 ###Delete a connection
