@@ -611,6 +611,8 @@ ssh-keygen -f "/home/user/.ssh/known_hosts" -R "IPAddressofRemoteHost"
 
 
 ####################USING NMCLI REF:https://www.tecmint.com/configure-network-connections-using-nmcli-tool-in-linux/#####
+##REF:https://www.tecmint.com/configure-network-connections-using-nmcli-tool-in-linux/
+
 sudo nmcli con show ##show all connections
 sudo nmcli dev show ##show all devices
 sudo nmcli con show -a ##only show active connections
