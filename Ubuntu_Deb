@@ -247,7 +247,8 @@ sudo vgextend ubuntu-srv-vg /dev/sda3 (Or whatever your new extent is you should
 sudo lvextend /dev/ubuntu-srv-vg/root /dev/sda3
 
 ###Now third let's resize our filesystem
-sudo resize2fs /dev/ubuntu-srv-vg/root
+sudo resize2fs /dev/ubuntu-srv-vg/root 
+sudo xfs_growfs /dev/centos/root  ##for centos machines tested on centos 7.7
 
 ##And that should work
 ##You can also use lvextend to just add some not all space to the logical volume
