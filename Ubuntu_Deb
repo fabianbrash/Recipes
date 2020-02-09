@@ -249,6 +249,10 @@ sudo lvextend /dev/ubuntu-srv-vg/root /dev/sda3
 ###Now third let's resize our filesystem
 sudo resize2fs /dev/ubuntu-srv-vg/root 
 sudo xfs_growfs /dev/centos/root  ##for centos machines tested on centos 7.7
+sudo xfs_growfs /  
+
+##Note a received an error with the above on centos 8.1(assume 8.0 also) so I had to use the above 
+##REF:https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root
 
 ##And that should work
 ##You can also use lvextend to just add some not all space to the logical volume
