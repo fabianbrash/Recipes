@@ -427,3 +427,16 @@ cd /sys/fs/cgroup
 
 
 
+####NETPLAN Ubuntu 18.04/19.04
+##REF:https://raw.githubusercontent.com/fabianbrash/YAML/master/01-netcfg.yaml
+##REF:https://computingforgeeks.com/how-to-configure-static-ip-address-on-ubuntu/
+
+##netplan is the new way of confguring IP's on ubuntu systems
+
+cd /etc/netplan
+sudo vim 01-netcfg.yaml
+##make changes as per references
+sudo netplan apply
+
+
+
