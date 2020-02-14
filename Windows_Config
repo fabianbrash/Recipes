@@ -926,5 +926,21 @@ HKEY_CLASSES_ROOT\.extension
 ##might say 1-1-2020 but the details inside will have the 'real time' this is the 'System' log
 
 
+##########Dealing with packages in Windows Powershell#############################
+
+Get-PackageProvider -ListAvailable
+
+Install-Package -Name 'package name'
+
+Uninstall-Package -Name 'package name'
+
+Find-PackageProvider
+
+####Install Nuget##########
+Get-PackageProvider -ListAvailable
+###If you don't see Nuget then you have to do this
+Install-PackageProvider -Name NuGet  ##This might error out??
+
+
 
 
