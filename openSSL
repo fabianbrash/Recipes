@@ -198,5 +198,10 @@ openssl ecparam -list_curves
 
 ##Then pick 1??
 
+openssl ecparam -name secp521r1 -genkey -noout -out rootCAECDSA.key
+
+###Create and self-sign root CA
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCAECDSA.crt
+
 
 
