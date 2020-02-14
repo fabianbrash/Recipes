@@ -942,5 +942,10 @@ Get-PackageProvider -ListAvailable
 Install-PackageProvider -Name NuGet  ##This might error out??
 
 
+###Set a package source as trusted
+Get-PackageSource
 
+Set-PackageSource -Name PSGallery -ProviderName PowerShellGet -Trusted
+
+##Note all this is still a bit fussy to me
 
