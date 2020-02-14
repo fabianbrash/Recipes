@@ -192,6 +192,7 @@ openssl ciphers -v 'ALL:!ADH:@STRENGTH'
 
 
 ###OpenSSL and ECDSA(Elliptical Curve...)
+##REF:https://superuser.com/questions/1103401/generate-an-ecdsa-key-and-csr-with-openssl/1103530
 ##For a list of possible curve names
 
 openssl ecparam -list_curves
