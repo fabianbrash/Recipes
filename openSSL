@@ -180,3 +180,23 @@ openssl rand -base64 14
 
 ###the above creates a random 14 character password
 
+############################CIPHERS############################
+##REF:https://www.openssl.org/docs/man1.0.2/man1/ciphers.html
+
+##Verbose listing of all OpenSSL ciphers including NULL ciphers
+openssl ciphers -v 'ALL:eNULL'
+
+#####Include all ciphers except NULL and anonymous DH then sort by strength
+
+openssl ciphers -v 'ALL:!ADH:@STRENGTH'
+
+
+###OpenSSL and ECDSA(Elliptical Curve...)
+##For a list of possible curve names
+
+openssl ecparam -list_curves
+
+##Then pick 1??
+
+
+
