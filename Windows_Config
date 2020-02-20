@@ -949,3 +949,19 @@ Set-PackageSource -Name PSGallery -ProviderName PowerShellGet -Trusted
 
 ##Note all this is still a bit fussy to me
 
+
+
+########Disable IPv6#####
+##REF: https://www.tenforums.com/tutorials/90033-enable-disable-ipv6-windows.html
+
+Get-NetAdapterBinding -ComponentID ms_tcpip6
+
+Disable-NetAdapterBinding -Name "Adapter Name" -ComponentID ms_tcpip6
+
+####Disable on all adapters
+
+Disable-NetAdapterBinding -Name "*" -ComponentID ms_tcpip6
+
+
+
+
