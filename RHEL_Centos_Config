@@ -1032,6 +1032,13 @@ sudo install myawesomescript /usr/local/bin
 
 
 
+#############SSH keys commands###################
+
+ssh-copy-id user1@host1  ##copy your public key to user1 on host1
+
+ssh-add .ssh/id_rsa     ##add my private key to ssh identity
+ssh-add -D  ##remove all identities
+ssh-add -d  ##remove your local identity in .ssh/id_rsa
 
 
 
