@@ -226,3 +226,27 @@ sudo screen /dev/ttyUSB0 ##this is what I saw also the FTDI USB Serial converter
 ##Maybe I can add my user to a group so I don't have to use sudo
 
 
+############TMUX###########
+#REF: https://tmuxcheatsheet.com/
+sudo pacman -Syu tmux ##this should already be installed
+
+
+##enable mouse support note this changed as of 2.1.x
+
+cd ~
+touch .tmux.conf
+
+##and add the below
+set -g mouse on
+tmux kill-server
+
+##########CLI history###
+
+CTRL+R and you can search your history
+
+
+
+
+
+
+
