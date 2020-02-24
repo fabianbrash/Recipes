@@ -17,3 +17,27 @@ func main() {
         fmt.Printf("Hello, Go World!!\n")
 }
 
+
+#####Once go is installed
+
+go version
+go env
+go env GOPATH ##the default is $HOME/go
+
+mkdir $HOME/go
+
+mkdir -p $HOME/go/src/hello
+cd ~/go/src/hello
+touch hello.go
+
+##Use the above code for your first go app and then
+go run hello.go   ##run interpreted
+
+##Then
+
+go build .
+#or
+go build
+
+##this should build a binary called hello
+./hello
