@@ -963,5 +963,8 @@ Disable-NetAdapterBinding -Name "Adapter Name" -ComponentID ms_tcpip6
 Disable-NetAdapterBinding -Name "*" -ComponentID ms_tcpip6
 
 
+#####Find user that rebooted server#########
+#REF:https://www.tenforums.com/tutorials/78335-read-shutdown-logs-event-viewer-windows.html
 
+##In the eventviewer under 'System' filter for 1074,6006,6008
 
