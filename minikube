@@ -8,3 +8,10 @@ minikube version
 ##also this I think only works with virtualbox driver and of course you need to configure this in virtualbox first
 
 minikube start --host-only-cidr 192.168.20.1/24
+
+
+minikube addons list
+
+minikube addons enable dashboard
+
+minikube dashboard ## launches the dashboard
