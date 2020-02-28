@@ -1,0 +1,10 @@
+###minikube specific information
+##REF:https://kubernetes.io/docs/tasks/tools/install-minikube/
+
+minikube version
+
+##The below will override minkubes default network which is 192.168.99.0/24 the thing is I actaully use
+##that network on my network so it causes a ton of issues for me, if you don't let just leave it as is
+##also this I think only works with virtualbox driver and of course you need to configure this in virtualbox first
+
+minikube start --host-only-cidr 192.168.20.1/24
