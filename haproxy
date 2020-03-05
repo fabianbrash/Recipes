@@ -28,6 +28,14 @@ sudo firewall-cmd --reload
 
 ##REF:https://www.upcloud.com/support/haproxy-load-balancer-centos/
 
+###On RHEL based systems you might have to do this
+#REF:https://serverfault.com/questions/286598/could-not-bind-socket-while-haproxy-restart
+
+setsebool haproxy_connect_any on
+
+##or disable selinux
+setenforce 0 ##and you have to make this permanent check my recipes repo
+
 
 #######START FILE##########################################
 
