@@ -1053,7 +1053,8 @@ echo 'net.ipv4.ip_forward = 0' >> /etc/sysctl.conf    ##persist after reboot
 
 ##enable IP forwarding
 
-echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf    ##persist after reboot
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf    ##persist after reboot
+sysctl -p ##do a reload
 
 
 
