@@ -20,6 +20,10 @@ cat inventory/mycluster/group_vars/all/all.yml
 cat inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
 
 # Also look at the addons.yml file to enable addons like metrics-server
+/inventory/mycluser/group_vars/k8s-cluster/addons.yml
+
+# Also in the below file you want to uncomment 'kube_read_only_port'
+inventory/mycluster/group_vars/all/all.yml
 
 # Update Ansible inventory file with inventory builder
 declare -a IPS=(10.10.1.3 10.10.1.4 10.10.1.5)
