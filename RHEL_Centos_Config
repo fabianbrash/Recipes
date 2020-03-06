@@ -1041,6 +1041,22 @@ ssh-add -D  ##remove all identities
 ssh-add -d  ##remove your local identity in .ssh/id_rsa
 
 
+#####IP forwarding####################
+
+cat /proc/sys/net/ipv4/ip_forward
+
+##disable IP forwarding
+
+sysctl -w net.ipv4.ip_forward=0  ##this will not survive reboot
+
+echo 'net.ipv4.ip_forward = 0' >> /etc/sysctl.conf    ##persist after reboot
+
+##enable IP forwarding
+
+echo 'net.ipv4.ip_forward = 1' >> /etc/sysctl.conf    ##persist after reboot
+
+
+
 
 
 
