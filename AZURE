@@ -244,3 +244,21 @@ Remove-AzNetworkSecurityRuleConfig -Name "rdp-rule" -NetworkSecurityGroup $nsg |
 ###Make all Windows VM's "B2s"  "Standard_B2s" if available in the region I am deploying in(2vCPUs, 4GB RAM
 ##Also a "Standard_B1MS" is a another low cost option(1vCPUs, 2GB RAM)
 
+
+
+
+###AZURE BLOBS Endpoints####
+
+https://containerblobs.blob.core.windows.net/installers/FreeNAS-11.3-U1.iso
+
+https://containerblobs.blob.core.windows.net/installers/kubectl
+
+https://containerblobs.blob.core.windows.net/installers/umds-Msft.zip
+
+https://containerblobs.blob.core.windows.net/rpms/minikube-1.6.2.rpm
+
+
+
+
+
+
