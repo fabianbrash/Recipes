@@ -335,3 +335,8 @@ kubectl get pods
 kubectl version --short
 kubectl get componentstatus or kubectl get cs
 
+
+###kubectl run interactive####
+kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
+
+##The above is equivalent to docker run -it busybox sh
