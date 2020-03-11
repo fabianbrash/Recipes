@@ -1,0 +1,7 @@
+
+
+###PSEXEC info here###
+
+##Remotely install a msi file##
+
+PsExec.exe \\DNS_OR_IP -u admin -p password -s -d msiexec.exe /I "D:\file.msi" ACCEPTEULA=Yes /quiet /norestart
