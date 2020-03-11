@@ -53,6 +53,8 @@ Icacls authorized_keys /remove “NT SERVICE\sshd”
 
 ##I left mine as is so it's uncommented in my file
 
+##Note you can install openssh server and client on serve 2016 & 2012 as well
 
+https://github.com/PowerShell/Win32-OpenSSH/releases/tag/v8.1.0.0p1-Beta
 
 
