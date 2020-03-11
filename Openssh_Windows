@@ -51,7 +51,7 @@ Icacls authorized_keys /remove “NT SERVICE\sshd”
 #       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys 
 
 
-##I 
+##I left mine as is so it's uncommented in my file
 
 
 
