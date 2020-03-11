@@ -1,6 +1,10 @@
 ##Openssh Windows implementation
 ##REF:https://techcommunity.microsoft.com/t5/itops-talk-blog/installing-and-configuring-openssh-on-windows-server-2019/ba-p/309540
 
+
+## to see what's available
+Get-WindowsCapability -Online | ? name -like 'OpenSSH*'
+
 ##On server 2019 you can install ssh server the client is installed by default by going to
 
 
@@ -9,6 +13,10 @@ Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 ##Install the server
 
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+##Check to see of the firewall was set up properly
+
+Get-NetFireWallRule -Name *ssh*
 
 Set-Service -Name ssh-agent -StartupType ‘Automatic’
 Set-Service -Name sshd -StartupType ‘Automatic’
@@ -36,7 +44,13 @@ Icacls authorized_keys /remove “NT SERVICE\sshd”
 ##not called authorized_keys but administrators_authorized_keys(WWHATTT!!!!)
 ##then you have to remove inheritance and grant only SYSTEM and Administrators Full control of the file.
 
-#Also check C:\PrograData\ssh\ssh_config and make certain the belwo is not commented
+#Also check C:\PrograData\ssh\ssh_config and you may or may not have to comment out the below
+
+# Match Group administrators                                                   
+#       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys 
+
+
+##I 
 
 
 
