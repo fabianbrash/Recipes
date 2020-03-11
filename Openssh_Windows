@@ -16,11 +16,28 @@ Set-Service -Name sshd -StartupType ‘Automatic’
 Start-Service ssh-agent
 Start-Service sshd
 
+##You can also install the below
+
+Install-Module -Force OpenSSHUtils -Scope AllUsers
+
+##Which will give you a few tools like
+Repair-AuthorizedKeyPermission 
+##But apparently the above does not work properly and you still need to manually assign the correct permissions
+
+##so you can do this 
+Repair-AuthorizedKeyPermission C:\users\Chancellor\.ssh\authorized_keys
+Icacls authorized_keys /remove “NT SERVICE\sshd”
+
+##And the above should give the correct permissions to your keys file
+
 ##Now if you want to use keys
 
 ##if the user is in the local administrators group then create the authorized_keys file under C:\ProgramData\ssh\ and the file is 
 ##not called authorized_keys but administrators_authorized_keys(WWHATTT!!!!)
 ##then you have to remove inheritance and grant only SYSTEM and Administrators Full control of the file.
+
+#Also check C:\PrograData\ssh\ssh_config and make certain the belwo is not commented
+
 
 
 
