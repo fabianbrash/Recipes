@@ -2,6 +2,11 @@
 
 ###PSEXEC info here###
 
+
+##First we need to copy or file over or you can run it from a share
+
+Xcopy /S /I /E D:\installFolder \\DNS_OR_IP\d$
+
 ##Remotely install a msi file##
 
 PsExec.exe \\DNS_OR_IP -u admin -p password -s -d msiexec.exe /I "D:\file.msi" ACCEPTEULA=Yes /quiet /norestart
