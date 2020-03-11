@@ -340,3 +340,9 @@ kubectl get componentstatus or kubectl get cs
 kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
 
 ##The above is equivalent to docker run -it busybox sh
+
+## this also works
+
+kubectl exec -it nfs-nginx-766d4bf45f-jn4b6 bash
+
+
