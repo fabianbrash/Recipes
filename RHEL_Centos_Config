@@ -1059,5 +1059,27 @@ sysctl -p ##do a reload
 
 
 
+##After installing powershell on centos7(more on that in a second) I needed to install modules in offline mode
+##(I have a writeup on doing that) but I needed to copy all subfolders and files with cp well here you go
 
+sudo cp -a PowerCLI/. /opt/microsoft/powershell/7/Modules
+
+## All module folders were in the PowerCLI folder
+
+
+##Now let's install powershell on centos 7
+##REF:https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7
+
+# Register the Microsoft RedHat repository
+curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
+
+# Install PowerShell
+sudo yum install -y powershell
+
+# Start PowerShell
+pwsh
+
+##Or
+
+sudo yum install https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-1.rhel.7.x86_64.rpm
 
