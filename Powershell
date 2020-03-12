@@ -12883,4 +12883,19 @@ Get-PSRepository
 
 (Get-WmiObject -Class Win32_OperatingSystem).Caption
 
+###So I had to decrypt a password that was encrypted using and AES key the way I wrote the code the password was decrypted
+##because I stored the username and password in a PSCredential variable but in this case I need to makee an API call to 
+##vCenter, so I had to decrypt password to send in the header, so I found this
+
+
+$password = ConvertTo-SecureString 'P@ssw0rd' -AsPlainText -Force
+
+$Ptr = [System.Runtime.InteropServices.Marshal]::SecureStringToCoTaskMemUnicode($password)
+$result = [System.Runtime.InteropServices.Marshal]::PtrToStringUni($Ptr)
+[System.Runtime.InteropServices.Marshal]::ZeroFreeCoTaskMemUnicode($Ptr)
+$result
+
+##Note the above $password variable is for testing purposes only I had the below
+
+$password = Get-Content $ThePasswordFile | ConvertTo-SecureString -Key (Get-Content $KeyFile)
 
