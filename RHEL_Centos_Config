@@ -1061,6 +1061,8 @@ sysctl -p ##do a reload
 
 ##After installing powershell on centos7(more on that in a second) I needed to install modules in offline mode
 ##(I have a writeup on doing that) but I needed to copy all subfolders and files with cp well here you go
+##REF:https://askubuntu.com/questions/86822/how-can-i-copy-the-contents-of-a-folder-to-another-folder-in-a-different-directo
+
 
 sudo cp -a PowerCLI/. /opt/microsoft/powershell/7/Modules
 
