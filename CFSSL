@@ -106,3 +106,82 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=serv
 ##REF:https://stelfox.net/notes/cfssl
 
 ## I will be doing that next
+
+
+
+
+##let's create a root CA to sign our certificates
+
+
+touch ca-csr.json
+
+
+<< Start File <<
+
+{
+
+    "CN": "My CA",
+    "key": {
+      "algo": "ecdsa",
+      "size": 521
+    },
+    "name": [
+    {
+      "C": "US",
+      "L": "Richmond",
+      "O": "ORGA",
+      "OU": "ORGB",
+      "ST": "Virginia"
+    }
+
+  ]
+
+}
+
+<< End File ca-csr.json <<
+
+##Now let's generate our key and cert
+cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+
+##The above will generate ca.pem, ca-key.pem, ca.csr
+
+
+touch server-0-csr.json
+
+<< Start file <<
+
+
+{
+  "CN": "server-0.test.com",
+  "key": {
+    "algo": "ecdsa",
+    "size": 256
+  },
+  "names": [
+  {
+    "C": "US",
+    "L": "Richmond",
+    "O": "ORGA",
+    "OU": "ORGB",
+    "ST": "Virginia"
+  }
+ ],
+ "hosts": [
+   "server-0",
+   "server-0.test.com",
+   "localhost"
+  ]
+}
+
+<< End File server-0-csr.json <<
+
+# Now lets generate the cert
+
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=server server-0-csr.json | cfssljson -bare server-0
+
+##you should now have serever-0.pem, server-0-key.pem, server-0.csr
+
+
+##Even though I've changed the above length to 256 it generates a 512 key I think I need to make the CA 256 as well??
+
+##Also if you are on Fedora you can view a cert using gcr-view cert.pem
