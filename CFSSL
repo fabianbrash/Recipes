@@ -1,0 +1,101 @@
+###cfssl tool, can be used instead of openssl to create certificates, written in go####
+
+##let's create a root CA to sign our certificates
+
+
+touch ca-csr.json
+
+
+<< Start File <<
+
+{
+
+    "CN": "My CA",
+    "key": {
+      "algo": "rsa",
+      "size": 2048
+    },
+    "name": [
+    {
+      "C": "US",
+      "L": "Richmond",
+      "O": "ORGA",
+      "OU": "ORGB",
+      "ST": "Virginia"
+    }
+
+  ]
+
+}
+
+<< End File ca-csr.json <<
+
+##The above will generate ca.pem, ca-key.pem, ca.csr
+
+##Now we have create a config.json file
+
+touch ca-config.json
+
+<< Start file <<
+
+{
+
+    "signing": {
+      "default": {
+        "expiry": "8760h"
+       },
+       "profiles": {
+         "server": {
+	   "usages": ["signing", "digital signing","key encipherment", "server auth", "client auth"],
+	   "expiry": "8760h"
+	 }
+     }
+   }
+}
+
+<< End File ca-config.json <<
+
+##The above file basically sets how long the cert will be for, create a profile and what the profile can be used for##
+
+##now lets create a json file for our server so it can get a cert from our CA
+
+touch server-0-csr.json
+
+<< Start file <<
+
+
+{
+  "CN": "server-0.test.com",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+  {
+    "C": "US",
+    "L": "Richmond",
+    "O": "ORGA",
+    "OU": "ORGB",
+    "ST": "Virginia"
+  }
+ ],
+ "hosts": [
+   "server-0",
+   "server-0.test.com",
+   "localhost"
+  ]
+}
+
+<< End File server-0-csr.json <<
+
+# Now lets generate the cert
+
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=server server-0-csr.json | cfssljson -bare server-0
+
+##you should now have serever-0.pem, server-0-key.pem, server-0.csr
+
+
+##Note the above will generate a RSA key if you want to use ECDSA there is nn option for that
+##REF:https://stelfox.net/notes/cfssl
+
+## I will be doing that next
