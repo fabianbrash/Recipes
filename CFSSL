@@ -1,4 +1,8 @@
 ###cfssl tool, can be used instead of openssl to create certificates, written in go####
+##REF:https://github.com/cloudflare/cfssl
+##REF:https://medium.com/@rob.blackbourn/how-to-use-cfssl-to-create-self-signed-certificates-d55f76ba5781
+##REF:https://github.com/kelseyhightower/kubernetes-the-hard-way/blob/master/docs/04-certificate-authority.md
+##REF:https://stelfox.net/notes/cfssl/
 
 ##let's create a root CA to sign our certificates
 
