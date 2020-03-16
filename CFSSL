@@ -123,7 +123,7 @@ touch ca-csr.json
     "CN": "My CA",
     "key": {
       "algo": "ecdsa",
-      "size": 521
+      "size": 256
     },
     "name": [
     {
