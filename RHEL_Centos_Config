@@ -1085,3 +1085,17 @@ pwsh
 
 sudo yum install https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-1.rhel.7.x86_64.rpm
 
+
+####Extract .xz tar files####
+##You may have to install xz
+
+sudo yum install -y xz
+
+#Or
+sudo dnf install -y xz
+
+#Then you can do this I think you can do this even if you don't install xz
+
+tar -xvf file.tar.xz
+
+
