@@ -12899,3 +12899,8 @@ $result
 
 $password = Get-Content $ThePasswordFile | ConvertTo-SecureString -Key (Get-Content $KeyFile)
 
+
+
+#####tail a file
+
+Get-Content -LiteralPath C:\file.log -Tail 0 -Wait
