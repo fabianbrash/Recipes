@@ -346,3 +346,27 @@ kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
 kubectl exec -it nfs-nginx-766d4bf45f-jn4b6 bash
 
 
+##Drain a node######
+kubectl drain worker-0
+
+
+###The difference between port and target port
+##REF:https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html
+
+## obviously NodePort: xxx is the port we use to access our service from outside of our k8s cluster
+## "port" is the port that services inside the cluster can communicate on to your svc
+## and "targetPort" is the port that the container is actually listening on
+## Example
+
+ports:
+  - nodePort: 32321
+    port: 443
+    targetPort: 8443
+
+
+##The above sample says we can access the svc externally on 32321 i.e. http://worker-0:32321
+## the "port" says within the k8s cluster other pods/deployments/anything can access on port 443
+## and "targetPort" is the actaully exposed port in the container 8443 so if another pod 
+## within the cluster accesses the deployment/pod on 443 it should roll to 8443 on the target pod(s)
+
+
