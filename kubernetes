@@ -347,7 +347,7 @@ kubectl exec -it nfs-nginx-766d4bf45f-jn4b6 bash
 
 ## also 
 
-kubectl run myshell -it --rm --image=busybox -- sh
+kubectl run myshell -it --rm --image=busybox -- sh # this gave me issues but the above worked
 
 
 ##Drain a node######
