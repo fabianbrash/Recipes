@@ -353,6 +353,10 @@ kubectl exec -it nfs-nginx-766d4bf45f-jn4b6 bash
 
 kubectl run myshell -it --rm --image=busybox -- sh # this gave me issues but the above worked
 
+##Be careful you don't create a deployment instead of a pod note if you create a deployment
+## then the pod won't be called myshell but instead myshell-xyz so you can't shell into myshell
+## because it doesn't exist
+
 
 ##Drain a node######
 kubectl drain worker-0
