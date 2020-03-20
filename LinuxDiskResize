@@ -37,5 +37,7 @@ xfs_growfs /
 ##or
 resize2fs /dev/mapper/centos-root
 
+df -h
+
 ##Both the latest Ubuntu and CentOS moved to xfs so xfs_growfs is going to be your command going forward
 ##This was tested on centOS 7.7.x
