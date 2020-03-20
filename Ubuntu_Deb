@@ -439,4 +439,8 @@ sudo vim 01-netcfg.yaml
 sudo netplan apply
 
 
+####Down an interface tested on ubuntu 18.04
 
+ifconfig
+
+ip link set s1(or whatever interface you want down) down
