@@ -1098,4 +1098,6 @@ sudo dnf install -y xz
 
 tar -xvf file.tar.xz
 
+##Upgrade pip
 
+sudo pip install --upgrade pip
