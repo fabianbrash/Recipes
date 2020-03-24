@@ -1,6 +1,7 @@
 
 ######My kubernetes journey#################################
 ##REF:https://kubernetes.io/docs/tasks/
+##REF:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-
 
 
 kubectl version
