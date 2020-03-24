@@ -41,6 +41,8 @@ kubectl describe ing
 kubectl config view
 kubectl config current-context
 
+kubectl config get-contexts
+
 #kubectl get - list resources
 #kubectl describe - show detailed information about a resource
 #kubectl logs - print the logs from a container in a pod
