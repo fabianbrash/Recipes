@@ -391,3 +391,54 @@ kubectl --kubeconfig john.kubeconfig config set-context john-kubernetes --cluste
 ##Note if you look at john.kubeconfig and the current-context is not set you need to set it
 current-context: john-kubernetes
 ##and then save it and give it to john
+
+##Create a role
+
+kubectl create role john-finance --verb=get --verb=list --verb=watch --resource=pods --namespace=finance
+
+##Or
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: finance
+  name: john-finance
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+
+
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: finance
+  name: john-finance
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]
+  
+####Create a role-binding
+
+kubectl create rolebinding john-finance-rolebinding --role=john-finance --user=john --namespace=finance
+
+##Or
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: john-finance-rolebinding
+  namespace: finance
+subjects:
+- kind: User
+  name: john
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: john-finance
+  apiGroup: ""
+
+##Note a role called john-finance has to exist to do this
+
