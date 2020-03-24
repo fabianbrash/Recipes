@@ -204,5 +204,14 @@ openssl ecparam -name secp521r1 -genkey -noout -out rootCAECDSA.key
 ###Create and self-sign root CA
 openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCAECDSA.crt
 
+##Create a cert for a user###
+openssl req -new -key john.jey -out john.csr -subj "/CN=john/O=finance"
+##Note in the above the O=finance is crucial as it basically says john is a member of the finance group
+##So we can then use that to create permission for groups of users and not just john
+
+
+##Now let's sign johns cert with our CA
+openssl x509 -req -in john.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out john.crt -days 365
+
 
 
