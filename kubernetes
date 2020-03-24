@@ -190,7 +190,6 @@ kubectl config current-context
 ####Now switch to prod
 kubectl config use-context prod
 
-
 ###Rolling upgrades#####
 
 kubectl rollout status deployment my-deploy
@@ -383,4 +382,12 @@ ports:
 ## and "targetPort" is the actaully exposed port in the container 8443 so if another pod 
 ## within the cluster accesses the deployment/pod on 443 it should roll to 8443 on the target pod(s)
 
+####Create a config file for a user
 
+kubectl --kubeconfig john.kubeconfig config set-cluster mycluster --server https://IP_OF_API_SERVER:6443 --certificate-authority=ca.crt
+kubectl --kubeconfig john.kubeconfig config set-credentials john --client-certificate /home/john/john.crt -client-key /home/john/john.key
+kubectl --kubeconfig john.kubeconfig config set-context john-kubernetes --cluster mycluster --namespace finance --user john
+
+##Note if you look at john.kubeconfig and the current-context is not set you need to set it
+current-context: john-kubernetes
+##and then save it and give it to john
