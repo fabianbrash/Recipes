@@ -446,3 +446,12 @@ roleRef:
 
 ##Note a role called john-finance has to exist to do this
 
+
+######So I had an interesting issue when deploying golang and alpine in my k82 cluster
+###the image would get pulled and then it would go into a crash loop, but if I ran
+## and nginx or a mariadb pod, everything was fine, then it hit me thise images are minimal
+##the do nothing unlike docker where you would see 'exited' k8s just goes in a loop trying to
+##restart the pod(odd since this was a pod spec why didn't it just start and then terminate the pod, maybe
+##the default restart policy is in play here) anyways the fix was to run the pod with a sleep of 10000 and 
+#viola it worked.
+
