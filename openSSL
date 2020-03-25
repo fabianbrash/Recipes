@@ -172,6 +172,11 @@ openssl s_client -connect myldapsserver.domain.com:636
  
  openssl passwd -1 -salt $(openssl rand -base64) mypassword
  
+ ##OR
+ openssl passwd -1 -salt $(openssl rand -base64 6) mypassword
+ 
+ ##OR
+ openssl passwd -1 -salt $(openssl rand -base64 6) "Press Enter and you will be prompted for the password to encrypt"
 
 
 ####Generate random password########
