@@ -9,6 +9,8 @@ kubectl version
 kubectl version --short
 kubectl api-versions
 
+kubectl get apiservices
+
 kubectl version --client --short
 
 kubectl get namespaces
