@@ -231,7 +231,7 @@ sudo systemctl enable ntpd
 #####ADD OUR FIREWALL RULES#########################
 sudo firewall-cmd --add-service=ntp --permanent
 sudo firewall-cmd --reload
-
+sudo firewall-cmd --list-all
 ###SEE IF IT'S WORKING
 sudo ntpq -p
 
