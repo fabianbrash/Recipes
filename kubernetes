@@ -455,3 +455,12 @@ roleRef:
 ##the default restart policy is in play here) anyways the fix was to run the pod with a sleep of 10000 and 
 #viola it worked.
 
+
+###K8s RBAC
+
+kubectl auth can-i create pods
+kubectl auth can-i create services
+kubectl auth can-i create deployments
+
+##You get the idea
+
