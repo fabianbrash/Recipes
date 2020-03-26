@@ -462,5 +462,8 @@ kubectl auth can-i create pods
 kubectl auth can-i create services
 kubectl auth can-i create deployments
 
+kubectl auth can-i create pods --as=john
+kubectl auth can-i list pods --as=john
+
 ##You get the idea
 
