@@ -70,3 +70,37 @@ git log -p -2 ##Show all patches for the last 2 commits helpful to see what has 
 ####You can also use git diff with git log to get changes
 git log 
 git diff commitID1 commitID2
+
+###Tagging##########
+##REF:https://git-scm.com/book/en/v2/Git-Basics-Tagging
+
+git tag
+
+##search based on a pattern
+git tag -l "v1.8.5*"
+
+##Create an annoted tag
+git tag -a v1.4 -m "my version 1.4"
+
+git tag
+
+git show v1.4
+
+###Tag later
+
+git log --pretty=oneline
+
+git tag -a v1.2 9fceb02
+
+##Sharing Tags
+By default, the git push command doesn’t transfer tags to remote servers. You will have to explicitly 
+##push tags to a shared server after you have created them. This process is just like sharing remote branches
+## — you can run git push origin <tagname>.
+
+git push origin v1.4
+
+
+
+
+
+
