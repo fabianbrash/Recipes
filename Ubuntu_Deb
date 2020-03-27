@@ -444,3 +444,11 @@ sudo netplan apply
 ifconfig
 
 ip link set s1(or whatever interface you want down) down
+
+##searching for what provides a package
+##this only works if the package is installed on your system
+
+sudo dpkg -S which ping
+sudo dpkg -S which nslookup
+
+##this is useful if you are using a docker image which has most packages removed and you need to add some back
