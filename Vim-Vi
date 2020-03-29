@@ -30,3 +30,5 @@ set autoindent
 :%s/foo/bar/g    ##replace all occurences of foo with bar
 
 
+: set list. ##VERY HELPFUL IN FINDING TABS IN A YAML FILE
+
