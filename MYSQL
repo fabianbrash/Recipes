@@ -36,5 +36,35 @@ USE dbname;
 show tables;
 
 
+####ADD a new user###
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
 
+##OR##
+##For example, to grant access from a machine with IP 10.8.0.5 you would run:
+CREATE USER 'newuser'@'10.8.0.5' IDENTIFIED BY 'user_password';
+
+##OR##
+##To create a user that can connect from any host, use the '%' wildcard as a host part:
+CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
+
+
+##PLEASE NOTE THAT WHATEVER CONTEXT YOU USE TO CREATE THE USER YOU WILL NEED TO USE IT FOR
+##EVERYTHING, I.E. 'localhost', 'IP', or '%'
+
+###Grant all privileges to a user account over a specific database:
+GRANT ALL PRIVILEGES ON database_name.* TO 'database_user'@'localhost';
+
+##in the above if you did not use 'localhost' then you need to change it to
+##whatever you used.
+
+##Grant all privileges to a user account on all databases:
+GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
+
+#Grant all privileges to a user account over a specific table from a database:
+GRANT ALL PRIVILEGES ON database_name.table_name TO 'database_user'@'localhost';
+
+##Grant multiple privileges to a user account over a specific database:
+GRANT SELECT, INSERT, DELETE ON database_name.* TO database_user@'localhost';
+
+SHOW GRANTS FOR 'database_user'@'localhost'; #same rule applies 'ip', '%'
 
