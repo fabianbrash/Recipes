@@ -3,6 +3,7 @@
 ######################SIMPLE MYSQL STATEMENTS REF: https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html####
 #########Dump data from a table###########
 ##REF:https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
+##REF:https://dev.mysql.com/doc/refman/8.0/en/account-names.html
 
 USE dbname;
 
@@ -48,6 +49,12 @@ CREATE USER 'newuser'@'10.8.0.5' IDENTIFIED BY 'user_password';
 ##To create a user that can connect from any host, use the '%' wildcard as a host part:
 CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
 
+#OR##
+CREATE USER 'david'@'198.51.100.0/255.255.255.0';
+
+##OR##
+
+CREATE USER 'david'@'198.51.100.%';  #/24
 
 ##PLEASE NOTE THAT WHATEVER CONTEXT YOU USE TO CREATE THE USER YOU WILL NEED TO USE IT FOR
 ##EVERYTHING, I.E. 'localhost', 'IP', or '%'
@@ -69,3 +76,4 @@ GRANT SELECT, INSERT, DELETE ON database_name.* TO database_user@'localhost';
 
 SHOW GRANTS FOR 'database_user'@'localhost'; #same rule applies 'ip', '%'
 
+FLUSH PRIVILEGES;
