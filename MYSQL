@@ -2,6 +2,7 @@
 
 ######################SIMPLE MYSQL STATEMENTS REF: https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html####
 #########Dump data from a table###########
+##REF:https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
 
 USE dbname;
 
