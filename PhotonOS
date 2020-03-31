@@ -240,3 +240,8 @@ Install-Module -Name VMware.PowerCLI
 ##So I had an issue running coredns on port 53 turns out that photonOS
 ##uses systemd-resolved, so you need to stop that service so you can bind on udp 53
 systemctl stop systemd-resolved
+
+##Also since this will permanently run DNS
+systemctl disable systemd-resolved
+
+##If you don't do the above you will have weird dns issues on the host machine
