@@ -847,6 +847,28 @@ docker attach containername
 
 docker cp id_rsa.pub container1:/data
 
+##Log rotation##
+#REF:https://success.docker.com/article/how-to-setup-log-rotation-post-installation
+
+cd /etc/docker
+touch daemon.json
+
+##Add the below
+
+{
+"log-driver": "json-file",
+"log-opts": {
+    "max-size": "10m",    
+    "max-file": "3"    
+    }
+}
+
+##This will apply to new containers not old ones so either restart all your containers or do this before
+##running your first container
+
+sudo systemctl restart docker
+
+
 
 
 
