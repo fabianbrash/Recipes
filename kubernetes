@@ -246,6 +246,12 @@ systemctl start docker
 setenforce 0
 sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
 
+##Ubuntu 18.04
+setenforce 0
+sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+
+##By defualt it seems 18.04 is set to permissive which should work for us
+
 ##Disable firewalld
 systemctl disable firewalld
 systemctl stop firewalld
