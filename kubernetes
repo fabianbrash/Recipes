@@ -263,6 +263,11 @@ EOF
 sysctl --system
 
 
+###Note the above is not required on Debian based systems i.e. Ubuntu, to make sure 
+sysctl net.bridge.bridge-nf-call-iptables
+sysctl net.bridge.bridge-nf-call-ip6tables
+
+
 ##Kubernetes Setup
 
 ##Add yum repository
