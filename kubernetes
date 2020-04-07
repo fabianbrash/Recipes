@@ -490,6 +490,11 @@ echo -n 'admin' | base64
 echo -n '1f2d1e2e67df' | base64
 
 
+####Kubernetes has the ability to sign certificates
+##ReF:https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/
+
+kubectl get csr --all-namespaces
+
 ####NOTE THE -n WITHOUT WHICH STANDS FOR 'do not output trailing new line'
 ### WITHOUT THAT YOU'RE PASSWORDS WILL BE WRONG I USED THIS FOR A MARIADB INSTANCE
 ## AND I MADE THE MISTAKE OF NOT USING -n AND EVERY TIME I ATTEMPTED TO LOGIN IN A GOT
