@@ -870,7 +870,23 @@ sudo systemctl restart docker
 
 
 
+#####Docker save command###
+##So I shot my self in the foot the other day, I use coredns as my dns in my homelab and I wanted to update the container
+##to the latest version, so I stopped the container, deleted it and deleted the image, and then I attempted
+##to download the lates image with docker pull, well see my issue, I have no DNS ANYMORE!!!
+##Well docker save and docker load to the rescue
 
+##On my laptop I simply pointed my dns to my router and then did a docker pull 
+##Then I ran the below which saves the docker image to a tar file
 
+docker save -o coredns-1.6.9.tar coredns/coredns:1.6.9
+
+scp coredns-1.6.9.tar user@host:/
+
+##then simply
+
+docker load < coredns-1.6.9.tar
+
+##Now my container host has the image and then I can run as usual
 
 
