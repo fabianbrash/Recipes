@@ -1303,9 +1303,17 @@ VCDB=# \q  ##quit
 
 
 
+###So I saw the below error message when attempting various tasks
+
+/var/log/journal/xxx could not write disk is full( I'm paraphrasing here)
+
+##So I found the below command
+
+vdf -h
 
 
-
+##Which showed /var being 100% full, so I rebooted my host and then ran the above again and viola /var was not full
+## the host was up for 97 days
 
 
 
