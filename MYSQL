@@ -71,11 +71,18 @@ CREATE USER 'david'@'198.51.100.0/255.255.255.0';
 
 CREATE USER 'david'@'198.51.100.%';  #/24
 
+
+###LET'S ADD A USER THAT CAN ACCESS OUR DB FROM ANY POD IN POD-CIDR 172.168.0.0
+
+CREATE USER 'wp'@'172.168.0.0/255.255.0.0';
+
 ##PLEASE NOTE THAT WHATEVER CONTEXT YOU USE TO CREATE THE USER YOU WILL NEED TO USE IT FOR
 ##EVERYTHING, I.E. 'localhost', 'IP', or '%'
 
 ###Grant all privileges to a user account over a specific database:
 GRANT ALL PRIVILEGES ON database_name.* TO 'database_user'@'localhost';
+
+GRANT ALL PRIVILEGES ON database_name.* TO 'wp'@'172.168.0.0/255.255.0.0';
 
 ##in the above if you did not use 'localhost' then you need to change it to
 ##whatever you used.
