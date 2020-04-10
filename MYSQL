@@ -13,6 +13,18 @@ show tables;
 SELECT * FROM dbtable;
 
 
+
+####Log into mysql###########
+
+mysql -p  ##login in as root on localhost
+
+mysql -h localhost -u myname -p mydb  ##log in as user myname on localhost and enter a password
+
+mysql -h localhost -u myname -p  ##Same as above but this time prompt for password
+
+mysql -h DNS_OR_IP -u myname -p  ## log into a remote sql server
+
+
 #####LET'S UPDATE THE VALUE OF A TABLE#########################
 
 USE db;
