@@ -1101,3 +1101,16 @@ tar -xvf file.tar.xz
 ##Upgrade pip
 
 sudo pip install --upgrade pip
+
+
+
+###Linux tr command#########
+##REF:https://www.geeksforgeeks.org/tr-command-in-unix-linux-with-examples/
+
+text.txt | tr -d '\n' > text-nonewline.txt
+
+
+##The above will delete all new lines use the tr tool and output it to a new file
+##Note this is very handy when dealing with base64 encoded text as new lines can be entered if you
+##don't use echo -n
+
