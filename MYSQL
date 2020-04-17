@@ -134,3 +134,15 @@ UPDATE wp_posts SET post_content = replace(post_content, 'http://www.oldurl', 'h
 
 UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://www.oldurl','http://www.newurl');
 
+
+
+
+###Run a .sql file
+
+mysql -u username -h db_server -p password database_name < /path/to/your/file.sql
+
+
+##Alternatively if you have already logged in to the server, just run:
+
+mysql>source /path/to/your/file.sql
+
