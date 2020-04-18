@@ -20,6 +20,7 @@ DROP DATABASE database_name;
 
 mysql> use mysql;
 Database changed
+mysql> DESC user;
 mysql> SELECT user FROM user;
 
 ###Note that we have already logged into the server
