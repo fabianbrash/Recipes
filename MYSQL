@@ -13,9 +13,8 @@ show tables;
 SELECT * FROM dbtable;
 
 ###Delete/drop a database
-DROP DATABASE [IF EXISTS] database_name;
+DROP DATABASE database_name;
 
-##note we are making sure that the DB exist before removing it
 
 
 
