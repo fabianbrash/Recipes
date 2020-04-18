@@ -25,6 +25,16 @@ mysql> SELECT user FROM user;
 
 ###Note that we have already logged into the server
 
+##Show current logged on user, note I haven't tested this yet
+
+SELECT 
+    user, 
+    host, 
+    db, 
+    command 
+FROM 
+    information_schema.processlist;
+
 
 ####Log into mysql###########
 
