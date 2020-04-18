@@ -4,6 +4,7 @@
 #########Dump data from a table###########
 ##REF:https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
 ##REF:https://dev.mysql.com/doc/refman/8.0/en/account-names.html
+##REF:https://www.mysqltutorial.org/mysql-show-users/
 
 USE dbname;
 
