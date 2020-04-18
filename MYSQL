@@ -15,7 +15,13 @@ SELECT * FROM dbtable;
 ###Delete/drop a database
 DROP DATABASE database_name;
 
+###List all users
 
+mysql> use mysql;
+Database changed
+mysql> SELECT user FROM user;
+
+###Note that we have already logged into the server
 
 
 ####Log into mysql###########
