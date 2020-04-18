@@ -1114,3 +1114,9 @@ text.txt | tr -d '\n' > text-nonewline.txt
 ##Note this is very handy when dealing with base64 encoded text as new lines can be entered if you
 ##don't use echo -n
 
+
+
+### cp -n copy and don't ask to overwrite file
+
+cp -n myfile .
+
