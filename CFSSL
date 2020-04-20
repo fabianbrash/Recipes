@@ -19,7 +19,7 @@ touch ca-csr.json
       "algo": "rsa",
       "size": 2048
     },
-    "name": [
+    "names": [
     {
       "C": "US",
       "L": "Richmond",
