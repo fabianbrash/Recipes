@@ -499,3 +499,13 @@ kubectl get csr --all-namespaces
 ### WITHOUT THAT YOU'RE PASSWORDS WILL BE WRONG I USED THIS FOR A MARIADB INSTANCE
 ## AND I MADE THE MISTAKE OF NOT USING -n AND EVERY TIME I ATTEMPTED TO LOGIN IN A GOT
 ##INCORRECT PASSWORD
+
+
+####TLS Secrets####
+
+kubectl create secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE}
+
+##example
+kubectl create secret tls my_cert --key cert-key.pem --cert cert.pem
+
+
