@@ -158,7 +158,22 @@ UPDATE wp_posts SET post_content = replace(post_content, 'http://www.oldurl', 'h
 UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://www.oldurl','http://www.newurl');
 
 
+##backup mysql database
+##REF:https://phoenixnap.com/kb/how-to-backup-restore-a-mysql-database
+sudo mysqldump -u [user] -p [database_name] > [filename].sql
 
+
+##backup entire db managment system
+mysqldump --all-databases --single-transaction --quick --lock-tables=false > full-backup-$(date +%F).sql -u root -p
+
+
+##Include more than 1 db in dump
+sudo mysqldump -u [user] -p [database_1] [database_2] [database_etc] > [filename].sql
+
+
+##Restore a sql database from backup
+
+mysql -u [user] -p [database_name] < [filename].sql
 
 ###Run a .sql file
 
