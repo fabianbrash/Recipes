@@ -514,6 +514,8 @@ kubectl create secret tls my_cert --key cert-key.pem --cert cert.pem
 
 ##Contexts#################
 ##REF:https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
+##REF:https://ahmet.im/blog/mastering-kubeconfig/
+##REF:https://www.jacobtomlinson.co.uk/posts/2019/how-to-merge-kubernetes-kubectl-config-files/
 
 kubectl config view # Show Merged kubeconfig settings.
 
@@ -541,5 +543,12 @@ kubectl config set-context --current --namespace=ggckad-s2
 kubectl config set-context gce --user=cluster-admin --namespace=foo \
   && kubectl config use-context gce
  
-kubectl config unset users.foo                       # delete user foo
+kubectl config unset users.foo # delete user foo
+
+
+
+##Let's merge all of our config files to 1 master 1, make sure to backup your config file first
+
+KUBECONFIG=~/.kube/config:/path/to/new/config kubectl config view --flatten > ~/.kube/config
+
 
