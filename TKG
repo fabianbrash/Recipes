@@ -59,6 +59,17 @@ tkg delete cluster tkg-cluster-0
 tkg delete management-cluster
 
 
+###Context issues###
+
+##So I consolidated my contexts and unfortunately I deleted the context file that TKG merged
+##So in your home directory there is a .tkg folder and in there is a config.yaml file @ the end of the file
+##is the name and path to config file that is being used, change it to the new file, but that's not all
+##if you read the error message it's looking for a specific context name in the config file change the name
+##to what its looking for, I have an example in my kubernetes recipe.
+
+##Once I did those 2 things, things started to work again, but now I have to re-merge my config files with the new 
+##changes so I can switch contexts(I hope it works)
+
 
 
 
