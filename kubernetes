@@ -552,3 +552,40 @@ kubectl config unset users.foo # delete user foo
 KUBECONFIG=~/.kube/config:/path/to/new/config kubectl config view --flatten > ~/.kube/config
 
 
+##Duplicate users
+
+## You will also probably also run into clusters with the same name and if you attempt to switch
+##everything will looke fine until you run the kubectl command and you get unauthorized error
+##it depends on the order you combined your file, the first 1 will win so you will be able to connect to
+##the first cluster but get an error for the second, to fix just do the below
+##REF:https://imti.co/kubectl-remote-context/
+
+contexts:
+- context:
+    cluster: leave as is
+    user: change to something else(I use the cluster name)
+  name: user@leave original
+  ....
+  
+  users:
+  - name: change to the same as user
+  ...
+  
+  
+  ##Example
+  
+  contexts:
+- context:
+    cluster: leave as is
+    user: gke-0
+  name: gke-0@leave original
+  ....
+  
+  users:
+  - name: gke-0
+  ...
+  
+
+
+
+
