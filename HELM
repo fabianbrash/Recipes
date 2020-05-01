@@ -64,6 +64,10 @@ helm install mariadb -f /tmp/mariadb.yaml stable/mariadb --namespace db
 ##REF:https://helm.sh/docs/intro/using_helm/
 
 
+##Helm values.yaml
 
+##you may see in the values.yaml file something like args:[]
+##the additional args should look args:["arg1"] or args:["--myexpectedarg1=false"]
+##And I think args:["arg1=true","--arg2=false"]
 
 
