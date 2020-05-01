@@ -71,6 +71,10 @@ tkg delete management-cluster
 ##changes so I can switch contexts(I hope it works)
 
 
+##Learned you can also do this
+
+tkg get credentials czdevtest(this is the name of the cluster) --export-file czdevtest.kubeconfig
+
 
 
 
