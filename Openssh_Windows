@@ -11,6 +11,8 @@ Get-WindowsCapability -Online | ? name -like 'OpenSSH*'
 
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 
+##Client install is located @ C:\Windows\System32\OpenSSH
+
 ##Install the server
 
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
