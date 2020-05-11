@@ -1120,3 +1120,15 @@ text.txt | tr -d '\n' > text-nonewline.txt
 
 cp -n myfile .
 
+
+##ntp fails to start on boot up
+##so I had an issue I enabled ntpd to when I rebooted
+##the service would not start,apparently cent7 uses
+##a new service chrony and it will start first and
+##ntpd would not
+
+sudo systemctl stop chronyd 
+sudo systemctl disable chronyd
+
+
+
