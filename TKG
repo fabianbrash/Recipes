@@ -80,6 +80,11 @@ tkg delete management-cluster
 tkg get credentials czdevtest(this is the name of the cluster) --export-file czdevtest.kubeconfig
 
 
+##Advanced deployments
+
+VSPHERE_NUM_CPUS=6 VSPHERE_DISK_GIB=50 vSPHERE_MEM_MIB=16384 tkg create cluster myclust -p prod -c 3 -w 5 --dry-run > /tmp/clust.yaml
+
+
 
 
 
