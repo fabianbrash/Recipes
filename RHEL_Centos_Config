@@ -1126,6 +1126,7 @@ cp -n myfile .
 ##the service would not start,apparently cent7 uses
 ##a new service chrony and it will start first and
 ##ntpd would not
+##REF:https://www.thegeekdiary.com/centos-rhel-7-enable-ntp-to-start-at-boot-after-fresh-install-disable-chrony/
 
 sudo systemctl stop chronyd 
 sudo systemctl disable chronyd
