@@ -34,6 +34,10 @@ tkg create cluster tkg-cluster-0 --plan=dev --worker-machine-count=2
 ##Let's list our guest clusters
 tkg get cluster
 
+
+tkg get mc ## get mgmt cluster
+
+
 ##once done the 2 contexts will be merged(I'm not good with k8s contexts yet) if you need get the actual kube-config file
 ##ssh into the controller VM(s) ssh capv@1.1.1.1 then you can cp /etc/kubernetes/admin.conf again this is upstream k8s
 
