@@ -592,8 +592,18 @@ contexts:
 
 kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
 
+
+##show labels
+
+kubectl get ns default --show-labels
+
+
 ####rollout & restart
 
 kubectl rollout restart deploy my-deploy
 
 kubectl rollout restart -n mynamespace
+
+##Annotate a ns
+
+kubectl annotate -n default release=dev
