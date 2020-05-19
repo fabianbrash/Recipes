@@ -607,3 +607,15 @@ kubectl rollout restart -n mynamespace
 ##Annotate a ns
 
 kubectl annotate -n default release=dev
+
+
+###Autoscaling
+#REF:https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling#api-versions
+#REF:https://cloud.google.com/kubernetes-engine/docs/how-to/vertical-pod-autoscaling
+
+##v2beta2
+
+kubectl edit hpa.v2beta2.autoscaling myhpa
+
+kubectl get hpa.v2beta2.autoscaling myhpa
+
