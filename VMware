@@ -1316,6 +1316,10 @@ vdf -h
 ## the host was up for 97 days
 
 
+##VCSA livecore dump
+##REF:https://pradeeppapnai.com/2019/06/03/vmon-cli/
+
+vmon-cli -d vpxd
 
 
 
