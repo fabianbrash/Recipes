@@ -10,7 +10,7 @@ sudo yum install -y python3
 
 cd kubespray
 # Install dependencies from ``requirements.txt``
-sudo pip install -r requirements.txt
+sudo pip3 install -r requirements.txt
 
 ##you might have to upgrade pip if you are on a version < 10.0
 sudp pip install --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --upgrade pip
