@@ -1321,5 +1321,8 @@ vdf -h
 
 vmon-cli -d vpxd
 
+##then find your dumps @
+/var/core
+
 
 
