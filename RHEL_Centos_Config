@@ -1131,5 +1131,28 @@ cp -n myfile .
 sudo systemctl stop chronyd 
 sudo systemctl disable chronyd
 
+###Run a script on boot only once##
+##REF:https://serverfault.com/questions/853396/run-script-on-first-boot
+##REF:https://stackoverflow.com/questions/8981164/self-deleting-shell-script
+
+##So I needed to run a script just once on boot to re-generate machine-id
+##look at firstboot.service
+##create the above file in /etc/systemd/system
+#then
+sudo systemctl daemon-reload
+sudo systemctl enable firstboot.service
+
+##now the magic here is we need to delete the script once it runs so create a script like so
+
+#!/bin/bash
+
+systemd-machine-id-setup
+
+#delete myself
+rm -- $0
+
+###So the we've enabled the service and on boot it will run and then delete itself and 
+##never run again
+
 
 
