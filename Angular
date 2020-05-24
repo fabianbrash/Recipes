@@ -1,1 +1,26 @@
 ##Angular stuff will go here
+
+###First we need node
+##REF:https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+
+#Node.js v14.x:
+
+# Using Ubuntu
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+
+##Then let's install angular globally
+##REF:https://cli.angular.io/
+
+
+sudo npm install -g @angular/cli
+
+##Create our first app
+
+ng new my-dream-app
+
+cd my-dream-app
+
+ng serve
+
