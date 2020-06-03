@@ -1154,5 +1154,17 @@ rm -- $0
 ###So the we've enabled the service and on boot it will run and then delete itself and 
 ##never run again
 
+####bash completion packages
+##REF:https://www.tecmint.com/install-and-enable-bash-auto-completion-in-centos-rhel/
+##Note this may already be installed
 
 
+sudo yum install bash-completion bash-completion-extras
+
+
+##Let's find it and then source it
+
+locate bash_completion.sh
+source /etc/profile.d/bash_completion.sh  
+
+##Instead of above you can log out and back in again
