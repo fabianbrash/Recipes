@@ -619,3 +619,10 @@ kubectl edit hpa.v2beta2.autoscaling myhpa
 
 kubectl get hpa.v2beta2.autoscaling myhpa
 
+
+##bash completion
+##REF:https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete
+
+
+source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
