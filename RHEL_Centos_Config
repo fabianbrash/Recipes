@@ -113,6 +113,14 @@ sudo firewall-cmd --reload
 ###Remove a port
 firewall-cmd --permanent --zone=public --remove-port=10050/tcp
 
+##Open a port to a particualt IP
+
+firewall-cmd --permanent --zone=public --add-rich-rule='
+  rule family="ipv4"
+  source address="1.2.3.4/32"
+  port protocol="tcp" port="4567" accept'
+  
+## I will assume you can use a range as well "1.2.3.0/24" but I have not yet tested that out
 
 ####NOTE IF YOU ARE NOT USING THE --permanent command DO NOT RELOAD AS IT WILL WIPE OUT THE RULE!!!
 ###I LEARNED THIS THE HARD WAY!!!!!!
