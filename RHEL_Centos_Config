@@ -110,6 +110,9 @@ sudo firewall-cmd --permanent --new-zone=publicweb
 ##Reload the firewall
 sudo firewall-cmd --reload
 
+###Remove a port
+firewall-cmd --permanent --zone=public --remove-port=10050/tcp
+
 
 ####NOTE IF YOU ARE NOT USING THE --permanent command DO NOT RELOAD AS IT WILL WIPE OUT THE RULE!!!
 ###I LEARNED THIS THE HARD WAY!!!!!!
