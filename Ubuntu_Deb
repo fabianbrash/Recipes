@@ -290,6 +290,7 @@ sudo /localmntpoint
 
 ##Add a user with UID of 5000
 sudo useradd smbtest -u 5000
+sudo useradd smbtest -m ## Add user and create home directory
 ##Now create a group to add users to that will have access to
 sudo groupadd -g 6000 sharegroup
 ##Now add all users that will have access to the share to that group
