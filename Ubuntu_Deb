@@ -367,7 +367,7 @@ sha256sum /dir/file/iso
 
 
 ##########Add a user##############
-sudo adduser user ###Instead of useradd
+sudo adduser user ###Instead of useradd this is more user friendly it will create a home directory for you
 
 
 
