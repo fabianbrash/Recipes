@@ -1179,3 +1179,9 @@ locate bash_completion.sh
 source /etc/profile.d/bash_completion.sh  
 
 ##Instead of above you can log out and back in again
+
+## firewalld zone files
+
+sudo ls -la /etc/firewalld/zones
+
+sudo cat /etc/firewalld/zones/public.xml. ## or whatever zone you want to look at this file shows all the rules applied
