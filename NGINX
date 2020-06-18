@@ -15,6 +15,17 @@ server {
 }
 
 
+## you may want to check and see if seLinux is blocking your proxy
+##REF:https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx
+
+sudo cat /var/log/audit/audit.log | grep nginx | grep denied
+
+## if you are being blocked you can set SELinux to permissive or use the below
+
+setsebool -P httpd_can_network_connect 1
+
+## I assume the above will survive a reboot but I have not checked yet
+
 ######END FILE CONTENTS########################################
 
 
