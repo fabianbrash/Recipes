@@ -1185,3 +1185,10 @@ source /etc/profile.d/bash_completion.sh
 sudo ls -la /etc/firewalld/zones
 
 sudo cat /etc/firewalld/zones/public.xml. ## or whatever zone you want to look at this file shows all the rules applied
+
+
+## kill
+
+sudo kill -9 2331 or sudo kill -SIGKILL 2331
+
+
