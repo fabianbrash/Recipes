@@ -12799,6 +12799,8 @@ add-webconfigurationproperty //staticContent -name collection -value @{fileExten
 
 New-SelfSignedCertificate -DnsName "mykey -CertStoreLocation "Cert:\CurrentUser\My" -KeyUsage KeyEncipherment,DataEncipherment, KeyAgreement -Type DocumentEncryptionCert
 
+New-SelfSignedCertficate -DnsName "server.domain.com" -CertStoreLocation "Cert:\LocalMachine\My" -NotAfter (Get-Date).AddMonths(36) -KeyAlgorithm RSA -KeyLength 2048
+
 ##Now we have our cert
 
 PS:>cd Cert:\CurrentUser\My
