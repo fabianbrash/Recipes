@@ -113,6 +113,11 @@ ssl_dhparam /etc/nginx/certs/dhparam.pem;
 ##For the most part you can rename a .crt to .pem for import into Linux systems(there are exceptions)
 ##Also you can rename .pfx to .p12 to also import into Linux
 
+#####convert .p7b to .pem ###########
+##REF:https://knowledge.digicert.com/solution/SO26449
+
+openssl pkcs7 -print_certs -in certificatename.p7b -out certificatename.pem
+
 
 
 ##########EXPORT PRIVATE KEY FROM .PFX FILE######################################
