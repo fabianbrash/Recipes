@@ -1,0 +1,12 @@
+####Certbot information###
+
+
+##REF: https://certbot.eff.org/docs/using.html?highlight=dns
+
+
+
+##Okay let's install a cert completely manually
+
+certbot certonly --manual --preferred-challenges dns
+
+##Okay enter your CN and then add the TXT entry in your DNS provider
