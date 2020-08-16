@@ -414,4 +414,34 @@ cp private.key /etc/pki/nginx/private
 ##and the nginx user is defined
 ##Also on centos there is a /etc/nginx/default.d where you can place a .conf file for default server block
 
+###directoy list for a specific folder
 
+### so I needed to enable directory list for a specific folder and the commands I found online were still giving me a 404
+
+## REF: https://serverfault.com/questions/347815/issues-with-nginx-autoindex
+
+location /myfolder/ {
+     autoindex on;
+  }
+  
+## the above still generates a 404
+
+location /myfolder/ {
+     root /usr/share/nginx/html;
+     autoindex on;
+}
+
+## the above now works, I guess you have to tell nginx the relative path
+
+
+location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+
+    location /myfolder/ {
+        root        /usr/share/nginx/html;
+        autoindex   on;
+    }
+    
+## the above is a more complete server block
