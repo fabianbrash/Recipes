@@ -49,3 +49,5 @@ go mod init
 
 ## as long as you are not being blocked from this on a corporate network
 go get -u -v
+
+go build myfile.go
