@@ -41,3 +41,8 @@ go build
 
 ##this should build a binary called hello
 ./hello
+
+
+## initialize module
+
+go mod init
