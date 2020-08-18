@@ -120,6 +120,15 @@ firewall-cmd --permanent --zone=public --add-rich-rule='
   source address="1.2.3.4/32"
   port protocol="tcp" port="4567" accept'
   
+
+##list rich rule
+
+sudo firewall-cmd --list-rich-rules
+
+## remove rich rules
+
+sudo firewall-cmd --remove-rich-rule='add complete rule here'
+  
 ## I will assume you can use a range as well "1.2.3.0/24" but I have not yet tested that out
 
 ####NOTE IF YOU ARE NOT USING THE --permanent command DO NOT RELOAD AS IT WILL WIPE OUT THE RULE!!!
