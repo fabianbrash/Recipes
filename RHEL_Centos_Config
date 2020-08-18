@@ -113,7 +113,7 @@ sudo firewall-cmd --reload
 ###Remove a port
 firewall-cmd --permanent --zone=public --remove-port=10050/tcp
 
-##Open a port to a particualt IP
+##Open a port to a particular IP
 
 firewall-cmd --permanent --zone=public --add-rich-rule='
   rule family="ipv4"
@@ -122,6 +122,7 @@ firewall-cmd --permanent --zone=public --add-rich-rule='
   
 
 ##list rich rule
+## https://www.computernetworkingnotes.com/rhce-study-guide/firewalld-rich-rules-explained-with-examples.html
 
 sudo firewall-cmd --list-rich-rules
 
