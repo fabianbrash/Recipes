@@ -1202,3 +1202,6 @@ sudo cat /etc/firewalld/zones/public.xml. ## or whatever zone you want to look a
 sudo kill -9 2331 or sudo kill -SIGKILL 2331
 
 
+## base 64 decode
+
+echo bGludXggYmFzZTY0IGRlY29kZQo= | base64 -d
