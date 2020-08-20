@@ -12906,3 +12906,11 @@ $password = Get-Content $ThePasswordFile | ConvertTo-SecureString -Key (Get-Cont
 #####tail a file
 
 Get-Content -LiteralPath C:\file.log -Tail 0 -Wait
+
+## Fix System.string[]
+
+$_.IPs -join ","
+
+## the above should fix export-csv displaying System.String[] when an array is returned instead of a single item
+
+
