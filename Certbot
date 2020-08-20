@@ -14,3 +14,24 @@ certbot certonly --manual --preferred-challenges dns
 ## OR ##
 
 certbot certonly -d myservice.domain.com --manual --preferred-challenges dns
+
+
+##Install plugins centos 8 this works for the latest ubuntu you will need to tweak for centos7
+
+sudo dnf install -y epel-release
+
+sudo dnf install -y certbot
+
+
+##Should already be there but just in case
+
+sudo yum install python3-pip
+
+certbot plugins  ## list all plugins
+
+pip3 list  ## list all packages
+
+sudo pip3 install certbot-dns-route53
+
+certbot plugins  ## you should now see the route53 plugin
+
