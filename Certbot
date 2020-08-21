@@ -25,7 +25,7 @@ sudo dnf install -y certbot
 
 ##Should already be there but just in case
 
-sudo yum install python3-pip
+sudo yum install python3-pip -y
 
 certbot plugins  ## list all plugins
 
