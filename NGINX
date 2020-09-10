@@ -22,8 +22,8 @@ sudo cat /var/log/audit/audit.log | grep nginx | grep denied
 
 ## if you are being blocked you can set SELinux to permissive or use the below
 
-setsebool -P httpd_can_network_connect 1
-
+sudo setsebool -P httpd_can_network_connect 1
+sudo systemctl reload nginx
 ## I assume the above will survive a reboot but I have not checked yet
 
 ######END FILE CONTENTS########################################
