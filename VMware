@@ -1326,9 +1326,7 @@ vmon-cli -d vpxd
 
 ###get cdp information from esxcli
 
-vim-cmd hostsvc/net/query_networkhint –pnic=vmnic1 | egrep ‘vlan’
-
-##the above gives me an error
+vim-cmd hostsvc/net/query_networkhint -–pnic=vmnic1 | egrep ‘vlan’
 
 vim-cmd hostsvc/net/query_networkhint | egrep ‘vlan’
 
