@@ -1324,5 +1324,14 @@ vmon-cli -d vpxd
 ##then find your dumps @
 /var/core
 
+###get cdp information from esxcli
 
+vim-cmd hostsvc/net/query_networkhint –pnic=vmnic1 | egrep ‘vlan’
 
+##the above gives me an error
+
+vim-cmd hostsvc/net/query_networkhint | egrep ‘vlan’
+
+##the above does not
+
+vim-cmd hostsvc/net/query_networkhint | less
