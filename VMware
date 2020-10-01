@@ -1325,6 +1325,7 @@ vmon-cli -d vpxd
 /var/core
 
 ###get cdp information from esxcli
+#REF:https://kb.vmware.com/s/article/1007069
 
 vim-cmd hostsvc/net/query_networkhint -–pnic=vmnic1 | egrep ‘vlan’
 
