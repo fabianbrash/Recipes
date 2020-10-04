@@ -970,6 +970,11 @@ systemctl restart dhcpd
 sudo firewall-cmd --permanent --zone=public --add-service=dhcp 
 sudo firewall-cmd --reload
 
+
+###Lease file and log file
+ /var/lib/dhcp/dhcpd.leases ## lease file
+ /var/log/messages # log file
+
 ####See available file systems##########
 ##Should work on Debian systems as well####
 
