@@ -240,3 +240,7 @@ sudo vim /etc/ansible/hosts
 
 1.1.1.1 ansible_python_interpreter=/usr/bin/python3
 db.me.local ansible_python_interpreter=/usr/bin/python3
+
+
+##Get facts about a host system
+ansible <hostname> -m setup
