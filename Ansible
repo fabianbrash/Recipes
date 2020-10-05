@@ -230,6 +230,8 @@ PS > winrm get winrm/config
 ##Fix error "/usr/bin/python not found"
 ##The above means that either python isn't installed or python 3 is installed on most newer distros
 ##it will be the latter
+##REF:https://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
+
 
 sudo vim /etc/ansible/hosts
 
