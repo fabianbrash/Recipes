@@ -227,3 +227,14 @@ ansible-playbook play.yml --ask-vault-pass
 
 PS > winrm get winrm/config
 
+##Fix error "/usr/bin/python not found"
+##The above means that either python isn't installed or python 3 is installed on most newer distros
+##it will be the latter
+
+sudo vim /etc/ansible/hosts
+
+##and add ansible_python_interpreter=/usr/bin/python3 next to your phthon 3 hosts
+##example
+
+1.1.1.1 ansible_python_interpreter=/usr/bin/python3
+db.me.local ansible_python_interpreter=/usr/bin/python3
