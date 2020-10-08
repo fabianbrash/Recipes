@@ -58,6 +58,8 @@ the VM.
 docker exec -it 'containerID or name' /bin/bash
 exit to quit
 
+###also###
+docker run -it --rm --name login local/loginui:1.0 sh
 
 #######LET'S SETUP SOME NETWORKING IN DOCKER#########################
 sudo docker create network --driver=bridge br0
