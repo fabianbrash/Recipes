@@ -481,3 +481,6 @@ sudo pip3 list
 
 sudo pip3 list --outdated  ## list all outdated packages
 
+##Once all this done I re-installed certbot with apt instead of snap then you will need to upgrade
+sudo pip3 install --upgrade certbot
+
