@@ -453,3 +453,31 @@ sudo dpkg -S which ping
 sudo dpkg -S which nslookup
 
 ##this is useful if you are using a docker image which has most packages removed and you need to add some back
+
+
+### So I ran into an issue when installing cerbot with snap on Ubuntu 20.04, the issue occured when I tried to install the route-53 dns
+##plugin with pip3 it found a conflict and tried to install an older version of acme and certbot, so deleted the snap version
+##but when I tried to delete the versions that pip had installed I received this odd error message
+##/usr/lib/python3/dist-packages, outside environment /usr
+##So I did a little Googling and found this
+##REF: https://askubuntu.com/questions/926911/unable-to-uninstall-programs-using-sudo-pip
+
+##So run
+
+sudo dpkg -S certbot
+
+##returned aa bunch of entries for python3-certbot so then
+sudo apt remove python3-certbot -y
+##then I did the same for acme
+sudo dpkg -S acme
+##returned
+python3-acme
+## so 
+sudo apt remove python3-acme -y
+
+sudo pip3 list
+
+##the above should no show both acme and certbot is gone
+
+sudo pip3 list --outdated  ## list all outdated packages
+
