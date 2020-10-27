@@ -39,3 +39,5 @@ sudo pip3 install certbot-dns-route53
 
 certbot plugins  ## you should now see the route53 plugin
 
+certbot certificates # list know certificates
+
