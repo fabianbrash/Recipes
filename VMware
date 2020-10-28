@@ -1334,3 +1334,19 @@ vim-cmd hostsvc/net/query_networkhint | egrep ‘vlan’
 ##the above does not
 
 vim-cmd hostsvc/net/query_networkhint | less
+
+###Add public cert to VCSA 7.x
+#REF:https://blog.rylander.io/2020/04/28/add-lets-encrypt-certificate-to-vcenter-7/
+
+##Note the above blog resolved my issues with the "trust anchors... error" you have to create a new fullchain.pem 
+
+#1. Intermediate cert get from here: https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt #note links do change
+#2. Root cert get from here: https://www.identrust.com/dst-root-ca-x3 #again link change
+
+##that should do it when you go to replace the cert you will have the first cert with is the cert(x).pem, then the above cert you just assembled
+##then the private key
+
+##Note when I deploy my vCenters I use uppercase in the FQDN name, well VMware signes the self-signed cert exactly as it sees, letsencrypt would not
+##let me create a cert with uppercase maybe a paid authority will but if not then you will not be able to swap out your cert as it will 
+##generate an error like "CN does not match"
+
