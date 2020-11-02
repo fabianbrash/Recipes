@@ -642,3 +642,17 @@ kubectl get namespace fixme -o json > fixme.json
 kubectl replace --raw "/api/v1/namespaces/fixme/finalize" -f fixme.json
 
 ###Note according to the article this should work on other resources including pods,deployments,services,etc.
+
+
+
+###Remove linkerd from deployments
+#REF: https://linkerd.io/2/reference/cli/uninject/
+
+# Uninject all the deployments in the default namespace.
+kubectl get deploy -o yaml | linkerd uninject - | kubectl apply -f -
+
+# Download a resource and uninject it through stdin.
+curl http://url.to/yml | linkerd uninject - | kubectl apply -f -
+
+# Uninject all the resources inside a folder and its sub-folders.
+linkerd uninject <folder> | kubectl apply -f -
