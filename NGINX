@@ -422,6 +422,7 @@ cp private.key /etc/pki/nginx/private
 
 location /myfolder/ {
      autoindex on;
+     autoindex_exact_size off;
   }
   
 ## the above still generates a 404
@@ -429,6 +430,7 @@ location /myfolder/ {
 location /myfolder/ {
      root /usr/share/nginx/html;
      autoindex on;
+     autoindex_exact_size off;
 }
 
 ## the above now works, I guess you have to tell nginx the relative path
@@ -442,6 +444,36 @@ location / {
     location /myfolder/ {
         root        /usr/share/nginx/html;
         autoindex   on;
+        autoindex_exact_size off;
     }
     
 ## the above is a more complete server block
+
+##So the above came up again and why is this so hard!!!!
+
+##in the above example the /myfolder/ is relative to /usr/share/nginx/html so just stick a folder under html called myfolder
+##but what if myfolder is on the / path
+
+location /myfolder/ {
+        root        /;
+        autoindex   on;
+        autoindex_exact_size off;
+    }
+    
+setenforce permissive  ##note this is required you can check /var/log/messages and you will see seLinux errors is seLinux is set to enforcing
+sudo systemctl restart nginx
+
+##but the above might still give you an error if you append a / http://server/myfolder/
+## so to fix that
+
+location /myfolder {
+        root        /;
+        autoindex   on;
+        autoindex_exact_size off;
+    }
+
+
+sudo systemctl restart nginx
+
+##I'm sure this is not the end of this but atleast I understand it a little morea also you do not have to change the permissions on the folder
+##I saw that until I edit this and tell you to change the permissions on the folder... the stuff can be so hard sometimes.
