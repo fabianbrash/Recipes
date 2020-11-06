@@ -41,3 +41,23 @@ certbot plugins  ## you should now see the route53 plugin
 
 certbot certificates # list know certificates
 
+
+##Now to use the route53 plugin create a directory 
+
+mkdir ~/.aws
+cd .aws
+touch config
+
+##file contents of config
+
+[default]
+aws_access_key_id=your_access_key
+aws_secret_access_key=yur_secret_access_key
+
+##END File###
+
+##Note the [default is very important make sure you don't misspel it like I did and spend 40 minutes troubleshooting it
+
+##Then you can re-run the tls_request I have here https://github.com/fabianbrash/Bash/blob/master/tls_request.sh
+
+
