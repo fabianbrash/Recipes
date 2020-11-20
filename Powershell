@@ -12854,6 +12854,8 @@ $data | Format-Table -AutoSize | Out-File -FilePath C:\... -Width 10000
 
 Get-Command -Module *VMWa*
 
+Get-Command -Module PowervRNI  ##Get all commands from this module
+
 
 ####Get-Acl########
 ##REF:https://www.petri.com/how-to-get-ntfs-file-permissions-using-powershell
