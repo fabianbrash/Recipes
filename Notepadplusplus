@@ -1,0 +1,13 @@
+###So I needed to take a list of names from a csv file and export them comma separated adn I found the below
+##This is great to convert data from Excel and add into code, like a powershell array
+
+##REF: https://code2care.org/pages/replace-tabs-by-spaces-or-comma-notepad-plus-plus
+##REF: https://stackoverflow.com/questions/15740853/replace-new-lines-with-a-comma-delimiter-with-notepad
+
+# CTRL + H
+
+# Then select Regular Expression in the 'Search Mode' box
+
+# In the Find What field enter this: [\r\n]+
+
+# In the replace with ,
