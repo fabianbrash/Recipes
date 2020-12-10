@@ -12,6 +12,8 @@ kubectl api-versions
 
 kubectl get apiservices
 
+kubectl get apiservice| grep False
+
 kubectl version --client --short
 
 kubectl get namespaces
@@ -656,3 +658,20 @@ curl http://url.to/yml | linkerd uninject - | kubectl apply -f -
 
 # Uninject all the resources inside a folder and its sub-folders.
 linkerd uninject <folder> | kubectl apply -f -
+
+###Troubleshoting####
+
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --show-all --ignore-not-found -n test-ns
+
+## The above might also generate a unknown flag: --show-all
+
+
+##But we are looking for below, which looks like linkerd is causing our issue
+
+#error: unable to retrieve the complete list of server APIs: packages.operators.coreos.com/v1: 
+#the server is currently unable to handle the request, tap.linkerd.io/v1alpha1: the server is currently unable to handle the request
+
+
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -n test-ns
+
+
