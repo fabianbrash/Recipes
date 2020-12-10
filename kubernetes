@@ -674,4 +674,9 @@ kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get
 
 kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -n test-ns
 
+kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --show-all --ignore-not-found -n test-ns
+
+#Then from the out put above
+
+kubectl get APIService v1.packages.operators.coreos.com
 
