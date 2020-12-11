@@ -680,3 +680,6 @@ kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get
 
 kubectl get APIService v1.packages.operators.coreos.com
 
+##This was causing my cluster to not delete namespaces
+kubectl delete APIService v1alpha1.tap.linkerd.io
+
