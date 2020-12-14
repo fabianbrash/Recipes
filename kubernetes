@@ -683,3 +683,12 @@ kubectl get APIService v1.packages.operators.coreos.com
 ##This was causing my cluster to not delete namespaces
 kubectl delete APIService v1alpha1.tap.linkerd.io
 
+
+###Ingress 503 error###
+
+## So I moved a deployment,svc,secret,ing from the defauly namespace over to a new namespace and I kept receiving a 503
+## I couldn't figure it out and then I had a look @ another ingress that was working and then I noticed the issue
+## doing a kubectl describe ing ingname under Rules, Backends in the parenthesis there as nothing for bad ing
+## and for the good ing there were the pod IPs that were behind the deployment, then I realized the the service definition
+## had the wrong selector so it wasn't findin the correct deployment hence no backends to serve up my page, onces fixed
+## everything was good; again garbage in, garbage out.
