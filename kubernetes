@@ -692,3 +692,17 @@ kubectl delete APIService v1alpha1.tap.linkerd.io
 ## and for the good ing there were the pod IPs that were behind the deployment, then I realized the the service definition
 ## had the wrong selector so it wasn't findin the correct deployment hence no backends to serve up my page, onces fixed
 ## everything was good; again garbage in, garbage out.
+
+
+
+
+
+####KIND & NodePort###########
+##So I installed KIND and was having issues getting to an exposed deploy via a service then I found a github comment reminding me
+##About port-forwarding, so the below worked like a champ for me
+
+kubectl port-forward --address 0.0.0.0 service/gql 5000:5000
+
+##the above we are port-forwarding on all interfaces the service gql on 5000 on the host and 5000 on the service, note the 0.0.0.0
+##is required in our case because kind runs inside docker so we can't use the default of 127.0.0.1(loopback) we need it on all
+##interfaces as I am running kind on a headless ubuntu machine and accessing the app via my workstation/laptop
