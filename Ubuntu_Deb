@@ -491,4 +491,9 @@ hostnamectl status # list current host name
 hostnamectl set-hostname newhstname --static ##set new hostname
 sudo systemctl restart systemd-hostnamed  ##Restart service
 
+###Give user sudo rights###
+##REF:https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart
+
+usermod -aG sudo sammy
+
 
