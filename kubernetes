@@ -721,3 +721,5 @@ kubectl expose deploy gql --port=5000
 ##The above will create a service of type ClusterIP and then we can just port-forward into it, it's a bit more secure
 ##As it does not open up a port on each host, again this is just a little hack for KIND, in a "real" cluster we would
 ##Have access to NodePort or even a loadbalancer, or an ingress
+
+kubectl get cm -A
