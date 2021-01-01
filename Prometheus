@@ -1,0 +1,27 @@
+##Some Prometheus stuff
+
+##Some PromQL
+
+##Get all pods in the namespace RPS(requests per second)
+sum(irate(request_total{namespace="emojivoto", direction="inbound", tls="true"}[90s])) by (pod)
+
+
+##Get just a particualar pod's RPS
+sum(irate(request_total{namespace="emojivoto", pod="web-67ff67d47b-jlfwb", direction="inbound", tls="true"}[90s])) by (pod)
+
+##Note the above is looking @ inbound
+
+
+
+sum(irate(request_total{deployment!="", deployment="web", dst_namespace="emojivoto", dst_deployment="emoji", direction="outbound", tls!="true"}[30s])) by (deployment, pod)
+
+
+sum(irate(request_total{deployment!="", deployment="web", dst_namespace="emojivoto", dst_deployment="emoji", direction="outbound", tls="true"}[30s])) by (deployment, pod)
+
+
+##Note these are being pulled from Grafana linkerd deployment
+
+
+sum(irate(request_total{namespace="emojivoto", pod="vote-bot-7c55876b86-v4bnr", direction="outbound", tls="true"}[30s])) by (pod)
+
+sum(irate(request_total{namespace="emojivoto", pod="vote-bot-7c55876b86-v4bnr", direction="outbound", tls!="true"}[30s])) by (pod)
