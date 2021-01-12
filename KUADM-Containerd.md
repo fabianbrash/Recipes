@@ -5,11 +5,11 @@
 [Install KubeADM](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
 <pre><code>
-cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+"cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
 EOF
 sudo modprobe overlay
-sudo modprobe br_netfilter
+sudo modprobe br_netfilter"
 </code></pre>
 
