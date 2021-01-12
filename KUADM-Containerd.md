@@ -88,5 +88,7 @@ curl https://docs.projectcalico.org/manifests/calico.yaml -O
 kubectl apply -f calico.yaml
 ```
 ##
-
+### I would recommend installing metrics-server next
+[Metrics-Server(mine)](https://github.com/fabianbrash/YAML/blob/master/metrics-server-latest.yaml)
+##
 ### I will hopefully soon turn this into a bash script and then an ansible playbook
