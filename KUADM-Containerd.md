@@ -47,3 +47,46 @@ sudo systemctl restart containerd
 ```
 sudo systemctl enable containerd
 ```
+##
+
+### Note theirs information on the site about configuring cgroups let's see if we really need to do that... so far no!!
+
+### Disable swap
+```
+sed -i '/swap/d' /etc/fstab
+swapoff -a
+```
+### This is optional but if you want to use NFS in cluster it's mandatory
+```
+sudo apt install -y nfs-common cloud-guest-utils policycoreutils && sudo sestatus
+```
+### Install kubelet, kubeadm, kubectl and deps etc..
+```
+sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+deb https://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+```
+```
+sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo apt-mark hold kubelet kubeadm kubectl
+```
+##
+
+### On the control-plane node
+```
+kubeadm init --apiserver-advertise-address xxx.xxx.xxx.xxx --pod-network-cidr=10.244.0.0/16
+```
+
+##
+
+### Now let's install Calico as our overlay/pod network
+### Note I'm only installing the version for 50 nodes or less
+```
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+
+kubectl apply -f calico.yaml
+```
+##
+
+### I will hopefully soon turn this into a bash script and then an ansible playbook
