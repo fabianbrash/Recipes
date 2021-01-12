@@ -27,4 +27,23 @@ EOF
 ```
 sudo sysctl --system
 ```
+##
+#### Ubuntu 18.04/20.04
 
+#### (Install containerd)
+```
+sudo apt-get update && sudo apt-get install -y containerd
+```
+### Configure containerd
+```
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+```
+### Restart containerd
+```
+sudo systemctl restart containerd
+```
+### Enable it if it isn't already
+```
+sudo systemctl enable containerd
+```
