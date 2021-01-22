@@ -4,6 +4,7 @@
 ##REF:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-
 ##REF:https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/
 ##REF:https://kubernetes.io/docs/reference/
+##REF:https://mauilion.dev/posts/kind-metallb/
 
 
 kubectl version
