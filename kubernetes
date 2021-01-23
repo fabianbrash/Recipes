@@ -724,3 +724,9 @@ kubectl expose deploy gql --port=5000
 ##Have access to NodePort or even a loadbalancer, or an ingress
 
 kubectl get cm -A
+
+
+###Decode kubernetes dashboard user token I wonder if I just get the secret and do a base64 decode I would get the same result??
+
+kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/my-dashboard-svc -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+
