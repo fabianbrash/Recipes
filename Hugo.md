@@ -1,6 +1,6 @@
 ## Hugo
 
-### REF:https://gohugo.io/getting-started/quick-start/
+[Hugu quickstart](https://gohugo.io/getting-started/quick-start/)
 ### REF:https://hub.docker.com/r/klakegg/hugo/
 ### REF:https://jamstackthemes.dev/ssg/hugo/
 ### REF:https://flaviocopes.com/start-blog-with-hugo/
