@@ -1,8 +1,11 @@
 ## Hugo
 
 [Hugu quickstart](https://gohugo.io/getting-started/quick-start/)
+
 [Unofficial Docker Image](https://hub.docker.com/r/klakegg/hugo/)
+
 [JamStack Themes](https://jamstackthemes.dev/ssg/hugo/)
+
 [Flaviscopes Hugo Tutorial](https://flaviocopes.com/start-blog-with-hugo/)
 
 ## Create a new project
