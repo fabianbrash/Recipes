@@ -730,3 +730,12 @@ kubectl get cm -A
 
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/my-dashboard-svc -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 
+
+#####ISSUES DELETING HUNG CRD'S##################
+##REF:https://www.2vcps.io/2019/04/19/namespace-issues-when-removing-crd-operators/
+
+kubectl patch crd/contours.operator.projectcontour.io -p '{"metadata":{"finalizers":[]}}' --type=merge
+
+kubectl delete crd contours.operator.projectcontour.io
+
+
