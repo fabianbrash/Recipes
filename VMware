@@ -1350,3 +1350,9 @@ vim-cmd hostsvc/net/query_networkhint | less
 ##let me create a cert with uppercase maybe a paid authority will but if not then you will not be able to swap out your cert as it will 
 ##generate an error like "CN does not match"
 
+
+####VCSA fails to update with error "vCenter is non-operational"#####
+##REF:https://tinkertry.com/how-to-workaround-unexpected-error-occurred-while-fetching-the-updates-error-during-vcsa-7-upgrade
+
+rm /etc/applmgmt/appliance/software_update_state.conf
+
