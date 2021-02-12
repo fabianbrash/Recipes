@@ -1,6 +1,6 @@
 ## Installing Harbor Registry in a lab environment
 
-### Deploy a linux flavor I used Ubuntu and then install docker
+### Deploy a linux flavor I used Ubuntu and then install docker and docker-compose
 
 ## Harbor docs are [here](https://goharbor.io/docs/2.0.0/install-config/download-installer/)
 
