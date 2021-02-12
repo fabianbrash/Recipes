@@ -14,6 +14,13 @@
 
 ### Then run the install script docs [here](https://goharbor.io/docs/2.0.0/install-config/run-installer-script/) by default now Harbor installs with trivy as it's security scanner
 
+## NOTE
+### I thought trivy was configured by default but apparently not, so the command to use is
+
+````
+sudo ./install.sh --with-trivy
+````
+
 ##
 
 ### That should be it
