@@ -477,3 +477,16 @@ sudo systemctl restart nginx
 
 ##I'm sure this is not the end of this but atleast I understand it a little morea also you do not have to change the permissions on the folder
 ##I saw that until I edit this and tell you to change the permissions on the folder... the stuff can be so hard sometimes.
+
+
+###CUSTOM 404##########
+##REF: https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04
+
+
+error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                root /usr/share/nginx/html;
+                internal;
+        }
+
+## I didn't use the internal keyword, not sure what that's for
