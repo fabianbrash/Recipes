@@ -497,3 +497,25 @@ sudo systemctl restart systemd-hostnamed  ##Restart service
 usermod -aG sudo sammy
 
 
+
+########SETTING AND USING ENV VARS#################
+##set a var to some value
+GIT_TAG=v0.7.6
+
+##Let's see it
+echo $GIT_TAG
+
+##Now let's use that var with a command note the use if the curlies
+git tag ${GIT_TAG}
+
+###And now we can use this in a bash script
+#/bin/bash
+git tag ${GIT_TAG}
+
+etc...
+etc...
+
+#Note for this to work you have either export the variable or source it when you run the script i.e.
+
+. ./myscript.sh ##Note the period and then the space this will run the script under the current shell which has access to the non-exported env variables.
+
