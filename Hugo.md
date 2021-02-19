@@ -51,3 +51,28 @@ hugo -D
 
 hugo
 ````
+##
+
+### Add your own custom css to a hugo template, note check your template to see if they have already added the below code
+
+````
+// css 
+{{ range .Site.Params.custom_css }}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{ end }}
+
+// javascript
+{{ range .Site.Params.custom_js }}
+    <script type="text/javascript" src="{{ . | absURL }}"></script>
+{{ end }}
+````
+
+### The Ananke template already had the css import code at the bottom of /themes/ananke/layouts/partials/site-style.html again each theme will be different
+### Then add this to your config.toml file
+
+````
+[params]
+  custom_css = ["css/custom.min.css"]
+````
+### Note the above is an array so you can comma separate and add more css files
+### Found this help from [banjocode.com](https://www.banjocode.com/custom-css/)
