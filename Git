@@ -127,7 +127,23 @@ git push origin master
 
 
 
+###So I ran into this error and 'src refspec main does not match any'
+##So I ran
 
+git show-refs
+
+##output 
+
+a8dcb34028342b837c8bbadb0c0aa49418ae4c48 refs/heads/master
+
+##and of course I was running
+git push origin main
+
+##Well of course the issue was I hadn't run the command to rename master to main
+
+git branch -M main
+
+## but a great command to troubleshoot git show-refs
 
 
 
