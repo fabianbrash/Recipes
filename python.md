@@ -17,7 +17,7 @@
 [Python Flask API tutorial](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask)
 
 ````
-mkdir -p /home/me/bkackend/flask-app
+mkdir -p /home/me/backend/flask-app
 python3 -m venv /home/me/backend/flask-app
 source bin/activate ## source only work in Linux/MAC for Windows in the virtual env there should be a Scripts directory with an activate batch script
 ````
