@@ -1,0 +1,36 @@
+## Python goes here
+
+## Creating a virtual env on linux
+
+### You might need to install a package on ubuntu, it should tell you what the missing package is
+
+```REFS```
+
+[stackoverflow](https://stackoverflow.com/questions/31252791/flask-importerror-no-module-named-flask)
+
+[python3 docs on virtual env](https://docs.python.org/3/library/venv.html)
+
+[DO tutorials](https://www.digitalocean.com/community/tutorials/how-to-use-variables-in-python-3)
+
+[Programiz tutorials](https://www.programiz.com/python-programming/list-vs-tuples)
+
+[Python Flask API tutorial](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask)
+
+````
+mkdir -p /home/me/bkackend/flask-app
+python3 -m venv /home/me/backend/flask-app
+source bin/activate ## source only work in Linux/MAC for Windows in the virtual env there should be a Scripts directory with an activate batch script
+````
+
+## After runing the above your command line should now show flask-app in the name of the command like so (flask-app)... that's the hint it's working
+
+```Install packages```
+
+````
+pip3 install flask flask-cors
+
+pip3 freeze > requirements.txt
+````
+
+### If you did everything correctly the requirements.txt file should only have a few packages it not you should see a ton, that's a dead giveaway that you're
+### not in our virtual env but you froze the entire system packages
