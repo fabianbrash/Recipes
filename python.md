@@ -1,4 +1,4 @@
-## Python goes here
+## Python knowledge goes here
 
 ## Creating a virtual env on linux
 
