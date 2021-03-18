@@ -32,5 +32,5 @@ pip3 install flask flask-cors
 pip3 freeze > requirements.txt
 ````
 
-### If you did everything correctly the requirements.txt file should only have a few packages it not you should see a ton, that's a dead giveaway that you're
+### If you did everything correctly the requirements.txt file should only have a few packages, you should not see a ton, that's a dead giveaway that you're
 ### not in our virtual env but you froze the entire system packages
