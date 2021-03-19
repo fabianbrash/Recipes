@@ -16,6 +16,8 @@
 
 [Python Flask API tutorial](https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask)
 
+[Freecodecamp Tutorial](https://www.freecodecamp.org/news/if-name-main-python-example/)
+
 ````
 mkdir -p /home/me/backend/flask-app
 python3 -m venv /home/me/backend/flask-app
