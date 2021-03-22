@@ -224,4 +224,9 @@ openssl req -new -key john.jey -out john.csr -subj "/CN=john/O=finance"
 openssl x509 -req -in john.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out john.crt -days 365
 
 
+#### get certs####
+
+openssl s_client -connect fabianbrash.com:443
+
+
 
