@@ -892,4 +892,10 @@ docker load < coredns-1.6.9.tar
 
 ##Now my container host has the image and then I can run as usual
 
+### Docker cred location #####
+
+ls -la ~/.docker 
+
+##File is called config.json
+
 
