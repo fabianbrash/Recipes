@@ -35,3 +35,15 @@ pip3 freeze > requirements.txt
 ````
 
 ### If you did everything correctly the requirements.txt file should only have a few packages, you should not see a ton, that's a dead giveaway that you're not in our virtual env but you froze the entire system packages
+
+##
+
+### You can also use pipenv
+
+````
+sudo pip3 install pipenv
+
+mkdir fastapi-crud
+cd fastapi-crud
+pipenv shell
+````
