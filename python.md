@@ -46,4 +46,9 @@ sudo pip3 install pipenv
 mkdir fastapi-crud
 cd fastapi-crud
 pipenv shell
+
+pipenv install fastapi uvicorn
 ````
+##
+
+### Note if you open the shell in the wrong terminal session just close everything out and run pipenv shell again
