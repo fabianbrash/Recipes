@@ -38,7 +38,7 @@ pip3 freeze > requirements.txt
 
 ##
 
-### You can also use pipenv
+```pipenv```
 
 ````
 sudo pip3 install pipenv
