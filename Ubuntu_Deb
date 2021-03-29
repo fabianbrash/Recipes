@@ -519,3 +519,6 @@ etc...
 
 . ./myscript.sh ##Note the period and then the space this will run the script under the current shell which has access to the non-exported env variables.
 
+
+####Flush DNS#####
+sudo systemd-resolve --flush-caches
