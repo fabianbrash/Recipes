@@ -1338,6 +1338,11 @@ vim-cmd hostsvc/net/query_networkhint | less
 ###Add public cert to VCSA 7.x
 #REF:https://blog.rylander.io/2020/04/28/add-lets-encrypt-certificate-to-vcenter-7/
 
+##Note if you are using Letsencrypt you have to choose
+## Replace with external CA certificate(requires private key)
+##If you generated a CSR on the appliance then you need to choose
+##Replace with external CA certificate where CSR is generated from vCenter Server (private key embedded)
+
 ##Note the above blog resolved my issues with the "trust anchors... error" you have to create a new fullchain.pem 
 
 #1. Intermediate cert get from here: https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt #note links do change
