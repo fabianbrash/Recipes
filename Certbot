@@ -60,4 +60,11 @@ aws_secret_access_key=yur_secret_access_key
 
 ##Then you can re-run the tls_request I have here https://github.com/fabianbrash/Bash/blob/master/tls_request.sh
 
+###Ubuntu SNAP install####
+
+sudo snap install --classic certbot
+
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+
 
