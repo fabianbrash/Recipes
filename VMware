@@ -1344,9 +1344,15 @@ vim-cmd hostsvc/net/query_networkhint | less
 ##Replace with external CA certificate where CSR is generated from vCenter Server (private key embedded)
 
 ##Note the above blog resolved my issues with the "trust anchors... error" you have to create a new fullchain.pem 
+##The new fullchain should only include the intermediate and root nothing else
 
 #1. Intermediate cert get from here: https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem.txt #note links do change
 #2. Root cert get from here: https://www.identrust.com/dst-root-ca-x3 #again link change
+
+##Not just that the links expire but the above certs do expire so get them from the below, these should be updated
+##Just download the PEM file
+##Get the intermediate and root from here https://letsencrypt.org/certificates/
+
 
 ##that should do it when you go to replace the cert you will have the first cert with is the cert(x).pem, then the above cert you just assembled
 ##then the private key
