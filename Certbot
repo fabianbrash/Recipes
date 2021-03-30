@@ -67,4 +67,10 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
 
+###Manual DNS challenge###
+
+certbot certonly --manual --preferred-challenges dns \
+-d fqdn_of_your_server \
+-m test@testemail.com \
+--agree-tos \
 
