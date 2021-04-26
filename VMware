@@ -1367,3 +1367,8 @@ vim-cmd hostsvc/net/query_networkhint | less
 
 rm /etc/applmgmt/appliance/software_update_state.conf
 
+####Test UDP connectivity####
+##REF:https://www.thegeekdiary.com/how-to-test-porttcp-udp-connectivity-from-a-linux-server/
+
+nc -z -v -u 192.168.10.12 123
+
