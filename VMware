@@ -1372,3 +1372,13 @@ rm /etc/applmgmt/appliance/software_update_state.conf
 
 nc -z -v -u 192.168.10.12 123
 
+
+#####Using telnet###
+###REF:https://kb.vmware.com/s/article/2097039
+
+curl -v telnet://target ip address:desired port number
+
+curl -v telnet://127.0.0.1:22
+
+
+
