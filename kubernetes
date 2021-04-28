@@ -739,3 +739,8 @@ kubectl patch crd/contours.operator.projectcontour.io -p '{"metadata":{"finalize
 kubectl delete crd contours.operator.projectcontour.io
 
 
+###Get endpoints
+
+kubectl get endpoints -n fabianbrash-com
+kubectl get endpoints -A
+kubectl get endpoints
