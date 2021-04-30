@@ -1234,3 +1234,13 @@ etc...
 . ./myscript.sh ##Note the period and then the space this will run the script under the current shell which has access to the non-exported env variables.
 
 
+##### cat,more,less, grep .gz files ######
+##REF:https://www.cyberciti.biz/faq/unix-linux-cat-gz-file-command/
+
+zcat resume.txt.gz
+
+zmore access_log_1.gz
+
+zless access_log_1.gz
+
+zgrep '1.2.3.4' access_log_1.gz
