@@ -744,3 +744,23 @@ kubectl delete crd contours.operator.projectcontour.io
 kubectl get endpoints -n fabianbrash-com
 kubectl get endpoints -A
 kubectl get endpoints
+
+
+
+###Webhook best practices########
+
+##So in DO they have a Linter to check your cluster before an ugrade and I kept getting webhook errors so I finally decided to
+##To dig into it and see what I could fix, and in there documentation they had 2 recommendations
+
+1. Webhook timeouts should be less than 30 seconds
+
+kubectl get validatingwebhookconfigurations
+kubectl get mutatingwebhookconfigurations
+
+##The above will get you all your webhooks, look at them and see what the timeouts are configured for and change as per best practice < 30s
+
+2. Failure Policy should be set to 'Ignore'
+
+##Again run the kubectl command and fix any webhook that doesn't have an 'Ignore'
+
+
