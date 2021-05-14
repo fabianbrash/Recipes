@@ -534,3 +534,22 @@ zmore access_log_1.gz
 zless access_log_1.gz
 
 zgrep '1.2.3.4' access_log_1.gz
+
+
+
+###Shred 
+
+##Shred the file forcefully and also remove it
+
+shred -f -u myfile.txt
+
+
+
+##GPG
+##Note this is the simpliest way to use GPG please read up on how to do this properly
+
+gpg -c myfile.txt ## You will be prompted for a passphrase
+
+gpg -d myfile.txt.gpg  ## This will decrypt the file and display contents to stdout
+
+gpg myfile.txt.gpg     ##This will create a decrypted file on the filesystem
