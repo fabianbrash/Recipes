@@ -553,3 +553,12 @@ gpg -c myfile.txt ## You will be prompted for a passphrase
 gpg -d myfile.txt.gpg  ## This will decrypt the file and display contents to stdout
 
 gpg myfile.txt.gpg     ##This will create a decrypted file on the filesystem
+
+
+###Find spaces in a file when you need tabs
+
+vim Makefile
+
+:%s/^[ ]\+/^I/
+
+##You should then see '^I' delete all of them and then re-save the file, then start using tabs
