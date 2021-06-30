@@ -563,3 +563,8 @@ vim Makefile
 :%s/^[ ]\+/^I/
 
 ##You should then see '^I' delete all of them and then re-save the file, then start using tabs
+
+### List all services
+
+systemctl list-units --type=service
+systemctl --type=service
