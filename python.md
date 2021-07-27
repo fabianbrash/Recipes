@@ -62,3 +62,5 @@ python3
 
 print(help('modules'))
 ````
+
+#### Note CTRL+D to close out on Linux and MAC or type exit() exit() should also work on Windows
