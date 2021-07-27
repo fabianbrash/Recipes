@@ -54,3 +54,11 @@ pipenv install fastapi uvicorn
 ##
 
 ### Note if you open the shell in the wrong terminal session just close everything out and run pipenv shell again
+
+### List all modules
+
+````
+python3
+
+print(help('modules'))
+````
