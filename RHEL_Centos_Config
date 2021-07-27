@@ -1244,3 +1244,16 @@ zmore access_log_1.gz
 zless access_log_1.gz
 
 zgrep '1.2.3.4' access_log_1.gz
+
+
+
+#### Install GUI after the fact on RHEL8/Cent8
+
+sudo dnf groupinstall workstation
+
+sudo sytemctl set-default graphical.target
+
+sudo reboot now
+
+
+
