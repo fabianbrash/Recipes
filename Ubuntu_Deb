@@ -568,3 +568,42 @@ vim Makefile
 
 systemctl list-units --type=service
 systemctl --type=service
+
+## Install desktop/gui on a server
+#REF: https://phoenixnap.com/kb/how-to-install-a-gui-on-ubuntu
+
+sudo apt-get install tasksel -y
+
+sudo apt-get install slim -y
+
+## or
+
+sudo apt-get install lightdm -y
+
+## You just need 1 from the above
+
+tasksel ## pick desktop environment
+
+## or
+
+sudo tasksel install ubuntu-mate-core
+
+## You might have to do this
+
+sudo service slim start
+
+## Or
+sudo service lightdm start
+
+## All depending on which 1 you installed
+
+
+sudo tasksel install lubuntu-core
+
+
+sudo tasksel install xubuntu-core
+
+
+
+
+
