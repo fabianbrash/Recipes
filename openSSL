@@ -228,5 +228,9 @@ openssl x509 -req -in john.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out joh
 
 openssl s_client -connect fabianbrash.com:443
 
+## Generate random 32 bit hex value
+
+openssl rand -hex 32
+
 
 
