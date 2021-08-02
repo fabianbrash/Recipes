@@ -64,3 +64,20 @@ print(help('modules'))
 ````
 
 #### Note CTRL+D to close out on Linux and MAC or type exit() exit() should also work on Windows
+
+
+#### You might have to do this from time to time
+
+````
+cd myapp
+mkdir lib
+
+pip3 install -r requirements.txt -t lib/
+
+// also
+
+pip3 install fastapi uvicorn requests -t lib/
+````
+
+#### The above will install all requirements into the lib folder
+
