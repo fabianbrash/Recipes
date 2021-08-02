@@ -79,5 +79,5 @@ pip3 install -r requirements.txt -t lib/
 pip3 install fastapi uvicorn requests -t lib/
 ````
 
-#### The above will install all requirements into the lib folder
+#### The above will install all requirements into the lib folder or the second example all packages into lib
 
