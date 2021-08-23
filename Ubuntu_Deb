@@ -606,6 +606,7 @@ sudo tasksel install xubuntu-core
 
 
 ## See how many active connections are on port 2379
+## REF: https://serverfault.com/questions/421310/check-the-number-of-active-connections-on-port-80
 
 netstat -anp | grep -i 2379 | grep ESTABLISHED | wc -l
 
