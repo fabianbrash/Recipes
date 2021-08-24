@@ -611,3 +611,16 @@ sudo tasksel install xubuntu-core
 netstat -anp | grep -i 2379 | grep ESTABLISHED | wc -l
 
 
+## Fix broken deps you don't want to install
+## REF:https://www.makeuseof.com/how-to-find-and-fix-broken-packages-on-linux/
+
+sudo apt --fix-missing update
+
+sudo apt update
+
+sudo apt install -f
+
+sudo apt clean
+
+
+
