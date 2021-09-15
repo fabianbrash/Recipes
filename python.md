@@ -81,3 +81,20 @@ pip3 install fastapi uvicorn requests -t lib/
 
 #### The above will install all requirements into the lib folder or the second example all packages into lib
 
+#### Get pip config
+
+````
+pip config -v list
+````
+
+##
+
+#### On windows you can store config data in pip.ini and on Linux/MAC you can store it in pip.conf if you are having the dreaded SSL"Verification fail error then add this
+
+````
+[global]
+trusted-host = pypi.python.org
+               pypi.org
+               files.pythonhosted.org
+````
+
