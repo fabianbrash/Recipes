@@ -30,3 +30,9 @@ terraform show
 [terraform docs docker](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
 
 [terraform docs aws](https://learn.hashicorp.com/tutorials/terraform/aws-build)
+
+##
+
+#### terraform variables are defined in a file called variables.tf
+
+[terraform variables](https://learn.hashicorp.com/tutorials/terraform/aws-variables?in=terraform/aws-get-started)
