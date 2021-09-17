@@ -21,4 +21,6 @@ terraform destroy
 
 ````
 
-[terraform docs](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
+[terraform docs docker](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
+
+[terraform docs aws](https://learn.hashicorp.com/tutorials/terraform/aws-build)
