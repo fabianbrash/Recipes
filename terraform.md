@@ -19,6 +19,12 @@ terraform apply
 
 terraform destroy
 
+terraform fmt
+
+terraform validate
+
+terraform show
+
 ````
 
 [terraform docs docker](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
