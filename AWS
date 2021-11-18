@@ -34,3 +34,10 @@ route53-transfer --access-key-id=your_access_key --secret-key=your_secrey_key du
         }
     ]
 }
+
+
+## had an issue where serving a static site over cloudfront would not render mydomain/about it's supposed to see and render the index.html file
+## but it does not, this fixed it
+## https://stackoverflow.com/questions/31017105/how-do-you-set-a-default-root-object-for-subdirectories-for-a-statically-hosted
+
+### basically point to the s3 bucket URL and not the bucket object, of course you have to set the bucket up to serve a website first.
