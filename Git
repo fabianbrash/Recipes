@@ -78,6 +78,18 @@ git log -p -2 ##Show all patches for the last 2 commits helpful to see what has 
 git log 
 git diff commitID1 commitID2
 
+##only show last commit
+git log -1
+
+
+##Show the last commit hash
+
+git log -1 --pretty=%H
+
+## or
+
+git log -1 --pretty=%h
+
 ###Tagging##########
 ##REF:https://git-scm.com/book/en/v2/Git-Basics-Tagging
 
