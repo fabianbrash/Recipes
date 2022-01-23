@@ -30,3 +30,9 @@ sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
 ````
 sed -i 's/- image: nginx:1.20/- image: nginx:1.21.5-alpine/g' sed-ng.yaml
 ````
+
+## If your image name has a / then use the below
+
+````
+sed -i 's+fabianbrash/nextjs-graphql:latest+fabianbrash/nextjs-graphql:1.1.0+g' sed-ng.yaml
+````
