@@ -25,7 +25,7 @@ sed -i 's/DHCP=yes/DHCP=no/g' /etc/systemd/network/99-dhcp-en.network
 sed -i -e 's/\r$//' create_mgw_3shelf_6xIPNI1P.sh
 ````
 
-## Replace the name image used in our k8s deployment yaml file
+## Replace the image used in our k8s deployment yaml file
 
 ````
 sed -i 's/- image: nginx:1.20/- image: nginx:1.21.5-alpine/g' sed-ng.yaml
