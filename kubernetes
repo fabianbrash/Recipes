@@ -223,6 +223,12 @@ kubectl rollout pause deploy my-deploy
 kubectl rollout resume deploy my-deploy
 
 
+#### Create a registry pull secret ######
+
+kubectl create secret generic harborcred \
+    --from-file=.dockerconfigjson=/home/myuser/.docker/config.json \
+    --type=kubernetes.io/dockerconfigjson
+
 
 #########################KUBERNETES INSTALL NOTES####################################################
 ###I will turn this into a bash script soon and then hopefully an ansible playbook####
