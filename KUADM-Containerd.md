@@ -126,3 +126,11 @@ kubectl apply -f calico.yaml
 [Metrics-Server(mine)](https://github.com/fabianbrash/YAML/blob/master/metrics-server-latest.yaml)
 ##
 ### I will hopefully soon turn this into a bash script and then an ansible playbook
+
+### Check a few things
+
+````
+sudo cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep image:
+
+dpkg -l |grep -i kube
+````
