@@ -96,7 +96,7 @@ sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo a
 ### Or we can install a specific version
 
 ````
-sudo apt-get update && apt-get install -y kubelet=1.20.0-00 kubeadm=1.20.0-00 kubectl=1.20.0-00
+sudo apt-get update && sudo apt-get install -y kubelet=1.20.0-00 kubeadm=1.20.0-00 kubectl=1.20.0-00
 ````
 
 ### Let's make sure we don't update these randomly
