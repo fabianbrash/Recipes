@@ -87,6 +87,12 @@ sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo a
 sudo apt-get install -y kubelet=1.20.0-00 kubeadm=1.20.0-00 kubectl=1.20.0-00
 ````
 
+### Let's make sure we don't update these randomly
+
+````
+sudo apt-mark hold kubelet kubeadm kubectl
+````
+
 ##
 
 ### On the control-plane node
