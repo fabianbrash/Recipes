@@ -65,17 +65,29 @@ sudo apt install -y nfs-common cloud-guest-utils policycoreutils && sudo sestatu
 ### Install kubelet, kubeadm, kubectl and deps etc..
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
+##curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+##cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+##deb https://apt.kubernetes.io/ kubernetes-xenial main
+##EOF
 ```
+
+### Updated as of 02-18-2022 if you use the above you will get a warning about apt-key being deprecated so the below resolves that
+
+````
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+````
 
 ### Let's see what versions are available
 
 ````
 apt-cache madison kubeadm
 ````
+
+### Install kubelet kubeadm kubectl on all nodes note if you want you can eliminate the kubectl install on the worker nodes
+
+### And if you want you can also eliminate the kubelete install on the control plane nodes, note if you do that you won't see them with the kubectl get nodes command
 
 ```
 sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo apt-mark hold kubelet kubeadm kubectl
