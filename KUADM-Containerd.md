@@ -62,12 +62,6 @@ sudo apt install -y nfs-common cloud-guest-utils policycoreutils && sudo sestatu
 
 ```
 
-### Let's see what versions are available
-
-````
-apt-cache madison kubeadm
-````
-
 ### Install kubelet, kubeadm, kubectl and deps etc..
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
@@ -76,6 +70,13 @@ cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 ```
+
+### Let's see what versions are available
+
+````
+apt-cache madison kubeadm
+````
+
 ```
 sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo apt-mark hold kubelet kubeadm kubectl
 ```
