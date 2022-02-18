@@ -59,7 +59,15 @@ swapoff -a
 ### This is optional but if you want to use NFS in cluster it's mandatory also let's install a tool and check sestatus
 ```
 sudo apt install -y nfs-common cloud-guest-utils policycoreutils && sudo sestatus
+
 ```
+
+### Let's see what versions are available
+
+````
+apt-cache madison kubeadm
+````
+
 ### Install kubelet, kubeadm, kubectl and deps etc..
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https curl
