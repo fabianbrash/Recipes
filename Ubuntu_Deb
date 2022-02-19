@@ -623,4 +623,6 @@ sudo apt install -f
 sudo apt clean
 
 
+## echo out to /etc/hosts using tee
 
+echo '192.168.56.32  node-2' | sudo tee -a /etc/hosts
