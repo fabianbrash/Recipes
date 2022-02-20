@@ -130,7 +130,7 @@ kubectl apply -f calico.yaml
 
 [Make metrics-server work out of the box with kubeadm](https://particule.io/en/blog/kubeadm-metrics-server/)
 
-### The TL;DR is basically kubeadm uses a self-signed cert to sign the kubelet(and probably all components) and we need to have the kubelet cert signed by the k8s CA so it trusts the kubelet cert; or also we use a trusted cert from a public CA
+#### The TL;DR is basically kubeadm uses a self-signed cert to sign the kubelet(and probably all components) and we need to have the kubelet cert signed by the k8s CA so it trusts the kubelet cert; or also we use a trusted cert from a public CA
 
 ### I will hopefully soon turn this into a bash script and then an ansible playbook
 
