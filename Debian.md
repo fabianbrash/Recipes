@@ -39,3 +39,34 @@ su myuser
 
 sudo fdisk -l
 ````
+
+##
+
+### Set a static ip address
+
+````
+su -
+cd /etc/network
+cp interfaces interfaces.OLD
+
+vim interfaces
+
+## under #Primary network interface
+auto (whatever the name is here)
+iface adapter_name_here) inet static
+  address 192.168.1.250
+  netmask 255.255.255.0
+  gateway 192.168.1.1
+  dns-domain domain.com
+  dns-nameservers 8.8.8.8
+
+````
+
+````
+su -
+systemctl restart networking
+reboot now  ## note I had to reboot for this to take effect I gotta figure out why restaring the service doesn't do it
+
+ip -c addr show
+ip -c addr show my_network_device
+````
