@@ -505,6 +505,10 @@ echo -n '1f2d1e2e67df' | base64
 
 kubectl get csr --all-namespaces
 
+kubectl get csr
+
+kubectl certificate approve css-saa
+
 ####NOTE THE -n WITHOUT WHICH STANDS FOR 'do not output trailing new line'
 ### WITHOUT THAT YOU'RE PASSWORDS WILL BE WRONG I USED THIS FOR A MARIADB INSTANCE
 ## AND I MADE THE MISTAKE OF NOT USING -n AND EVERY TIME I ATTEMPTED TO LOGIN IN A GOT
