@@ -125,6 +125,11 @@ kubectl apply -f calico.yaml
 ### I would recommend installing metrics-server next
 [Metrics-Server(mine)](https://github.com/fabianbrash/YAML/blob/master/metrics-server-latest.yaml)
 ##
+
+### The below is an explanation as to why metrics-server does not work out of the box with kubeadm and a remedy for it
+
+[Make metrics-server work out of the box with kubeadm](https://particule.io/en/blog/kubeadm-metrics-server/)
+
 ### I will hopefully soon turn this into a bash script and then an ansible playbook
 
 ### Check a few things
