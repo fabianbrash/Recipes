@@ -109,12 +109,14 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ### On the control-plane node
 ```
-sudo kubeadm init --apiserver-advertise-address xxx.xxx.xxx.xxx --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --apiserver-advertise-address xxx.xxx.xxx.xxx --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.20.0
 
 or
 
 sudo kubeadm init --config=config.yaml
 ```
+
+#### If you don't give a version we will get the latest patch of 1.20.0 and you'll have a mismatch when you run kubectl version --short
 
 ```config.yaml```
 
