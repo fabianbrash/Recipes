@@ -775,4 +775,21 @@ kubectl get mutatingwebhookconfigurations
 
 ##Again run the kubectl command and fix any webhook that doesn't have an 'Ignore'
 
+### Set default storage class
 
+kubectl patch storageclass gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+
+### the above assumes a storage class called 'gold' has already been deployed in the cluster
+
+kubectl get sc
+
+## OR you can do this
+
+kubectl edit my-sc
+
+...
+metadata:
+  annotations:
+    some annotion
+    some other annotatiom
+    storageclass.kubernetes.io/is-default-class: "true"
