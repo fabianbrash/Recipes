@@ -116,6 +116,26 @@ or
 sudo kubeadm init --config=config.yaml
 ```
 
+```config.yaml```
+
+````
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 192.168.1.220
+  bindPort: 6443
+---
+apiVersion: kubeadm.k8s.io/v1beta1
+kind: ClusterConfiguration
+kubernetesVersion: v1.20.0
+networking:
+  podSubnet: 10.244.0.0/16
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+serverTLSBootstrap: true
+````
+
 ##
 
 ### Now let's install Calico as our overlay/pod network
