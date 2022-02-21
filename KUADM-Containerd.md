@@ -183,6 +183,10 @@ kubectl drain controller-1 --ignore-daemonsets
 
 ## I will assume you have su -
 
+apt-cache madison kubeadm ## Let's see what's out there for us
+
+## We've chosen the latest build of 1.21, 1.21.10
+
 kubeadm version
 
 kubeadm upgrade plan
