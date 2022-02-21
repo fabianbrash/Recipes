@@ -110,6 +110,10 @@ sudo apt-mark hold kubelet kubeadm kubectl
 ### On the control-plane node
 ```
 sudo kubeadm init --apiserver-advertise-address xxx.xxx.xxx.xxx --pod-network-cidr=10.244.0.0/16
+
+or
+
+sudo kubeadm init --config=config.yaml
 ```
 
 ##
