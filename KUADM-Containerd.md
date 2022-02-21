@@ -116,7 +116,7 @@ or
 sudo kubeadm init --config=config.yaml
 ```
 
-#### If you don't give a version we will get the latest patch of 1.20.0 and you'll have a mismatch when you run kubectl version --short
+#### If you don't give a version we will get the latest patch of 1.20.0 and you'll have a mismatch when you run kubectl version --short note the below config file also specifies a version
 
 ```config.yaml```
 
