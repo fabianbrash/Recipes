@@ -169,3 +169,38 @@ dpkg -l |grep -i kube
 
 sudo kubeadm certs check-expiration #check when our certs expire
 ````
+
+```Upgrade our cluster```
+
+#### First we start with our control plane node(s)
+
+```Controller Plane nodes```
+
+````
+kubectl drain controller-1 --ignore-daemonsets
+
+## I will assume you have su -
+
+kubeadm version
+
+kubeadm upgrade plan
+
+apt-mark unhold kubeadm && \
+apt-get update && apt-get install -y kubeadm=1.21.10-00 && \
+apt-mark hold kubeadm
+
+kubeadm upgrade plan
+
+kubeadm apply upgrade plan v1.21.10
+
+## If that was successful then we need to upgrade kubelet and kubectl to match
+
+apt-mark unhold kubelet kubectl && \
+apt-get update && apt-get install -y kubelet=1.21.10-00 kubectl=1.21.10-00 && \
+apt-mark hold kubelet kubectl
+
+systemctl daemon-reload
+systemctl restart kubelet
+
+
+````
