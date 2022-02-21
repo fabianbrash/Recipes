@@ -172,6 +172,15 @@ sudo kubeadm certs check-expiration #check when our certs expire
 
 ##
 
+```Optional```
+
+#### Install a SC
+
+[Rancher - localStorage](https://github.com/rancher/local-path-provisioner)
+
+##
+
+
 ```Upgrade our cluster```
 
 #### First we start with our control plane node(s)
