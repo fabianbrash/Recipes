@@ -176,7 +176,7 @@ sudo kubeadm certs check-expiration #check when our certs expire
 
 #### First we start with our control plane node(s)
 
-```Controller Plane nodes```
+```Control Plane nodes```
 
 ````
 kubectl drain controller-1 --ignore-daemonsets
