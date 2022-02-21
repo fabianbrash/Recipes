@@ -164,4 +164,6 @@ kubectl apply -f calico.yaml
 sudo cat /etc/kubernetes/manifests/kube-apiserver.yaml | grep image:
 
 dpkg -l |grep -i kube
+
+sudo kubeadm certs check-expiration #check when our certs expire
 ````
