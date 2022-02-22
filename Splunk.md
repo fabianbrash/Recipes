@@ -1,4 +1,4 @@
-### Splunk Search Command
+### Splunk Info
 
 ##
 
