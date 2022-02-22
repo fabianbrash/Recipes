@@ -52,4 +52,7 @@ splunk start
 index=my_firewall* src_ip=192.168.1.1 | table _time dvc src_ip src_ip_hostname dest_ip dest_ip_hostname dest_port server_ip transport action
 
 index=my_firewall* src_ip=192.168.1.1 action=blocked | table _time dvc src_ip src_ip_hostname dest_ip dest_ip_hostname dest_port server_ip transport action
+
+index=my_firewall* src_ip=192.168.1.1 action=blocked transport=icmp| table _time dvc src_ip src_ip_hostname dest_ip dest_ip_hostname dest_port server_ip transport action
+
 ````
