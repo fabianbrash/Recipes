@@ -52,17 +52,19 @@ sudo systemctl enable containerd
 ### Note theirs information on the site about configuring cgroups let's see if we really need to do that... so far no!!
 
 ### Disable swap
+
 ```
 sed -i '/swap/d' /etc/fstab
 swapoff -a
 ```
 ### This is optional but if you want to use NFS in cluster it's mandatory also let's install a tool and check sestatus
+
 ```
 sudo apt install -y nfs-common cloud-guest-utils policycoreutils && sudo sestatus
-
 ```
 
 ```prereqs```
+
 ```
 sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl
 
