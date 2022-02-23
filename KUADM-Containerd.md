@@ -100,7 +100,7 @@ apt-cache madison kubeadm
 
 ### Install kubelet kubeadm kubectl on all nodes note if you want you can eliminate the kubectl install on the worker nodes
 
-### And if you want you can also eliminate the kubelete install on the control plane nodes, note if you do that you won't see them with the kubectl get nodes command
+### And if you want you can also eliminate the kubelet install on the control plane nodes, note if you do that you won't see them with the kubectl get nodes command
 
 ````
 sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl && sudo apt-mark hold kubelet kubeadm kubectl
