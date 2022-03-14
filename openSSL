@@ -132,6 +132,10 @@ openssl pkcs12 -in C:\keys\filename.pfx -clcerts -nokeys -out C:\keys\cert.pem
 ##Remove password from private key
 openssl rsa -in C:\keys\key.pem -out C:\keys\server.pem
 
+### Check cert
+
+openssl x509 -noout -text -in yourcert.cert
+
 
 ###Combine public key and private key into a .PFX file
 
