@@ -245,4 +245,5 @@ openssl s_client -connect fabianbrash.com:443
 openssl rand -hex 32
 
 
+## Note when you assemble a cert bundle and you add in your actual .crt file make sure it's at the top not the bottom
 
