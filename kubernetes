@@ -7,6 +7,7 @@
 ##REF:https://mauilion.dev/posts/kind-metallb/
 
 
+````
 kubectl version
 kubectl version --short
 kubectl api-versions
@@ -28,12 +29,18 @@ kubectl get all -o wide
 watch kubectl get all -o wide
 
 kubectl get events # get all events
+````
 
+## Label a node
 
-## Label a node###
+````
 kubectl label node mymode1 ssdpresent=true
+````
 
-##find nodes with a label 
+
+## find nodes with a label
+
+````
 kubectl get nodes -l ssdpresent=true 
 
 kubectl get node node1 --show-labels
@@ -42,25 +49,32 @@ kubectl get ingress
 #or 
 kubectl get ing 
 kubectl describe ing 
+````
 
 
+## Get current context
 
-##Get current context
+````
 kubectl config view
 kubectl config current-context
 
 kubectl config get-contexts
 
-#kubectl get - list resources
-#kubectl describe - show detailed information about a resource
-#kubectl logs - print the logs from a container in a pod
-#kubectl exec - execute a command on a container in a pod
+kubectl get - list resources
+kubectl describe - show detailed information about a resource
+kubectl logs - print the logs from a container in a pod
+kubectl exec - execute a command on a container in a pod
+````
 
-####After you create a deployment you can create a service so external users can access it
-##But first after we deploy our deployment lets get the IP of the pods
+#### After you create a deployment you can create a service so external users can access it
+## But first after we deploy our deployment lets get the IP of the pods
+
+````
 kubectl get pods -o wide
+````
 
-###or to specify a label from our deployment
+````
+### or to specify a label from our deployment
 kubectl get pods -l app=nginx -o wide
 
 ##you can expose the service with
@@ -91,9 +105,12 @@ kubectl run --generator=run-pod/v1 busybox --image=busybox:1.28
 
 #then we can do this
 kubectl expose deploy ng1 --port 80 --type= NodePort
+````
 
 
-##delete the deployment 
+#### delete the deployment
+
+````
 kubectl get deployments
 kubectl delete deployement 'our deployment name'
 
@@ -116,8 +133,9 @@ kubectl port-forward podname 8080:80
 
 ###delete deployment
 kubectl delete deployment my-deployment
+````
 
-###Create a custom namespace#############
+### Create a custom namespace
 #REF:https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/
 kubectl create namespace mynamespace
 
@@ -138,13 +156,15 @@ kubectl get pv # get persistence volume
 kubectl exec pod/container name ls 
 
 
-###YAML###########
+### YAML
+
+````
 apiVersion: v1
 kind: Namespace
 metadata:
    name: mynamespace
    
-##END YAML
+````
 
 ###Deploy a pod into our namespace
 kubectl run ns-pod --image=nginx --port=80 --generator=run-pod/v1 -n mynamespace
@@ -178,8 +198,9 @@ kubectl scale deployment ng1 --replicas=3
 kubectl config view
 kubectl config current-context
 
-##You populate the below from the results of the 2 commands above
+## You populate the below from the results of the 2 commands above
 
+````
 kubectl config set-context dev --namespace=development \
   --cluster=lithe-cocoa-92103_kubernetes \
   --user=lithe-cocoa-92103_kubernetes
@@ -197,9 +218,12 @@ kubectl config current-context
 
 ####Now switch to prod
 kubectl config use-context prod
+````
 
-###Rolling upgrades#####
 
+### Rolling upgrades
+
+````
 kubectl rollout status deployment my-deploy
 
 kubectl rollout history deploy my-deploy
@@ -221,19 +245,22 @@ kubectl rollout undo deploy my-deploy --to-revision=2
 
 kubectl rollout pause deploy my-deploy
 kubectl rollout resume deploy my-deploy
+````
 
+#### Create a registry pull secret
 
-#### Create a registry pull secret ######
-
+````
 kubectl create secret generic harborcred \
     --from-file=.dockerconfigjson=/home/myuser/.docker/config.json \
     --type=kubernetes.io/dockerconfigjson
+````
 
+```KUBERNETES INSTALL NOTES```
 
-#########################KUBERNETES INSTALL NOTES####################################################
-###I will turn this into a bash script soon and then hopefully an ansible playbook####
-##Thanks to REF:https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md
+### I will turn this into a bash script soon and then hopefully an ansible playbook####
+## Thanks to REF:https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md
 
+````
 su -
 
 ##edit hosts file
@@ -357,7 +384,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 ###Cluster join command
 ##If you didn't save the output from the cluster creation
 kubeadm token create --print-join-command
-
+````
 
 ##ALL done
 
@@ -785,6 +812,7 @@ kubectl get sc
 
 ## OR you can do this
 
+````
 kubectl edit my-sc
 
 ...
@@ -793,3 +821,13 @@ metadata:
     some annotion
     some other annotatiom
     storageclass.kubernetes.io/is-default-class: "true"
+````
+
+#### Create a clusterrolebinding imperatively, also here we have LDAPS configured in our k8s cluster
+
+````
+kubectl create clusterrolebinding rbac-admin --clusterrole cluster-admin --user user@addomain
+
+````
+
+
