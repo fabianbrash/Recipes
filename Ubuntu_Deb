@@ -626,3 +626,22 @@ sudo apt clean
 ## echo out to /etc/hosts using tee
 
 echo '192.168.56.32  node-2' | sudo tee -a /etc/hosts
+
+
+
+
+#### Add to path
+
+````
+
+echo $PATH > ~/path.current   # back things up first
+
+nano ~/.bashrc
+
+export PATH="$HOME/bin:$PATH"  # Add to the end of the file; not here we are adding our folder to the beginning we can also do this
+
+export PATH="$PATH:$HOME/bin" # Add to the end of the path
+
+````
+
+
