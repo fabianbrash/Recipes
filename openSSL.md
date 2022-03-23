@@ -308,3 +308,44 @@ openssl rand -hex 32
 
 ### Note when you assemble a cert bundle and you add in your actual .crt file make sure it's at the top not the bottom
 
+
+```Create a SAN CSR OpenSSL```
+
+[GeekFlare-SAN-SSL](https://geekflare.com/san-ssl-certificate/)
+
+````
+touch san.cnf
+
+````
+
+````
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+[ req_distinguished_name ]
+countryName                 = Country Name (2 letter code)
+stateOrProvinceName         = State or Province Name (full name)
+localityName               = Locality Name (eg, city)
+organizationName           = Organization Name (eg, company)
+commonName                 = Common Name (e.g. server FQDN or YOUR name)
+[ req_ext ]
+subjectAltName = @alt_names
+[alt_names]
+DNS.1   = bestflare.com
+DNS.2   = usefulread.com
+DNS.3   = chandank.com
+
+````
+
+````
+openssl req -out sslcert.csr -newkey rsa:2048 -nodes -keyout private.key -config san.cnf
+
+````
+
+### Let's verify
+
+````
+openssl req -noout -text -in sslcert.csr | grep DNS
+
+````
