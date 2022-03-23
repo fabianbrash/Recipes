@@ -324,11 +324,11 @@ default_bits       = 2048
 distinguished_name = req_distinguished_name
 req_extensions     = req_ext
 [ req_distinguished_name ]
-countryName                 = Country Name (2 letter code)
-stateOrProvinceName         = State or Province Name (full name)
-localityName               = Locality Name (eg, city)
-organizationName           = Organization Name (eg, company)
-commonName                 = Common Name (e.g. server FQDN or YOUR name)
+countryName                 = "US"
+stateOrProvinceName         = "Virginia"
+localityName                = "Richmond"
+organizationName            = "IT"
+commonName                  = "bestflare.com"
 [ req_ext ]
 subjectAltName = @alt_names
 [alt_names]
