@@ -327,8 +327,10 @@ req_extensions     = req_ext
 countryName                 = "US"
 stateOrProvinceName         = "Virginia"
 localityName                = "Richmond"
-organizationName            = "IT"
+organizationName            = "My Company"
+organizationalUnitName      = "IT"
 commonName                  = "bestflare.com"
+emailAddress                = "blah@blah.io"
 [ req_ext ]
 subjectAltName = @alt_names
 [alt_names]
