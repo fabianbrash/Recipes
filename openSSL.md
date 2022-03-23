@@ -359,6 +359,9 @@ openssl req -noout -text -in sslcert.csr | grep DNS
 ````
 openssl req –new –newkey rsa:2048 –nodes –keyout server.key –out server.csr
 
+# The above gave me errors so I used my old command
+
+openssl req –newkey rsa:2048 –keyout server.key –out server.csr
 
 Common name – Fully qualified domain name of the website you are securing. Since we need wildcard certificate for all subdomains, use asterisk (*) in place of subdomain name *.example.com
 
