@@ -1,8 +1,10 @@
 #### CREATE A SELF-SIGNED CERT WITH SAN(Subject Alternative Name) use in conjunction with openssl.ps1
 
-## REF:https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
-## REF:https://gist.github.com/Soarez/9688998
-## REF:https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309
+[DO-openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
+
+[Soarez-Gist](https://gist.github.com/Soarez/9688998)
+
+[fntlnz-Gist](https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309)
 
 
 ```Create root private key```
