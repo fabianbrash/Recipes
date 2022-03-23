@@ -363,6 +363,10 @@ openssl req –new –newkey rsa:2048 –nodes –keyout server.key –out serve
 
 openssl req –newkey rsa:2048 –keyout server.key –out server.csr
 
+# SSls had this
+
+openssl req -new -newkey rsa:2048 -nodes -keyout STAR_alexanderbrash_dev.pem -out STAR_alexanderbrash_dev.csr -subj /CN=*.alexanderbrash.dev; cat STAR_alexanderbrash_dev.csr
+
 Common name – Fully qualified domain name of the website you are securing. Since we need wildcard certificate for all subdomains, use asterisk (*) in place of subdomain name *.example.com
 
 ````
