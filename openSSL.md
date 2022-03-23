@@ -351,3 +351,14 @@ openssl req -out sslcert.csr -newkey rsa:2048 -nodes -keyout private.key -config
 openssl req -noout -text -in sslcert.csr | grep DNS
 
 ````
+
+```Create wildcard csr openssl```
+
+````
+openssl req –new –newkey rsa:2048 –nodes –keyout server.key –out server.csr
+
+
+Common name – Fully qualified domain name of the website you are securing. Since we need wildcard certificate for all subdomains, use asterisk (*) in place of subdomain name *.example.com
+
+````
+
