@@ -172,13 +172,15 @@ openssl rsa -in C:\keys\key.pem -out C:\keys\server.pem
 openssl x509 -noout -text -in yourcert.cert
 ````
 
-###Combine public key and private key into a .PFX file
+### Combine public key and private key into a .PFX file
 
+````
 openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt
+````
 
-##Note the -certfile CACert.crt is optional and references if your have intermediate certificates
+## Note the -certfile CACert.crt is optional and references if your have intermediate certificates
 
-##REF: https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files
+## REF: https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files
 
 ### Convert a DER encoded .cer file to .crt#####
 ## Note in Windows when you go to export a CA you are given 2 choices, Der encoded or BASE64
