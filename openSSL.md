@@ -310,6 +310,8 @@ openssl rand -hex 32
 
 ### Note when you assemble a cert bundle and you add in your actual .crt file make sure it's at the top not the bottom
 
+### Also make sure your private key is not encrypted if it is you need to use openssl to decrypt it with the password you created at creation
+
 
 ```Create a SAN CSR OpenSSL```
 
