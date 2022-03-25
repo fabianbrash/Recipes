@@ -50,7 +50,7 @@ DNS.3 = blah.net
 ````
 
 
-### REFERENCE https://support.citrix.com/article/CTX135602
+[]Citrix Article](https://support.citrix.com/article/CTX135602)
 
 ## Save the above file with a .cnf extension
 
@@ -76,8 +76,9 @@ openssl x509 -in certificate.der -inform der -text -noout
 openssl verify cert.crt
 ````
 
-### Good Source material https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file
-## https://blog.confirm.ch/adding-a-new-trusted-certificate-authority/
+[Serverfault-what is a pemfile](https://serverfault.com/questions/9708/what-is-a-pem-file-and-how-does-it-differ-from-other-openssl-generated-key-file)
+
+[Add new trusted CA](https://blog.confirm.ch/adding-a-new-trusted-certificate-authority/)
 
 
 ```Creat a self-signed certificate without generating a CSR first```
@@ -98,7 +99,7 @@ openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout key.key -out cert.crt 
 
 ```Adding ssl certs ubuntu```
 
-## Resource: https://askubuntu.com/questions/645818/how-to-install-certificates-for-command-line
+[Add ssl certs ubuntu](https://askubuntu.com/questions/645818/how-to-install-certificates-for-command-line)
 
 ### copy .crt file to
 ````
@@ -122,9 +123,11 @@ openssl dhparam -out /etc/nginx/conf.d/dhparams.pem 2048
 
 ````
 
-### also good source https://weakdh.org/sysadmin.html
-### also https://cipherli.st/
-#### This is a great generator as well from Mozilla: https://mozilla.github.io/server-side-tls/ssl-config-generator/
+[weakdh.org](https://weakdh.org/sysadmin.html)
+
+[cipherli.st](https://cipherli.st/)
+
+[Mozilla - ssl-config-generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/)
 
 ## nginx add this point to our above generated file
 
@@ -133,7 +136,8 @@ ssl_dhparam /etc/nginx/certs/dhparam.pem;
 ````
 
 ## Generate DH parameters with at least 2048 bits. If you use 4096 bits for your TLS certificate you should match it in DH parameters too.
-## REF:https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0
+
+[Medium - how to properly configure nginx tls](https://medium.com/@mvuksano/how-to-properly-configure-your-nginx-for-tls-564651438fe0)
 
 #### Please check your webserver docs to configure DH i.e. apache etc.#####
 
@@ -146,7 +150,7 @@ ssl_dhparam /etc/nginx/certs/dhparam.pem;
 
 ```convert .p7b to .pem```
 
-## REF:https://knowledge.digicert.com/solution/SO26449
+[Digicert](https://knowledge.digicert.com/solution/SO26449)
 
 ````
 openssl pkcs7 -print_certs -in certificatename.p7b -out certificatename.pem
@@ -180,7 +184,7 @@ openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificat
 
 ## Note the -certfile CACert.crt is optional and references if your have intermediate certificates
 
-## REF: https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files
+[Serverfault - iis7-import publickey-privkey](https://serverfault.com/questions/114795/iis7-how-to-import-public-key-and-private-key-as-two-seperate-files)
 
 ### Convert a DER encoded .cer file to .crt#####
 ## Note in Windows when you go to export a CA you are given 2 choices, Der encoded or BASE64
@@ -192,7 +196,8 @@ openssl x509 -inform DER -in ssl_certificate.cer -out ssl_certificate.crt
 ````
 
 ### Convert .cer to .pem####
-## REF:https://support.aerofs.com/hc/en-us/articles/205007260-How-Do-I-Convert-My-SSL-Certificate-File-To-PEM-Format-
+
+[Convert cer to pem](https://support.aerofs.com/hc/en-us/articles/205007260-How-Do-I-Convert-My-SSL-Certificate-File-To-PEM-Format-)
 
 ````
 openssl x509 -inform der -in certificate.cer -out certificate.pem
@@ -220,7 +225,8 @@ openssl passwd -1 "MyPassword"
 openssl rand -base64 6
 ```` 
 ### and put it together
-### REF:https://edvoncken.net/2011/03/tip-encrypted-passwords-just-add-salt/
+
+[Encrypted password just add salt](https://edvoncken.net/2011/03/tip-encrypted-passwords-just-add-salt/)
 
 ````
 openssl passwd -1 -salt $(openssl rand -base64) mypassword
