@@ -50,7 +50,7 @@ DNS.3 = blah.net
 ````
 
 
-[]Citrix Article](https://support.citrix.com/article/CTX135602)
+[Citrix Article](https://support.citrix.com/article/CTX135602)
 
 ## Save the above file with a .cnf extension
 
