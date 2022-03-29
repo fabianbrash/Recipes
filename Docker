@@ -899,3 +899,31 @@ ls -la ~/.docker
 ##File is called config.json
 
 
+### Ran into an issue when building a dockerfile during the build it had to install tzdata which prompted for a question
+#### I looked around and found that some installers will have a little TUI so we need to turn that off
+
+````
+
+FROM ubuntu:20.04
+
+LABEL maintainer="Fabian Brash"
+
+RUN apt-get update && apt-get upgrade -y && DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends --no-install-suggests -y \
+curl \
+ca-certificates \
+dnsutils \
+git \
+hping3 \
+iputils-ping \
+net-tools \
+nmap \
+wget \
+vim
+
+````
+
+#### Note the 'DEBIAN_FRONTEND=noninteractive' before we install out packages, some folks complained that did not work for them, so here is the thread
+
+[Dockerfiles and packages that prompt](https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai)
+
+
