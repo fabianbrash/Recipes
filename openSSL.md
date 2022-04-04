@@ -384,3 +384,5 @@ Common name – Fully qualified domain name of the website you are securing. Sin
 
 ````
 
+[Digicert-openssl-quick-reference](https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm)
+
