@@ -375,6 +375,11 @@ openssl req –newkey rsa:2048 –keyout server.key –out server.csr
 
 openssl req -new -newkey rsa:2048 -nodes -keyout STAR_alexanderbrash_dev.pem -out STAR_alexanderbrash_dev.csr -subj /CN=*.alexanderbrash.dev; cat STAR_alexanderbrash_dev.csr
 
+# We can also do this, more complete we just can't add a SAN or SAN's this way
+
+openssl req -new -newkey rsa:2048 -nodes -keyout STAR_tap_alexanderbrash_dev.pem -out STAR_tap_alexanderbrash_dev.csr \
+-subj "/C=US/ST=Virginia/L=Richmond/O=IT/OU=IT/CN=*.tap.alexanderbrash.dev"; cat STAR_tap_alexanderbrash_dev.csr
+
 Common name – Fully qualified domain name of the website you are securing. Since we need wildcard certificate for all subdomains, use asterisk (*) in place of subdomain name *.example.com
 
 ````
