@@ -395,3 +395,12 @@ openssl s_client -connect google.com:443 -showcerts
 
 ````
 
+#### Check chain I need to research this more
+
+
+````
+
+openssl verify -show_chain -CAfile star-tap-alexanderbrash-dev-bundle.crt star-tap-alexanderbrash-dev.crt
+
+````
+
