@@ -13,9 +13,17 @@
 ````
 sudo openssl dhparam -out /etc/nginx/dhparam.pem 4096
 
+````
+
+```Create our conf files```
+
+
+````
+
 sudo touch /etc/nginx/snippets/certs.conf
 
 sudo touch /etc/nginx/snippets/ssl-params.conf
+
 
 ````
 
