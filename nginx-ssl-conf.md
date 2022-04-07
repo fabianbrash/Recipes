@@ -38,6 +38,16 @@ sudo touch /etc/nginx/snippets/ssl-params.conf
 
 ````
 
+```Create dir to keep certs```
+
+
+````
+
+sudo mkdir /etc/pki/nginx
+sudo mkdir -p /etc/pki/nginx/private
+
+````
+
 #### Populate our files
 
 ````
