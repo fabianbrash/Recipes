@@ -7,6 +7,17 @@
 #### Note I am just using the default config file located in /etc/nginx/sites-available/default you can make it more fancy if you like
 
 
+```Install Nginx```
+
+````
+
+sudo apt install -y nginx
+
+sudo ufw status
+
+````
+
+
 ```Generate diffie-helman file```
 
 
