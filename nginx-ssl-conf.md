@@ -185,10 +185,12 @@ location / {
 
 ````
 
-#### Check if our syntax is correct
+#### Check if our syntax is correct and restart nginx, also make any adjustments to the firewall if one is running
 
 ````
 
 sudo nginx -t
+
+sudo systemctl restart nginx
 
 ````
