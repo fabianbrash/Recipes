@@ -194,3 +194,17 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 ````
+
+#### Once everything is working fine you can make one more adjustment where you have a 302 you can replace with a 301
+
+
+````
+
+return 301 https://$server_name$request_uri;
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+
+
+````
