@@ -150,3 +150,11 @@ location / {
 
 
 ````
+
+#### Check if our syntax is correct
+
+````
+
+sudo nginx -t
+
+````
