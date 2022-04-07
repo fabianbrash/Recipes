@@ -52,8 +52,8 @@ sudo mkdir -p /etc/pki/nginx/private
 
 ````
 cat > /etc/nginx/snippets/certs.conf << __EOF__
-ssl_certificate /etc/ssl/certs/ng-self.crt;
-ssl_certificate_key /etc/ssl/certs/ng-key.key;
+ssl_certificate /etc/pki/nginx/ng-self.crt;
+ssl_certificate_key /etc/pki/nginx/private/ng-key.key;
 __EOF__
 
 ````
