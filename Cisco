@@ -115,6 +115,15 @@ conf t
 vlan
 no vlan 3(delete VLAN 3)
 
+#### Remove a vlan from a trunk
+
+````
+switchport trunk allowed vlan remove 1
+
+````
+
+#### Note on the above, I had vlan 1 in my config, vlan 1 is also my vlan back to my FIOS router so I had some odd behaviours so either configure a native vlan on the trunk or remove or not add vlan 1 at all
+
 #####REMOVE TRUNKING FROM A PORT OR PORTS########################################
 conf t
 interface Gi1/0/19(or whatever port(s)
