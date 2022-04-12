@@ -17,6 +17,8 @@ aws eks update-kubeconfig --region region-code --name cluster-name
 
 ````
 
+[aws eks commands](https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html)
+
 ### but the output is in JSON so not nice to import also *.domain.com comes out as \\052.domain.com
 
 [Tool to transfer Route53 entries](https://github.com/cosmin/route53-transfer)
@@ -25,6 +27,7 @@ aws eks update-kubeconfig --region region-code --name cluster-name
 
 ````
 route53-transfer --access-key-id=your_access_key --secret-key=your_secrey_key dump fabianbrash.com backup.csv
+
 ````
 
 
