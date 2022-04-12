@@ -67,6 +67,10 @@ eksctl create cluster --name my-cluster
 
 eksctl create cluster -f cluster.yaml
 
+eksctl delete cluster my-tap-cluster
+
+eksctl delete cluster my-tap-cluster --force
+
 ````
 
 ```cluster.yaml```
@@ -79,7 +83,7 @@ kind: ClusterConfig
 
 metadata:
   name: basic-cluster
-  region: eu-north-1
+  region: us-east-1
 
 nodeGroups:
   - name: ng-1
