@@ -4,8 +4,17 @@
 
 ### so I had to install the aws cli and run the below
 
+
+```aws cli```
+
+
 ````
 aws route53 list-resource-record-sets --hosted-zone-id your zone id goes here > /Users/fabianbrash/Desktop/Misc/rackspace-email-migration/fabianbrash_zone.json
+
+
+aws eks update-kubeconfig --region region-code --name cluster-name
+
+
 ````
 
 ### but the output is in JSON so not nice to import also *.domain.com comes out as \\052.domain.com
@@ -57,7 +66,7 @@ route53-transfer --access-key-id=your_access_key --secret-key=your_secrey_key du
 
 ```eksctl```
 
-#### Create a cluster
+#### Cluster management
 
 ````
 
@@ -70,6 +79,7 @@ eksctl create cluster -f cluster.yaml
 eksctl delete cluster my-tap-cluster
 
 eksctl delete cluster my-tap-cluster --force
+
 
 ````
 
@@ -94,3 +104,4 @@ nodeGroups:
     desiredCapacity: 2
 
 ````
+
