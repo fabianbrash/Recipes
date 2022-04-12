@@ -53,3 +53,40 @@ route53-transfer --access-key-id=your_access_key --secret-key=your_secrey_key du
 [set-default-root-object](https://stackoverflow.com/questions/31017105/how-do-you-set-a-default-root-object-for-subdirectories-for-a-statically-hosted)
 
 ### basically point to the s3 bucket URL and not the bucket object, of course you have to set the bucket up to serve a website first.
+
+
+```eksctl```
+
+#### Create a cluster
+
+````
+
+eksctl create cluster
+
+eksctl create cluster --name my-cluster
+
+eksctl create cluster -f cluster.yaml
+
+````
+
+```cluster.yaml```
+
+
+````
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: basic-cluster
+  region: eu-north-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 10
+  - name: ng-2
+    instanceType: m5.xlarge
+    desiredCapacity: 2
+
+````
