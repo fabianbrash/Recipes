@@ -1,5 +1,7 @@
 #### eksctl commands
 
+[docs](https://eksctl.io/usage/creating-and-managing-clusters/)
+
 
 ```Create a cluster```
 
@@ -35,5 +37,22 @@ nodeGroups:
     ssh:
       publicKeyPath: ~/.ssh/ec2_id_rsa.pub
 
+
+````
+
+````
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-cluster
+  region: us-east-1
+
+nodeGroups:
+  - name: ng-1
+    instanceType: m5.large
+    desiredCapacity: 5
+    volumeSize: 100
 
 ````
