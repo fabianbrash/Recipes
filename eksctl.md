@@ -56,3 +56,10 @@ nodeGroups:
     volumeSize: 100
 
 ````
+
+
+````
+
+eksctl create cluster -f cluster.yaml
+
+````
