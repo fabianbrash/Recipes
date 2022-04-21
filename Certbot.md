@@ -1,34 +1,40 @@
-####Certbot information###
+## Certbot information
 
 
-##REF: https://certbot.eff.org/docs/using.html?highlight=dns
+[Certbot - docs](https://certbot.eff.org/docs/using.html?highlight=dns)
 
 
 
-##Okay let's install a cert completely manually
+### Okay let's install a cert completely manually
 
+````
 certbot certonly --manual --preferred-challenges dns
+````
 
-##Okay enter your CN and then add the TXT entry in your DNS provider
+### Okay enter your CN and then add the TXT entry in your DNS provider
 
-## OR ##
+### OR
 
+````
 certbot certonly -d myservice.domain.com --manual --preferred-challenges dns
+````
 
-## Note the above command will also renew a cert that's about to expire
-## We cannot use the renew feature of certbot because when we generated the original cert we use the --manual option
-## Note I used the manual option for Windows, but on Linux I used the route53 plugin so I should be able to use the 
-## auto-renew functionality.
+### Note the above command will also renew a cert that's about to expire
+### We cannot use the renew feature of certbot because when we generated the original cert we use the --manual option
+### Note I used the manual option for Windows, but on Linux I used the route53 plugin so I should be able to use the 
+### auto-renew functionality.
 
-##Install plugins centos 8 this works for the latest ubuntu you will need to tweak for centos7
+### Install plugins centos 8 this works for the latest ubuntu you will need to tweak for centos7
 
+````
 sudo dnf install -y epel-release
 
 sudo dnf install -y certbot
+````
 
+### Should already be there but just in case
 
-##Should already be there but just in case
-
+````
 sudo yum install python3-pip -y
 
 certbot plugins  ## list all plugins
@@ -41,20 +47,25 @@ certbot plugins  ## you should now see the route53 plugin
 
 certbot certificates # list know certificates
 
+````
 
-##Now to use the route53 plugin create a directory 
+### Now to use the route53 plugin create a directory
 
+```config```
+
+````
 mkdir ~/.aws
-cd .aws
-touch config
 
-##file contents of config
+cd .aws
+
+touch config
 
 [default]
 aws_access_key_id=your_access_key
-aws_secret_access_key=yur_secret_access_key
+aws_secret_access_key=your_secret_access_key
+````
 
-##END File###
+````
 
 ##Note the [default is very important make sure you don't misspel it like I did and spend 40 minutes troubleshooting it
 
@@ -66,8 +77,9 @@ sudo snap install --classic certbot
 
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
+````
 
-###Manual DNS challenge###
+### Manual DNS challenge
 
 certbot certonly --manual --preferred-challenges dns \
 -d fqdn_of_your_server \
