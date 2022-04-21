@@ -85,6 +85,7 @@ sudo ln -s /snap/bin/certbot /usr/bin/certbot
 certbot certonly --manual --preferred-challenges dns \
 -d fqdn_of_your_server \
 -m test@testemail.com \
---agree-tos \
+--agree-tos
+
 ````
 
