@@ -644,4 +644,10 @@ export PATH="$PATH:$HOME/bin" # Add to the end of the path
 
 ````
 
+### See what ports are listening, lsof was installed even on photonOS
+
+````
+lsof -i -P -n | grep -i listen
+
+````
 
