@@ -67,6 +67,8 @@ openssl x509 -req -in harbor-01.csr -CA harbor-root.crt -CAkey harbor-root.key -
 
 openssl x509 -in harbor-01.crt -noout -text
 
+openssl x509 -in harbor-01.crt -noout -text | grep -i dns
+
 ````
 
 
