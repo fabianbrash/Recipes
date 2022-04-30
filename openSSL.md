@@ -303,24 +303,12 @@ So we can then use that to create permission for groups of users and not just jo
 ## Now let's sign johns cert with our CA
 
 ````
-openssl x509 -req -in john.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out john.crt -days 365
-
-# the above stopped working I assume openssl makes breaking changes from some version to some version
+openssl x509 -req -in john.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out john.crt -days 365
 
 
 openssl x509 -req -in harbor-01.csr -signkey harbor-root.key -CAcreateserial -out harbor-01.crt -days 365
 
-# The above now works note the change to -signkey from -CA -CAKey I have openssl version:
-
-openssl version -a
-OpenSSL 1.1.1l  24 Aug 2021
-built on: Wed Mar  9 12:06:18 2022 UTC
-platform: debian-amd64
-options:  bn(64,64) rc4(16x,int) des(int) blowfish(ptr) 
-compiler: gcc -fPIC -pthread -m64 -Wa,--noexecstack -Wall -Wa,--noexecstack -g -O2 -ffile-prefix-map=/build/openssl-WgLPFV/openssl-1.1.1l=. -flto=auto -ffat-lto-objects -fstack-protector-strong -Wformat -Werror=format-security -DOPENSSL_TLS_SECURITY_LEVEL=2 -DOPENSSL_USE_NODELETE -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_CPUID_OBJ -DOPENSSL_IA32_SSE2 -DOPENSSL_BN_ASM_MONT -DOPENSSL_BN_ASM_MONT5 -DOPENSSL_BN_ASM_GF2m -DSHA1_ASM -DSHA256_ASM -DSHA512_ASM -DKECCAK1600_ASM -DRC4_ASM -DMD5_ASM -DAESNI_ASM -DVPAES_ASM -DGHASH_ASM -DECP_NISTZ256_ASM -DX25519_ASM -DPOLY1305_ASM -DNDEBUG -Wdate-time -D_FORTIFY_SOURCE=2
-OPENSSLDIR: "/usr/lib/ssl"
-ENGINESDIR: "/usr/lib/x86_64-linux-gnu/engines-1.1"
-Seeding source: os-specific
+# The above also works by create the cert and signing it with the -signkey I think I prefer the first option though
 
 ````
 
