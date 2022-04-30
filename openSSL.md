@@ -331,7 +331,19 @@ openssl x509 -req -in harbor-01.csr -signkey harbor-root.key -CAcreateserial -ou
 
 
 ````
-Note the above will sign our cert from our root certificate so if you import the root cert into Linux or Windows any cert signed by the ca will be trusted, I prefer it that way, but you can also use openssl to just create a self-signed cert that is not signed by any CA; then you will have to import that cert into your trusted root, the issue with doing it that way is that if you have 20 certs you have to import 20 into your trusted root store; while in the above all you have to is install the 1 root and then everything singed by it is automatically trusted; of course make sure you don't just install any random root cert into your trusted store; also it is very, very important that all downstream certs MUST HAVE A SAN, both chrome and k8s require it, the root cert itself does not need it but all downstreams do!!!
+Note the above will sign our cert from our root certificate so if you import the root cert into Linux or Windows any cert 
+
+signed by the ca will be trusted, I prefer it that way, but you can also use openssl to just create a self-signed cert that is not signed by any
+
+CA; then you will have to import that cert into your trusted root, the issue with doing it that way is that if you have 20 certs you have to 
+
+import 20 into your trusted root store; while in the above all you have to is install the 1 root and then everything singed by it is 
+
+automatically trusted; of course make sure you don't just install any random root cert into your trusted store; also it is very
+
+very important that all downstream certs MUST HAVE A SAN, both chrome and k8s require it, the root cert itself 
+
+does not need it but all downstreams do!!!
 
 ````
 
