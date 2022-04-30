@@ -310,7 +310,7 @@ openssl x509 -req -in john.csr -CA ca.crt -CAKey ca.key -CAcreateserial -out joh
 
 openssl x509 -req -in harbor-01.csr -signkey harbor-root.key -CAcreateserial -out harbor-01.crt -days 365
 
-# The above now works I have openssl
+# The above now works note the change to -signkey from -CA -CAKey I have openssl version:
 
 openssl version -a
 OpenSSL 1.1.1l  24 Aug 2021
