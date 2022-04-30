@@ -5,6 +5,7 @@
 [Soarez-Gist](https://gist.github.com/Soarez/9688998)
 
 [fntlnz-Gist](https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309)
+[https://www.golinuxcloud.com/openssl-subject-alternative-name/](https://www.golinuxcloud.com/openssl-subject-alternative-name/)
 
 
 ```Create root private key```
