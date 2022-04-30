@@ -57,6 +57,14 @@ DNS.3 = blah.net
 ## If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+####
 ## THANKS GOOGLE!!!!!!!
 
+## If you use the above you need to use the below to generate your cert if you don't your SAN will not get populated
+
+````
+
+openssl x509 -req -in harbor-01.csr -CA harbor-root.crt -CAkey harbor-root.key -CAcreateserial -out harbor-01.crt -days 365 -extensions v3_req -extfile harbor.cnf
+
+````
+
 
 ```OPENSSL COMMANDS```
 
@@ -411,4 +419,22 @@ openssl s_client -connect google.com:443 -showcerts
 openssl verify -show_chain -CAfile star-tap-alexanderbrash-dev-bundle.crt star-tap-alexanderbrash-dev.crt
 
 ````
+
+#### Check our CSR; not I still did not see my SAN but more on that later
+
+````
+
+openssl req -noout -text -in harbor-01.csr
+
+````
+
+#### Now let's check out cert
+
+````
+
+openssl x509 -in harbor-01.crt -noout -text
+
+````
+
+##### From the above I did see the SAN
 
