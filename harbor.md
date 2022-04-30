@@ -23,7 +23,7 @@ sudo ./install.sh --with-trivy
 ### You might have to cleanup before you install so just do the below, make sure you know where your data resides
 
 ````
-docker-compuse down
+docker-compose down
 ````
 
 ##
