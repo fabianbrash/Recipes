@@ -258,7 +258,7 @@ openssl rand -base64 21
 
 ```CIPHERS```
 
-## REF:https://www.openssl.org/docs/man1.0.2/man1/ciphers.html
+[https://www.openssl.org/docs/man1.0.2/man1/ciphers.html](https://www.openssl.org/docs/man1.0.2/man1/ciphers.html)
 
 ## Verbose listing of all OpenSSL ciphers including NULL ciphers
 openssl ciphers -v 'ALL:eNULL'
@@ -270,7 +270,9 @@ openssl ciphers -v 'ALL:!ADH:@STRENGTH'
 ````
 
 ### OpenSSL and ECDSA(Elliptical Curve...)
-## REF:https://superuser.com/questions/1103401/generate-an-ecdsa-key-and-csr-with-openssl/1103530
+
+[https://superuser.com/questions/1103401/generate-an-ecdsa-key-and-csr-with-openssl/1103530](https://superuser.com/questions/1103401/generate-an-ecdsa-key-and-csr-with-openssl/1103530)
+
 ## For a list of possible curve names
 
 ````
