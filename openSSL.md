@@ -63,6 +63,10 @@ DNS.3 = blah.net
 
 openssl x509 -req -in harbor-01.csr -CA harbor-root.crt -CAkey harbor-root.key -CAcreateserial -out harbor-01.crt -days 365 -extensions v3_req -extfile harbor.cnf
 
+# verify
+
+openssl x509 -in harbor-01.crt -noout -text
+
 ````
 
 
