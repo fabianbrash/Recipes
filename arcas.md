@@ -2,6 +2,15 @@
 
 #### Enable Workload Control Plane (WCP) or configure Namespaces and deploy Workload clusters
 
+#### Some initial setup, create a CL and name it below, don't select download immediately, set it to when needed
+
+````
+CL Name: SubscribedAutomation-Lib
+
+Subscription URL: https://wp-content.vmware.com/v2/latest/lib.json
+
+````
+
 [Github](https://github.com/vmware-tanzu/service-installer-for-vmware-tanzu)
 
 ````
