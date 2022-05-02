@@ -843,7 +843,9 @@ kubectl config unset clusters.tap-onprem
 
 kubectl config unset contexts.tap-onprem-admin@tap-onprem
 
-
-
 ````
+
+[https://stackoverflow.com/questions/37016546/kubernetes-how-do-i-delete-clusters-and-contexts-from-kubectl-config](https://stackoverflow.com/questions/37016546/kubernetes-how-do-i-delete-clusters-and-contexts-from-kubectl-config)
+
+
 
