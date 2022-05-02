@@ -830,4 +830,20 @@ kubectl create clusterrolebinding rbac-admin --clusterrole cluster-admin --user 
 
 ````
 
+#### Cleaning up
+
+````
+kubectl config unset clusters # this will delete all clusters and delete your config file
+
+cat /home/user/.kube/config # have a look at your kubeconfig file and then start unsetting clusters,users, and contexts
+
+kubectl config unset users.tkg-mgmt-1-admin
+
+kubectl config unset clusters.tap-onprem
+
+kubectl config unset contexts.tap-onprem-admin@tap-onprem
+
+
+
+````
 
