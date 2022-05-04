@@ -2,6 +2,8 @@
 
 [DO-openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
 
+[https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs#generating-ssl-certificates](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs#generating-ssl-certificates)
+
 [Soarez-Gist](https://gist.github.com/Soarez/9688998)
 
 [fntlnz-Gist](https://gist.github.com/fntlnz/cf14feb5a46b2eda428e000157447309)
