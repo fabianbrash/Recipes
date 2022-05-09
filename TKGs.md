@@ -60,3 +60,27 @@ spec:
             #data: <base64-encoded string of PEM encoded public cert 2>
 
 ````
+
+
+### Prior to vSphere 7U3 if you want to add your supervisor cluster to TMC you need to run the below
+
+
+````
+
+kubectl get ns
+
+````
+
+````
+
+---
+apiVersion: installers.tmc.cloud.vmware.com/v1alpha1
+kind: AgentInstall
+metadata:
+  name: tmc-agent-installer-config
+  namespace: svc-tmc-c8  #Your's will be different get the name from the above command
+spec:
+  operation: INSTALL
+  registrationLink: THIS_IS_THE_LINK_GENERATED_FROM_TMC
+
+````
