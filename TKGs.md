@@ -84,3 +84,11 @@ spec:
   registrationLink: THIS_IS_THE_LINK_GENERATED_FROM_TMC
 
 ````
+
+### By default the PSP is extremely strict so if you are not using TMC you need to do the below
+
+````
+
+kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
+
+````
