@@ -7,6 +7,8 @@
 
 [How to install vSphere with Tanzu with vSphere Networking](https://little-stuff.com/2020/10/07/how-to-install-vsphere-with-tanzu-with-vsphere-networking/)
 
+
+[Network Topology](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-489A842E-1A74-4A94-BC7F-354BDB780751.html)
 ````
 
 apiVersion: run.tanzu.vmware.com/v1alpha1
