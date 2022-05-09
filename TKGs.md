@@ -67,7 +67,7 @@ spec:
 
 ````
 
-kubectl get ns
+kubectl get ns  #Look for something like svc-tmc-xxx
 
 ````
 
