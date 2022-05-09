@@ -83,6 +83,7 @@ spec:
 
 ````
 
+### Note the new behavior for the above is that it will automatically kick off a rolling upgrade of the cluster; if for some reason you are using the older version then you have to trigger a rolling upgrade, or delete the cluster(s) and re-create it/them; rolling upgrade is obviously preferred
 
 ### Prior to vSphere 7U3 if you want to add your supervisor cluster to TMC you need to run the below
 
