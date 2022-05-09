@@ -5,6 +5,8 @@
 
 [TKC YAML specs](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-B1034373-8C38-4FE2-9517-345BF7271A1E.html#GUID-B1034373-8C38-4FE2-9517-345BF7271A1E__section_kgn_h31_3pb)
 
+[How to install vSphere with Tanzu with vSphere Networking](https://little-stuff.com/2020/10/07/how-to-install-vsphere-with-tanzu-with-vsphere-networking/)
+
 ````
 
 apiVersion: run.tanzu.vmware.com/v1alpha1
