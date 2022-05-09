@@ -61,6 +61,28 @@ spec:
 
 ````
 
+### Adding certs after the fact
+
+[Adding trusted certs to nodes on TKGS 7.0 U2](https://brianragazzi.wordpress.com/tag/tanzu-kubernetes-grid-service/)
+
+````
+
+apiVersion: run.tanzu.vmware.com/v1alpha2
+kind: TkgServiceConfiguration
+metadata:
+  name: tkg-service-configuration
+spec:
+  defaultCNI: antrea
+
+  trust:
+    additionalTrustedCAs:
+      - name: first-cert-name
+        data: base64-encoded string of a PEM encoded public cert 1
+      - name: second-cert-name
+        data: base64-encoded string of a PEM encoded public cert 2
+
+````
+
 
 ### Prior to vSphere 7U3 if you want to add your supervisor cluster to TMC you need to run the below
 
