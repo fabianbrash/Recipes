@@ -9,6 +9,8 @@
 
 
 [Network Topology](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-489A842E-1A74-4A94-BC7F-354BDB780751.html)
+
+
 ````
 
 apiVersion: run.tanzu.vmware.com/v1alpha1
@@ -59,10 +61,12 @@ spec:
           #- name: <second-cert-name>
             #data: <base64-encoded string of PEM encoded public cert 2>
 
-### Use a different version of k8s here 1.20.12
 
 ````
 
+### Use a different version of k8s here 1.20.12
+
+````
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
@@ -114,11 +118,10 @@ spec:
 ````
 
 
-````
-
 ### Adding certs after the fact
 
 [Adding trusted certs to nodes on TKGS 7.0 U2](https://brianragazzi.wordpress.com/tag/tanzu-kubernetes-grid-service/)
+
 
 ````
 
