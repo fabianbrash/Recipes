@@ -173,3 +173,16 @@ spec:
 kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
 
 ````
+
+```Deploy TKGs with HAPROXY```
+
+### This blog post was a huge help as I messed up my subnetting and would not have found my issue
+
+[https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/](https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/)
+
+### And then I just followed these 2 posts from Cormac
+
+[https://cormachogan.com/2020/09/25/deploy-ha-proxy-for-vsphere-with-tanzu/#google_vignette](https://cormachogan.com/2020/09/25/deploy-ha-proxy-for-vsphere-with-tanzu/#google_vignette)
+
+[https://cormachogan.com/2020/09/28/enabling-vsphere-with-tanzu-using-ha-proxy/](https://cormachogan.com/2020/09/28/enabling-vsphere-with-tanzu-using-ha-proxy/)
+
