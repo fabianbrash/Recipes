@@ -59,6 +59,61 @@ spec:
           #- name: <second-cert-name>
             #data: <base64-encoded string of PEM encoded public cert 2>
 
+### Use a different version of k8s here 1.20.12
+
+````
+
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TanzuKubernetesCluster
+metadata:
+  name: fb-onprem3-1-20
+  namespace: devns5
+spec:
+  distribution:
+    fullVersion: 1.20.12+vmware.1-tkg.1.b9a42f3
+    version: "" 
+  topology:                               
+    controlPlane:
+      count: 1
+      class: cust-best-controlplane
+      storageClass: goldsp
+      volumes: #optional setting for high-churn control plane component (such as etcd)
+        - name: etcd-0
+          mountPath: /var/lib/etcd
+          capacity:
+            storage: 40Gi 
+    workers:                              
+      count: 4
+      class: best-effort-small
+      storageClass: goldsp
+      volumes: #optional setting for high-churn worker node component (such as containerd)
+        - name: containerd-0
+          mountPath: /var/lib/containerd
+          capacity:
+            storage: 90Gi             
+  settings: #all spec.settings are optional
+    storage: #optional storage settings
+      classes: ["goldsp"]
+      defaultClass: "goldsp"
+    network: #optional network settings
+      cni: #override default cni set in the tkgservicesonfiguration spec
+        name: antrea
+      #pods: custom pod network
+        #cidrBlocks: [<array of pod cidr blocks>]
+      #services: custom service network
+        #cidrBlocks: [<array of service cidr blocks>]
+      #serviceDomain: <custom service domain>
+      
+      #trust: trust fields for custom public certs for tls
+        #additionalTrustedCAs:
+          #- name: <first-cert-name>
+            #data: <base64-encoded string of PEM encoded public cert 1>
+          #- name: <second-cert-name>
+            #data: <base64-encoded string of PEM encoded public cert 2>
+
+````
+
+
 ````
 
 ### Adding certs after the fact
