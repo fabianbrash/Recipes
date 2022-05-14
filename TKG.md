@@ -1,3 +1,5 @@
+# Note this is the old tkg cli which was replaced by the tanzu cli and deploys what is now called TKGm also as of TKG(m) 1.2 the capv haproxy was replaced with AVI LB
+
 ### TKG and TKG CLI information
 
 [Tanzu-VMware Cloud](https://www.virtuallyghetto.com/2020/03/sneak-peak-at-deploying-tanzu-kubernetes-grid-plus-on-vsphere-vmware-cloud-on-aws.html)
