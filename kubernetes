@@ -839,13 +839,14 @@ kubectl config get-contexts
 
 kubectl config unset clusters # this will delete all clusters and delete your config file
 
-cat /home/user/.kube/config # have a look at your kubeconfig file and then start unsetting clusters,users, and contexts
+cat /home/user/.kube/config # have a look at your kubeconfig file and then start unsetting contexts, clusters, and users 
 
-kubectl config unset users.tkg-mgmt-1-admin
+kubectl config unset contexts.tap-onprem-admin@tap-onprem. #unset context first, then look at your ~/.kube/config file and unset cluster(s) then user(s)
 
-kubectl config unset clusters.tap-onprem
+kubectl config unset clusters.tap-onprem #from kubeconfig file
 
-kubectl config unset contexts.tap-onprem-admin@tap-onprem
+kubectl config unset users.tkg-mgmt-1-admin #from kubeconfig file
+
 
 ````
 
