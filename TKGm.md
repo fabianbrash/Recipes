@@ -11,6 +11,23 @@
 #### After using arcas to deploy your mgmt, and your first workload cluster, you can also use it for subsequent clusters as well by modifying the json file that's saved to /opt/vmware/arcas/src/vsphere-dvs-tkgm.json
 
 
+#### Note arcas runs on port 8888
+
+#### After you've generated your JSON file you can run the below
+
+````
+
+arcas --env vsphere --file vsphere-dvs-tkgm.json --avi_configuration --verbose #deploy and configure AVI
+
+arcas --env vsphere --file vsphere-dvs-tkgm.json --tkg_mgmt_configuration --verbose #deploy mgmt cluster
+
+arcas --env vsphere --file vsphere-dvs-tkgm.json --shared_service_configuration --verbose #deploy shared-services cluster
+
+arcas --env vsphere --file vsphere-dvs-tkgm.json --workload_preconfig --workload_deploy --verbose # deploy workload cluster
+
+````
+
+
 ```vsphere-dvs-tkgm.json```
 
 
