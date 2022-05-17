@@ -109,7 +109,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=server server-0-csr.json | cfssljson -bare server-0
 ````
 
-#### you should now have serever-0.pem, server-0-key.pem, server-0.csr
+#### you should now have server-0.pem, server-0-key.pem, server-0.csr
 
 
 #### Note the above will generate a RSA key if you want to use ECDSA there is nn option for that
