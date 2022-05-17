@@ -40,6 +40,7 @@
 
 ### Now let's generate our key and cert
 
+
 ````
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 ````
