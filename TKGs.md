@@ -186,3 +186,21 @@ kubectl create clusterrolebinding default-tkg-admin-privileged-binding --cluster
 
 [https://cormachogan.com/2020/09/28/enabling-vsphere-with-tanzu-using-ha-proxy/](https://cormachogan.com/2020/09/28/enabling-vsphere-with-tanzu-using-ha-proxy/)
 
+
+#### Log into our supervisor cluster
+
+````
+
+kubectl vsphere login --vsphere-username user@domain --server=10.0.1.10 --insecure-skip-tls-verify
+
+kubectl vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-tls-verify
+````
+
+
+#### Now let's log into our namespace and workload cluster
+
+````
+
+kubectl vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-tls-verify --tanzu-kubernetes-cluster-name my-cluster --tanzu-kubernetes-cluster-namespace my-ns
+
+````
