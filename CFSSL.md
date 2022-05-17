@@ -47,7 +47,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
 #### The above will generate ca.pem, ca-key.pem, ca.csr
 
-#### Now we have create a config.json file
+#### Now we have to create a config.json file
 
 ```ca-config.json```
 
