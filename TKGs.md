@@ -194,6 +194,10 @@ kubectl create clusterrolebinding default-tkg-admin-privileged-binding --cluster
 kubectl vsphere login --vsphere-username user@domain --server=10.0.1.10 --insecure-skip-tls-verify
 
 kubectl vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-tls-verify
+
+
+kubectl-vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-tls-verify
+
 ````
 
 
