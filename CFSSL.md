@@ -70,7 +70,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 ````
 
 
-#### The above file basically sets how long the cert will be for, create a profile and what the profile can be used for##
+#### The above file basically sets how long the cert will be for, create a profile and what the profile can be used for
 
 #### now lets create a json file for our server so it can get a cert from our CA
 
