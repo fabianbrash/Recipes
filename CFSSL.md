@@ -193,7 +193,7 @@ cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=serv
 ````
 
 
-#### you should now have serever-0.pem, server-0-key.pem, server-0.csr
+#### you should now have server-0.pem, server-0-key.pem, server-0.csr
 
 
 #### Even though I've changed the above length to 256 it generates a 512 key I think I need to make the CA 256 as well??
