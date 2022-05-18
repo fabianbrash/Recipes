@@ -180,6 +180,17 @@ kubectl create clusterrolebinding default-tkg-admin-privileged-binding --cluster
 
 [https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/](https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/)
 
+
+```my subnet```
+
+````
+
+192.168.182.170/26 #subnet
+
+192.168.182.128-192.168.182.191 #actual range, make sure you enter the correct range
+
+````
+
 ### And then I just followed these 2 posts from Cormac
 
 [https://cormachogan.com/2020/09/25/deploy-ha-proxy-for-vsphere-with-tanzu/#google_vignette](https://cormachogan.com/2020/09/25/deploy-ha-proxy-for-vsphere-with-tanzu/#google_vignette)
