@@ -180,16 +180,31 @@ kubectl create clusterrolebinding default-tkg-admin-privileged-binding --cluster
 
 [https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/](https://rguske.github.io/post/vsphere-with-tanzu-troubleshooting-haproxy/)
 
+```troubleshoot```
+
+````
+
+ssh root@haproxy-vm
+
+systemctl list-units --state=failed
+
+systemctl status anyip-routes.service
+
+cat /etc/vmware/anyip-routes.cfg #make sure this has the correct subnet
+
+````
+
 
 ```my subnet```
 
 ````
 
-192.168.182.170/26 #subnet
+192.168.182.170/26 #subnet, make sure this is correct in /etc/vmware/anyip-routes.cfg on the haproxy VM
 
 192.168.182.128-192.168.182.191 #actual range, make sure you enter the correct range
 
 ````
+
 
 ### And then I just followed these 2 posts from Cormac
 
