@@ -192,7 +192,10 @@ interface range Gi1/0/10-20
 ################################################CONFIGURE JUMBO FRAMES##############################################
 show system mtu
 conf t
-system mtu jumbo 9198(This is the max)
+system mtu jumbo 9198(This is the max, or > 1500)
+
+system mtu 9198(or > 1500)
+system mtu routing 9198(or > 1500)
 reload
 
 
