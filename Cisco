@@ -235,10 +235,15 @@ int Gi1/0/22
 do sh run int Gi1/0/22
 
 
+```configure static routes```
+
+
 ````
+conf t
 
 ip route 0.0.0.0 0.0.0.0 192.168.1.1
 
+conf t
 
 ip route 10.1.1.0 255.255.255.0 192.168.50.11
 
