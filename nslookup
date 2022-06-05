@@ -1,0 +1,26 @@
+##useful things I find using nslookup##
+#REF:https://activedirectorypro.com/use-nslookup-check-dns-records/
+
+##find which dns server owns dns, I needed to know as I was migrating my dns from mediatemple to aws Route53
+
+nslookup > hit enter
+set q=soa > hit enter
+fabianbrash.com(or whatever you are looking for) > hit enter
+
+##Mail##
+nslookup > hit enter
+set q=mx > hit enter
+fabianbrash.com(or whatever you are looking for) > hit enter
+
+##CNAME
+set q=cname
+
+##Nameserver
+nslookup > hit enter
+set q=ns > hit enter
+fabianbrash.com(or whatever you are looking for) > hit enter
+
+##Use an alernative dns server
+nslookup hit enter
+server=DNS-Server-IP hit enter
+type in domain name hit enter

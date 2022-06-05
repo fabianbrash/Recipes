@@ -1,0 +1,32 @@
+####Working with CoreDNS
+###So I had some challenges getting this up and running but I found a few blog post that helped me out
+##REF:https://dev.to/robbmanes/running-coredns-as-a-dns-server-in-a-container-1d0
+##REF:http://thefluffyadmin.net/?p=1427
+
+##the first issue I had was a lot of Linux distros use systemd-resolved I am using photon OS and of course it does also
+#so the first thing to do is
+
+sudo systemctl stop systemd-resolved
+sudo systemct disable systemd-resolved
+
+##the reason for this is it consumes udp 53 which you're container needs to run on
+##the next issue I had was usually I can docker exec bash into a container, well this container is slim and I mean slim
+##there is not bash no anything I kept getting an OCI erro when I attempted to run any exec commands
+##so I had to use the below docker command
+
+docker run -d -p 53:53/udp --rm --name coredns -v /static_content/coredns_config/:/root/ coredns/coredns -conf /root/Corefile
+
+##again big help from the above blog postings
+
+##Then the final issue I had was I'm pretty sure after you disable systemd-networkd you need to reboot photon OS
+##our whatever flavor of linux because after changing the DNS server to itself again it's running the coredns container
+##I couldn't get resolution, again a simple reboot fixed my issue
+##Note I have 3 files in this repo to be modified for your specific use case the files are 
+##Corefile, db.lab.io, and db.192.168.99
+
+##But now I am finally free of having to always stand up a Windows VM for dns
+
+
+
+
+

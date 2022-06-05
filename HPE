@@ -1,0 +1,350 @@
+#### Info regarding configuring blades, enclosures, etc.###
+
+######REFS#####################################################################################################
+##REF:https://github.com/HewlettPackard/POSH-HPOneView/wiki/Get-HPOVServerProfileConnectionList
+##REF:https://github.com/DungKHoang/Import-Export-OneView-Resources/blob/master/Export-OVResources.ps1
+##REF:https://www.vgemba.net/microsoft/powershell/Update-HPE-iLO-Firmware/
+
+## HP OneView config#######
+
+### Networks(think VLANs) > Create A and B side for Ethernet and fibre channel##
+## also we describe our VLANS here and we can also give the traffic
+## a type i.e. Mgmt, VMotion###
+
+###For Networks there is a limit as to how many VLANs you can create I think it's 1000
+##So if your organization utilizes > 1000 VLANS then you need to create a tunnel instead
+##tunnels can cay all 4094 VLANs on them
+##i.e. Tunnel-a, tunnel-b
+
+##Then we create a Network Sets > which is a container for 
+## your A, and B side so we group all our A vlans together
+## all of our B vlans together 
+
+##Next we add Logical interconnect groups(LIGS)
+##LIGS have uplink sets which is our path out to the world whether it's 'Ethernet or FC' again we separate
+##via A side, B side, A FC, B FC
+##When creating our 'uplink sets' and pairing them with 'uplink ports' we use2 ports for 'A side'
+##and then 2 ports for 'B side' i.e. 
+##Ethernet uplink-A
+## bay 1 Q1.1, Q1.2 B 
+#Ethernet uplink-B
+## bay 2 Q1.1, Q1.2
+###This is using the 'HP VC FlexFabric-20/40 F8 Module'
+##Note that we are using bay 1 for A side and bay 2 for B side
+
+###Next we create an 'Enclosure Group' and pair it with our LIG and then as we add new C7000 enclosures
+##we can just add the 'Enclosure Group' to it and it will inherit all of our network settings
+
+
+##C7000 enclosure has 2 OA(Onboard Administrator) we need to configure these with an IP
+##So we can begin configuration of our chasis note the OA is an Active/Passive pair you can
+##configure this on the screen on the front of teh enclosure or directly console in and 
+##and configure using CLI
+
+##We also have 2 interconnect modules interconnect A and interconnect B
+##Interconnects can be Pass-Thru modules which are dumb also you can have FC Pass-Thru modules or we can have
+##Virtual connect FlexFabric modules which are smart and use less ports
+
+
+####Terminology for Fibre############################
+##For reference I am on version 4.20.01-0380241
+##For fibre the choices we have are 'Fabric Attached' or 'Direct Attached'
+##'Fabric Attached' is for a traditional setup where we have a fibre fabric switch
+##'Direct Attached' means we have a compatible 3Par or HPE StoreServer Array that has been zoned
+##into HP OneView
+
+
+###Terminology for Networks#########
+##When you create a 'Network' it can be of 3 types 'tagged', 'untagged', and 'tunnel'
+##'tagged' is carrying a series of VLAN's or 1 VLAN i.e. VLAN id 10 or VLAN id 10-20
+##'untagged' is simply an access port
+##'tunnel' seems to be a switch to switch trunk which can carry all 4094 VLANs
+
+
+######HPE storage CLI Esxi##########################
+##REF:https://communities.vmware.com/thread/578905
+##REF:https://www.jamesitworld.com/expand-hp-esxi-host-raid-5-array/
+##If you have Esxi 6.5+ you probably already have this installed if you did the HPE custom VIB
+##you can check /opt/smartstorageadmin/ssacli/bin/
+
+###Here are some useful commands
+Show configuration
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl all show config
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show config
+
+Controller status
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl all show status
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show status
+
+Show detailed controller information for all controllers
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl all show detail
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl all show detail
+
+Show detailed controller information for controller in slot 0
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 show detail
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 show detail
+
+Rescan for New Devices
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli rescan
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli rescan
+
+Physical disk status
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 pd all show status
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show status
+
+Show detailed physical disk information
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 pd all show detail
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show detail
+
+Logical disk status
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld all show status
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld all show status
+
+View Detailed Logical Drive Status
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld 2 show
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 show
+
+Create New RAID 0 Logical Drive
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 create type=ld drives=1I:1:2 raid=0
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:2 raid=0
+
+Create New RAID 1 Logical Drive
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 create type=ld drives=1I:1:1,1I:1:2 raid=1
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:1,1I:1:2 raid=1
+
+Create New RAID 5 Logical Drive
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 create type=ld drives=1I:1:1,1I:1:2,2I:1:6,2I:1:7,2I:1:8 raid=5
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 create type=ld drives=1I:1:1,1I:1:2,2I:1:6,2I:1:7,2I:1:8 raid=5
+
+Delete Logical Drive
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld 2 delete
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 delete
+
+Add New Physical Drive to Logical Volume
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld 2 add drives=2I:1:6,2I:1:7
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 add drives=2I:1:6,2I:1:7
+
+Add Spare Disks
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 array all add spares=2I:1:6,2I:1:7
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array all add spares=2I:1:6,2I:1:7
+
+Enable Drive Write Cache
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 modify dwc=enable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify dwc=enable
+
+Disable Drive Write Cache
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 modify dwc=disable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify dwc=disable
+
+Erase Physical Drive
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 pd 2I:1:6 modify erase
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd 2I:1:6 modify erase
+
+Turn on Blink Physical Disk LED
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld 2 modify led=on
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 modify led=on
+
+Turn off Blink Physical Disk LED
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 ld 2 modify led=off
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 ld 2 modify led=off
+
+Modify smart array cache read and write ratio (cacheratio=readratio/writeratio)
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 modify cacheratio=100/0
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify cacheratio=100/0
+
+Enable smart array write cache when no battery is present (No-Battery Write Cache option)
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 modify nbwc=enable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 modify nbwc=enable
+
+Disable smart array cache for certain Logical Volume
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 logicaldrive 1 modify arrayaccelerator=disable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 logicaldrive 1 modify arrayaccelerator=disable
+
+Enable smart array cache for certain Logical Volume
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 logicaldrive 1 modify arrayaccelerator=enable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 logicaldrive 1 modify arrayaccelerator=enable
+
+Enable SSD Smart Path
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 array a modify ssdsmartpath=enable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a modify ssdsmartpath=enable
+
+Disable SSD Smart Path
+ESXi 5.5 -> /opt/hp/hpssacli/bin/hpssacli ctrl slot=0 array a modify ssdsmartpath=disable
+ESXi 6.5 -> /opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 array a modify ssdsmartpath=disable
+
+Or for ESXi 6.5 you can use the below.
+
+ 
+
+Esxcli ssacli cmd -q “Command name”
+
+ 
+
+To covert from old syntax to new syntax, please review example.
+
+ 
+
+Old style:
+
+ 
+
+/opt/smartstorageadmin/ssacli/bin/ssacli ctrl slot=0 pd all show detail
+
+New style:
+
+Esxcli ssacli cmd -q “Controller slot=0 pd show detail”
+
+
+####Get iLO info###########################
+##REF:https://support.hpe.com/hpsc/doc/public/display?docId=emr_na-c05184297&docLocale=en_US
+
+###Just like above if you have the custom Esxi ISO installed you can do the following
+cd /opt/tools
+
+./hponcfg --all
+
+####If the above does not give you the iLO IP then do this
+
+./hponcfg -w config.xml
+
+cat config.xml
+
+
+
+###HPE OneView API calls##########################
+##REF:http://h17007.www1.hpe.com/docs/enterprise/servers/oneview4.0/cic-api/en/index.html#rest/login-sessions
+
+
+###Authenticate to REST API###################
+
+##https://APPL/rest/login-sessions
+##{{ HEADERS }}
+
+Content-Type : application/json
+X-Api-Version: 600
+
+##{{ BODY }}
+
+{
+
+    "password": "myPass",
+    "userName": "admin"
+}
+
+
+
+#####Now we have a token let's make a simple GET call##################
+
+##https://APPL/rest/remote-syslog
+##{{ HEADERS }}
+
+Content-Type : application/json
+X-Api-Version: 600
+Auth: OUR TOKEN
+
+
+
+#####Using POSH Powershell Modules##################
+##REF:https://github.com/HewlettPackard/POSH-HPOneView/wiki
+##install from powershell gallery
+
+Install-Module -Name HPOneView.410
+##Note you might have to use -AllowClobber
+
+##Then log in
+
+Connect-HPOVMgmt -Hostname onserview_DNS_OR_IP
+
+$Server = Get-HPOVServer | Select *
+
+##Let's get our Syslog server
+
+Get-HPOVRemoteSyslog
+
+##Now let's configure a syslog server
+Set-HPOVRemoteSyslog -Destination 1.1.1.1 -SendTestMessage -Async | Wait-HPOVTaskComplete
+
+##Get Audit log
+Get-HPOVAuditLog
+
+##Get appliance version
+Get-HPOVVersion
+
+##Get server hardware type
+Get-HPOVServerHardwareType
+
+
+###OBA CLI##################
+
+Reset Server 1(this is the bay #)
+reset server 12(this woule be bay 12)
+
+####ILO4/5 RESTAPI(Redfish)###############
+##REF:https://ilorestfulapiexplorer.ext.hpe.com/
+##REF:https://developer.hpe.com/platform/ilo-restful-api/home
+##Base information is here
+
+GET > https://IP_OR_DNS_OF_ILO/redfish/v1/
+
+#####Now to do anything worth while you need to get a token###################
+POST > https://IP_OR_DNS_OF_ILO/redfish/v1/SessionService/Sessions/
+
+HEADER Content-Type: Application/json
+
+BODY
+
+{
+   "UserName": "",
+   "Password": ""
+}
+
+###then you can use the token with all other requests like so#####
+
+HEADER X-Auth-Token: "'YOUR_TOKEN_FROM_ABOVE"
+
+GET > https://IP_OR_DNS_OF_ILO/redfish/v1/Systems/1/
+
+
+###FYI apparently you can't get WWNN/WWPN's from GEN9 servers only Gen10
+##But if you are using HP Oneview you can use POSH to get that data
+
+
+##There is also the HPEiLO PS module 
+
+Install-Module -Name HPEiLOCmdlets
+
+##Nice little command
+Get-Command -Name *HPE* | measure
+
+Get-Command -Name *VM* | measure
+
+###Let's update our firmare###
+##REF:https://www.vgemba.net/microsoft/powershell/Update-HPE-iLO-Firmware/
+
+$iLOs = "10.10.1.100-120"
+$iLOType = "Integrated Lights-Out 4 (iLO 4)"
+$firmwareVersion = "2.60"
+$firmwareFile = "C:\Temp\ilo4_260.bin"
+$username = "Administrator"
+$password = ConvertTo-SecureString -String "Password1" -AsPlainText -Force
+$credential = New-Object -TypeName "System.Management.Automation.PSCredential" -ArgumentList $username,$password
+
+$foundServers = Find-HPEiLO $iLOs | Where-Object -Property PN -eq $iLOType | Where-Object -Property FWRI -ne $FirmwareVersion
+
+##WARNING: It might take a while to search for all the iLOs if the input is a very large range.Use Verbose for more information
+
+
+$foundServers
+
+$Connection = $foundServers | Connect-HPEiLO -Credential $credential
+Update-HPEiLOFirmware -Connection $connection -Location $firmwareFile -Confirm:$false
+
+##WARNING: Update is in progress, this might take several minutes.
+
+
+####HPE Global OneView#####
+##REF:https://rudimartinsen.com/2019/04/23/hpe-oneview-global-dashboard-powershell-module/
+Get-HPEiLOFirmwareVersion -Connection $connection
+
+Disconnect-HPEiLO -Connection $Connection
+

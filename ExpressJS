@@ -1,0 +1,128 @@
+
+#####ExpressJS code samples#################
+
+##First we need to install express
+npm install express
+or
+npm install express -g(-g means globally while the prior command will only install express in your current working
+directory)
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/', function(request, response) {
+	
+	response.send('Hello Express World!!');
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
+
+
+##########We could have also called nodejs API#########
+response.write('Hello Express World!!');
+response.end();
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/block', function(request, response) {
+	//Let's create an array
+	var blocks = ['Fixed', 'Movable', 'Rotating'];
+	response.send(blocks);
+	response.json(blocks); //does the same thing
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
+
+
+
+#############BEGIN CODE########################################
+
+//Simple Express app
+
+var express = require('express');
+var app = express();
+
+//Setup up routes
+
+app.get('/block', function(request, response) {
+	//Redirect our users
+	response.redirect('/parts');
+	response.redirect(301, '/parts'); //permanently move our app
+});
+
+app.listen(3000, function(){
+	console.log('Listening on port 3000');
+});
+
+
+###################END CODE##################################
+
+
+###useful middlewares#########
+##Jade
+##EJS
+
+
+####We can also install express-generator which will install some middleware and would allow us to
+######Generate the basic scaffolding of an app
+npm install express-generator -g
+cd /app1
+express Testapp1
+cd /Testapp1
+npm install ###Install all our depedencies located in the package.json file
+npm start
+###Then start editing in your /routes and /views folder
+
+
+
+############Code Snippet##############################
+
+var express = require("express");
+var app     = express();
+app.use(express.static(__dirname + '/View'));
+//Store all HTML files in view folder.
+app.use(express.static(__dirname + '/Script'));
+//Store all JS and CSS in Scripts folder.
+
+app.get('/',function(req,res){
+  res.sendFile('index.html');
+  //It will find and locate index.html from View or Scripts
+});
+
+app.get('/about',function(req,res){
+  res.sendFile('/about.html');
+});
+
+app.get('/sitemap',function(req,res){
+  res.sendFile('/sitemap.html');
+});
+
+app.listen(3000);
+
+console.log("Running at Port 3000");
+
+##############RESOURCES:  https://codeforgeek.com/2016/08/node-static-file-server-without-writing-code/#  ##############
+

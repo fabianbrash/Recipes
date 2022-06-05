@@ -1,0 +1,5 @@
+###I'm going to place issues I have installing apps into different k8s cluster here and hopefully fixes
+
+##So first app is metrics-server I've deployed it on kubespray and kuadm and I had to add the 
+##--kubelet-insecure-tls=true but on TKG I had to add --kubelet-preferred-address-types=InternalIP
+##If I didn't the pod just did a continuous crash loop

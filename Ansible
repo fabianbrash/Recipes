@@ -1,0 +1,246 @@
+
+###########MY ANSIBLE CONFIGS WILL GO HERE#########################################################
+####First thing is copy your ssh keys to the server(s) you want to manager makes life easier
+
+#####MAKE CERTAIN PYTHON IS INSTALLED ON YOUR DISTRO#############
+
+###REF: https://ryaneschinger.com/blog/ansible-quick-start/
+
+####ping a remote host################
+ansible -i hosts all -u root -m ping
+
+####The above will use a file called hosts in the current directory the 'all' means all in the file
+#### -u root use the root user -m ping use the ping module(-m)
+
+ansible -i hosts DO -u root -m ping
+
+ansible DO -u root -m ping ###Did Ansible make a change, this works but the above does not
+
+#####The above will do the same but only ping machines that are identified with [DO]
+
+############Actual host file############################
+[DO]
+192.168.1.1
+
+#########END FILE#############################
+
+
+#########Let's install something################
+ansible -i hosts DO -u root -m yum -a 'name=epel-release, state=installed'
+###Everything is the same except we are using the yum module and -a are the arguments you want to add to the module
+
+ansible -i hosts DO -u root -m yum -a 'name=nginx state=installed'
+ansible -i hosts DO -u root -m yum -a 'name=vim state=installed'
+
+####Install multiple applications#############
+ansible -i hosts DO -u root -m yum -a 'name=httpd,mariadb-server,mariadb state=installed'
+
+
+###Create a user and generate ssh keys##############
+
+ansible -i hosts DO -u root -m user -a "name=arch comment='Arch Stanton' shell=/usr/bin/zsh generate_ssh_key=yes ssh_key_bits=2048"
+
+####Same but instead of zsh for a shell let's just use bash and also let's add a comment to the ssh keys
+ansible -i hosts DO -u root -m user -a "name=user2 comment='Arch Stanton' shell=/bin/bash generate_ssh_key=yes ssh_key_bits=2048 ssh_key_comment=user2@test.com"
+
+
+#####UBUNTU##############
+
+ansible -i hosts DO -u root -m apt -a "name=network-manager state=present" ###state=installed(will also work)
+ansible -i hosts DO -u root -m apt -a "name=apache2 state=installed"
+
+
+############NOW LET'S MOVE ON TO PLAYBOOKS#####################
+####I FOUND IT EASIER TO JUST ADD MY HOST ENTRY TO /etc/ansible/hosts
+####EX.
+[DO]
+192.168.1.5
+
+##Then we can simply run
+ansible DO -u root -m ping ##again DO is defined @ /etc/ansible/hosts
+
+##########Contents of vim_epel.yml######################
+
+---
+- hosts: DO
+  remote_user: root
+  tasks:
+    - name: install vim
+      yum: name=vim state=latest
+      
+    - name: install epel-release
+      yum: name=epel-release state=installed
+      
+ 
+ 
+ ###End file############################################
+ 
+ ansible-playbook vim_epel.yml  ##run playbook
+ ansible-playbook vim_epel.yml -f 10 ##Run on 10 systems default is 5
+ 
+ ##REF: https://docs.ansible.com/ansible/latest/cli/ansible-playbook.html?highlight=ansible%20playbook
+ ##REF: https://www.ansible.com/blog/ansible-performance-tuning
+ 
+ #####If you don't have SSH key/pairs setup
+ ansible-playbook vim_epel.yml --ask-pass
+
+###########WINDOWS MANAGEMENT#################
+##REF: https://argonsys.com/learn-microsoft-cloud/articles/configuring-ansible-manage-windows-servers-step-step/
+##REF: https://github.com/ansible/ansible/issues/16478
+##REF: https://github.com/ansible/ansible/tree/devel/examples/scripts ##Download the ps script from here########
+
+###NOTE I HAVE DONE THIS WITH DOMAIN JOINED MACHINES##############
+###ALSO MAKE CERTAIN WHEN YOU EDIT THE FILE /etc/krb5.conf make certain lines you are using are not commented out
+##I had a closing curly brace that was still commented out
+
+##########MY krb5.conf FILE############################
+
+####START####################################
+# Configuration snippets may be placed in this directory as well
+includedir /etc/krb5.conf.d/
+
+[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+ dns_lookup_realm = yes
+ ticket_lifetime = 24h
+ renew_lifetime = 7d
+ forwardable = true
+ rdns = false
+ default_realm = LAB.TEST
+ default_ccache_name = KEYRING:persistent:%{uid}
+
+[realms]
+ LAB.TEST = {
+  kdc = lab-dc-01.lab.test
+#  admin_server = kerberos.example.com
+ }
+
+[domain_realm]
+ .lab.test = LAB.TEST
+ lab.test = LAB.TEST
+ 
+ #############END FILE##############
+ 
+ ###GET A KERBEROS TICKET##########
+ kinit adminuser@lab.test  ##Do not run with sudo
+ ### If the above does not work try
+ kinit adminuser@LAB.TEST
+ 
+ ###See ticket
+ klist
+ 
+ #####ON CENTOS MACHINE INSTALL#############
+ 
+ sudo yum -y install python-devel krb5-devel krb5-libs krb5-workstation
+ sudo yum -y install python-pip
+ sudo yum -y install bind-utils ##If you don't already have this
+ 
+ sudo pip install pywinrm ##This will install Kerberos *YOU MIGHT NOT NEED THIS, JUST THE ONE BELOW**
+ #####YOU MUST INSTALL THIS FOR KERBEROS TO BE USED IF NOT ANSIBLE WILL DEFAULT TO 'BASIC' AUTH#####
+ sudo pip install pywinrm[kerberos]
+ ###REF: http://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html#kerberos
+ 
+ ######This can be done in a few ways############
+ 
+ sudo mkdir /etc/ansible/group_vars
+ touch /etc/ansible/group_vars/windows.yml
+ 
+ sudo vim /etc/ansible/grou_vars/windows.yml
+
+######START FILE#########
+---
+ansible_user: Administrator
+ansible_password: Abcd1234
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+#####END FILE#########
+
+##NOTE the file name above windows.yml must match the [windows] so a file called
+###windows.yml and a host section called [win_clients] won't work
+
+###The second way of setting variables is to add them to the /etc/ansible/hosts file#########
+[windows]
+1.1.1.1
+
+[windows:vars]
+ansible_user: Administrator
+ansible_password: Abcd1234
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+##NOTE I WAS ONLY ABLE TO GET THIS TO WORK WITH THE LOCAL ADMIN ACCOUNT, NOT WITH A DOMAIN ADMIN###
+##I NEED TO DO SOME MORE RESEARCH AS TO WHY#######
+###The reason domain accounts were not working is becuase I was missing the below package###
+sudo pip install pywinrm[kerberos] ##when I tried to install this package today(11-09-2019) I received an error
+##I'm not certain if this has been merged into pywinrm or has been replaced by another package.
+
+
+######ENCRYPTING DATA#####################
+
+ansible-vault encrypt_string password123 --ask-vault-pass
+
+##You will be prompted for a vault password
+
+#Then you will get back something like this###
+
+!vault |
+$ANSIBLE_VAULT;1.1;AES256
+66386439653236336462626566653063336164663966303231363934653561363964363833
+3136626431626536303530376336343832656537303632313433360a626438346336353331
+Encryption successful
+
+#####Then to use this simply swap out the above############
+
+######START FILE#########
+---
+ansible_user: Administrator
+ansible_password: !vault |
+            $ANSIBLE_VAULT;1.1;AES256
+            66386439653236336462626566653063336164663966303231363934653561363964363833
+            3136626431626536303530376336343832656537303632313433360a626438346336353331
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+#####END FILE#########
+
+###I'm not certain of spacing is vital with the encrypted data####
+
+
+#####THEN RUN###################
+
+ansible-playbook play.yml --ask-vault-pass
+
+
+###REF:https://stackoverflow.com/questions/30209062/ansible-how-to-encrypt-some-variables-in-an-inventory-file-in-a-separate-vault
+
+
+
+#####USEFUL WINRM COMMANDS FOR TROUBLESHOOTING####################################
+
+PS > winrm get winrm/config
+
+##Fix error "/usr/bin/python not found"
+##The above means that either python isn't installed or python 3 is installed on most newer distros
+##it will be the latter
+##REF:https://stackoverflow.com/questions/32429259/ansible-fails-with-bin-sh-1-usr-bin-python-not-found
+
+
+sudo vim /etc/ansible/hosts
+
+##and add ansible_python_interpreter=/usr/bin/python3 next to your phthon 3 hosts
+##example
+
+1.1.1.1 ansible_python_interpreter=/usr/bin/python3
+db.me.local ansible_python_interpreter=/usr/bin/python3
+
+
+##Get facts about a host system
+ansible <hostname> -m setup

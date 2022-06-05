@@ -1,0 +1,65 @@
+##Openssh Windows implementation
+##REF:https://techcommunity.microsoft.com/t5/itops-talk-blog/installing-and-configuring-openssh-on-windows-server-2019/ba-p/309540
+##REF://https://raymii.org/s/tutorials/SSH_onWIndows_Server_2019.html
+
+
+## to see what's available
+Get-WindowsCapability -Online | ? name -like 'OpenSSH*'
+
+##On server 2019 you can install ssh server the client is installed by default by going to
+
+
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+
+##Client install is located @ C:\Windows\System32\OpenSSH
+
+##Install the server
+
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+
+##Check to see of the firewall was set up properly
+
+Get-NetFireWallRule -Name *ssh*
+
+Set-Service -Name ssh-agent -StartupType ‘Automatic’
+Set-Service -Name sshd -StartupType ‘Automatic’
+
+Start-Service ssh-agent
+Start-Service sshd
+
+##You can also install the below
+
+Install-Module -Force OpenSSHUtils -Scope AllUsers
+
+##Which will give you a few tools like
+Repair-AuthorizedKeyPermission 
+##But apparently the above does not work properly and you still need to manually assign the correct permissions
+
+##so you can do this 
+Repair-AuthorizedKeyPermission C:\users\Chancellor\.ssh\authorized_keys
+Icacls authorized_keys /remove “NT SERVICE\sshd”
+
+##And the above should give the correct permissions to your keys file
+
+##Now if you want to use keys
+
+##if the user is in the local administrators group then create the authorized_keys file under C:\ProgramData\ssh\ and the file is 
+##not called authorized_keys but administrators_authorized_keys(WWHATTT!!!!)
+##then you have to remove inheritance and grant only SYSTEM and Administrators Full control of the file.
+
+#Also check C:\PrograData\ssh\ssh_config and you may or may not have to comment out the below
+
+# Match Group administrators                                                   
+#       AuthorizedKeysFile __PROGRAMDATA__/ssh/administrators_authorized_keys 
+
+
+##I left mine as is so it's uncommented in my file
+
+##Note you can install openssh server and client on serve 2016 & 2012 as well
+
+
+https://github.com/PowerShell/Win32-OpenSSH/wiki/Install-Win32-OpenSSH
+
+https://github.com/PowerShell/Win32-OpenSSH/releases/tag/v8.1.0.0p1-Beta
+
+

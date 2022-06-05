@@ -1,0 +1,10 @@
+[Unit]
+Description=machine-id
+ConditionPathExists=/root/machine-id.sh
+
+[Service]
+Type=oneshot
+ExecStart=/root/machine-id.sh
+
+[Install]
+WantedBy=multi-user.target

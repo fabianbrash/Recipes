@@ -1,0 +1,136 @@
+####BASIC MSSQL COMMANDS####################################
+
+##List all DB's
+
+SELECT * FROM sys.DATABASES
+
+###OR###
+
+SELECT name FROM master.sys.databases
+
+###Exclude system DB's
+SELECT name FROM master.dbo.sysdatabases
+WHERE dbid > 4
+
+####Create A DB
+CREATE DATABASE testdb;
+###Let's create a table####
+USE testdb;
+CREATE TABLE inventory (id INT, name NVARCHAR(50), quantity INT);
+##Another ways
+
+USE testdb;
+GO
+CREATE TABLE inventory
+(
+  id INT,
+  name NVARCHAR(50) NOT NULL(could also use char(50) or VARCHAR(50) ),
+  quantity INT
+)
+
+
+####Let's insert into our table some values
+USE testdb;
+
+INSERT INTO inventory VALUES(1, 'banana', 150);
+INSERT INTO inventory VALUES(2, 'orange', 154);
+
+####BULK INSERT#########
+BULK INSERT inventory
+FROM 'C:\data\data.txt'
+WITH
+(
+  FIELDTERMINATOR = ',',
+  ROWTERMINATOR = '\n'
+)
+GO
+
+
+###Let's read it back
+
+SELECT * FROM inventory
+ORDER BY name
+GO
+
+###Alternatively
+SELECT * FROM inventory
+WHERE id BETWEEN 1 AND 2
+ORDER BY name
+GO
+
+#############LETS DROP(DELETE) A TABLE IF IT EXISTS##################
+USE DBNAME:
+GO
+DROP TABLE IF EXISTS dbo.thetabletodrop;
+GO
+
+
+################NOW LETS INSERT SOME ROWS INTO OUR TABLE###############
+###FIRST LETS DROP THE TABLE IF IT EXISTS AND RECREATE IT
+DROP TABLE IF EXISTS dbo.thetabletodrop;
+CREATE TABLE thetabletodrop (id INT, name VARCHAR(50), age INT);
+DECLARE @id INT
+SELECT @id = 1
+while @id >=1 and @id <= 10000
+begin
+	insert into tabletodrop values(@id, 'rps' + CONVERT(varchar(50),@id), 14)
+	select @id = @id + 1
+end
+
+select * from tabletodrop
+
+
+
+########MUCH MUCH FASTER##################################
+
+USE stresstest
+GO
+
+drop table if exists t1
+create table t1 (id int, a text, b text) 
+go
+
+-- #1 - 1,000,000 - 30s -> 45s
+with ID(number) as
+(
+    select 1 as number
+    union all
+    select number + 1
+    from ID
+    where number < 250000 + 1
+)
+insert into t1
+    select number, 'a_' + cast (number as varchar), 'b_' + cast (number/2 as varchar)
+    from ID  
+    option(maxrecursion 0)
+
+select * from t1
+
+
+
+#####SQL INSTALL ISSUES#################
+
+###So I ran into an issue completing a SQL Image it which it errored out because of permissions
+###apparently SQL does not like to be installed in the root of a volume, you need to add a folder
+####i.e. D:\(will fail) but D:\SQLDATA(will work)
+
+###REF:https://support.microsoft.com/en-us/help/2867841/permission-error-occurs-when-you-use-a-volume-mount-point-in-sql-serve
+
+
+###Also during image prep SQL when you are asked for the 'Instance ID' I use the default instance name MSSQLSERVER
+
+
+###ASSIGN A COMPUTER OBJECT RIGHTS TO A DB#############
+
+##Right click logins then 'New Login'
+##Under 'Login name' enter 
+##Domain\ComputerName$
+##Under 'User Mapping' assign the machine with the rights required to the appropriate DB
+##That's it, I've also seen DBA's explicitly assign rights to the DB itself
+###Right click the DB and select 'Permissions' Note you must do the above first or the user/computer object
+##Will not show up here; then select the user/computere object and assign 'Explicit Rights' you can also
+##See the 'Effective' permissions for the highlighted object as well
+
+
+
+

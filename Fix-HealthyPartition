@@ -1,0 +1,30 @@
+##############THIS FIX IS REQUIRED IF YOU HAVE A HEALTHY PARTITION THAT IS IN BETWEEN YOUR C DRIVE AND THE FREE SPACE YOU ADDED TO YOUR VM################
+
+1. Open a command prompt as administrator.
+
+2. Run Diskpart application by typing Diskpart in the command prompt.
+
+3. In the “Diskpart” prompt, enter rescan command and press Enter key to re-scan all partitions, volumes and drives available.
+
+4. Then type in list disk and press Enter key to show all hard disk drive available.
+
+5. Select the disk that contains the partition you want to remove. Normally, with just 1 hard disk, it will be disk 0. So the command will be:
+
+Select disk 0
+
+Finish by Enter key.
+
+6. Type list partition and press Enter key to show all available and created partition in the disk selected.
+
+7. Select the partition that wanted to be deleted by using the following command, followed by Enter key:
+
+Select partition x
+
+Where x is the number of the recovery partition to be removed and unlocked its space. Be careful with the number of this partition, as wrong number may get data wipes off.
+
+8. Finally, type in delete partition override and press Enter key.
+
+
+###Then you can go ahead and expand the c: partition
+
+#REF https://social.technet.microsoft.com/Forums/en-US/4f1b84ac-b193-40e3-943a-f45d52e23685/cant-delete-extra-healthy-recovery-partitions-and-healthy-efi-system-partition?forum=w8itproinstall

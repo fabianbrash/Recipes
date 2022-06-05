@@ -1,0 +1,8 @@
+
+
+####Excel examples##############
+
+##Count the number of occurences for a range of cells
+#REF: https://support.office.com/en-us/article/count-how-often-a-value-occurs-aa1f3067-05c9-44e4-b141-f75bb9bb89bd
+
+####use the COUNTIF Fucntion for 1 or the COUNTIFS for multiple finds

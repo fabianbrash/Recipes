@@ -1,0 +1,7 @@
+
+#####My tests with Iometer###############
+
+###16 IO threads with Reads seem to be the sweet spot on my server i.e. could be cpu
+### <=16 works best with Writes
+###Test file should be > 2x memory
+###Larger block sizes i.e. 16K, 64K produce better read results, not necessarily better writes

@@ -1,0 +1,81 @@
+###Examples of using the Redfish API on HPE products#####
+#REF:https://github.com/HewlettPackard/PowerShell-ProLiant-SDK/blob/master/HPERedfish/HPERedfishExamples.ps1
+
+
+##Example code taken from above link####
+
+
+function Set-SecureBootExample2
+{
+    param
+    (
+        [System.String]
+        $Address,
+
+        [PSCredential]
+        $Credential,
+
+        [System.String]
+        $SecureBootProperty, # schema allows changing values for SecureBootEnable, ResetToDefaultKeys, ResetAllKeys
+
+        [Boolean]
+        $Value #value must be a boolean i.e. $true or $false
+    )
+
+    Write-Host 'Example 2: Enable/Disable UEFI secure boot'
+    
+    #create session
+    $session = Connect-HPERedfish -Address $Address -Credential $Credential
+
+    $systems = Get-HPERedfishDataRaw -odataid '/redfish/v1/systems/' -Session $session
+    foreach($sys in $systems.members.'@odata.id') # /redfish/v1/systems/1/, /redfish/v1/system/2/
+    {
+        #Get secure boot URI
+        $sysData = Get-HPERedfishDataRaw -odataid $sys -Session $session
+        
+        # for iLO 5
+        $secureBootOdataId = $sysData.SecureBoot.'@odata.id'
+        
+        ## for iLO 4
+        #$secureBootOdataId = $sysData.Oem.Hp.Links.SecureBoot.'@odata.id'
+    
+        #get secure boot data and display original value
+        $secureBootData = Get-HPERedfishDataRaw -odataid $secureBootOdataId -Session $session
+        $secureBootData
+
+        #if property to be modified is not present in the secure boot data, then print error message and return
+        if(-not(($secureBootData|Get-Member).Name -Contains $SecureBootProperty))
+        {
+            Write-Host "Property $SecureBootProperty is not supported on this system"
+        }
+        else
+        {
+            # use Set cmdlet at Secure Boot odataid to update secure boot property. Here only boolean values are allowed for Value parameter
+            # creating hashtable object with property and value
+            $secureBootSetting = @{$SecureBootProperty=$Value}
+            
+            # Execute Set- cmdlet to post enable/disable setting at odataid for secure boot
+            $ret = Set-HPERedfishData -odataid $secureBootOdataId -Setting $SecureBootSetting -Session $session
+            
+            # processing message obtained by executing Set- cmdlet
+            if($ret.error.'@Message.ExtendedInfo'.Count -gt 0)
+            {
+                foreach($msgID in $ret.error.'@Message.ExtendedInfo')
+                {
+                    $status = Get-HPERedfishMessage -MessageID $msgID.MessageID -MessageArg $msgID.MessageArgs -Session $session
+                    $status
+                }
+            }
+
+            # get and display updated value of the property
+            $secureBootData = Get-HPERedfishDataRaw -odataid $secureBootOdataId -Session $session
+            $secureBootData        
+        }
+    }
+
+    # disconnect the session after use
+    Disconnect-HPERedfish -Session $session
+}
+#Set-SecureBootExample2 -Address $Address -Credential $cred -SecureBootProperty 'SecureBootEnable' -Value $false
+
+

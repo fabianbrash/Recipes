@@ -1,0 +1,152 @@
+####Simple config information for IIS#########################
+
+
+##If you deploy a new .NET app you will need to add the app pool user to the security of the folder
+
+##deploy an app called dnn the app pool identity will be called 'dnn' unless you change it
+
+##right click on the folder select the security tab and give IIS AppPool\dnn at least modify rights to the folder
+###Make certain you are pointing to the local machine if you are on a domain joined system with the above command
+
+###Or ICACLS
+ICACLS d:\web\dnn /grant "IIS AppPool\dnn":F /t(for recursive)
+
+##Please note if you run the above in a PS shell you need to do this###
+##REF:https://serverfault.com/questions/516324/unable-to-assign-group-permissions-with-icacls-on-windows-server-2012
+
+ICACLS `"d:\web\dnn`" /grant `"IIS AppPool\dnn`":F /t(for recursive)
+
+##Actaully it seems we need to do this
+ICACLS `"d:\web\dnn`" /grant "IIS AppPool\dnn:(OI)(CI)(F)" /L /T(for recursive)
+##Okay the above has given me a ton of issues because it doesn't properly write down the inheritance so for now 
+##I have to add the app pool user manually.
+
+##Also if you remove inheritance from the folder on C: you need to make certain you add both the app pool identity
+##User and the IUSR group, or you will have all kinds of permissions issues
+##I don't remember having to add the IUSR group when I used a folder on another drive letter i.e. D
+##But keep that in mind
+
+##Also it seem there are 2 things happening here Authentication and Authorization
+IUSR is used to Authenticate the session and then the appPool identity is used for the Authorization to the assets/files
+##In the web directory
+
+
+###Powershell does odd things with quotes and older commands...
+
+##This is the 'Name' under application pools
+
+####When installing the Web-WebServer Role I had issues with IIS, so I just installed the Web-Server role and everything was okay######
+
+
+#####STEP BY STEP############################
+#Add data drive to server this is going to be where all apps are located
+##Create a folder and remove inheritance
+##Create sub-folders for each app
+##Create a new site in IIS
+##Add the IIS AppPool user to the folder i.e. "IIS AppPool\AppA
+##*VERY IMPORTANT IF THE SERVER IS PART OF A DOMAIN THEN THE "WINDOWS AUTHENTICATION" IIS FEATURE MUST BE INSTALLED
+##AND ENABLED FOR THIS TO WORK
+##Test App
+
+
+###### CHECK WHICH ACCOUNT ANONYMOUS USERS ARE USING TO CONNECT TO YOUR WEBSERVER###########
+##Under IIS Manager click on your site/app then click on "Authentication" from there make certain
+###Anonymous is set to 'enabled" and then double click to see what user account is being used
+###Then make certain that user account has read rights to the above folder, or in my case
+##One level above all my app folders
+
+
+########MAKE CERTAIN THAT IF THE WINDOWS FIREWALL IS ON YOU ARE ALLOWING THE PORTS YOU NEED!!###########
+
+
+
+########STEPS TO SETUP NEW IIS SERVER FOR DEV-QA AND PROD @ for .NET APPS#########################
+
+1. DBA has to grant access to the new server to the affected Databases
+
+2. IIS has to be installed on the target server (build an ansible playbook to set this up)
+
+3. Install Feature Windows Process Activation Service and select all sub-features(again use an ansible playbook for this)
+
+4. Create a folder to host all .NET apps remove inherited permissions and assign appropriate rights to developers and 
+
+5. Make certain app pool identity user has modify/fullcontrol of app folder with above examples
+
+6. Check the app to see what user(usually:IUSR) is being used for anonymous conections and give that user read permission to the app folder or 
+   give that user read to the root folder so rights will automatically flow down to all apps as they are provisioned (Test this if this is in a domain you might not have to assign the
+   IUSR read rights to the folder - An IIS expert would better be able to answer this one)
+   
+7. Make certain Windows Authentication is enabled(Note if you set this at the root of the IIS server all apps will inherit this setting and there would be one less thing to remember
+   for each app deployed
+
+
+
+
+
+
+
+
+
+###############PERMISSION ISSUES######################################################################
+##Again I had massive issues with permissions when I added a second drive and added my apps under it
+##This time for some reason on first launch it generated a webconfig file and then when I attempted to 
+###Add permissions after the webconfig was generated it gave me permission errors, I had to explicitly
+##Assign rights to the webconfif file and everything started to work--Ironically I deleted the webconfig
+##file and it never regenerated, which is fine because I don't need it I was building an api server
+
+
+
+###What I have noticed is that you need to add your permissions first and then run the app
+###Also at the root I added both the IUSR and IIS_IUSRS with read permissions
+
+
+###Great artcle on creating URL rewrite for http to https
+##REF:https://www.namecheap.com/support/knowledgebase/article.aspx/9953/38/setting-up-an-httphttps-redirect-in-iis
+
+
+
+
+
+##When you add the web role/feature you should also have the PS modules for management
+##REF:https://serverfault.com/questions/554140/editing-setting-mime-types-with-powershell
+
+
+##Add new mimetype
+
+Add-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." -Value @{ fileExtension='.zip'; mimeType='application/x-zip-compressed' }
+
+##Edit mimetype
+
+Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent/mimeMap[@fileExtension='.zip']" -Name "fileExtension" -Value ".example"
+
+##Delete mimetype
+
+Remove-WebConfigurationProperty  -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." -AtElement @{ fileExtension= '.zip' }
+
+##Read and get an existing mimetype
+$getSetting = Get-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "."
+$getSetting.Collection | Where-Object { $_.fileExtension -eq ".zip"}
+#OR
+Get-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter "system.webServer/staticContent" -Name "." | Where-Object { $_.fileExtension -eq ".zip"}
+
+
+
+
+###Create a new virtual directory
+
+New-WebVirtualDirectory -Site 'Default Web Site' -Name CoHost -PhysicalPath C:\inetpub\wwwroot\cohost
+
+##Let's enable directory browsing the the above virtual directory
+
+Set-WebConfigurationProperty -Filter /system.webserver/directoryBrowse -Name enabled True -PSPath "IIS\Sites\Default Web Site\Cohost"
+
+
+
+
+
+
+
+
+
+
+

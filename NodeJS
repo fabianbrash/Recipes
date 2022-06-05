@@ -1,0 +1,21 @@
+
+
+#####SETUP A NODE APP#########################
+
+mkdir /frontend
+cd frontend
+npm init
+###Answer questions######
+npm install express --save (Add express to our package.json as a dependency)
+
+npm install (You only need this if you deploy your app in prod and the system needs to get all your dependencies)
+
+
+
+#######Auto restart your server#########
+
+##You can use nodemon or pm2
+sudo npm install -g nodemon
+
+###OR#####
+sudo npm install -g pm2  ##I prefer pm2

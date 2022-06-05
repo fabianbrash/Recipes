@@ -1,0 +1,1259 @@
+###RHEL/CENTOS related information###
+
+######REFS#######################################################################################
+##REF:https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/4/html/Step_by_Step_Guide/s1-navigating-ownership.html
+##REF:https://ss64.com/bash/chmod.html
+
+#Install RHEL or centos with the Development packages
+#If you forgot you can use yum group install
+
+sudo yum upgrade
+
+sudo yum grouplist
+sudu yum grouplist hidden
+
+sudo yum groupinstall "GroupPackage Name"
+
+#Install Epel packages
+sudo yum install epel-release
+
+##list all versions of dhcp that's available
+yum list dhcp --show-duplicates
+
+
+####DNF######
+##Check to see what updates are available
+sudo dnf check-update
+#this should work too
+sudo yum check-update
+
+
+#Text graphical config of network after making a change you will need to restart network service
+sudo nmtui
+sudo systemctl restart network
+
+
+#List all services
+#Centos/RHEL V6.x
+sudo service --status-all
+sudo service --status-all | less or more
+sudo service --status-all | grep ntpd
+sudo service docker status
+
+#Centos/RHEL V7.x
+sudo systemctl start | stop | enable | mask 'service name'
+sudo systemctl list-unit-files
+sudo systemd-cgtop
+chkconfig --list
+chkconfig --list docker
+##Enable Service
+chkconfig docker on
+##Disable service
+chkconfig docker off
+
+#Install open-vmtools
+sudo yum install open-vm-tools
+
+#Start openvmtools
+sudo systemctl start vmtoolsd
+sudo systemctl enable vmtoolsd
+
+#Install NPM(which install nodejs) you must first install epel-release
+sudo yum install npm
+
+#The default firewall is now firewalld
+#If firewalld is not installed
+sudo yum install firewalld
+
+#See the state of firewalld
+firewall-cmd --state
+
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+
+firewall-cmd --get-default-zone
+
+firewall-cmd --get-active-zones
+firewall-cmd --list-all
+
+firewall-cmd --get-zones
+firewall-cmd --zone=home --list-all
+
+sudo firewall-cmd --zone=home --change-interface=eth0
+#Permanently change zones edit below file and add ZONE=thezone at end of file
+sudo nano /etc/sysconfig/network-scripts/ifcfg-eth0
+sudo systemctl restart network.service
+sudo systemctl restart firewalld.service
+
+#Change default zone
+sudo firewall-cmd --set-default-zone=home
+
+#Get All services
+firewall-cmd --get-services
+
+#Add a service permanently
+sudo firewall-cmd --zone=public --permanent --add-service=http
+
+#Add a port
+sudo firewall-cmd --zone=public --permanent --add-port=5000/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=4990-4999/udp
+#list all open ports
+sudo firewall-cmd --list-ports
+#list all open services
+sudo firewall-cmd --list-services
+#list everything
+sudo firewall-cmd --list-all
+
+#Create your own zones
+sudo firewall-cmd --permanent --new-zone=publicweb
+
+##Reload the firewall
+sudo firewall-cmd --reload
+
+###Remove a port
+firewall-cmd --permanent --zone=public --remove-port=10050/tcp
+
+##Open a port to a particular IP
+
+firewall-cmd --permanent --zone=public --add-rich-rule='
+  rule family="ipv4"
+  source address="1.2.3.4/32"
+  port protocol="tcp" port="4567" accept'
+  
+
+##list rich rule
+## https://www.computernetworkingnotes.com/rhce-study-guide/firewalld-rich-rules-explained-with-examples.html
+
+sudo firewall-cmd --list-rich-rules
+
+## remove rich rules
+
+sudo firewall-cmd --permanent --remove-rich-rule='add complete rule here'
+  
+## I will assume you can use a range as well "1.2.3.0/24" but I have not yet tested that out
+
+####NOTE IF YOU ARE NOT USING THE --permanent command DO NOT RELOAD AS IT WILL WIPE OUT THE RULE!!!
+###I LEARNED THIS THE HARD WAY!!!!!!
+
+#Install python packages get pip first
+sudo yum install python-pip
+
+#using find command
+sudo find
+sudo find ./etc -name "hosts"
+find ./test -name "abc.txt"
+find ./test -name "*.php"
+
+##Fedora has a tool gnome-tweak-tool
+dnf install gnome-tweak-tool
+##Then from terminal run
+gnome-tweak-tool
+
+####GREAT RESOURCE: https://www.server-world.info/en/
+
+####List users on centos/rhel system
+cat /etc/passwd
+
+
+####List users on centos/rhel system
+cat /etc/passwd
+
+###List all groups on centos/rhel system(should work for ubuntu a well
+cat /etc/group
+
+###Installing Webmin the --no-check-certificate option is necessary if wgt does not trust the cert sourceforge bounces you around######
+download .rpm from http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
+wget --no-check-certificate http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
+###Required Dependency for webmin
+sudo yum install perl-Net-SSLeay
+*Note is you use yum to install the .rpm file webmin.xxx.rpm it will locate the dependency for you and install it
+***If you use RPM to install you will need to install the dependency first
+
+###Webmin runs on port 10000 so you will need to open that up if you are using a firewall
+
+
+################CHECK RPM PACKAGE UPDATE HISTORY######################################################
+sudo rpm -q kernel --last
+sudo rpm -q vim --last
+sudo rpm -qa --last
+
+################LIST ALL PACKAGES INSTALLED REF:https://www.tecmint.com/list-installed-packages-in-rhel-centos-fedora/####
+sudo rpm -qa (or just rom -qa)
+sudo rpm -qa | grep -i open(Look for all packages with open in the name)
+
+yum list installed
+yum list installed | grep -i open
+
+#############################DMESG#################################################################
+dmesg is used to write kermel messages to standard out
+dmesg | less
+dmesg | grep -i memory(check system memory)
+dmesg | grep -i usb
+dmesg | grep -i network
+dmesg | grep -i dma(see if hdd isrunning in dma mode)
+dmesg | grep -i 10(check for 10G NIC)
+
+#############THE lspci tool can also be used to check all pci bus devices in our system#######################
+lspci(ls + pci) if you get command not found you need to install the pciutils package
+sudo yum install -y pciutils
+lspci
+lspci -m
+lspci -t
+lspci -k(kernel devices)
+lspci -s 03:00
+######the info returned can then be piped into dmesg to make certain our pci-e devices are registering correctly
+ex. VMXNET 3 returned address 03:00 so we can run
+dmesg | grep -i 03:00(-i means ignore case)
+
+########ethtool###############################
+ethtool eth0 or 'whatever your adapter is'
+
+
+#####Check RSS################################
+egrep 'CPU|eno123xxx' /proc/interrupts
+
+
+######################ADDING ROOT CA TO RHEL/CENTOS#############################################
+##Before you do this make a backup of the crt bundle so you can run diff against it
+cd /etc/pki/ca-trust/extracted/pem
+cp tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
+
+##Then add the cert with the below commands##################
+##Export your root CA to .crt if on Windows it'll be exported as .cer you can use openssl to convert or if you exported the file
+##as DER not "DER Binary" you can just change the extension
+###Then just add the cert on RHEL/CentOS6 to /usr/local/share/ca-certificates on RHEL/CentOS7 to /etc/pki/ca-trust/source/anchors
+##Then run 
+update-ca-trust
+
+##Note .pem files works also no need to convert
+##Also this works on CentOS 8.x
+cd cd /etc/pki/ca-trust/extracted/pem
+diff tls-ca-bundle.pem tls-ca-bundle.pem.SAVE
+
+###You should hopefully see a difference between the 2 files, i.e. the certs you added
+#####I CAN CONFIRM THIS WORKS########################################################################################
+
+
+
+
+########USING AWK###################################################################
+######Basic Format awk '/search_pattern/ { action_to_take_on_matches; another_action; }' file_to_parse
+####Using it like cat
+awk '{print}' /etc/fstab
+awk '/UUID/' /etc/fstab
+
+
+######################ENABLE NTP ON CENTOS7#############################################
+
+sudo yum install ntp -y
+sudo vim /etc/ntp.conf (You should not have to change anything here or you can add our own timeservers)
+sudo systemctl start ntpd
+sudo systemctl enable ntpd
+#####ADD OUR FIREWALL RULES#########################
+sudo firewall-cmd --add-service=ntp --permanent
+sudo firewall-cmd --reload
+sudo firewall-cmd --list-all
+###SEE IF IT'S WORKING
+sudo ntpq -p
+
+
+
+###################TUNED CONFIG#######################################
+##If not installed
+sudo yum install tuned
+
+sudo tuned-adm list ##LIST ALL AVAILABLE
+sudo tuned-adm profile 'Your new Profile'
+sudo tuned-adm recommended
+
+##########################TOP############################################
+top -c then presss '1' shows all cpu's
+
+
+############CPU INFO####################################################
+cat /proc/cpuinfo
+
+
+#######MEMORY INFO###################################
+cat /proc/meminfo
+
+
+####FOLDER SIZE INFO######
+###got to the folder location you want to gather size information on and then run
+sudo du -sh * | sort -n
+###Or you can 
+sudo du -h
+
+
+##################IPTABLES#############################################################################
+sudo iptables -S
+sudo iptables -L
+##Let's see our current policy
+sudo iptables -L | grep policy
+##Let's accept our traffic(this is the defauly behaviour)
+sudo iptables --policy INPUT ACCEPT
+sudo iptables --policy OUTPUT ACCEPT
+sudo iptables --policy FORWARD ACCEPT
+
+#####If you would like to drop all connections except the ones you specify
+iptables --policy INPUT DROP
+iptables --policy OUTPUT DROP
+iptables --policy FORWARD DROP
+
+##Drop connections from a specific IP or Subnet#####
+sudo iptables -A INPUT -s 10.10.10.10 -j DROP
+sudo iptables -A INPUT -s 10.10.10.0/24 -j DROP
+sudo iptables -A INPUT -p tcp --dport ssh -s 10.10.10.10 -j DROP(Block SSH)
+iptables -A INPUT -p tcp --dport 22 -s 10.10.10.10 -j DROP
+
+
+Replace ACCEPT with DROP to block port:
+## open port ssh tcp port 22 ##
+iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 22 -j ACCEPT
+ 
+## open cups (printing service) udp/tcp port 631 for LAN users ##
+iptables -A INPUT -s 192.168.1.0/24 -p udp -m udp --dport 631 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -p tcp -m tcp --dport 631 -j ACCEPT
+ 
+## allow time sync via NTP for lan users (open udp port 123) ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p udp --dport 123 -j ACCEPT
+ 
+## open tcp port 25 (smtp) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 25 -j ACCEPT
+ 
+# open dns server ports for all ##
+iptables -A INPUT -m state --state NEW -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -m state --state NEW -p tcp --dport 53 -j ACCEPT
+ 
+## open http/https (Apache) server port to all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -m state --state NEW -p tcp --dport 443 -j ACCEPT
+ 
+## open tcp port 110 (pop3) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 110 -j ACCEPT
+ 
+## open tcp port 143 (imap) for all ##
+iptables -A INPUT -m state --state NEW -p tcp --dport 143 -j ACCEPT
+ 
+## open access to Samba file server for lan users only ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 137 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 138 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 139 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 445 -j ACCEPT
+ 
+## open access to proxy server for lan users only ##
+iptables -A INPUT -s 192.168.1.0/24 -m state --state NEW -p tcp --dport 3128 -j ACCEPT
+ 
+## open access to mysql server for lan users only ##
+iptables -I INPUT -p tcp --dport 3306 -j ACCEPT (Note -I will place this at the top of the file -A does an append to the end of the file)
+
+######IPTABLES TUI#####################
+###You can also configure with a TUI(test user interface)
+sudo yum search all | grep setup*
+sudo yum install -y system-config-firewall-tui
+
+#######################FDISK A NEW DISK################################################################
+###########NOTE YOU MIGHT HAVE TO RESCAN YOUR SCSI BUS TO SEE THE NEW DISK#############################
+sudo fdisk -l (list all volumes)
+sudo fdisk -l /dev/sda1 (just list that volume)
+sudo fdisk /dev/sda1
+####press g to create a gpt partition#############
+#####press n to create a new partition and follow the prompts################
+#####press l to list the hexcodes###########################################
+####press t to change partition type#######################################
+#####press w to write changes#################################
+sudo mkfs.ext4 /dev/sda1 (lay down our filesystem)
+sudo mkdir /Data
+sudo mount /dev/sda1 /Data
+###EDIT YOUR /ect/fstab file#######
+/dev/sda1  /Data  ext4  defaults 0 0 
+
+
+#####Wipe file system##################
+sudo wipefs /dev/sdb (List the current signature)
+##Wipe command####
+sudo wipefs --all --force /dev/sdb
+##backup before wiping###
+sudo wipefs --all --force --backup /dev/sdb (Saved to $HOME/wipefs-{devname}-{offset}.bak)
+
+####If your volume uses LVM this is a bit trickier######
+##PVDISPLAY######
+sudo pvdisplay (for LVM)
+##Also
+sudo lsblk
+##See if we already have a file system
+sudo file -s /dev/sdb1(if this returns 'data' then no file system is present must format disk)
+sudo lvdisplay
+sudo lvscan
+
+
+
+######Create a symbolic link##############
+ln -s /var/logs/apache/logs ./logs
+
+###let's find all .conf files inside of /etc
+sudo ls -l /etc/*.conf
+
+######################################################################################################################
+####Check versions###########
+uname -a
+cat /etc/redhat-release
+
+#####Should work on both RHEL and Debian##########
+lsb_release -a
+
+####Clean up yum cache####
+sudo yum clean all
+
+####Let's see what's installed on our system
+sudo rpm -qa | grep node
+
+
+#############SELinux##################################################
+sestatus
+sestatus -v
+sestatus -b (state of Booleans)
+sestatus -b | grep gluster | grep on$ or off$
+getenforce(See current execution policy)
+sudo setenforce enforcing
+##Modes
+Enforcing, Permissive(watch don't do anything), Disabled
+
+
+
+##config file location####
+/etc/sysconfig/selinux(which is symbolic link to /etc/selinux/config
+sudo cat /var/log/messages | grep "SELinux is preventing" 
+sudo cat /var/log/messages | grep SELinux 
+sudo semodule -l | less (list modules in memory)
+sudo ls -l /etc/selinux/targeted/modules/active/modules/
+getsebool virt_use_nfs
+sudo setsebool virt_use_nfs on
+
+sudo ls -l /etc/*.conf
+###now###
+sudo ls -Z /etc/*.conf
+
+#####Source:  https://www.digitalocean.com/community/tutorials/an-introduction-to-selinux-on-centos-7-part-2-files-and-processes
+
+#######MAKE SCRIPTS EXECUTABLE####################################################
+chmod u+x script.sh(only the current user can run the script)
+chmod x script.sh(this is equivalent to chmod a+x all users can run the script)
+
+
+######################CURL EXAMPLES############################################
+sudo yum install curl
+curl http://localhost ##Show the output of a page
+curl http://localhost > file.html
+curl -o file.pdf http://www.localhost/file.pdf
+curl -O http://localhost/file.pdf (this will name the file the same as the URL content you are downloading)
+curl -O http://localhost/file2.pdf -O http://localhost/file3.pdf
+
+curl -L http://www.google.com (Follow redirects)
+curl -C - -O http://localhost/largefile.iso (Continue downloading our large file from where we left off)
+curl --limit-rate 1000B -O http://localhost/largefile.ISO (limit-rate of file downloads)
+curl -z 21-Jan-17 http://localhost/file.pdf (only download file if modified after the given date)
+curl -z -21-Jan-17 http://localhost/file.pdf (only download file if modified before given date)
+curl -u ftpuser:ftppass -O ftp://localhost.file.pdf
+curl -v http://www.google.com
+curl -i http://www.google.com (get http headers)
+
+cd /path/todownload && curl -LO http://server/file ##curl to a specific path **trick**
+
+#####SOURCE:  http://www.thegeekstuff.com/2012/04/curl-examples/?utm_source=feedburner
+
+
+######SCP################################################
+scp -r /directory/ user@192.168.1.1:/directory (recursively copy all data from /directory on the source to /directory on the destination,
+if the folder does not exist on dest then it will be created)
+scp -r . root@server:/data  ###copy all data recursively from the current directory and copy it to /data on remote host
+
+
+######################LINUX PERMISSIONS#############################################
+###logged in as root
+mkdir /Permissions
+touch file.txt
+chown bob file.txt (make bob the owner of file.txt)
+chown root bob.txt (remove bob's rights to write to the file)
+chown bob file.txt (give him ownership back)
+chown bob:bob file.txt (give user bob and group bob ownership of the file)
+chown :bob file.txt (only give bob group ownership of the file)
+chown root /foo (change ownership of folder foo to root)
+chown root:www-data /foo (give root ownership and the group www-data to folder foo)
+chown -R root:www-data /foo (give root ownership and the group www-data to folder subfolder and files to foo) -R(Recursively)
+chown -R bob /foo (give bob full rights to folder foo and all subfiles and folders)
+
+chmod -R 0777 /mydirectory ##Grant everyone read & write
+
+
+###############USER CREATION################################################################
+#Source:  https://www.centos.org/docs/5/html/5.1/Deployment_Guide/s2-users-add.html
+
+
+useradd jdoe  ##Add user joe
+useradd joe -u 1000 ##Add user joe and assign ID of 1000
+passwd joe  ##set password for joe
+
+
+###DELETE USER##############################
+sudo userdel user
+
+##############CRONTAB###################
+
+sudo crontab -e
+##head over here to generate your config http://crontab-generator.org/
+##REF: https://crontab.guru/
+
+
+###########MOUNT NFS DATASTORE#################################
+##########REF: https://www.howtoforge.com/nfs-server-and-client-on-centos-7
+sudo yum install -y nfs-utils
+
+sudo mount -t nfs 192.168.1.1:/mnt/data(server mount) /mnt/data(client mount)
+
+
+###########CREATE SIMPLE NFS SERVER AND EXPORT NON 4.0 NFS MOUNT POINT######
+sudo mkdir /nfs
+sudo yum install -y nfs-utils
+sudo systemctl enable nfs-server(This might be all you need to start)
+sudo systemctl enable rpcbind
+sudo systemctl start nfs-server && sudo systemctl start rpcbind(again you might only need to start nfs-server)
+
+##Then you need to edit the exports file#################
+sudo vim /etc/exports
+
+###/etc/exports example#####
+/nfs    192.168.1.5(rw,async,no_root_squash)
+
+###The above will allow 192.168.1.5 to access the nfs mount point(instead of an IP you can add '*' for all)
+sudo systemctl restart nfs-server
+sudo firewall-cmd --zone=public --permanent --add-service=nfs
+sudo firewall-cmd --zone=public --permanent --add-service=mountd
+sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
+sudo firewall-cmd --reload
+
+
+#####CREATE SIMPLE NFSV4.0 NOT WORKING!!#####################
+sudo mkdir /nfsv4
+sudo yum install -y nfs-utils nfs4-acl-tools portmap
+sudo vim /etc/exports
+##add entries into the /etc/exports file
+/sales  192.168.1.10(rw,async,no_root_squash,fsid=0)
+sudo systemctl enable nfs-server(This might be all you need to start)
+sudo systemctl enable rpcbind
+sudo systemctl enable nfs-idmap
+sudo systemctl start nfs-server && sudo systemctl start rpcbind(again you might only need to start nfs-server)
+sudo systemctl start nfs-idmap
+sudo vim /etc/sysconfig/nfs
+##set RPCNFSDCOUNT=16 OR 64
+sudo firewall-cmd --zone=public --permanent --add-service=nfs
+sudo firewall-cmd --zone=public --permanent --add-service=mountd
+sudo firewall-cmd --zone=public --permanent --add-service=rpc-bind
+sudo firewall-cmd --zone=public --permanent --add-port=2049/tcp
+sudo firewall-cmd --zone=public --permanent --add-port=2049/udp
+sudo firewall-cmd --reload
+
+
+######MOUNT SMB SHARE###################################
+#1. If your'e joined to a domain create a domain service account(smbtest)
+#2. Give Everyone full control for share access and then give the service account Modify or Full for NTFS
+#3. Now on linux
+#4. Make a directory for our mount point
+sudo /localmntpoint
+
+##Add a user with UID of 5000
+sudo useradd smbtest -u 5000
+##Now create a group to add users to that will have access to
+sudo groupadd -g 6000 sharegroup
+##Now add all users that will have access to the share to that group
+sudo usermod -G sharegroup -a smbtest && sudo usermod -G sharegroup -a user2
+##Now your ready to mount
+sudo mount.cifs \\\\server_DNS_OR_IP\\share /localmntpoint -o user=smbtest,uid=5000,gid=6000,domain=yourdomain
+####NOTE THE DOMAIN IS VERY VERY IMPORTANT OR IT WILL FAIL, FOR ME THAT IS###########################
+####NOTE FOR PERMISSIONS TO PROPAGATE PROPERLY MAKE CERTAIN THE USER ON WINDOWS MACHINE HAS A MATCHING ACCOUNT
+####ON THE LINUX SYSTEM OR YOU WILL HAVE PERMISSION ISSUES##############
+############WORKING WITH GROUPS##################################
+##view all members in a group
+getent group group1
+##or if you want to view a user's group
+id user
+
+###MOUNT USB DRIVE################
+sudo /mnt/USB ##create a mount point
+sudo fdisk -l ##find your device
+##mount it
+sudo mount /dev/sdb1 /mnt/USB
+
+###unmount it#########
+sudo umount /dev/sdb1
+or
+sudo umount /mnt/USB
+
+
+#####LET'S TAR A FOLDER##################
+sudo tar -czf name_of_tar.tar.gz /folder_to_tar
+##For large jobs your probably want to add the -v for some verbosity####
+sudo tar -czvf name_of_tar.tar.gz /folder_to_tar
+
+##########ADD USER TO SUDO###########
+##as root
+usermod -aG wheel 'username'
+
+
+#########CHECK OS NAME/VERSION#######################
+hostnamectl
+rpm --query centos-release
+cat /etc/centos-release
+cat /etc/os-release
+
+
+####COPY A FILE WHILE KEEPING PERMISSIONS###################
+sudo cp -rp /some/path /some/otherpath ##-p same as --preserve=mode,ownership,timestamps
+
+
+
+
+####PACKAGES WITH MULTIPLE .DEB FILES#############################
+##I ran into an isssue while attempting to install LibreOffice6, it came with a ton of .deb files
+##So I didn't know which one to start with, after reading the docs I found out you can do this.
+cd /directorywithrpms
+sudo yum install -y *.rpm
+##Or
+sudo rpm -Uvh *.rpm ##Shouldn't this be sudo rpm -ivh *.rpm
+
+##Simple
+
+
+#####SSH REMOVE ENTRY FROM KNOW_HOSTS FILE##############################
+ssh-keygen -f "/home/user/.ssh/known_hosts" -R "IPAddressofRemoteHost"
+
+
+
+
+####################USING NMCLI REF:https://www.tecmint.com/configure-network-connections-using-nmcli-tool-in-linux/#####
+##REF:https://www.tecmint.com/configure-network-connections-using-nmcli-tool-in-linux/
+
+sudo nmcli con show ##show all connections
+sudo nmcli dev show ##show all devices
+sudo nmcli con show -a ##only show active connections
+
+#####add a new connection and set it to static#######
+sudo nmcli con add type ethernet con-name static-prod ifname eth0 ip4 192.168.1.10/24 gw4 192.168.1.1 ipv4.dns "192.168.1.1"
+
+####Mod a connection change it's DNS to google#############
+sudo nmcli con mod static-prod ipv4.dns "8.8.8.8 8.8.4.4"
+
+##Add DHCP connection####
+nmcli con add type ethernet con-name prod-enp0s3 ifname enp0s3
+
+sudo nmcli con down static2; nmcli con up static2 ####down and up a connection
+
+###Delete a connection
+sudo nmcli con delete UID  ##Note the UID can be found by running nmcli con show
+
+####USING hostnamectl REF: https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/#########
+###Please note all above commands require NetworkManager to be installed, which should be the default for centos installs##
+hostnamectl status # list current host name
+hostnamectl set-hostname newhstname --static ##set new hostname
+sudo systemctl restart systemd-hostnamed  ##Restart service
+
+
+#################INSTALL PYTHON3 REF:https://www.digitalocean.com/community/tutorials/how-to-install-python-3-and-set-up-a-local-programming-environment-on-centos-7
+###############Since centos 7 only includes stable releases, it comes with python 2.x
+###If you haven't done so already##
+sudo yum install yum-utils -y
+sudo yum groupinstall -y "Development Tools"
+
+###This project is similat to epel-release they have current and edge packages####
+sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum install -y python36u
+sudo yum install -y python36u-pip
+sudo yum -y install python36u-devel
+
+##You can now install packages using
+sudo pip3.6 install packagename
+
+
+#######CD to user home directory################
+##you can cd into a users' home directory with
+cd ~theuser
+
+##############Check and generate new machine id#################
+##This is an issue I came across when creating a master template to be cloned, all my clones had the same machine-id
+##Also this applies to CentOS/RHEL 7.1 and above REF:https://www.thegeekdiary.com/centos-rhel-7-how-to-change-the-machine-id/
+sudo cat /etc/machine-id ##get the machine id
+also
+sudo hostnamectl status ##this will also show the machine id
+
+###Now let's generate a new one
+sudo rm /etc/machine-id
+sudo systemd-machine-id-setup
+
+
+####Changing your shell#######
+##Can be defined in /etc/shells
+echo $SHELL #should tell you you're current shell
+
+###if you download a shell like zsh you can add it to /etc/shells it's usually located @
+##/usr/local/bin/zsh check with
+which zsh
+####Let's change our shell
+chsh -s $(which zsh) or
+chsh -s /bin/bash ##change our shell to bash
+
+
+######USING ECHO####################
+echo "this is some text" >> /home/user/file.txt ##echo text into a file
+cat txt.txt >> /home/user/file.txt ##cat contents of a file into another file
+
+
+#####MORE COMPLEX BASH SCRIPTING######################
+###REF: https://ryanstutorials.net/bash-scripting-tutorial/bash-if-statements.php
+
+if [ ! -d /home/user/.ssh ]
+ then
+     mkdir /home/user/.ssh
+fi
+
+if [ -d /home/user/.ssh ]
+ then
+    echo "/home/user/.ssh exists"
+fi
+
+
+###########Yum searching####################
+
+yum search cockpit ##search for all cockpit packages or packages with cockpit in the name
+yum search all cockpit
+yum search all | grep -i open ##search all packages with open in the name not very good with it's results
+
+##Yum check version in upstream repo####################
+sudo yum info cockpit
+
+####Search yum to see which package has a command#############
+sudo yum provides nslookup
+##Good REF:https://www.tecmint.com/20-linux-yum-yellowdog-updater-modified-commands-for-package-mangement/
+
+####echo >> ##################
+##Just a quick note on the difference between > & >>
+echo "Testing.." > a.tst #This will echo Testing to a file a.tst
+echo "Testing again..." > a.tst ##This will overwrite everthing in the file with Testing again...
+echo "Testing.." >> a.tst ##This will append to the file a.tst so the final file would consist of both
+##Testing again... and Testing..
+
+
+#######Check if a user has permission to a path###############
+
+sudo -u nginx stat ~user/express-apps/rp/
+
+
+
+###Install and enable denyhosts from https://www.activecountermeasures.com/blog/
+sudo yum install -y denyhosts && sudo systemctl enable --now denyhosts
+##Now if an attacker tries a dictionary attack on your SSH/SFTP server, they will be added to 
+/etc/hosts.deny if it was a legitimate user you can simply remove ther IP entry from the hosts.deny file
+
+####This also runs on debian based systems
+
+
+##Add a user to the wheel group i.e. sudo rights#################
+##REF: https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-a-centos-7-server
+
+sudo gpasswd -a user1 wheel
+
+####Also if you add a user to wheel and they still don't have admin rights try####
+visudo  
+
+###Then you can add the user and mirror 'root' or look and see if the option to add wheel users
+###To run all commands are commented out
+
+
+##Mount CD-ROM########
+mount /dev/cdrom /mnt
+
+####COPY entire directory##########
+cp -R dir newdir/
+##Note that adding a forward slash to the source will extract everything in the destination
+cp -R dir/ newdir/
+
+##Set a password to never expire##############
+chage -l user ##Let's see what the expiry currently is
+
+passwd -x -1 user  ###set to never expire
+
+or
+chage -M -1 user
+
+chage -l user
+
+###Add pre login message##########
+##REF:https://www.cyberciti.biz/faq/howto-change-login-message/
+vi /etc/issue
+
+##There is also a issue.net which is used for SSH messages
+
+
+###Only allow root to login with an ssh key pair########
+#REF:http://man7.org/linux/man-pages/man5/sshd_config.5.html
+vi /etc/ssh/sshd_config
+##Add below line
+PermitRootLogin prohibit-password
+
+
+###more grep#####
+
+##The below will search all files in the current directory for http and -R will tell us which files have the entry
+grep -iR http
+
+###useful####
+/var/log/messages | less
+
+
+###############Configure DHCP server#####################################
+##REF:https://www.tecmint.com/install-dhcp-server-client-on-centos-ubuntu/
+sudo yum install dhcp
+
+##you might not have to do this I did though
+sudo vim /etc/sysconfig/dhcpd
+
+HDCPDARGS="whatever_your_interface_is"
+##Update as of 01-05-2020 that variable is no longer in the above file so
+##the above change is no longer required
+
+##then su to root I had issues when I attempted to complete the below steps with sudo##
+
+su -
+
+cp /usr/share/doc/dhcp-4.2.5/dhcpd.conf.example /etc/dhcp/dhcpd.conf
+vim /etc/dhcp/dhcpd.conf
+
+######################Begin FILE that works#############################
+##Thanks to REF:http://www.techspacekh.com/configuring-dhcp-server-on-rhelcentos-7/
+
+
+# dhcpd.conf
+#
+# Sample configuration file for ISC dhcpd
+#
+
+# option definitions common to all supported networks...
+option domain-name "enterprise.com";
+option domain-name-servers IP_OR_DNS;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+# Use this to enble / disable dynamic dns updates globally.
+#ddns-update-style none;
+
+# If this DHCP server is the official DHCP server for the local
+# network, the authoritative directive should be uncommented.
+authoritative;
+
+# Use this to send dhcp log messages to a different log file (you also
+# have to hack syslog.conf to complete the redirection).
+#log-facility local7;
+
+# No service will be given on this subnet, but declaring it helps the
+# DHCP server to understand the network topology.
+
+#subnet 10.152.187.0 netmask 255.255.255.0 {
+#}
+
+#DHCP servers subnet
+subnet 192.168.50.0 netmask 255.255.255.0 {
+}
+
+# This is a very basic subnet declaration.
+
+subnet 192.168.5.0 netmask 255.255.255.192 {
+  range 192.168.5.10 192.168.5.20;
+  option broadcast-address 192.168.5.63;
+  option subnet-mask 255.255.255.192;
+  option routers 192.168.5.1;
+  option domain-name-servers 192.168.50.3;
+}
+
+# This declaration allows BOOTP clients to get dynamic addresses,
+# which we don't really recommend.
+
+#subnet 10.254.239.32 netmask 255.255.255.224 {
+#  range dynamic-bootp 10.254.239.40 10.254.239.60;
+#  option broadcast-address 10.254.239.31;
+#  option routers rtr-239-32-1.example.org;
+#}
+
+# A slightly different configuration for an internal subnet.
+#subnet 10.5.5.0 netmask 255.255.255.224 {
+#  range 10.5.5.26 10.5.5.30;
+#  option domain-name-servers ns1.internal.example.org;
+#  option domain-name "internal.example.org";
+#  option routers 10.5.5.1;
+#  option broadcast-address 10.5.5.31;
+#  default-lease-time 600;
+#  max-lease-time 7200;
+#}
+
+# Hosts which require special configuration options can be listed in
+# host statements.   If no address is specified, the address will be
+# allocated dynamically (if possible), but the host-specific information
+# will still come from the host declaration.
+
+#host passacaglia {
+#  hardware ethernet 0:0:c0:5d:bd:95;
+#  filename "vmunix.passacaglia";
+#  server-name "toccata.fugue.com";
+#}
+
+# Fixed IP addresses can also be specified for hosts.   These addresses
+# should not also be listed as being available for dynamic assignment.
+# Hosts for which fixed IP addresses have been specified can boot using
+# BOOTP or DHCP.   Hosts for which no fixed address is specified can only
+# be booted with DHCP, unless there is an address range on the subnet
+# to which a BOOTP client is connected which has the dynamic-bootp flag
+# set.
+#host fantasia {
+#  hardware ethernet 08:00:07:26:c0:a5;
+#  fixed-address fantasia.fugue.com;
+#}
+
+# You can declare a class of clients and then do address allocation
+# based on that.   The example below shows a case where all clients
+# in a certain class get addresses on the 10.17.224/24 subnet, and all
+# other clients get addresses on the 10.0.29/24 subnet.
+
+#class "foo" {
+#  match if substring (option vendor-class-identifier, 0, 4) = "SUNW";
+#}
+
+#shared-network 224-29 {
+#  subnet 10.17.224.0 netmask 255.255.255.0 {
+#    option routers rtr-224.example.org;
+#  }
+#  subnet 10.0.29.0 netmask 255.255.255.0 {
+ #   option routers rtr-29.example.org;
+ # }
+#  pool {
+#    allow members of "foo";
+#    range 10.17.224.10 10.17.224.250;
+#  }
+#  pool {
+#    deny members of "foo";
+#    range 10.0.29.10 10.0.29.230;
+#  }
+#}
+
+#######################################END FILE##############################################################
+
+
+###Note the really really important bit is this#####################
+
+# No service will be given on this subnet, but declaring it helps the
+# DHCP server to understand the network topology.
+
+#subnet 10.152.187.0 netmask 255.255.255.0 {
+#}
+
+#DHCP servers subnet
+subnet 192.168.50.0 netmask 255.255.255.0 {
+}
+
+##Because my dhcp server is on a separate VLAN from the client the above is needed or DHCP will not work
+##if you DHCP server will only assign addresses in the VLAN that it's in then I don't think you need this
+
+systemctl restart dhcpd
+
+##If everything is good dhcpd should start without errors and your client(s) should be getting IP's
+
+##allow firewall for dhcp ####
+sudo firewall-cmd --permanent --zone=public --add-service=dhcp 
+sudo firewall-cmd --reload
+
+
+###Lease file and log file
+ /var/lib/dhcp/dhcpd.leases ## lease file
+ /var/log/messages # log file
+
+####See available file systems##########
+##Should work on Debian systems as well####
+
+cat /proc/filesystems
+
+##Note the above is a partial list so also do####
+ls -la /lib/modules/$(uname -r)/kernel/fs
+
+##The 2 should give you a complete image of the supported filesystems
+
+
+##Create command alias#################
+vim .bashrc ## note this is in your home directory
+#or
+vim ~/.bashrc
+##got to the end and add your alias to the file
+alias k='kubectl'
+
+##then 
+wq!
+
+##apply without the need to log out and back in again
+source ~/.bashrc
+
+##Get file hash############
+
+sha256sum CentOS-6.5-x86_64-minimal.iso
+
+##The above may/should work on Debian ans arch distros as well
+
+
+##Special characters####
+#REF:https://www.shellscript.sh/escape.html
+##So I was using openssl passwd -1 "myfancypassord" to generate a password that had a special character
+##but of course it generated the wrong password you have to use a \ to escape the special character
+
+
+##View log files that are .gz######
+#REF:https://www.cyberciti.biz/faq/unix-linux-cat-gz-file-command/
+
+zcat log.log.gz | grep -i error
+
+
+##More linux permissions
+##REF:https://ss64.com/bash/chmod.html
+
+###We can make the contents of a folder readable to all by doing
+chmod a+r myfolder/
+##OR
+chmod a+rw myfolder/
+
+####See cpu cores this should work on almost all flavors of linux###
+##REF:https://www.cyberciti.biz/faq/check-how-many-cpus-are-there-in-linux-system/
+
+lscpu
+
+
+####Configure NTP#########
+##REF:https://www.tecmint.com/install-ntp-server-in-centos/
+
+sudo yum install -y ntp
+
+##then edit /etc/ntp.conf
+
+###Add your pool from pool.ntp.org
+sudo firewall-cmd --add-service=ntp --permanent
+sudo firewall-cmd --reload
+
+sudo systemctl enable --now ntpd.service
+
+ntpq -p
+
+date -R
+
+
+
+#####Install binary easily#############
+##Say you make .sh file and you want it to be available on your path
+chmod +x myawesomescript.sh
+sudo install myawesomescript /usr/local/bin
+
+
+
+#############SSH keys commands###################
+
+ssh-copy-id user1@host1  ##copy your public key to user1 on host1
+
+ssh-add .ssh/id_rsa     ##add my private key to ssh identity
+ssh-add -D  ##remove all identities
+ssh-add -d  ##remove your local identity in .ssh/id_rsa
+
+
+#####IP forwarding####################
+
+cat /proc/sys/net/ipv4/ip_forward
+
+##disable IP forwarding
+
+sysctl -w net.ipv4.ip_forward=0  ##this will not survive reboot
+
+echo 'net.ipv4.ip_forward = 0' >> /etc/sysctl.conf    ##persist after reboot
+
+##enable IP forwarding
+
+echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf    ##persist after reboot
+sysctl -p ##do a reload
+
+
+
+
+##After installing powershell on centos7(more on that in a second) I needed to install modules in offline mode
+##(I have a writeup on doing that) but I needed to copy all subfolders and files with cp well here you go
+##REF:https://askubuntu.com/questions/86822/how-can-i-copy-the-contents-of-a-folder-to-another-folder-in-a-different-directo
+
+
+sudo cp -a PowerCLI/. /opt/microsoft/powershell/7/Modules
+
+## All module folders were in the PowerCLI folder
+
+
+##Now let's install powershell on centos 7
+##REF:https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7
+
+# Register the Microsoft RedHat repository
+curl https://packages.microsoft.com/config/rhel/7/prod.repo | sudo tee /etc/yum.repos.d/microsoft.repo
+
+# Install PowerShell
+sudo yum install -y powershell
+
+# Start PowerShell
+pwsh
+
+##Or
+
+sudo yum install https://github.com/PowerShell/PowerShell/releases/download/v7.0.0/powershell-7.0.0-1.rhel.7.x86_64.rpm
+
+
+####Extract .xz tar files####
+##You may have to install xz
+
+sudo yum install -y xz
+
+#Or
+sudo dnf install -y xz
+
+#Then you can do this I think you can do this even if you don't install xz
+
+tar -xvf file.tar.xz
+
+##Upgrade pip
+
+sudo pip install --upgrade pip
+
+
+
+###Linux tr command#########
+##REF:https://www.geeksforgeeks.org/tr-command-in-unix-linux-with-examples/
+
+text.txt | tr -d '\n' > text-nonewline.txt
+
+
+##The above will delete all new lines use the tr tool and output it to a new file
+##Note this is very handy when dealing with base64 encoded text as new lines can be entered if you
+##don't use echo -n
+
+
+
+### cp -n copy and don't ask to overwrite file
+
+cp -n myfile .
+
+
+##ntp fails to start on boot up
+##so I had an issue I enabled ntpd to when I rebooted
+##the service would not start,apparently cent7 uses
+##a new service chrony and it will start first and
+##ntpd would not
+##REF:https://www.thegeekdiary.com/centos-rhel-7-enable-ntp-to-start-at-boot-after-fresh-install-disable-chrony/
+
+sudo systemctl stop chronyd 
+sudo systemctl disable chronyd
+
+###Run a script on boot only once##
+##REF:https://serverfault.com/questions/853396/run-script-on-first-boot
+##REF:https://stackoverflow.com/questions/8981164/self-deleting-shell-script
+
+##So I needed to run a script just once on boot to re-generate machine-id
+##look at firstboot.service
+##create the above file in /etc/systemd/system
+#then
+sudo systemctl daemon-reload
+sudo systemctl enable firstboot.service
+
+##now the magic here is we need to delete the script once it runs so create a script like so
+
+#!/bin/bash
+
+systemd-machine-id-setup
+
+#delete myself
+rm -- $0
+
+###So the we've enabled the service and on boot it will run and then delete itself and 
+##never run again
+
+####bash completion packages
+##REF:https://www.tecmint.com/install-and-enable-bash-auto-completion-in-centos-rhel/
+##Note this may already be installed
+
+
+sudo yum install bash-completion bash-completion-extras
+
+
+##Let's find it and then source it
+
+locate bash_completion.sh
+source /etc/profile.d/bash_completion.sh  
+
+##Instead of above you can log out and back in again
+
+## firewalld zone files
+
+sudo ls -la /etc/firewalld/zones
+
+sudo cat /etc/firewalld/zones/public.xml. ## or whatever zone you want to look at this file shows all the rules applied
+
+
+## kill
+
+sudo kill -9 2331 or sudo kill -SIGKILL 2331
+
+
+## base 64 decode
+
+echo bGludXggYmFzZTY0IGRlY29kZQo= | base64 -d
+
+
+########SETTING AND USING ENV VARS#################
+##set a var to some value
+GIT_TAG=v0.7.6
+
+##Let's see it
+echo $GIT_TAG
+
+##Now let's use that var with a command note the use if the curlies
+git tag ${GIT_TAG}
+
+###And now we can use this in a bash script
+#/bin/bash
+git tag ${GIT_TAG}
+
+etc...
+etc...
+
+#Note for this to work you have either export the variable or source it when you run the script i.e.
+
+. ./myscript.sh ##Note the period and then the space this will run the script under the current shell which has access to the non-exported env variables.
+
+
+##### cat,more,less, grep .gz files ######
+##REF:https://www.cyberciti.biz/faq/unix-linux-cat-gz-file-command/
+
+zcat resume.txt.gz
+
+zmore access_log_1.gz
+
+zless access_log_1.gz
+
+zgrep '1.2.3.4' access_log_1.gz
+
+
+
+#### Install GUI after the fact on RHEL8/Cent8
+
+sudo dnf groupinstall workstation
+
+sudo sytemctl set-default graphical.target
+
+sudo reboot now
+
+
+

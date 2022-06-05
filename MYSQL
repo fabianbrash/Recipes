@@ -1,0 +1,186 @@
+
+
+######################SIMPLE MYSQL STATEMENTS REF: https://www.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html####
+#########Dump data from a table###########
+##REF:https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/
+##REF:https://dev.mysql.com/doc/refman/8.0/en/account-names.html
+##REF:https://www.mysqltutorial.org/mysql-show-users/
+##REF:https://devdocs.magento.com/guides/v2.3/install-gde/prereq/mysql_remote.html
+
+USE dbname;
+
+SHOW TABLES;
+show tables;
+
+SELECT * FROM dbtable;
+
+###Delete/drop a database
+DROP DATABASE database_name;
+
+###List all users
+
+mysql> use mysql;
+Database changed
+mysql> DESC user;
+mysql> SELECT user FROM user;
+
+###Note that we have already logged into the server
+
+##Show current logged on user, note I haven't tested this yet
+
+SELECT 
+    user, 
+    host, 
+    db, 
+    command 
+FROM 
+    information_schema.processlist;
+
+
+####Log into mysql###########
+
+mysql -p  ##login in as root on localhost
+
+mysql -h localhost -u myname -p mydb  ##log in as user myname on localhost and enter a password
+
+mysql -h localhost -u myname -p  ##Same as above but this time prompt for password
+
+mysql -h DNS_OR_IP -u myname -p  ## log into a remote sql server
+
+
+#####LET'S UPDATE THE VALUE OF A TABLE#########################
+
+USE db;
+
+UPDATE table_in_db
+SET column = 'changeme'
+WHERE column = 1;  ##This is usually the value on the far left
+
+SELECT * FROM table_in_db;
+
+###Here is a real example of updating he URL in a wordpress mysql database
+
+USE wpdb;
+
+UPDATE wp_options
+SET option_value = 'http://blog.blog.com:8080'
+WHERE option_id = 1;
+
+SELECT * FROM wp_options;  ##Display our changes
+
+##Show all databases
+show databases;
+
+##Show all tables
+USE dbname;
+show tables;
+
+
+####ADD a new user###
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'user_password';
+
+##OR##
+##For example, to grant access from a machine with IP 10.8.0.5 you would run:
+CREATE USER 'newuser'@'10.8.0.5' IDENTIFIED BY 'user_password';
+
+##OR##
+##To create a user that can connect from any host, use the '%' wildcard as a host part:
+CREATE USER 'newuser'@'%' IDENTIFIED BY 'user_password';
+
+#OR##
+CREATE USER 'david'@'198.51.100.0/255.255.255.0';
+
+##OR##
+
+CREATE USER 'david'@'198.51.100.%';  #/24
+
+
+###LET'S ADD A USER THAT CAN ACCESS OUR DB FROM ANY POD IN POD-CIDR 172.168.0.0
+
+CREATE USER 'wp'@'172.168.0.0/255.255.0.0' IDENTIFIED BY 'user_password';
+
+##PLEASE NOTE THAT WHATEVER CONTEXT YOU USE TO CREATE THE USER YOU WILL NEED TO USE IT FOR
+##EVERYTHING, I.E. 'localhost', 'IP', or '%'
+
+###Grant all privileges to a user account over a specific database:
+GRANT ALL PRIVILEGES ON database_name.* TO 'database_user'@'localhost';
+
+GRANT ALL PRIVILEGES ON database_name.* TO 'wp'@'172.168.0.0/255.255.0.0';
+
+##in the above if you did not use 'localhost' then you need to change it to
+##whatever you used.
+
+##Grant all privileges to a user account on all databases:
+GRANT ALL PRIVILEGES ON *.* TO 'database_user'@'localhost';
+
+#Grant all privileges to a user account over a specific table from a database:
+GRANT ALL PRIVILEGES ON database_name.table_name TO 'database_user'@'localhost';
+
+##Grant multiple privileges to a user account over a specific database:
+GRANT SELECT, INSERT, DELETE ON database_name.* TO database_user@'localhost';
+
+SHOW GRANTS FOR 'database_user'@'localhost'; #same rule applies 'ip', '%'
+
+FLUSH PRIVILEGES;
+
+
+
+
+####SHOW DB SIZES####
+
+SELECT table_schema AS "Database", 
+ROUND(SUM(data_length + index_length) / 1024 / 1024, 2) AS "Size (MB)" 
+FROM information_schema.TABLES 
+GROUP BY table_schema;
+
+
+###SHOW TABLE SIZES#######
+SELECT table_name AS "Table",
+ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+FROM information_schema.TABLES
+WHERE table_schema = "mydb"
+ORDER BY (data_length + index_length) DESC;
+
+
+
+
+##Migrate a WP Blog to a new URL#######
+##REF:https://wpbeaches.com/updating-wordpress-mysql-database-after-moving-to-a-new-url/
+
+USE db_name;
+
+UPDATE wp_options SET option_value = replace(option_value, 'http://www.oldurl', 'http://www.newurl') WHERE option_name = 'home' OR option_name = 'siteurl';
+UPDATE wp_posts SET guid = replace(guid, 'http://www.oldurl','http://www.newurl');
+UPDATE wp_posts SET post_content = replace(post_content, 'http://www.oldurl', 'http://www.newurl');
+
+
+
+UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://www.oldurl','http://www.newurl');
+
+
+##backup mysql database
+##REF:https://phoenixnap.com/kb/how-to-backup-restore-a-mysql-database
+sudo mysqldump -u [user] -p [database_name] > [filename].sql
+
+
+##backup entire db managment system
+mysqldump --all-databases --single-transaction --quick --lock-tables=false > full-backup-$(date +%F).sql -u root -p
+
+
+##Include more than 1 db in dump
+sudo mysqldump -u [user] -p [database_1] [database_2] [database_etc] > [filename].sql
+
+
+##Restore a sql database from backup
+
+mysql -u [user] -p [database_name] < [filename].sql
+
+###Run a .sql file
+
+mysql -u username -h db_server -p password database_name < /path/to/your/file.sql
+
+
+##Alternatively if you have already logged in to the server, just run:
+
+mysql>source /path/to/your/file.sql
+

@@ -1,0 +1,173 @@
+####Rethink runs on port 8080 by default
+
+#############Start rethinkDB
+rethinkdb --bind all
+
+######Join a Rethink cluster
+rethinkdb --join IP_OF_FIRST_MACHINE:29015 --bind all
+
+###########################REQL commands############################################################################################
+r.db('movies').table('imdb').orderBy(r.desc('year')).limit(200)
+
+r.db('movies').table('imdb').orderBy(r.desc('year')).limit(10)
+
+r.dbCreate("Schools")
+
+r.db("Schools").tableCreate("schooldata")
+
+r.db("Schools").table('schooldata') 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/shools.json')) 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').oderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('Subnet')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel') 
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderby('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+r.db("Schools").table('schooldata').insert(r.http('http://ServerIP/imports/schools.json'))
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata').orderBy('name')
+
+r.db("Schools").table('schooldata').orderBy('GradeLevel')
+
+r.db("Schools").table('schooldata').getAll("Fisher")
+
+r.db("Schools").table('schooldata').filter({"Fisher"})
+
+r.db("Schools").table('schooldata').filter("Fisher")
+
+r.db("Schools").table('schooldata').filter({"name":"Fisher"})
+
+r.db("Schools").table('schooldata').filter({"name":"George"})
+
+r.db("Schools").table('schooldata').filter({"name":"Mason"})
+
+r.db("Schools").table('schooldata').filter({"name":"Wythe"})
+
+r.db("Schools").table('schooldata').filter({"name":"George Mason"})
+
+r.db("Schools").table('schooldata').filter({"name":"Reid"})
+
+r.db("Schools").table('schooldata').filter({"name":"Woodville"})
+
+r.db("Schools").table('schooldata').filter({"name":"Westover"})
+
+r.db("Schools").table('schooldata').filter({"name":"Westoverhills"})
+
+r.db("Schools").table('schooldata').contains('Westover')
+
+r.db("Schools").table('schooldata').contains('Westoverhills')
+
+r.db("Schools").table('schooldata').contains('Woodville')
+
+r.db("Schools").table('schooldata').filter({'name': 'Greene'})
+
+r.db("Schools").table('schooldata').filter({'name': 'Henderson'})
+
+r.db("Schools").table('schooldata')
+
+r.db("Schools").table('schooldata')filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Elementary'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'})
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'High'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Middle'}).orderBy('name')
+
+r.db("Schools").table('schooldata').filter({'GradeLevel': 'Elementary'}).orderBy('name')
+
+######Execute multiple commands###############################################################
+####Let's drop a table, re-create the table, insert data into the table, and then show the table
+r.db('Schools').tableDrop('schooldata');
+r.db('Schools').tableCreate('schooldata');
+r.db("Schools").table('schooldata').insert(r.http('http://NodeIP/imports/schools.json'));
+r.db('Schools').table('schooldata');
+
+
+
+#####Add a new user this is as of version 2.3#######################
+
+r.db("rethinkdb").table("users").insert({id: "skyla", password: "r3dd0t"})
+r.db("test").grant("skyla", {read: true, write: true, config: true})
+
+
+######RETURN ONLY CERTAIN RESULTS#############################
+r.db('testdb').table('testtable').pluck('Name').orderBy('Name')
+r.db('testdb').table('testtable').pluck(['Name', 'DOB']).orderBy('Name')
+
+######RUN AS A BACKGROUND PROCESS ON UBUNTU############################
+
+sudo rethinkdb --bind all & 
+#####see all background jobs
+sudo jobs
+##CTRL-Z suspend process and bg to enable
+###bring to foreground
+fg
+or fg %num(the process you want to bring to the foreground get from 'bg')
+
+
+######DRILLING DOWN INTO A JSON OBJECT##########################################
+
+r.db('NASA').table('personsinspace').pluck({
+  people: ['craft', 'name']});
+  
+  ####OR#####
+  
+  r.db('NASA').table('personsinspace').pluck('people');
+  
+  
+  #####RETURN A PRECISE USER/OBJECT##############################
+  
+  r.db('NASA').table('personsinspace')('people').nth(0).filter(function(name) {
+  return name("name").eq("Thomas Pesquet")});
+  
+  #####OR######
+
+r.db('NASA').table('personsinspace')('people').nth(0).filter({name: "Thomas Pesquet"});
+
+
+########SORTING THROUGH LARGE DATASET#########################
+
+r.db('jsondata').table('nobelprize')('prizes').nth(0).filter({category: "chemistry"}).limit(5);
+
+
+

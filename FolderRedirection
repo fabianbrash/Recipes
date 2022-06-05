@@ -1,0 +1,24 @@
+
+#REF: https://blogs.technet.microsoft.com/migreene/2008/03/24/ntfs-permissions-for-redirected-folders-or-home-directories/
+
+##############PERMISSIONS FOR FOLDER REDIRECTION#############################
+
+#These are the two steps I was most interested in finding:
+
+##Set Share Permissions for the Everyone group to Full Control.
+
+##Use the following settings for NTFS Permissions:
+
+##CREATOR OWNER - Full Control (Apply onto: Subfolders and Files Only)
+##System - Full Control (Apply onto: This Folder, Subfolders and Files)
+##Domain Admins - Full Control (Apply onto: This Folder, Subfolders and Files)
+##Everyone - Create Folder/Append Data (Apply onto: This Folder Only)
+##Everyone - List Folder/Read Data (Apply onto: This Folder Only)
+##Everyone - Read Attributes (Apply onto: This Folder Only)
+##Everyone - Traverse Folder/Execute File (Apply onto: This Folder Only)
+
+##SHARE PERMISSION IS EVERYONE HAS FULL CONTROL##########
+
+
+#Pay attention when configuring the home directory or folder redirection policies.  If you enable the setting to give the user 
+#exclusive access to the folder, you will override the inherited permissions and need to reset the ACL.

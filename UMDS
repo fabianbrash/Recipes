@@ -1,0 +1,24 @@
+###UMDS config info#####
+##REF:https://www.definit.co.uk/2019/03/configuring-update-manager-download-service-6-7-on-centos-rhel-7-with-ssl-certificates/
+
+####Let's remove uneccessary downloads
+
+
+vmware-umds -S -d embeddedEsx-6.0.0 embeddedEsx-6.6.1 embeddedEsx-6.6.2 embeddedEsx-6.6.3
+
+##Add the HPE depot
+vmware-umds -S --add-url https://vibsdepot.hpe.com/index.xml --url-type HOST
+
+
+##Note on the below you can also use http
+###Add the Dell depot
+vmware-umds -S --add-url https://vmwaredepot.dell.com/index.xml --url-type HOST
+
+
+##Now let's download our patches
+
+vmware-umds -D
+
+#####Note all the above works whether you are using a Windows or Linux UMDS instance####
+
+

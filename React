@@ -1,0 +1,9 @@
+##basic react info
+##REF: https://www.taniarascia.com/getting-started-with-react/
+
+##Create first react app
+
+npx create-react-app react-tutorial
+cd react-tutorial
+
+npm start

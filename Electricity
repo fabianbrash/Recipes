@@ -1,0 +1,34 @@
+
+####I'll put infoo here in regards to Electricity###########
+
+A x V = W(Apms x Volts = Watts)
+#So if you have a 10A 120V power supply the largest PSU you can hook into it is a 
+10A x 120V = 1200W(So if you have a 1400W PSU it will not work)
+###Keep this is mine when mining crypto currencies or buying HCI nodes
+
+
+##Look at your input information on your Power Supplies####
+
+##Also ask server/appliance vendors what's the average or peak AMPS a device will put out#######
+
+###Also check power cords to see what they are rated @ if the power cord maxes at 120V and you push
+##240V you'll melt the wire
+
+##Also check your power supply to see the highest Volts it can handle, must modern PSU's can handle####
+##120-240V
+
+
+##############################################################################################################
+
+A typical PDU designed to be hooked up to a 30 amp circuit would be able to handle about 5,000 watts at 208 volts. 
+
+5,000 watts / 208 volts = approx. 24 amps, which is 80% of the 30 amp circuit. Eighty percent is where you cap it to keep
+from tripping circuits or overheating wires. 
+
+The PDU would typically come with a L6-30 P male plug, which would connect to a L6- 30 R receptacle. 
+
+Each server should have a power rating, and it should be considerably less than what the power supply is actually rated for.
+Servers are quite often around 1,000 watts or less. 
+
+
+##############################################################################################################

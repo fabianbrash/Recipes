@@ -1,0 +1,252 @@
+####Useful Manjaro commands############
+###REF:https://wiki.manjaro.org/index.php?title=Pacman_Overview
+
+##update system
+sudo pacman -Syu
+
+##install package#########
+sudo pacman -S screenfetch
+
+
+##To search the Manjaro repositories for available packages you can use the command pacman -Ss keyword. It will search both the package name and the description for the keyword. For example, to search for packages containing the keyword smplayer you could use:
+
+pacman -Ss smplayer
+
+
+##You can search your installed packages in the same manner using -Qs instead of -Ss. To search your installed packages for smplayer:
+
+pacman -Qs smplayer
+
+
+##Once you have found a package you can use pacman -Qi to get more information about an installed packages or 
+##pacman -Si for packages in the repos. Following the example above you could use
+
+pacman -Si smplayer
+
+
+##Finally, for a list of all installed packages on your system, enter the following command:
+
+pacman -Ql
+
+
+ ##Warning: Never install a package without updating the system first. On a rolling release this can lead to an unbootable system
+
+
+###To install a software package, the basic syntax is pacman -S packagename. However, installing a package 
+##without updating the system will lead to a partial upgrade situation so all the examples here 
+##will use pacman -Syu packagename which will install the package and ensure the system is up to date. 
+###For example, to sinatll smplayer the command is:
+
+sudo pacman -Syu smplayer
+
+
+##You will then be presented a list of software to install. You may notice 
+##this list has more packages than you requested. This is because many packages also have dependencies 
+##which are packages that must be installed in order for the software you selected to function properly.
+
+
+##Pacman can also directly install packages from the local system or a location on the internet. 
+##The format of that command is pacman -U packagelocation. For example, to install a copy of your package 
+##cache you could do something like:
+
+sudo pacman -U /var/cache/pacman/pkg/smplayer-19.5.0-1-x86_64.pkg.tar.xz
+
+##Alternatively, you could get it directly from one of Manjaro's mirrors:
+
+sudo pacman -U https://mirror.alpix.eu/manjaro/stable/community/x86_64/smplayer-19.5.0-1-x86_64.pkg.tar.xz
+
+
+##Warning: When using pacman -U it is up to you to ensure that the package you are installing is fully compatible with your system.
+
+
+ ##Warning: Always review the package list before confirming when removing packages. 
+ ##If you are not careful you can easily remove your entire desktop due to dependencies.
+
+
+##To remove a software package, the basic syntax is sudo pacman -R packagename. 
+##We could remove the smplayer package we installed above with:
+
+sudo pacman -R smplayer
+
+
+##This will remove the package, but will leave all the dependencies behind. If you also want to remove the unneeded dependencies you could use pacman -Rsu packagename as seen in this example:
+
+sudo pacman -Rsu smplayer
+
+
+##Sometimes when you try to remove a package you will not be able to because there are other packages which depend on it. You can use pacman -Rc packagename to remove a package and everything that depends on it. Be careful to heed the above warning when using this option.
+
+sudo pacman -Rc smplayer
+
+
+##The most nuclear option is pacman -Rcs packagename. This will remove everything that depends on packagename and continue to do so on it's dependencies. This should really only be used in exceptional circumstances such as when removing an entire desktop environment and trying not to leave anything behind.
+
+
+##Pacman usually also creates backup configuration files when deleting packages. To remove those, you can add n to any of the examples above. For example:
+
+sudo pacman -Rn smplayer
+sudo pacman -Rsun smplayer
+sudo pacman -Rcn smplayer
+
+
+##Viewing and Removing Orphans
+
+##To list all orphans, installed packages that are not used by anything else and should no longer be needed:
+
+pacman -Qdt
+
+
+##To remove all the orphans:
+
+sudo pacman -Rs $(pacman -Qdtq)
+
+
+##Downloading Packages without Installing
+
+##In some cases it may be useful to download a package without installing. For example, to install on a different system that is not connected to the internet. This can be done with pacman -Sw packagename. For example:
+
+sudo pacman -Sw smplayer
+
+
+##Clear cache
+
+sudo pacman -Sc
+
+
+####Install Powershell Core#######
+##REF:https://ephos.github.io/posts/2018-9-17-Pwsh-ArchLinux
+
+sudo pacman -Syu git
+
+git clone https://aur.archlinux.org/powershell-bin.git
+
+cd powershell-bin
+
+##Read what it's about to do also I was able to figure out that this will be installed to /opt/microsoft
+cat PKGBUILD
+
+makepkg -si
+
+
+##If you get the error message "Error: Cannot find fakeroot" you need the below package
+sudo pacman -S base-devel
+
+###Once finished####
+cd /opt/microsoft/powershell/6
+
+pwsh
+
+##The above will start the powershell shell then to test
+Get-Process | ft -Autosize
+
+
+####Install Virtual Box#################
+##REF:https://wiki.manjaro.org/index.php?title=VirtualBox
+
+##Install from app manjaro app store then I installed the guest and kernel modules by checking
+uname -r
+##I installed the LTS I don't know if that's good or bad, then you can either reboot our run
+sudo vboxreload
+##The above will reload kernel modules
+
+###Also you need to add your user to the vboxusers group
+sudo usermod -aG vboxusers user1
+
+sudo reboot
+
+###Then head on over to virtual box and download the extension pack for your version, without this
+###you will not be able to use USB 2.0 or USB 3.0
+###From virtual box go to file > preferences > extension and point to your downloaded extension pack
+
+####Install Azure CLI###########
+
+sudo pacman -Syu libffi
+
+sudo curl -L https://aka.ms/InstallAzureCli | bash
+
+###and follow prompts
+
+
+
+###Install useful network tools ##
+
+sudo pacman -Syu traceroute 
+
+sudo pacman -Syu bind-tools ##nslookup comes with this
+
+########SNAP#################
+##Snap Store:https://snapcraft.io/store
+###It seems on the latest version of Manjaro snap is installed by default
+
+sudo snap install postman
+
+##If not
+
+sudo pacman -Syu snapd
+sudo systemctl enabled snapd
+sudo systemctl start snapd
+
+##Or
+sudo systemctl enable --now snapd.socket ##with this you won't have to do the systemctl start
+
+
+####Manjaro equivalent of whatprovides#########
+
+sudo pacman -Syu pkgfile
+
+sudo pkgfile --update
+
+sudo pkgfile iostat   ##see what provides iostat note it could return multiples so you might still want to validate with
+                      ##with the GUI util
+
+
+
+sudo pkgfile iotop
+
+sudo pacman -Syu iotop
+
+
+###The above will install iotop so we can get some disk performance data##
+##REF:https://www.opsdash.com/blog/disk-monitoring-linux.html
+
+sudo iotop -o
+
+
+##Connecting to switches######
+##REF:https://linuxconfig.org/connect-your-ubuntu-linux-machine-to-cisco-serial-console
+sudo pkgfile screen
+
+sudo pacman -Syu screen
+
+sudo dmesg | grep -i tty
+
+sudo screen /dev/ttyUSB0 ##this is what I saw also the FTDI USB Serial converter is a dead giveaway
+
+##Also screen must be run as root just screen /dev/ttyUSB0 will generate an error 'screen terminating'
+##Maybe I can add my user to a group so I don't have to use sudo
+
+
+############TMUX###########
+#REF: https://tmuxcheatsheet.com/
+sudo pacman -Syu tmux ##this should already be installed
+
+
+##enable mouse support note this changed as of 2.1.x
+
+cd ~
+touch .tmux.conf
+
+##and add the below
+set -g mouse on
+tmux kill-server
+
+##########CLI history###
+
+CTRL+R and you can search your history
+
+
+
+
+
+
+

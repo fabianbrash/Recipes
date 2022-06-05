@@ -1,0 +1,388 @@
+
+
+####My Experience with SailsJS #######
+##REF: sailsjs.com#######
+
+
+###Install#########
+sudo npm install -g sails
+
+##make a directory where you want your app
+mkdir -p /home/user/api
+
+cd api
+
+sails new my-project
+
+cd my-project
+
+sails lift
+
+###If everything is working right you should be able to visit http://127.0.0.1:1337###
+###Note if you are using an headless Linux server you will need to run a reverse-proxy/loadbalancer like nginx###
+
+####Now let's generate an api#######
+
+###in the app directory in our case my-project###
+sails generate api my-project
+
+##Then visit http://localhost:1337/my-project
+
+
+
+####################Connect SailsJS to a DB###################################
+
+npm install --save sails-mongo  ###We are installing the mongo adapter there are many more available
+###REF: https://sailsjs.com/documentation/reference/configuration/sails-config-datastores
+###REF: https://sailsjs.com/documentation/reference/configuration/sails-config-datastores
+
+##From the my-project folder
+cd /config
+####Note this is a change as of v1.0 from what I can see####
+vim datastores.js
+
+##Under defaults add your db connection
+
+adapter: require('sails-mongo'),
+    url: 'mongodb://mongo_DNS_OR_IP:27017/directory_db',
+    
+######NOTE IF YOU ARE USING AUTHENTICATION WITH MONGODB YOUR URL SHOULD LOOK LIKE THIS
+    url: 'mongodb://user:password@mongo_DNS_OR_IP:27017/directory_db?authSource=admin',
+##REF: https://sailsjs.com/documentation/concepts/extending-sails/adapters/available-adapters
+    
+
+##If the database does not exists it will be created also note the above does not have a username or password
+
+##Restart your app and go to /my-project and you should see '[]' 
+##Simply insert documents into your mongodb and they will start showing up
+
+#######Set schema#####################
+cd to my-project/api/models
+##and define your models in the my-project.js ###(note this will be called whataver your API is called)
+
+######Actual file data#####
+
+module.exports = {
+
+  attributes: {
+
+    Name: { type: 'string', required: true },
+
+    DirectLine: { type: 'string' },
+
+    Extension: { type: 'string' }
+
+    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+
+
+    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
+    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
+    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
+
+
+    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+
+  },
+
+};
+
+
+##End file data####
+
+##The above shows that my schema/model will take 3 inputs, Name, DirectLine, Extension and that Name is required##
+##REF:  https://sailsjs.com/documentation/concepts/models-and-orm/models
+##if we wanted to indicate a numeric value we could use
+age: { type: number }
+
+
+###Next make a backup of homepage.ejs and then delete all from it and then you can begin to build your
+##Front end
+cd my-project/views/layouts
+vim layout.ejs  ##Again you can back this up before you start working on it
+
+##And add any code you would like to persist across all your pages###
+##For me that's adding all my bootstrap code as I will be using bootstrap for my frontend###
+
+###Actual file data############
+
+ <!---Bootstrap CSS --->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+ <!--DO NOT ADD CODE THE STYLES TAG BELOW -->
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <a class="navbar-brand" href="/">RPS API Gateway</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/directory">StaffDirectory</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="container">
+    <%- body %>
+  </div>
+
+
+<!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <!--SCRIPTS END-->
+    
+    <!--DO NOT ADD CODE TO THE SCRIPT TAG ABOVE -->
+    <!--JQuery first, then Popper.js, then Boostrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+
+#####End file data###########################
+
+
+
+###########IMPORTANT#############################
+##I will assume this is a change in V1.0
+###In order for Sails to automatically load controllers/actions you need turn it on by going to###
+vim /my-project/config/blueprint.js
+##And turn on "Automatically expose routes for every action in your app"
+actions: true,
+
+###Then restart Sails###
+##Then restart Sails and Then restart Sails....########
+
+###Let's do something interesting and let's loop through data in mongo########
+
+###Contents of list.ejs############
+
+
+<h3 class="display-4">ICTS Staff Directory</h3>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>DirectLine</th>
+        <th>Extension</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Directory.forEach(function(directoryeach){ %>
+       <tr>
+         <td><%= directoryeach.id %></td>
+         <td><%= directoryeach.Name %></td>
+         <td><%= directoryeach.DirectLine %></td>
+         <td><%= directoryeach.Extension %></td>
+       </tr>
+       <% }); %>
+
+ </tbody>
+
+</table>
+
+
+#####END FILE CONTENTS#########################
+
+###Now let's build our controller logic######
+
+####Contents of DirectoryController.js##################
+
+module.exports = {
+    list: function(req, res) {
+       Directory.find({}).exec(function(err, Directory) {
+         if(err) {
+           res.send(500, {error: 'Database Error'});
+         }
+         res.view('pages/list', {Directory:Directory});
+      });
+    }
+
+
+};
+
+
+
+###############END FILE CONTENTS##################
+
+##REF: https://www.smashingmagazine.com/2015/11/sailing-sails-js-mvc-style-framework-node-js/
+##REF: http://www.programwitherik.com/five-tips-when-working-with-routes-on-sails-js/
+##REF: https://scotch.io/tutorials/use-ejs-to-template-your-node-application
+
+######during development you can turn of the annoying message about database migration by editing
+#####/config/models.js
+
+       
+#########BY DEFAULT BLUEPRINTS ONLY RETURNS THE FIRST 30 RECORDS IN A DB USE THE .LIMIT() METHOD TO RETURN WHAT YOU NEED
+
+###Visit the following to see all your DB entries##############
+http://APP_DNS_OR_IP:1337/app/?limit=10000
+
+
+
+#####CONFIGURE A ROUTE CALLED /raw AND RETURN SOME JSON########################################
+
+################BEGIN FILE MoviesController.js#######################
+
+/**
+ * MoviesController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+
+        raw: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                 res.send(500, {error: 'Database error'});
+                        }
+
+                        res.json(Movies);
+                });
+        }
+};
+
+
+
+###########END FILE############################################################
+
+
+
+#####Contents of MoviesController.js###########################################
+
+/**
+ * MoviesController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+
+        raw: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                 res.send(500, {error: 'Database error'});
+                        }
+
+                        res.json(Movies);
+                });
+        },
+
+        ui: function(req, res) {
+                Movies.find({}).exec(function(err, Movies) {
+                        if(err) {
+                                res.send(500, {error: 'Database error'});
+                        }
+
+                        res.view('pages/ui', {Movies:Movies});
+
+                });
+        }
+};
+
+
+############Contents of ui.ejs#######################
+
+<h3 class="display-3">Wikipedia Movies Directory</h3>
+
+<div class="table-responsive-md">
+
+<table class="table table-striped table-hover">
+
+  <thead class="thead-dark">
+    <tr>
+       <!--<th>#</th> -->
+       <th>Title</th>
+       <th>Year</th>
+       <th>Director</th>
+       <th>Cast</th>
+       <th>Genre</th>
+       <th>Notes</th>
+
+  </tr>
+
+ </thead>
+
+ <tbody>
+
+  <% Movies.forEach(function(movie) { %>
+    <tr>
+      <!--<td><%= movie.id %></td> -->
+      <td><%= movie.title %></td>
+      <td><%= movie.year %></td>
+      <td><%= movie.director %></td>
+      <td><%= movie.cast %></td>
+      <td><%= movie.genre %></td>
+      <td><%= movie.notes %></td>
+
+   </tr>
+   <% }); %>
+
+ </tbody>
+
+</table>
+
+</div>
+
+
+###################CSS######################
+
+###So I had an issue where I did some css inline on my layout.ejs file and when I rebooted
+###my app the css was gone, so simple fix create a file in /myapp/assets/styles
+##and the css will be automatically included in your layout.
+
+
+
+########Sorting by Name######################################
+
+/**
+ * DirectoryController
+ *
+ * @description :: Server-side actions for handling incoming requests.
+ * @help        :: See https://sailsjs.com/docs/concepts/actions
+ */
+
+module.exports = {
+    list: function(req, res) {
+       Directory.find({}).sort({ Name: 1 }).exec(function(err, Directory) {
+         if(err) {
+           res.send(500, {error: 'Database Error'});
+         }
+         res.view('pages/list', {Directory:Directory});
+      });
+    },
+
+   raw:  function(req, res) {
+         Directory.find({}).exec(function(err, Directory) {
+           if(err) {
+             res.send(500, {error: 'Database Error'});
+           }
+           return res.json(Directory);
+        });
+
+  }
+
+};
+
+
+

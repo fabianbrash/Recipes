@@ -1,0 +1,14 @@
+
+########TWEAK FREENAS NFS PERFORMANCE REF:https://hardforum.com/threads/freenas-and-esxi-4-slow-through-nfs.1684326/######
+###The issue is esxi asks for all writes to be synchronous not asynchronous#########
+####so we need to disable sync on zfs####
+####After creating the volume create a dataset and then setup NFS on the dataset EX. /mnt/NFS/NFS#######
+
+####Now lets disable sync###########
+###Launch shell from FreeNaS GUI###
+###First lets list our zfs volumes?#####
+zfs list
+
+zfs set sync=disabled NFS/NFS
+
+zfs set sync=disabled NFS ##Just in CASE##

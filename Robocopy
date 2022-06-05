@@ -1,0 +1,7 @@
+####Initial Seeding of Data####################
+robocopy "Source" "Destination" /NP /MT:32 /E /R:3 /W:5 /ZB /COPYALL /LOG:C:\RobocopyLogs\Logs.log
+
+#####Subsequent copies until you are ready to switch over################################
+robocopy "Source" "Destination" /NP /MT:32 /E /R:3 /W:5 /ZB /COPYALL /MIR /LOG+:C:\RobocopyLogs\LogsNightly.log
+
+####You can also download a program "Microsoft Robocopy GUI" to help build the commands#######################

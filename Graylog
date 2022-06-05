@@ -1,0 +1,57 @@
+
+
+#####Graylog syslog server#############
+##Home: https://www.graylog.org/
+###Docker home: http://docs.graylog.org/en/2.4/pages/installation/docker.html
+
+####Most of the config they have is correct or launching a docker container, except
+###I had issues with elasticsearch and memory you have to run the following command in linux
+
+sysctl -w vm.max_map_count=262144
+
+##The above worked on ubuntu, shoud work on centos and I will test on photonOS(sysctl is available 
+###on photonOS so the above works)
+##REF:https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
+
+##The next issue I had was getting the web ui to show up, I kep getting an error message, so after looking
+##around I found that it seems to be an issue binding to 0.0.0.0 so I placed the IP address like below and
+### it worked for me.
+
+
+docker run --link mongo --link elasticsearch \
+    -p 9000:9000 -p 12201:12201 -p 514:514 \
+    -e GRAYLOG_WEB_ENDPOINT_URI="http://69.55.62.56:9000/api" \
+    -d graylog/graylog:2.4
+    
+    
+###Note change your "GRAYLOG_WEB_ENDPOINT_URI" to whatever your public interface for a cloud node
+###Or LAN for internal nodes to access
+
+###Once you log in with admin admin, you will see an error about no nodes are configured to listening, I missed that part
+####but after a while I run through the GUI seteup and set the node as a syslog TCP on port 514
+##Also check the box for "Global"
+
+
+
+####Setup Inputs###
+
+#UDP
+
+*.* @graylog.example.org:514;RSYSLOG_SyslogProtocol23Format
+
+#TCP
+
+*.* @@graylog.example.org:514;RSYSLOG_SyslogProtocol23Format
+
+cd /etc/rsyslog.d
+
+touch graylog.conf
+
+##(The difference between UDP and TCP is using @ instead of @@ as target descriptor.)
+##The above configuration should be placed as new file in /etc/rsyslog.d/ and rsyslog should be restarted.
+##In addition the port 514 on the Graylog server need to be reachable from the sending server.
+#REF: https://marketplace.graylog.org/addons/a47beb3b-0bd9-4792-a56a-33b27b567856
+
+
+systemctl restart rsyslog
+

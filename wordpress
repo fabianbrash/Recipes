@@ -1,0 +1,30 @@
+###Wordpress information###########
+
+
+
+###Wordpress migration####
+##REF:https://wpbeaches.com/updating-wordpress-mysql-database-after-moving-to-a-new-url/
+
+##SQL migration script
+
+UPDATE wp_options SET option_value = replace(option_value, 'http://www.oldurl', 'http://www.newurl') WHERE option_name = 'home' OR option_name = 'siteurl';
+
+UPDATE wp_posts SET guid = replace(guid, 'http://www.oldurl','http://www.newurl');
+
+UPDATE wp_posts SET post_content = replace(post_content, 'http://www.oldurl', 'http://www.newurl');
+
+UPDATE wp_postmeta SET meta_value = replace(meta_value,'http://www.oldurl','http://www.newurl');
+
+##Finally update your WordPress config file to reflect the new database, wp-config.php” which 
+##should be in your web document root – change, databasename, username, password and host values:
+
+define('DB_NAME', 'databasename');
+
+/** MySQL database username */
+define('DB_USER', 'username');
+
+/** MySQL database password */
+define('DB_PASSWORD', 'password');
+
+/** MySQL hostname */
+define('DB_HOST', 'localhost');

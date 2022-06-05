@@ -1,0 +1,15 @@
+
+###############ADDING CUSTOM PREFS TO FIREFOX #################################
+
+########Allow Firefox to use Windows Certificate store#####################
+
+about:config
+##search for security.enterprise_roots.enabled and toggle it to true###
+
+#######OR##############
+#Create a file called wintrusts.js(or whatever you would like to name it just make certain the extension is .js)
+
+/* Allows Firefox reading Windows certificates */    
+pref("security.enterprise_roots.enabled", true);
+
+##copy file to FirefoxInstallDir\defaults\pref
