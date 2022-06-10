@@ -448,3 +448,11 @@ arcas --env vsphere --file vsphere-dvs-tkgm.json --workload_preconfig --workload
 
 ````
 
+#### Get the admin context of a cluster
+
+````
+
+tanzu cluster kubeconfig get wkld-1 --admin
+
+````
+
