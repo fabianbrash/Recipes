@@ -454,6 +454,8 @@ arcas --env vsphere --file vsphere-dvs-tkgm.json --workload_preconfig --workload
 
 ### So the above shows how to deploy using Arcas and AVI, but what if we just want to install TKGm with the standard tanzu tool.
 
+##### Before I get into it I have one weird issue when I attempt to us the below command to create a management cluster inside of a VM, I was using an Ubuntu desktop VM, I get to the point where the management node(s) are scaling up and it just sits there for a long time until the installation dies, but on my physical Ubuntu laptop it works just fine, maybe something weird wth docker running inside a VM??
+
 
 ````
 
@@ -541,7 +543,7 @@ VSPHERE_WORKER_NUM_CPUS: "4"
 
 #### The above is an example of a file for a mgmt cluster, I want to call out a few things
 
-#### We are using kube-vip hence this line "VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.180.85" that kube-vip IP must be in the same VLAN is the DHCP pool but must be outside the pool
+#### We are using kube-vip hence this line "VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.180.85" the kube-vip IP must be in the same VLAN as the DHCP pool but must be outside the pool
 
 #### So my mgmt cluster VMs will be on VLAN 180 PG "vDS-TKG-MGMTWKLK180-N" and those will be inside the DHCP pool
 
