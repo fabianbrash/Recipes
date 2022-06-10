@@ -448,6 +448,191 @@ arcas --env vsphere --file vsphere-dvs-tkgm.json --workload_preconfig --workload
 
 ````
 
+
+```Deploy TKGm with UI```
+
+
+### So the above shows how to deploy using Arcas and AVI, but what if we just want to install TKGm with the standard tanzu tool.
+
+
+````
+
+tanzu mc create --ui
+
+#or
+
+tanzu management-cluster create --ui
+
+````
+
+### The above will serve up a webpage so you can fill in your data
+
+````
+
+AVI_CA_DATA_B64: ""
+AVI_CLOUD_NAME: ""
+AVI_CONTROL_PLANE_HA_PROVIDER: ""
+AVI_CONTROLLER: ""
+AVI_DATA_NETWORK: ""
+AVI_DATA_NETWORK_CIDR: ""
+AVI_ENABLE: "false"
+AVI_LABELS: ""
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_CIDR: ""
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_NAME: ""
+AVI_PASSWORD: ""
+AVI_SERVICE_ENGINE_GROUP: ""
+AVI_USERNAME: ""
+CLUSTER_CIDR: 100.96.0.0/11
+CLUSTER_NAME: mgmt-1
+CLUSTER_PLAN: dev
+ENABLE_AUDIT_LOGGING: "false"
+ENABLE_CEIP_PARTICIPATION: "true"
+ENABLE_MHC: "true"
+IDENTITY_MANAGEMENT_TYPE: none
+INFRASTRUCTURE_PROVIDER: vsphere
+LDAP_BIND_DN: ""
+LDAP_BIND_PASSWORD: ""
+LDAP_GROUP_SEARCH_BASE_DN: ""
+LDAP_GROUP_SEARCH_FILTER: ""
+LDAP_GROUP_SEARCH_GROUP_ATTRIBUTE: ""
+LDAP_GROUP_SEARCH_NAME_ATTRIBUTE: cn
+LDAP_GROUP_SEARCH_USER_ATTRIBUTE: DN
+LDAP_HOST: ""
+LDAP_ROOT_CA_DATA_B64: ""
+LDAP_USER_SEARCH_BASE_DN: ""
+LDAP_USER_SEARCH_FILTER: ""
+LDAP_USER_SEARCH_NAME_ATTRIBUTE: ""
+LDAP_USER_SEARCH_USERNAME: userPrincipalName
+OIDC_IDENTITY_PROVIDER_CLIENT_ID: ""
+OIDC_IDENTITY_PROVIDER_CLIENT_SECRET: ""
+OIDC_IDENTITY_PROVIDER_GROUPS_CLAIM: ""
+OIDC_IDENTITY_PROVIDER_ISSUER_URL: ""
+OIDC_IDENTITY_PROVIDER_NAME: ""
+OIDC_IDENTITY_PROVIDER_SCOPES: ""
+OIDC_IDENTITY_PROVIDER_USERNAME_CLAIM: ""
+OS_ARCH: amd64
+OS_NAME: photon
+OS_VERSION: "3"
+SERVICE_CIDR: 100.64.0.0/13
+TKG_HTTP_PROXY_ENABLED: "false"
+TKG_IP_FAMILY: ipv4
+VSPHERE_CONTROL_PLANE_DISK_GIB: "40"
+VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.180.85
+VSPHERE_CONTROL_PLANE_MEM_MIB: "16384"
+VSPHERE_CONTROL_PLANE_NUM_CPUS: "4"
+VSPHERE_DATACENTER: /dc-01
+VSPHERE_DATASTORE: /dc-01/datastore/truenas-iscsi-01
+VSPHERE_FOLDER: /dc-01/vm/tkg-vsphere-tkg-mgmt
+VSPHERE_INSECURE: "false"
+VSPHERE_NETWORK: /dc-01/network/vDS-TKG-MGMTWKLK180-N
+VSPHERE_PASSWORD: <encoded:a3VOPmQyc3c=>
+VSPHERE_RESOURCE_POOL: /dc-01/host/cluster-02/Resources
+VSPHERE_SERVER: 192.168.99.20
+VSPHERE_SSH_AUTHORIZED_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2Ibvh0f1KXOs3rOp1NedgVefcI+vCI0ucS/CzxY7xXyrT6Y/dky90ZfZD06bX925OrsrtnoTZG0W0SjPI5iO+QcJEaJOT7qdlZFmcNk9CM9YyfiOjB7UMx5+CGgVY6UX1zRkbp004sJzrgAfM5u7eQfxE+u6wZx9myOxPi6KsKDDkYH8owgp+ZIj7fgG7QZYugzsVnWCm9mDp9qTcknctil+Zi35BiOmd5tMHw+y8ZYP0YmFArYxQx5x0djv1rKDTE1JxjFY7nQzlos0g5hKTlr+Wk1Lxu9LAHc6D2XKokXT5wIZIpYmR4MuQlBiyDuYcZjjp5PKj1A+9y2TZQ3S99giM1vW6h15KfS3PApseOtjuwCO/ABdazgzaHWt1H9+rGfnfcb08lvn5uC0pwwjSzBIik75lzRYP2DHASufN4QiEgmS0+P6Ya9LpxTedQ1vDGa+RMGlqYY4CidKOLBc871KvXpijQEbaHmg932JwJiz5OvhbiY4E4YLMS69Aeg0= fabian@fb-HP-EliteBook-850-G5
+VSPHERE_TLS_THUMBPRINT: 08:35:EA:FA:18:FF:FF:FF:FF:FF:FF:FF:FF:0B:42:6C:71:0F:BF:D0
+VSPHERE_USERNAME: administrator@vsphere.local
+VSPHERE_WORKER_DISK_GIB: "40"
+VSPHERE_WORKER_MEM_MIB: "16384"
+VSPHERE_WORKER_NUM_CPUS: "4"
+
+
+````
+
+
+### The above is an example of a file for a mgmt cluster, I want to call out a few things
+
+#### We are using kube-vip hence this line "VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.180.85" that kube-vip IP must be in the same VLAN is the DHCP pool but must be outside the pool
+
+#### So my mgmt cluster VMs will be on VLAN 180 PG "vDS-TKG-MGMTWKLK180-N" and those will be inside the DHCP pool
+
+
+
+````
+
+AVI_CA_DATA_B64: ""
+AVI_CLOUD_NAME: ""
+AVI_CONTROL_PLANE_HA_PROVIDER: ""
+AVI_CONTROLLER: ""
+AVI_DATA_NETWORK: ""
+AVI_DATA_NETWORK_CIDR: ""
+AVI_ENABLE: "false"
+AVI_LABELS: ""
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_CIDR: ""
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_NAME: ""
+AVI_PASSWORD: ""
+AVI_SERVICE_ENGINE_GROUP: ""
+AVI_USERNAME: ""
+CLUSTER_CIDR: 100.96.0.0/11
+CLUSTER_NAME: wkld-1
+CLUSTER_PLAN: dev
+ENABLE_AUDIT_LOGGING: "false"
+ENABLE_CEIP_PARTICIPATION: "true"
+ENABLE_MHC: "true"
+IDENTITY_MANAGEMENT_TYPE: none
+INFRASTRUCTURE_PROVIDER: vsphere
+LDAP_BIND_DN: ""
+LDAP_BIND_PASSWORD: ""
+LDAP_GROUP_SEARCH_BASE_DN: ""
+LDAP_GROUP_SEARCH_FILTER: ""
+LDAP_GROUP_SEARCH_GROUP_ATTRIBUTE: ""
+LDAP_GROUP_SEARCH_NAME_ATTRIBUTE: cn
+LDAP_GROUP_SEARCH_USER_ATTRIBUTE: DN
+LDAP_HOST: ""
+LDAP_ROOT_CA_DATA_B64: ""
+LDAP_USER_SEARCH_BASE_DN: ""
+LDAP_USER_SEARCH_FILTER: ""
+LDAP_USER_SEARCH_NAME_ATTRIBUTE: ""
+LDAP_USER_SEARCH_USERNAME: userPrincipalName
+OIDC_IDENTITY_PROVIDER_CLIENT_ID: ""
+OIDC_IDENTITY_PROVIDER_CLIENT_SECRET: ""
+OIDC_IDENTITY_PROVIDER_GROUPS_CLAIM: ""
+OIDC_IDENTITY_PROVIDER_ISSUER_URL: ""
+OIDC_IDENTITY_PROVIDER_NAME: ""
+OIDC_IDENTITY_PROVIDER_SCOPES: ""
+OIDC_IDENTITY_PROVIDER_USERNAME_CLAIM: ""
+OS_ARCH: amd64
+OS_NAME: photon
+OS_VERSION: "3"
+SERVICE_CIDR: 100.64.0.0/13
+TKG_HTTP_PROXY_ENABLED: "false"
+TKG_IP_FAMILY: ipv4
+VSPHERE_CONTROL_PLANE_DISK_GIB: "40"
+VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.181.200
+VSPHERE_CONTROL_PLANE_MEM_MIB: "16384"
+VSPHERE_CONTROL_PLANE_NUM_CPUS: "4"
+VSPHERE_DATACENTER: /dc-01
+VSPHERE_DATASTORE: /dc-01/datastore/truenas-iscsi-01
+VSPHERE_FOLDER: /dc-01/vm/tkg-vsphere-workload
+VSPHERE_INSECURE: "false"
+VSPHERE_NETWORK: /dc-01/network/vDS-TKG-WKLK181-N
+VSPHERE_PASSWORD: <encoded:a3VOPmQyc3c=>
+VSPHERE_RESOURCE_POOL: /dc-01/host/cluster-02/Resources/wkld-1
+VSPHERE_SERVER: 192.168.99.20
+VSPHERE_SSH_AUTHORIZED_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC2Ibvh0f1KXOs3rOp1NedgVefcI+vCI0ucS/CzxY7xXyrT6Y/dky90ZfZD06bX925OrsrtnoTZG0W0SjPI5iO+QcJEaJOT7qdlZFmcNk9CM9YyfiOjB7UMx5+CGgVY6UX1zRkbp004sJzrgAfM5u7eQfxE+u6wZx9myOxPi6KsKDDkYH8owgp+ZIj7fgG7QZYugzsVnWCm9mDp9qTcknctil+Zi35BiOmd5tMHw+y8ZYP0YmFArYxQx5x0djv1rKDTE1JxjFY7nQzlos0g5hKTlr+Wk1Lxu9LAHc6D2XKokXT5wIZIpYmR4MuQlBiyDuYcZjjp5PKj1A+9y2TZQ3S99giM1vW6h15KfS3PApseOtjuwCO/ABdazgzaHWt1H9+rGfnfcb08lvn5uC0pwwjSzBIik75lzRYP2DHASufN4QiEgmS0+P6Ya9LpxTedQ1vDGa+RMGlqYY4CidKOLBc871KvXpijQEbaHmg932JwJiz5OvhbiY4E4YLMS69Aeg0= fabian@fb-HP-EliteBook-850-G5
+VSPHERE_TLS_THUMBPRINT: 08:35:EA:FA:18:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:6C:71:0F:BF:D0
+VSPHERE_USERNAME: administrator@vsphere.local
+VSPHERE_WORKER_DISK_GIB: "40"
+VSPHERE_WORKER_MEM_MIB: "16384"
+VSPHERE_WORKER_NUM_CPUS: "4"
+
+
+````
+
+### The above is an example of a workload cluster file, note all you do is copy the mgmt file generated and rename it the only changes are the "VSPHERE_CONTROL_PLANE_ENDPOINT" and the PG vDS-TKG-WKLK181-N and the "Name" again here my workload will be deployed into VLAN 181, so this depicts a 2 network topology, but it's extremely flexible as I can copy the file again and deploy a new workload cluster and this time place it in VLAN 900
+
+#### Once I have my workload file I just need to run the below
+
+
+````
+
+tanzu cluster create mycluster -f /home/myuser/.config/tanzu/tkg/clusterconfigs/wkld1.yaml -v 6
+
+#or generate a mgmt file and then instead of installing with UI I can do this
+
+tanzu management-cluster create mgmt-1  --file /home/fabian/.config/tanzu/tkg/clusterconfigs/jkg8tlr4jt.yaml -v 6
+
+````
+
 #### Get the admin context of a cluster
 
 ````
@@ -455,4 +640,3 @@ arcas --env vsphere --file vsphere-dvs-tkgm.json --workload_preconfig --workload
 tanzu cluster kubeconfig get wkld-1 --admin
 
 ````
-
