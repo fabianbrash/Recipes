@@ -539,7 +539,7 @@ VSPHERE_WORKER_NUM_CPUS: "4"
 ````
 
 
-### The above is an example of a file for a mgmt cluster, I want to call out a few things
+#### The above is an example of a file for a mgmt cluster, I want to call out a few things
 
 #### We are using kube-vip hence this line "VSPHERE_CONTROL_PLANE_ENDPOINT: 192.168.180.85" that kube-vip IP must be in the same VLAN is the DHCP pool but must be outside the pool
 
@@ -618,7 +618,7 @@ VSPHERE_WORKER_NUM_CPUS: "4"
 
 ````
 
-### The above is an example of a workload cluster file, note all you do is copy the mgmt file generated and rename it the only changes are the "VSPHERE_CONTROL_PLANE_ENDPOINT" and the PG vDS-TKG-WKLK181-N and the "Name" again here my workload will be deployed into VLAN 181, so this depicts a 2 network topology, but it's extremely flexible as I can copy the file again and deploy a new workload cluster and this time place it in VLAN 900
+#### The above is an example of a workload cluster file, note all you do is copy the mgmt file generated and rename it the only changes are the "VSPHERE_CONTROL_PLANE_ENDPOINT" and the PG vDS-TKG-WKLK181-N and the "Name" again here my workload will be deployed into VLAN 181, so this depicts a 2 network topology, but it's extremely flexible as I can copy the file again and deploy a new workload cluster and this time place it in VLAN 900
 
 #### Once I have my workload file I just need to run the below
 
