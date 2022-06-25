@@ -720,3 +720,19 @@ tanzu management-cluster create mgmt-1  --file /home/fabian/.config/tanzu/tkg/cl
 tanzu cluster kubeconfig get wkld-1 --admin
 
 ````
+
+
+#### Create a new cluster by copying an existing cluster YAML file and then make the appropriate changes to it
+
+
+````
+
+cp mycluster.yaml newcluster.yaml
+
+#Make changes to the new file newcluster.yaml
+
+tanzu cluster create --dry-run --file newcluster.yaml > newcluster-output.yaml
+
+kubectl apply -f newcluster-output.yaml
+
+````
