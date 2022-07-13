@@ -11,6 +11,39 @@
 [Network Topology](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-489A842E-1A74-4A94-BC7F-354BDB780751.html)
 
 
+
+````
+
+apiVersion: run.tanzu.vmware.com/v1alpha1      
+kind: TanzuKubernetesCluster                   
+metadata:
+  name: tkgs-cluster-5                         
+  namespace: tgks-cluster-ns                   
+spec:
+  distribution:
+    version: v1.20                            
+  topology:
+    controlPlane:
+      count: 3                                 
+      class: best-effort-medium                 
+      storageClass: vwt-storage-policy
+      volumes:
+        - name: etcd
+          mountPath: /var/lib/etcd
+          capacity:
+            storage: 4Gi       
+    workers:
+      count: 3                                 
+      class: best-effort-medium                 
+      storageClass: vwt-storage-policy        
+      volumes:
+        - name: containerd
+          mountPath: /var/lib/containerd
+          capacity:
+            storage: 16Gi
+
+````
+
 ````
 
 apiVersion: run.tanzu.vmware.com/v1alpha1
