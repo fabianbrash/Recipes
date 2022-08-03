@@ -697,6 +697,79 @@ WORKER_MACHINE_COUNT: 4
 
 ````
 
+```Windows workload```
+
+
+````
+
+
+#! ---------------------------------------------------------------------
+#! vSphere non proxy env configs
+#! ---------------------------------------------------------------------
+AVI_CA_DATA_B64: S0tLS0tCk1JSUR3VENDQXFtZ0F3SUJBZ0lVUG5xWjVjSWNGU01hcEhhd08vQlBCUW9JRlEwd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2dZSXhDekFKQmdOVkJBWVRBbFZUTVeVF5SzkxMSsrMGV3ClU3UWUrQWFEWk5ETlJob2lnN2NaN2p5aVVmZEVDWGh6VFF1eFlhR1U5REoxZG0rRSt0RWk3dnFxTnRZTXlNNi8KRTRUY1V6Z1VvZHAwbm04Y0wrbTdDNjVieHByY1A4WjBMR2ZaQVN3OXI5U2gzR0k0R0dCRCtGS3hYMlloUEEwbgpidzNScTl4Uy90Y3Y2dnM3N00wSjVHVk9ON0hTZUgxZ21yYXN5SGR0b3h3MDR3R0M5YU5ieUNkMVZpVW==
+AVI_CLOUD_NAME: tkgvsphere-cloud01
+AVI_CONTROLLER: avi-lb-01.fbclouddemo.us
+AVI_DATA_NETWORK: vDS-TKG-FRNT-DATA182
+AVI_DATA_NETWORK_CIDR: 192.168.182.0/24
+AVI_ENABLE: 'true'
+AVI_LABELS: |
+    'type': 'management'
+AVI_PASSWORD: <encoded:111dddffgggtty>
+AVI_SERVICE_ENGINE_GROUP: tkgvsphere-tkgmgmt-group01
+AVI_USERNAME: admin
+CLUSTER_CIDR: 100.96.0.0/11
+CLUSTER_NAME: fb-win-wkld-1
+CLUSTER_PLAN: dev
+ENABLE_CEIP_PARTICIPATION: 'true'
+INFRASTRUCTURE_PROVIDER: vsphere
+SERVICE_CIDR: 100.64.0.0/13
+TKG_HTTP_PROXY_ENABLED: false
+DEPLOY_TKG_ON_VSPHERE7: 'true'
+VSPHERE_DATACENTER: /dc-01
+VSPHERE_DATASTORE: /dc-01/datastore/truenas-iscsi-01
+VSPHERE_FOLDER: /dc-01/vm/tkg-vsphere-tkg-mgmt
+VSPHERE_NETWORK: vDS-TKG-MGMTWKLK180
+VSPHERE_PASSWORD: <encoded:1111dddffgggg>
+VSPHERE_RESOURCE_POOL: /dc-01/host/cluster-01/Resources/tkg-vsphere-tkg-Mgmt
+VSPHERE_SERVER: 192.168.99.20
+VSPHERE_SSH_AUTHORIZED_KEY: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCXxC/DmQp2xhMZu/lGfv8K06fvHP+vNWnY2/gJNu9QfmlHnUWz3XPb78dyHa5SDRv1KrDdV9sWZgygwB4V5HMfR1beAdauvp1qtriAJgdCs+WWHPyYrcTpzVuTWEkDcxyh27Ejmkm9Z1t/LLmxUPCY4mv3FiwmUunjvJCKMANvqvgYG2vbrjAWccC0tLriyEsHiXbbRzYaNJ9vl59Q9vPrY4GwGtW3KNXt6Dz3fRNUc+lfLoS9XZqGaGK+Ondc1QUhexwoZ8i8gTYiIEKATDlfDf0Tip4hzT9JaGr+QQMbCVB2aWj1gnL3xaRs66+HdlQkrDg8DaIxz+TrdzpHOuzza+x3hcCjIAXPLA9GOHzxEl6udgQJpBedvXxoZ/ARwPDGoyNMG004Jbh43A3V5JJhqvko8fCAk8p0sMXYzCw86PPNXPjWLaLUnF9f9DNGzq6wTRdLRY6JXWHb5dAwDRVkoWd/m82JqpGJ3+dREXhD4yjdlk1Pct01m9L7W2Egb3dOS9tle324hbvF4+5WYzj4k8srS+ApQVUQaZgOh7n3A29xTvHqMQ6heCtKqeLOZBvmWrWysZEC4S43cnjxqBT55kHEGgiMJKQ9NGm2A9kNL89iKac98/3PzV1UTLhTQnVhY9QSKer3xTEIioD1B+f90cMkC5oj5eroBtCCgTJRMQ== administrator@vsphere.local
+
+VSPHERE_USERNAME: administrator@vsphere.local
+VSPHERE_INSECURE: 'true'
+AVI_CONTROL_PLANE_HA_PROVIDER: 'true'
+ENABLE_AUDIT_LOGGING: 'true'
+OS_ARCH: amd64
+OS_NAME: ubuntu
+OS_VERSION: 20.04
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_NAME: vDS-TKG-FRNT-DATA182
+AVI_MANAGEMENT_CLUSTER_VIP_NETWORK_CIDR: 192.168.182.0/24
+
+VSPHERE_CONTROL_PLANE_NUM_CPUS: 4
+VSPHERE_CONTROL_PLANE_DISK_GIB: 100
+VSPHERE_CONTROL_PLANE_MEM_MIB: 16384
+VSPHERE_WORKER_NUM_CPUS: 4
+VSPHERE_WORKER_DISK_GIB: 100
+VSPHERE_WORKER_MEM_MIB: 16384
+IS_WINDOWS_WORKLOAD_CLUSTER: "true"
+VSPHERE_WINDOWS_TEMPLATE: windows-2019-kube-v1.22.8
+WORKER_MACHINE_COUNT: 2
+ENABLE_MHC: "false"
+
+IDENTITY_MANAGEMENT_TYPE: none
+
+#! ---------------------------------------------------------------------
+#! vSphere proxy env configs
+#! ---------------------------------------------------------------------
+
+
+#! ---------------------------------------------------------------------
+#! vSphere airgapped env configs
+#! ---------------------------------------------------------------------
+
+
+
+````
+
 
 #### Above we are using the prod plan and insteadd of 3 worker nodes we have specified 4
 
