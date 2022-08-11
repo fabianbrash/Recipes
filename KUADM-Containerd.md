@@ -56,10 +56,14 @@ sudo systemctl enable containerd
 
 ```
 
-```Ubuntu 22.04 & containerd & kubernetes 1.24.x```
+```Ubuntu 22.04 & containerd & kubernetes 1.24.x maybe 1.22.x also```
 
 
 #### With the above you now have to set systemd as the default cgroup if not all hell will break loose, in my case issues started to show up when I tried to install calico, I lost access to the api-server, and saw almost all the core pods go in a crash loop
+
+## Note also do this before you run kubeadm init I had a ton of issues trying to do this after I attempted to initialize the cluster, snapshot folks, snapshots..
+
+## Obviously this must be run per node before kubeadm init and before node join
 
 ````
 sudo sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config.toml
