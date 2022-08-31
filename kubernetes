@@ -261,6 +261,10 @@ kubectl create secret generic harborcred \
 kubectl create secret docker-registry my-secret --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER
 --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
 
+
+
+kubectl create secret docker-registry harbor-creds --docker-server=https://harbor.fbclouddemo.us --docker-username=tapuser --docker-password="mypassword"
+
 ````
 
 #### Note in the above email is optional
