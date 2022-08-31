@@ -255,6 +255,16 @@ kubectl create secret generic harborcred \
     --type=kubernetes.io/dockerconfigjson
 ````
 
+
+````
+
+kubectl create secret docker-registry my-secret --docker-server=DOCKER_REGISTRY_SERVER --docker-username=DOCKER_USER
+--docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
+
+````
+
+#### Note in the above email is optional
+
 ```KUBERNETES INSTALL NOTES```
 
 ### I will turn this into a bash script soon and then hopefully an ansible playbook####
