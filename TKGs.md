@@ -289,3 +289,4 @@ kubectl-vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-
 kubectl vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-tls-verify --tanzu-kubernetes-cluster-name my-cluster --tanzu-kubernetes-cluster-namespace my-ns
 
 ````
+#### If you run kubectl get tkr and nothing comes back, log into the VAMI and try restarting the content library service
