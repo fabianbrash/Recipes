@@ -47,3 +47,14 @@ kubectl describe adc tkgvsphere-ako-workload-set01 #Look for Match Labels and se
 kubectl label cluster mycluster type=workload-set01
 
 ````
+
+```Customization```
+
+````
+cd /opt/vmware/arcas/src/common
+
+vim common_utilities.py 
+
+/def verify_host_count   #Search for this function
+
+````
