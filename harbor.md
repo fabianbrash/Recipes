@@ -20,6 +20,18 @@
 ````
 sudo ./install.sh --with-trivy
 ````
+
+````
+sudo ./install.sh --with-trivy --with-chartmuseum
+
+````
+
+````
+
+sudo ./install.sh --with-notary --with-trivy --with-chartmuseum
+
+````
+
 ### You might have to cleanup before you install so just do the below, make sure you know where your data resides
 
 ````
