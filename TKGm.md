@@ -792,6 +792,8 @@ tanzu management-cluster create mgmt-1  --file /home/fabian/.config/tanzu/tkg/cl
 
 tanzu cluster kubeconfig get wkld-1 --admin
 
+tanzu cluster kubeconfig get wkld-1 #this will get the kubeconfig for a regular user/non-admin
+
 ````
 
 
