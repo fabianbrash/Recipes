@@ -231,7 +231,7 @@ openssl x509 -in cert.crt(or cert.pem) -noout -text(note this is the public key)
 
 ````
 
-```Check what cert is a DC is using```
+```Check what cert a DC is using```
 
 ````
 openssl s_client -connect myldapsserver.domain.com:636
