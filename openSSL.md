@@ -229,10 +229,14 @@ openssl x509 -inform der -in certificate.cer -out certificate.pem
 ````
 openssl x509 -in cert.crt(or cert.pem) -noout -text(note this is the public key)
 
-##Check what cert is being using#####
+````
 
+```Check what cert is a DC is using```
+
+````
 openssl s_client -connect myldapsserver.domain.com:636
 ````
+
 
 ### I just learned you can hash passwords with
 
