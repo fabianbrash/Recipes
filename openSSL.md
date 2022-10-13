@@ -235,6 +235,8 @@ openssl x509 -in cert.crt(or cert.pem) -noout -text(note this is the public key)
 
 ````
 openssl s_client -connect myldapsserver.domain.com:636
+
+openssl s_client -connect DC_DNS_OR_IP:636 < /dev/null | openssl x509 -out dc.pem
 ````
 
 
