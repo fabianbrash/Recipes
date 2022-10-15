@@ -794,6 +794,11 @@ tanzu cluster kubeconfig get wkld-1 --admin
 
 tanzu cluster kubeconfig get wkld-1 #this will get the kubeconfig for a regular user/non-admin
 
+
+tanzu mc kubeconfig get --export-file /tmp/my-cluster-kubeconfig  ## Export to a file, this of course is for the mgmt cluster note we are not using --admin so this would be regular access or if clusterrolebindings are not in effect no access to resources
+
+tanzu cluster kubeconfig get my-cluster --export-file /tmp/my-cluster-kubeconfig ## Export to a file for a dev
+
 ````
 
 
