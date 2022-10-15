@@ -865,4 +865,27 @@ kubectl create clusterrolebinding DevUsers --clusterrole=view --group=DevUsers  
 
 ````
 
+#### The root-CA certificate we upload from the above can be found here
+
+````
+
+ kubectl get cm -n pinniped-supervisor
+ 
+ kubectl get cm kube-root-ca.crt -oyaml -n pinniped-supervisor
+ 
+````
+
+#### Pinniped also creates it's own root CA cert and private key and that you can find here
+
+````
+
+kubectl get secrets -n pinniped-concierge
+
+kubectl get secret pinniped-concierge-api-tls-serving-certificate -oyaml -n pinniped-concierge
+
+
+````
+
+#### ODD thing the above cert and private key is base64 encoded while your root-CA certificate is not, is that because it was base64 encoded when we exported it??
+
 
