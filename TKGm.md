@@ -799,6 +799,9 @@ tanzu mc kubeconfig get --export-file /tmp/my-cluster-kubeconfig  ## Export to a
 
 tanzu cluster kubeconfig get my-cluster --export-file /tmp/my-cluster-kubeconfig ## Export to a file for a dev
 
+
+tanzu login --endpoint https://172.31.0.49:6443 --name tkg-mgmt-cluster  #We can also get a dev access to the mgmt cluster this way(should this be a workload cluster and not mgmt??)
+
 ````
 
 
