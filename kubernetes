@@ -877,7 +877,13 @@ kubectl taint nodes minikube-m02 gpu:NoSchedule-
 kubectl taint nodes $(hostname) node-role.kubernetes.io/master:NoSchedule-
 
 
-kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule- 
+kubectl taint nodes controlplane node-role.kubernetes.io/master:NoSchedule-
+
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+
+kubectl taint nodes --all node-role.kubernetes.io/master-  #I think the above was replaced with this
 
 ````
+
+[https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
 
