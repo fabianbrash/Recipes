@@ -1,10 +1,15 @@
 
-######My kubernetes journey#################################
-##REF:https://kubernetes.io/docs/tasks/
-##REF:https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-
-##REF:https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/
-##REF:https://kubernetes.io/docs/reference/
-##REF:https://mauilion.dev/posts/kind-metallb/
+#### My kubernetes journey
+
+[https://kubernetes.io/docs/tasks/](https://kubernetes.io/docs/tasks/)
+
+[https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.17/#-strong-api-overview-strong-)
+
+[https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/)
+
+[https://kubernetes.io/docs/reference/](https://kubernetes.io/docs/reference/)
+
+[https://mauilion.dev/posts/kind-metallb/](https://mauilion.dev/posts/kind-metallb/)
 
 
 ````
@@ -886,4 +891,21 @@ kubectl taint nodes --all node-role.kubernetes.io/master-  #I think the above wa
 ````
 
 [https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
+
+
+
+```Retrieve cert or password```
+
+
+````
+
+kubectl get secret app-tls-cert -n metadata-store -ojson | jq -r '.data."tls.crt"' | base64 -d > app-tls-cert.crt
+
+
+kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | base64 --decode
+
+
+
+````
+
 
