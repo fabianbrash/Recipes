@@ -5,6 +5,8 @@
 
 [Install docs](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.9/tanzu-postgres-k8s/GUID-install-operator.html)
 
+##### Note: cert-manager is required in the cluster prior to installing any postgres instance
+
 ````
 
 ---
