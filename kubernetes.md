@@ -648,14 +648,13 @@ kubectl config unset users.foo # delete user foo
 KUBECONFIG=~/.kube/config:/path/to/new/config kubectl config view --flatten > ~/.kube/config
 ````
 
-##Duplicate users
+```Duplicate users```
 
-## You will also probably also run into clusters with the same name and if you attempt to switch
-##everything will looke fine until you run the kubectl command and you get unauthorized error
-##it depends on the order you combined your file, the first 1 will win so you will be able to connect to
-##the first cluster but get an error for the second, to fix just do the below
-##REF:https://imti.co/kubectl-remote-context/
+#### You will also probably also run into clusters with the same name and if you attempt to switch everything will looke fine until you run the kubectl command and you get unauthorized error it depends on the order you combined your file, the first 1 will win so you will be able to connect to the first cluster but get an error for the second, to fix just do the below
 
+[https://imti.co/kubectl-remote-context/](https://imti.co/kubectl-remote-context/)
+
+````
 contexts:
 - context:
     cluster: leave as is
@@ -681,10 +680,12 @@ contexts:
   - name: gke-0
   ...
   
+````
 
 
+```access api via kubectl```
 
-####access api via kubectl
+````
 
 kubectl get --raw "/apis/metrics.k8s.io/v1beta1/nodes"
 
@@ -705,32 +706,38 @@ kubectl rollout restart -n mynamespace
 ##Annotate a ns
 
 kubectl annotate -n default release=dev
+````
 
 
-###Autoscaling
-#REF:https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling#api-versions
-#REF:https://cloud.google.com/kubernetes-engine/docs/how-to/vertical-pod-autoscaling
+```Autoscaling```
 
-##v2beta2
+[https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling#api-versions](https://cloud.google.com/kubernetes-engine/docs/how-to/horizontal-pod-autoscaling#api-versions)
 
+[https://cloud.google.com/kubernetes-engine/docs/how-to/vertical-pod-autoscaling](https://cloud.google.com/kubernetes-engine/docs/how-to/vertical-pod-autoscaling)
+
+```v2beta2```
+
+````
 kubectl edit hpa.v2beta2.autoscaling myhpa
 
 kubectl get hpa.v2beta2.autoscaling myhpa
+````
 
+```bash completion```
 
-##bash completion
-##REF:https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete
+[https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-autocomplete)
 
-
+````
 source <(kubectl completion bash) # setup autocomplete in bash into the current shell, bash-completion package should be installed first.
 echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+````
 
 
+#### So I had an issue where I was deleted some namespaces but it just stayed in a terminationg state I left over night and still they were stuck,so after a little Googling I found the below
 
-####So I had an issue where I was deleted some namespaces but it just stayed in a terminationg state
-##I left over night and still they were stuck,so after a little Googling I found the below
-##REF:https://medium.com/@craignewtondev/how-to-fix-kubernetes-namespace-deleting-stuck-in-terminating-state-5ed75792647e
+[https://medium.com/@craignewtondev/how-to-fix-kubernetes-namespace-deleting-stuck-in-terminating-state-5ed75792647e](https://medium.com/@craignewtondev/how-to-fix-kubernetes-namespace-deleting-stuck-in-terminating-state-5ed75792647e)
 
+````
 kubectl get namespace fixme -o json > fixme.json
 
 ##Then find "kubernetes" under "finalizers" and delete it("kubernetes") leave finalizers array empty
@@ -740,12 +747,14 @@ kubectl get namespace fixme -o json > fixme.json
 kubectl replace --raw "/api/v1/namespaces/fixme/finalize" -f fixme.json
 
 ###Note according to the article this should work on other resources including pods,deployments,services,etc.
+````
 
 
+```Remove linkerd from deployments```
 
-###Remove linkerd from deployments
-#REF: https://linkerd.io/2/reference/cli/uninject/
+[https://linkerd.io/2/reference/cli/uninject/](https://linkerd.io/2/reference/cli/uninject/)
 
+````
 # Uninject all the deployments in the default namespace.
 kubectl get deploy -o yaml | linkerd uninject - | kubectl apply -f -
 
@@ -755,19 +764,22 @@ curl http://url.to/yml | linkerd uninject - | kubectl apply -f -
 # Uninject all the resources inside a folder and its sub-folders.
 linkerd uninject <folder> | kubectl apply -f -
 
-###Troubleshoting####
+````
 
+```Troubleshoting```
+
+````
 kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --show-all --ignore-not-found -n test-ns
+````
 
-## The above might also generate a unknown flag: --show-all
-
-
-##But we are looking for below, which looks like linkerd is causing our issue
-
-#error: unable to retrieve the complete list of server APIs: packages.operators.coreos.com/v1: 
-#the server is currently unable to handle the request, tap.linkerd.io/v1alpha1: the server is currently unable to handle the request
+#### The above might also generate a unknown flag: --show-all
 
 
+#### But we are looking for below, which looks like linkerd is causing our issue
+
+#### error: unable to retrieve the complete list of server APIs: packages.operators.coreos.com/v1:the server is currently unable to handle the request, tap.linkerd.io/v1alpha1: the server is currently unable to handle the request
+
+````
 kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get -n test-ns
 
 kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --show-all --ignore-not-found -n test-ns
@@ -778,82 +790,84 @@ kubectl get APIService v1.packages.operators.coreos.com
 
 ##This was causing my cluster to not delete namespaces
 kubectl delete APIService v1alpha1.tap.linkerd.io
+````
 
+```Ingress 503 error```
 
-###Ingress 503 error###
-
-## So I moved a deployment,svc,secret,ing from the defauly namespace over to a new namespace and I kept receiving a 503
-## I couldn't figure it out and then I had a look @ another ingress that was working and then I noticed the issue
-## doing a kubectl describe ing ingname under Rules, Backends in the parenthesis there as nothing for bad ing
-## and for the good ing there were the pod IPs that were behind the deployment, then I realized the the service definition
-## had the wrong selector so it wasn't findin the correct deployment hence no backends to serve up my page, onces fixed
-## everything was good; again garbage in, garbage out.
+#### So I moved a deployment,svc,secret,ing from the defauly namespace over to a new namespace and I kept receiving a 503 I couldn't figure it out and then I had a look @ another ingress that was working and then I noticed the issue doing a kubectl describe ing ingname under Rules, Backends in the parenthesis there as nothing for bad ing and for the good ing there were the pod IPs that were behind the deployment, then I realized the the service definition had the wrong selector so it wasn't findin the correct deployment hence no backends to serve up my page, onces fixed everything was good; again garbage in, garbage out.
 
 
 
+```KIND & NodePort```
 
+#### So I installed KIND and was having issues getting to an exposed deploy via a service then I found a github comment reminding me About port-forwarding, so the below worked like a champ for me
 
-####KIND & NodePort###########
-##So I installed KIND and was having issues getting to an exposed deploy via a service then I found a github comment reminding me
-##About port-forwarding, so the below worked like a champ for me
-
+````
 kubectl port-forward --address 0.0.0.0 service/gql 5000:5000
+````
 
-##the above we are port-forwarding on all interfaces the service gql on 5000 on the host and 5000 on the service, note the 0.0.0.0
-##is required in our case because kind runs inside docker so we can't use the default of 127.0.0.1(loopback) we need it on all
-##interfaces as I am running kind on a headless ubuntu machine and accessing the app via my workstation/laptop
+#### the above we are port-forwarding on all interfaces the service gql on 5000 on the host and 5000 on the service, note the 0.0.0.0 is required in our case because kind runs inside docker so we can't use the default of 127.0.0.1(loopback) we need it on all interfaces as I am running kind on a headless ubuntu machine and accessing the app via my workstation/laptop
 
 
-####UPDATE###############
-##Since we are going to use port-forward we can make a change to how we deploy the above service
-##I was using the below
+```UPDATE```
 
+#### Since we are going to use port-forward we can make a change to how we deploy the above service I was using the below
+
+````
 kubectl expose deploy gql --port=5000 --type=NodePort
+````
 
-##But we can just use
+#### But we can just use
 
+````
 kubectl expose deploy gql --port=5000
+````
 
-##The above will create a service of type ClusterIP and then we can just port-forward into it, it's a bit more secure
-##As it does not open up a port on each host, again this is just a little hack for KIND, in a "real" cluster we would
-##Have access to NodePort or even a loadbalancer, or an ingress
+#### The above will create a service of type ClusterIP and then we can just port-forward into it, it's a bit more secure As it does not open up a port on each host, again this is just a little hack for KIND, in a "real" cluster we would Have access to NodePort or even a loadbalancer, or an ingress
 
+````
 kubectl get cm -A
+````
 
+#### Decode kubernetes dashboard user token I wonder if I just get the secret and do a base64 decode I would get the same result??
 
-###Decode kubernetes dashboard user token I wonder if I just get the secret and do a base64 decode I would get the same result??
-
+````
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/my-dashboard-svc -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+````
 
+```ISSUES DELETING HUNG CRD'S```
 
-#####ISSUES DELETING HUNG CRD'S##################
-##REF:https://www.2vcps.io/2019/04/19/namespace-issues-when-removing-crd-operators/
+[https://www.2vcps.io/2019/04/19/namespace-issues-when-removing-crd-operators/](https://www.2vcps.io/2019/04/19/namespace-issues-when-removing-crd-operators/)
 
+````
 kubectl patch crd/contours.operator.projectcontour.io -p '{"metadata":{"finalizers":[]}}' --type=merge
 
 kubectl delete crd contours.operator.projectcontour.io
+````
 
+```Get endpoints```
 
-###Get endpoints
-
+````
 kubectl get endpoints -n fabianbrash-com
 kubectl get endpoints -A
 kubectl get endpoints
+````
 
 
+```Webhook best practices```
 
-###Webhook best practices########
+#### So in DO they have a Linter to check your cluster before an ugrade and I kept getting webhook errors so I finally decided to To dig into it and see what I could fix, and in there documentation they had 2 recommendations
 
-##So in DO they have a Linter to check your cluster before an ugrade and I kept getting webhook errors so I finally decided to
-##To dig into it and see what I could fix, and in there documentation they had 2 recommendations
-
+````
 1. Webhook timeouts should be less than 30 seconds
 
 kubectl get validatingwebhookconfigurations
 kubectl get mutatingwebhookconfigurations
+````
 
-##The above will get you all your webhooks, look at them and see what the timeouts are configured for and change as per best practice < 30s
+#### The above will get you all your webhooks, look at them and see what the timeouts are configured for and change as per best practice < 30s
 
+````
 2. Failure Policy should be set to 'Ignore'
 
 ##Again run the kubectl command and fix any webhook that doesn't have an 'Ignore'
@@ -867,6 +881,7 @@ kubectl patch storageclass gold -p '{"metadata": {"annotations":{"storageclass.k
 kubectl get sc
 
 ## OR you can do this
+````
 
 ````
 kubectl edit my-sc
