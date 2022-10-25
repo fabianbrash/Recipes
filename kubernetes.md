@@ -141,7 +141,10 @@ kubectl delete deployment my-deployment
 ````
 
 ### Create a custom namespace
-#REF:https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/
+
+[https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/](https://www.assistanz.com/steps-to-create-custom-namespace-in-the-kubernetes/)
+
+````
 kubectl create namespace mynamespace
 
 ##services##
@@ -160,8 +163,9 @@ kubectl get pv # get persistence volume
 
 kubectl exec pod/container name ls 
 
+````
 
-### YAML
+```YAML```
 
 ````
 apiVersion: v1
@@ -171,7 +175,9 @@ metadata:
    
 ````
 
-###Deploy a pod into our namespace
+### Deploy a pod into our namespace
+
+````
 kubectl run ns-pod --image=nginx --port=80 --generator=run-pod/v1 -n mynamespace
 
 kubectl get pods --namespace mynamespace
@@ -189,21 +195,27 @@ kubectl get pods -l run=ng1
 
 kubectl scale deployment ng1 --replicas=3
 
-##To get kubectl up and running you need to copy the admin.conf file from
-##/etc/kubernetes on one of the master nodes into a directory ~/.kube
-##in your home directory and then you need to rename admin.conf to config
+````
 
-##the above will scale our deployment but u should update your YAML file
+### To get kubectl up and running you need to copy the admin.conf file from
+#### /etc/kubernetes on one of the master nodes into a directory ~/.kube
+#### in your home directory and then you need to rename admin.conf to config
+
+#### the above will scale our deployment but u should update your YAML file
 
 
-###Add to our .kube/config so we can switch namespaces
-#REF:https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/
+#### Add to our .kube/config so we can switch namespaces
 
-##Get current context
+[https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/](https://kubernetes.io/docs/tasks/administer-cluster/namespaces-walkthrough/)
+
+```Get current context```
+
+````
 kubectl config view
 kubectl config current-context
+````
 
-## You populate the below from the results of the 2 commands above
+#### You populate the below from the results of the 2 commands above
 
 ````
 kubectl config set-context dev --namespace=development \
@@ -252,7 +264,7 @@ kubectl rollout pause deploy my-deploy
 kubectl rollout resume deploy my-deploy
 ````
 
-#### Create a registry pull secret
+```Create a registry pull secret```
 
 ````
 kubectl create secret generic harborcred \
@@ -276,8 +288,9 @@ kubectl create secret docker-registry harbor-creds --docker-server=https://harbo
 
 ```KUBERNETES INSTALL NOTES```
 
-### I will turn this into a bash script soon and then hopefully an ansible playbook####
-## Thanks to REF:https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md
+#### I will turn this into a bash script soon and then hopefully an ansible playbook
+
+[https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md](https://github.com/justmeandopensource/kubernetes/blob/master/docs/install-cluster.md)
 
 ````
 su -
@@ -405,8 +418,9 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 kubeadm token create --print-join-command
 ````
 
-##ALL done
+#### ALL done
 
+````
 kubectl get pods
 kubectl version --short
 kubectl get componentstatus or kubectl get cs
@@ -424,47 +438,60 @@ kubectl exec -it nfs-nginx-766d4bf45f-jn4b6 bash
 ## also 
 
 kubectl run myshell -it --rm --image=busybox -- sh # this gave me issues but the above worked
+````
 
-##Be careful you don't create a deployment instead of a pod note if you create a deployment
-## then the pod won't be called myshell but instead myshell-xyz so you can't shell into myshell
-## because it doesn't exist
+#### Be careful you don't create a deployment instead of a pod note if you create a deployment
+#### then the pod won't be called myshell but instead myshell-xyz so you can't shell into myshell
+#### because it doesn't exist
 
 
-##Drain a node######
+```Drain a node```
+
+````
 kubectl drain worker-0
+````
 
+#### The difference between port and target port
 
-###The difference between port and target port
-##REF:https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html
+[https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ports-targetport-nodeport-service.html)
 
-## obviously NodePort: xxx is the port we use to access our service from outside of our k8s cluster
-## "port" is the port that services inside the cluster can communicate on to your svc
-## and "targetPort" is the port that the container is actually listening on
-## Example
+#### obviously NodePort: xxx is the port we use to access our service from outside of our k8s cluster
+#### "port" is the port that services inside the cluster can communicate on to your svc
+#### and "targetPort" is the port that the container is actually listening on
 
+```Example```
+
+````
 ports:
   - nodePort: 32321
     port: 443
     targetPort: 8443
+````
 
+#### The above sample says we can access the svc externally on 32321 i.e. http://worker-0:32321
+#### the "port" says within the k8s cluster other pods/deployments/anything can access on port 443
+#### and "targetPort" is the actaully exposed port in the container 8443 so if another pod 
+#### within the cluster accesses the deployment/pod on 443 it should roll to 8443 on the target pod(s)
 
-##The above sample says we can access the svc externally on 32321 i.e. http://worker-0:32321
-## the "port" says within the k8s cluster other pods/deployments/anything can access on port 443
-## and "targetPort" is the actaully exposed port in the container 8443 so if another pod 
-## within the cluster accesses the deployment/pod on 443 it should roll to 8443 on the target pod(s)
+```Create a config file for a user```
 
-####Create a config file for a user
-
+````
 kubectl --kubeconfig john.kubeconfig config set-cluster mycluster --server https://IP_OF_API_SERVER:6443 --certificate-authority=ca.crt
 kubectl --kubeconfig john.kubeconfig config set-credentials john --client-certificate /home/john/john.crt -client-key /home/john/john.key
 kubectl --kubeconfig john.kubeconfig config set-context john-kubernetes --cluster mycluster --namespace finance --user john
+````
 
-##Note if you look at john.kubeconfig and the current-context is not set you need to set it
+#### Note if you look at john.kubeconfig and the current-context is not set you need to set it
+
+````
 current-context: john-kubernetes
+
 ##and then save it and give it to john
+````
 
-##Create a role
+```Create a role```
 
+````
 kubectl create role john-finance --verb=get --verb=list --verb=watch --resource=pods --namespace=finance
 
 ##Or
@@ -491,8 +518,11 @@ rules:
   resources: ["deployments", "replicasets", "pods"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"] # You can also use ["*"]
   
-####Create a role-binding
+````
+  
+```Create a role-binding```
 
+````
 kubectl create rolebinding john-finance-rolebinding --role=john-finance --user=john --namespace=finance
 
 ##Or
@@ -510,21 +540,17 @@ roleRef:
   kind: Role
   name: john-finance
   apiGroup: ""
+````
 
-##Note a role called john-finance has to exist to do this
-
-
-######So I had an interesting issue when deploying golang and alpine in my k82 cluster
-###the image would get pulled and then it would go into a crash loop, but if I ran
-## and nginx or a mariadb pod, everything was fine, then it hit me thise images are minimal
-##the do nothing unlike docker where you would see 'exited' k8s just goes in a loop trying to
-##restart the pod(odd since this was a pod spec why didn't it just start and then terminate the pod, maybe
-##the default restart policy is in play here) anyways the fix was to run the pod with a sleep of 10000 and 
-#viola it worked.
+#### Note a role called john-finance has to exist to do this
 
 
-###K8s RBAC
+#### So I had an interesting issue when deploying golang and alpine in my k82 cluster the image would get pulled and then it would go into a crash loop, but if I ran and nginx or a mariadb pod, everything was fine, then it hit me thise images are minimal the do nothing unlike docker where you would see 'exited' k8s just goes in a loop trying to restart the pod(odd since this was a pod spec why didn't it just start and then terminate the pod, maybe the default restart policy is in play here) anyways the fix was to run the pod with a sleep of 10000 and viola it worked.
 
+
+```K8s RBAC```
+
+````
 kubectl auth can-i create pods
 kubectl auth can-i create services
 kubectl auth can-i create deployments
@@ -532,50 +558,61 @@ kubectl auth can-i create deployments
 kubectl auth can-i create pods --as=john
 kubectl auth can-i list pods --as=john
 
-##You get the idea
+````
+
+##### You get the idea
 
 
 
-####Kubernetes secrets###
-##REF:https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually
+```Kubernetes secrets```
 
-###PAY VERY CLOSE ATTENTION TO HOW THE PASSWORD IS ENCODED FROM THE ABOVE REF 
+[https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually](https://kubernetes.io/docs/concepts/configuration/secret/#creating-a-secret-manually)
 
+#### PAY VERY CLOSE ATTENTION TO HOW THE PASSWORD IS ENCODED FROM THE ABOVE REF 
+
+````
 echo -n 'admin' | base64
 
 echo -n '1f2d1e2e67df' | base64
+````
 
+```Kubernetes has the ability to sign certificates```
 
-####Kubernetes has the ability to sign certificates
-##ReF:https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/
+[https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/)
 
+````
 kubectl get csr --all-namespaces
 
 kubectl get csr
 
 kubectl certificate approve css-saa
+````
 
-####NOTE THE -n WITHOUT WHICH STANDS FOR 'do not output trailing new line'
+#### NOTE THE -n WITHOUT WHICH STANDS FOR 'do not output trailing new line'
 ### WITHOUT THAT YOU'RE PASSWORDS WILL BE WRONG I USED THIS FOR A MARIADB INSTANCE
-## AND I MADE THE MISTAKE OF NOT USING -n AND EVERY TIME I ATTEMPTED TO LOGIN IN A GOT
-##INCORRECT PASSWORD
+## AND I MADE THE MISTAKE OF NOT USING -n AND EVERY TIME I ATTEMPTED TO LOGIN IN A GOT INCORRECT PASSWORD
 
 
-####TLS Secrets####
+```TLS Secrets```
 
+````
 kubectl create secret tls ${CERT_NAME} --key ${KEY_FILE} --cert ${CERT_FILE}
 
 ##example
 kubectl create secret tls my_cert --key cert-key.pem --cert cert.pem
+````
 
 
 
+```Contexts```
 
-##Contexts#################
-##REF:https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration
-##REF:https://ahmet.im/blog/mastering-kubeconfig/
-##REF:https://www.jacobtomlinson.co.uk/posts/2019/how-to-merge-kubernetes-kubectl-config-files/
+[https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration](https://kubernetes.io/docs/reference/kubectl/cheatsheet/#kubectl-context-and-configuration)
 
+[https://ahmet.im/blog/mastering-kubeconfig/](https://ahmet.im/blog/mastering-kubeconfig/)
+
+[https://www.jacobtomlinson.co.uk/posts/2019/how-to-merge-kubernetes-kubectl-config-files/](https://www.jacobtomlinson.co.uk/posts/2019/how-to-merge-kubernetes-kubectl-config-files/)
+
+````
 kubectl config view # Show Merged kubeconfig settings.
 
 # use multiple kubeconfig files at the same time and view merged config
@@ -609,7 +646,7 @@ kubectl config unset users.foo # delete user foo
 ##Let's merge all of our config files to 1 master 1, make sure to backup your config file first
 
 KUBECONFIG=~/.kube/config:/path/to/new/config kubectl config view --flatten > ~/.kube/config
-
+````
 
 ##Duplicate users
 
