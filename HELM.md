@@ -1,13 +1,14 @@
-##HELM info##
-##Please note everything below relates to helm 3.x
+```HELM info```
 
-##REF:https://helm.sh/
+#### Please note everything below relates to helm 3.x
 
-##Follow instructions on how to install HELM from above, this is a go app so just download the latest binary
-##and copy to your path
+[https://helm.sh/](https://helm.sh/)
 
-##ADD a repo
+#### Follow instructions on how to install HELM from above, this is a go app so just download the latest binary and copy to your path
 
+```ADD a repo```
+
+````
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
 ##Search the repo
@@ -35,8 +36,9 @@ helm ls -n mysnamespace
 ##uninstall a release
 helm uninstall smiling-penguin #again you might -n mynamespace
 
+````
 
-
+````
 helm search hub 
 ## searches the Helm Hub, which comprises helm charts from dozens of different repositories
 
@@ -58,16 +60,20 @@ helm show values stable/mariadb > /tmp/mariadb.yaml
 ##You can then make changes to the outputted file and once you are satisfied
 
 helm install mariadb -f /tmp/mariadb.yaml stable/mariadb --namespace db
+````
+
+#### With helm we can also upgrade and rollback charts ref below
+
+[https://helm.sh/docs/intro/using_helm/](https://helm.sh/docs/intro/using_helm/)
 
 
-##With helm we can also upgrade and rollback charts ref below
-##REF:https://helm.sh/docs/intro/using_helm/
+```Helm values.yaml```
+
+````
+you may see in the values.yaml file something like args:[]
+the additional args should look args:["arg1"] or args:["--myexpectedarg1=false"]
+And I think args:["arg1=true","--arg2=false"]
+````
 
 
-##Helm values.yaml
-
-##you may see in the values.yaml file something like args:[]
-##the additional args should look args:["arg1"] or args:["--myexpectedarg1=false"]
-##And I think args:["arg1=true","--arg2=false"]
-
-
+[https://phoenixnap.com/kb/helm-install-command](https://phoenixnap.com/kb/helm-install-command)
