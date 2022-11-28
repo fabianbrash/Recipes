@@ -74,3 +74,34 @@ rc-service {service-name} restart
 ````
 
 [https://www.cyberciti.biz/faq/how-to-enable-and-start-services-on-alpine-linux/](https://www.cyberciti.biz/faq/how-to-enable-and-start-services-on-alpine-linux/)
+
+
+
+```Install open-vm-tools```
+
+
+````
+
+apk add open-vm-tools
+apk add open-vm-tools-guestinfo
+apk add open-vm-tools-deploypkg
+
+
+rc-service open-vm-tools start
+
+rc-update add open-vm-tools default
+
+
+````
+
+##### From the above I got the servce name by running the below
+
+
+````
+rc-service --list | grep -i open
+
+# OR
+
+rc-service --list | more
+
+````
