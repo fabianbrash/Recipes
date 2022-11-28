@@ -34,7 +34,7 @@ apk add openssh openntp vim
 ````
 
 
-```Enable and Start a service
+```Enable and Start a service```
 
 
 ````
