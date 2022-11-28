@@ -1,6 +1,8 @@
 ```alpine info```
 
 
+[https://wiki.alpinelinux.org/wiki/Install_Alpine_on_VMware_Workstation](https://wiki.alpinelinux.org/wiki/Install_Alpine_on_VMware_Workstation)
+
 ```update system```
 
 
