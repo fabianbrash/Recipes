@@ -889,3 +889,14 @@ kubectl get secret pinniped-concierge-api-tls-serving-certificate -oyaml -n pinn
 #### ODD thing the above cert and private key is base64 encoded while your root-CA certificate is not, is that because it was base64 encoded when we exported it??
 
 
+
+#### Now let's label our cluster if it wasn't already labeled
+
+````
+
+kubectl label cluster mycluster type=workload-set01
+
+
+kubectl get cluster mycluster --show-labels
+
+````
