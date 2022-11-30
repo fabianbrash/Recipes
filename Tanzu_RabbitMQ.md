@@ -12,6 +12,11 @@ kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/d
 
 ````
 
+```Modify Operator```
+
+##### If you need to change where the images are being pulled from, read below, i.e. your own private registry
+
+[https://rabbitmq.com/kubernetes/operator/configure-operator-defaults.html](https://rabbitmq.com/kubernetes/operator/configure-operator-defaults.html)
 
 ```Create your first cluster```
 
