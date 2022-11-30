@@ -900,3 +900,54 @@ kubectl label cluster mycluster type=workload-set01
 kubectl get cluster mycluster --show-labels
 
 ````
+
+```Create an ADC```
+
+
+````
+
+apiVersion: networking.tkg.tanzu.vmware.com/v1alpha1
+kind: AKODeploymentConfig
+metadata:
+  finalizers:
+  - ako-operator.networking.tkg.tanzu.vmware.com
+  generation: 2
+  name: workload-ako
+spec:
+  adminCredentialRef:
+    name: avi-controller-credentials
+    namespace: tkg-system-networking
+  certificateAuthorityRef:
+    name: avi-controller-ca
+    namespace: tkg-system-networking
+  cloudName: tkgvsphere-cloud01
+  clusterSelector:
+    matchLabels:
+      type: workload
+  controller: avi-lb-01.fbclouddemo.us
+  dataNetwork:
+    cidr: 192.168.182.0/24
+    name: vDS-TKG-FRNT-DATA182
+  extraConfigs:
+    cniPlugin: antrea
+    disableStaticRouteSync: true
+    #image:
+    #pullPolicy: IfNotPresent
+    #repository: projects-stg.registry.vmware.com/tkg/ako
+    #version: v1.3.2_vmware.1
+    ingress:
+      defaultIngressController: false
+      disableIngressClass: true
+  serviceEngineGroup: tkgvsphere-tkgworkload-group01
+
+````
+
+##### Then from the mgmt context label your workload cluster(s)
+
+````
+kubectl label cluster mycluster type=workload
+
+
+kubectl get cluster mycluster --show-labels
+
+````
