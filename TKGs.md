@@ -290,3 +290,8 @@ kubectl vsphere login -u user@domain --server=https://10.0.1.10 --insecure-skip-
 
 ````
 #### If you run kubectl get tkr and nothing comes back, log into the VAMI and try restarting the content library service
+
+
+#### I ran into some issues doing a Supervisor upgrade, this was very helpful
+
+[https://blog.ukotic.net/2021/07/15/supervisorcontrolplanevm-in-a-not-ready-state-on-vsphere-with-tanzu/](https://blog.ukotic.net/2021/07/15/supervisorcontrolplanevm-in-a-not-ready-state-on-vsphere-with-tanzu/)
