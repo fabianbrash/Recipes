@@ -16,6 +16,6 @@ TABTAB #will give you commands you can run
 ````
 
 
-- [https://avinetworks.com/docs/latest/cli-guide/](https://avinetworks.com/docs/latest/cli-guide/)
+- [ ] [https://avinetworks.com/docs/latest/cli-guide/](https://avinetworks.com/docs/latest/cli-guide/)
 
-- [https://avinetworks.com/docs/20.1/cli-top-level-commands/](https://avinetworks.com/docs/20.1/cli-top-level-commands/)
+- [ ] [https://avinetworks.com/docs/20.1/cli-top-level-commands/](https://avinetworks.com/docs/20.1/cli-top-level-commands/)
