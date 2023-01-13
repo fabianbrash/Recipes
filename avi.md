@@ -12,7 +12,9 @@ shell #enter into admin shell, the username and password will be the same as wha
 
 TABTAB #will give you commands you can run
 
+show license
 
+show configuration audit tier essentials(or 'enterprise_16', 'enterprise', 'enterprise_18', 'basic', 'essentials')
 ````
 
 
