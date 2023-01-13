@@ -15,6 +15,13 @@ TABTAB #will give you commands you can run
 show license
 
 show configuration audit tier essentials(or 'enterprise_16', 'enterprise', 'enterprise_18', 'basic', 'essentials')
+
+bash
+
+exit
+exit
+exit
+
 ````
 
 
