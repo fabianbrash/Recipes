@@ -24,6 +24,7 @@ kind: ClusterConfig
 metadata:
   name: basic-cluster
   region: eu-north-1
+  version: "1.23"
 
 nodeGroups:
   - name: ng-1
