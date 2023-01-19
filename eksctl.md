@@ -8,7 +8,7 @@
 ````
 eksctl create cluster --name my-cluster
 
-eksctl create cluster --region=us-east-1 --zones=us-east-1a,us-east-1b,us-east-1d
+eksctl create cluster --name fb-clust-2 --region=us-east-1 --zones=us-east-1a,us-east-1b,us-east-1d
 
 ````
 
