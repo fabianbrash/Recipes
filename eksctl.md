@@ -51,6 +51,7 @@ kind: ClusterConfig
 metadata:
   name: my-cluster
   region: us-east-1
+  version: "1.23"
 
 nodeGroups:
   - name: ng-1
