@@ -321,3 +321,30 @@ spec:
 
 
 ````
+
+
+
+```SSH into Supervisor nodes```
+
+
+[https://williamlam.com/2020/10/how-to-ssh-to-tanzu-kubernetes-grid-tkg-cluster-in-vsphere-with-tanzu.html](https://williamlam.com/2020/10/how-to-ssh-to-tanzu-kubernetes-grid-tkg-cluster-in-vsphere-with-tanzu.html)
+
+
+##### Option 1
+
+1. SSH into VCSA
+2. /usr/lib/vmware-wcp/decryptK8Pwd.py
+3. ssh as root@SUPER_VM_IP
+
+```ssh into workload cluster nodes```
+
+##### From the above you have access to the namespaces and secrets so run
+
+````
+kubectl get secrets -n MY_VSPHERE_NAMESPACE
+
+kubectl -n MY_VSPHERE_NAMESPACE get secrets MY_CLUSTER_NAME-ssh-password -o jsonpath={.data.ssh-passwordkey} | base64 -d
+
+````
+
+##### Now you can ssh into any of the workload cluster nodes for that cluster with the user vmware-system-user and the password from above
