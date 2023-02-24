@@ -72,7 +72,7 @@ kind: ClusterConfig
 metadata:
   name: fb-eks-cluster-1
   region: us-east-1
-  version: "1.23"
+  version: "1.24"
 iam:
   withOIDC: true
 
@@ -95,6 +95,9 @@ nodeGroups:
     instanceType: m5.xlarge
     desiredCapacity: 4
     volumeSize: 100
+    containerRuntime: containerd
+    ssh:
+      allow: true
 addons:
 - name: aws-ebs-csi-driver
   #version: 1.7.5 optional
