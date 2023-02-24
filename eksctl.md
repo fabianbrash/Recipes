@@ -88,7 +88,8 @@ nodeGroups:
         ebs: true
         fsx: true
         efs: true
-        albIngress: true
+        awsLoadBalancerController: true
+        #albIngress: true
         xRay: true
         cloudWatch: true
     instanceType: m5.xlarge
