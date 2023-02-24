@@ -73,8 +73,8 @@ metadata:
   name: fb-eks-cluster-1
   region: us-east-1
   version: "1.23"
-#iam:
-  #withOIDC: true
+iam:
+  withOIDC: true
 
 nodeGroups:
   - name: ng-1
