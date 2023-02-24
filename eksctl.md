@@ -62,7 +62,7 @@ nodeGroups:
 ````
 
 
-## Note EKS has made some significant changes to how EKS clusters work, TLDR; everything now requires a IAM account/policy/role so the below YAML should give you all that you need to run your cluster in the way you are used to it running, i.e. you can have dynamic pv provisioning, again this might not be the most secure, productiom reaady way of doing things, but it gets err done.
+## Note EKS has made some significant changes to how EKS clusters work, TLDR; everything now requires a IAM account/policy/role so the below YAML should give you all that you need to run your cluster in the way you are used to it running, i.e. you can have dynamic pv provisioning, this might not be the most secure, productiom ready way of doing things, but it gets err done.
 
 
 ````
