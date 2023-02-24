@@ -62,6 +62,44 @@ nodeGroups:
 ````
 
 
+## Note EKS has made some significant changes to how EKS clusters work, TLDR everything now requires a IAM account/policy/role so the below YAML should give you all that you need to run your cluster in the way you are used to it running, i.e. you can have dynamic pv provisioning, again this might not be the most secure, productiom reaady way of doing things, but it gets err done.
+
+
+````
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: fb-eks-cluster-1
+  region: us-east-1
+  version: "1.23"
+#iam:
+  #withOIDC: true
+
+nodeGroups:
+  - name: ng-1
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
+        certManager: true
+        appMesh: true
+        ebs: true
+        fsx: true
+        efs: true
+        albIngress: true
+        xRay: true
+        cloudWatch: true
+    instanceType: m5.xlarge
+    desiredCapacity: 4
+    volumeSize: 100
+addons:
+- name: aws-ebs-csi-driver
+  #version: 1.7.5 optional
+
+````
+
 ````
 
 eksctl create cluster -f cluster.yaml
