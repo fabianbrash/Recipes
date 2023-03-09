@@ -587,3 +587,12 @@ error_page 404 /custom_404.html;
 #### Use the below link to enable ssl on nginx, pretty comprehensive and up-to-date, obviously you need to make some adjustments
 
 [DO-Nginx-selfsigned-cert](https://www.digitalocean.com/community/tutorials/how-to-create-a-self-signed-ssl-certificate-for-nginx-in-ubuntu-20-04-1)
+
+
+```Check Nginx config```
+
+
+````
+ sudo nginx -t
+
+````
