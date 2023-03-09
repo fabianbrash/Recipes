@@ -10,7 +10,7 @@
 [https://www.golinuxcloud.com/openssl-subject-alternative-name/](https://www.golinuxcloud.com/openssl-subject-alternative-name/)
 
 
-```Create root private key```
+```Create root private key or any private key```
 
 ````
 openssl genrsa -des3 -out rootCA.key 4096
