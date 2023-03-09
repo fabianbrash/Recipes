@@ -1,4 +1,6 @@
-################USING NGINX AS A LB, REVERSE PROXY, CACHING AND SSL TERMINATION SERVER###################
+```USING NGINX AS A LB, REVERSE PROXY, CACHING AND SSL TERMINATION SERVER```
+
+````
 cd /etc/nginx
 ##A couple of important directories here are sites-available and sites-enabled(sites-enabled gets loaded 
 ##when nginx starts or reloads)
@@ -14,24 +16,35 @@ server {
          }
 }
 
+````
 
-## you may want to check and see if seLinux is blocking your proxy
-##REF:https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx
+#### you may want to check and see if seLinux is blocking your proxy
 
+[https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx](https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx)
+
+````
 sudo cat /var/log/audit/audit.log | grep nginx | grep denied
+````
 
-## if you are being blocked you can set SELinux to permissive or use the below
+#### if you are being blocked you can set SELinux to permissive or use the below
 
+````
 sudo setsebool -P httpd_can_network_connect 1
 sudo systemctl reload nginx
-## I assume the above will survive a reboot but I have not checked yet
-
-######END FILE CONTENTS########################################
+````
 
 
+#### I assume the above will survive a reboot but I have not checked yet
 
-######CONFIGURING MULTIPLE APPS BY URL REWRITE#################
-#########CONTENTS OF app-name file##########################
+```END FILE CONTENTS```
+
+
+
+```CONFIGURING MULTIPLE APPS BY URL REWRITE```
+
+```CONTENTS OF app-name file```
+
+````
 server {
           listen 80;
           location / {
@@ -55,6 +68,7 @@ server {
 
 
 ######CONFIGURING MULTIPLE HOSTNAMES#################
+
 #########CONTENTS OF app-name file##########################
 server {
           listen 80;
@@ -77,15 +91,21 @@ server {
            }
 }
 
+````
 
-######END FILE CONTENTS########################################
+```END FILE CONTENTS```
+
+````
 
 sudo ln -s /etc/nginx/sites-available/app-name /etc/nginx/sites-enabled/node-app
 sudo systemctl reload nginx
+````
 
+```REVERSE PROXY WITH SSL```
 
-##########REVERSE PROXY WITH SSL###################################
-#########CONTENTS OF app-name file##########################
+```CONTENTS OF app-name file```
+
+````
 server {
           listen 80;
           server_name *.abc.com;
@@ -110,12 +130,15 @@ server {
            }
 }
 
+````
 
-######END FILE CONTENTS########################################
+```END FILE CONTENTS```
 
 
-#######LOAD BALANCER#######################################
-####TYPES OF LB#########
+```LOAD BALANCE```
+
+```TYPES OF LB```
+````
 round-robin
    default
 
@@ -143,12 +166,14 @@ server {
  }
  
  
- 
-            
+````         
            
-############BASIC NGINX SETUP TO SERVE AN API THIS CASE JUST A .json file#####################
-####Server used ubuntu should be pretty similar on centos#####################
+```BASIC NGINX SETUP TO SERVE AN API THIS CASE JUST A .json file```
 
+
+```Server used ubuntu should be pretty similar on centos```
+
+````
 sudo apt install -y nginx
 cat /etc/nginx/mime.types | grep -i json  ##make certain this is defined
 cd sites-available
@@ -255,34 +280,44 @@ server {
 
 ###############END FILE########################
 
+````
+
+#### You can also add a new disk to your VM partition and format it and mount it and server your web data from that mount point
 
 
-###You can also add a new disk to your VM partition and format it and mount it and server your web data from
-###that mount point
 
 
+```CENTOS7/RHEL7```
 
+[https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-on-centos-7](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-on-centos-7)
 
-############CENTOS7/RHEL7###############################################
-###REF:https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-on-centos-7
+#### After installing nginx from epel-release you might have to create both the sites-available and sites-enabled folders
 
-###After installing nginx from epel-release you might have to create both the sites-available and sites-enabled folders##
+````
 cd /etc/nginx
 
 sudo mkdir sites-available
 sudo mkdir sites-enabled
 
 sudo vim nginx.conf
+````
 
-##Add the below to the end of the http{} directive
+#### Add the below to the end of the http{} directive
+
+````
 include /etc/nginx/sites-enabled/*.conf;
 server_names_hash_bucket_size 64; #REF:http://nginx.org/en/docs/http/server_names.html
+````
 
-##Note because of the above config your config files in /etc/nginx/sites-available must end with .conf
-##Then create a .conf file and symlink it in /etc/nginx/sites-enabled
-##Note a simple conf file to serve up a sailsjs api would look like this
+#### Note because of the above config your config files in /etc/nginx/sites-available must end with .conf
 
-#######Contents of api.conf############
+#### Then create a .conf file and symlink it in /etc/nginx/sites-enabled
+
+#### Note a simple conf file to serve up a sailsjs api would look like this
+
+```Contents of api.conf```
+
+````
 ###I'm no expert here but maybe I don't need the 1337 in the proxy_pass directive, but hell it works so who cares####
 
 server {
@@ -291,48 +326,69 @@ server {
            proxy_pass "http://127.0.0.1:1337"
          }
 }
+````
 
-#####End file contents#######
+```End file contents```
 
 
-###Then as I said symlink that conf file and make certain to reload nginx and open that port in your firewall###
+#### Then as I said symlink that conf file and make certain to reload nginx and open that port in your firewall
+
+````
 sudo firewall-cmd --zone=public --permanent --add-port=1337/tcp 
 sudo firewall-cmd --reload
+````
 
 
+```CENTOS7```
 
-###########CENTOS7#############################
-##In order to setup nginx as a reverse proxy make certain you've allowed the appropriate ports in firewalld as well
-##As make certain SELinux IS IN Permissive mode as this will prevent RP from working, I will need to 
-###firgure out how to get this to work with SELinux on
+#### In order to setup nginx as a reverse proxy make certain you've allowed the appropriate ports in firewalld as well
+
+#### As make certain SELinux IS IN Permissive mode as this will prevent RP from working, I will need to 
+
+#### firgure out how to get this to work with SELinux on
+
+````
 sudo setenforce Permissive
 sestatus
+````
 
-############NOTE: During reboot this will change back##############
+
+##### NOTE: During reboot this will change back
+
+````
 cd /etc/selinux ##On centos check your linux flavor
 vi config ##and change the default to permissive
+````
+
+###### ALSO I SET MY RP CONFIG IN TEH MAIN nginx.conf file in CENTOS7 I will have to figure out
+###### How to create my own file as when you install nginx from upstream in Cent7 sites-available and sites-enabled
+##### Folders are not present and I had to create them manually
 
 
-#########ALSO I SET MY RP CONFIG IN TEH MAIN nginx.conf file in CENTOS7 I will have to figure out
-#######How to create my own file as when you install nginx from upstream in Cent7 sites-available and sites-enabled
-###Folders are not present and I had to create them manually
+
+```NGINX TLS termination```
 
 
+##### These instructions are for centos 7.4+ Debian/Ubuntu could be different
 
-#####NGINX TLS termination#################################################
-##These instructions are for centos 7.4+ Debian/Ubuntu could be different
-##REF: https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-tcp/
-##look @ /etc/nginx.conf
+[https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-tcp/](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-tcp/)
+
+#### look @ /etc/nginx.conf
+
+````
 sudo mkdir /etc/pki/nginx
 sudo mkdir -p /etc/pki/nginx/private
 cp public.crt /etc/pki/nginx
 cp private.key /etc/pki/nginx/private
+````
 
-###You would think you would need to chown the above pki/nginx to the nginx user but you don't
+
+###### You would think you would need to chown the above pki/nginx to the nginx user but you don't
 
 
-# Settings for a TLS enabled server.
-#
+##### Settings for a TLS enabled server.
+
+````
     server {
         listen       443 ssl http2 default_server;
         listen       [::]:443 ssl http2 default_server;
@@ -362,16 +418,21 @@ cp private.key /etc/pki/nginx/private
         }
     }
     
-    
-  ##Making the above changes to your /etc/nginx.conf should do the trick
+   ````
+   
+   
+  ##### Making the above changes to your /etc/nginx.conf should do the trick
   
+  ````
   sudo firewall-cmd --add-service=https --permanent
   sudo firewall-cmd --reload
+  ````
   
-  ##That should be it
+  ##### That should be it
   
-  ####Now let's forward all HTTP -> HTTPS
+  ##### Now let's forward all HTTP -> HTTPS
   
+  ````
   server {
         listen       80 default_server;
         listen       [::]:80 default_server;
@@ -396,7 +457,12 @@ cp private.key /etc/pki/nginx/private
         return 301 https://$host$request_uri;
     }
     
+    ````
+    
+    ````
     sudo systemctl reload nginx
+    ````
+    
     
     ###REF: https://bjornjohansen.no/redirect-to-https-with-nginx
 
