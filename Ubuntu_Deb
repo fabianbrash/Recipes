@@ -653,3 +653,16 @@ lsof -i -P -n | grep -i listen
 
 ````
 
+```ufw Nginx```
+
+
+````
+sudo ufw app list
+
+sudo ufw allow 'Nginx Full'
+
+sudo ufw status
+````
+
+[https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04)
+
