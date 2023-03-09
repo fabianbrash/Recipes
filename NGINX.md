@@ -432,7 +432,7 @@ cp private.key /etc/pki/nginx/private
   
   ##### Now let's forward all HTTP -> HTTPS
   
-  ````
+ ````
   server {
         listen       80 default_server;
         listen       [::]:80 default_server;
@@ -457,35 +457,42 @@ cp private.key /etc/pki/nginx/private
         return 301 https://$host$request_uri;
     }
     
-    ````
+ ````
     
-    ````
-    sudo systemctl reload nginx
-    ````
+````
+sudo systemctl reload nginx
+````
     
     
-    ###REF: https://bjornjohansen.no/redirect-to-https-with-nginx
+[https://bjornjohansen.no/redirect-to-https-with-nginx](https://bjornjohansen.no/redirect-to-https-with-nginx)
 
 
 
-###Some differences between nginx on centos & on ubuntu###########
-## config
+```Some differences between nginx on centos & on ubuntu```
+
+
+###### config
+
+````
 /etc/nginx #for both
 /etc/nginx/sites-available && /etc/nginx/sites-enabled ##there by default on ubuntu, not on centos
 
 /etc/nginx/sites-available/default ##on ubuntu this is the default server and location block
 /etc/nginx/nginx.conf ##available on both ubuntu and centos but on centos this is the default server and location block
+````
 
-##Note on both ubuntu and centos /etc/nginx/nginx.conf is the "main" config file this is where worker processes
-##and the nginx user is defined
-##Also on centos there is a /etc/nginx/default.d where you can place a .conf file for default server block
 
-###directoy list for a specific folder
+#### Note on both ubuntu and centos /etc/nginx/nginx.conf is the "main" config file this is where worker processes and the nginx user is defined
 
-### so I needed to enable directory list for a specific folder and the commands I found online were still giving me a 404
+#### Also on centos there is a /etc/nginx/default.d where you can place a .conf file for default server block
 
-## REF: https://serverfault.com/questions/347815/issues-with-nginx-autoindex
+#### directoy list for a specific folder
 
+#### so I needed to enable directory list for a specific folder and the commands I found online were still giving me a 404
+
+[https://serverfault.com/questions/347815/issues-with-nginx-autoindex](https://serverfault.com/questions/347815/issues-with-nginx-autoindex)
+
+````
 location /myfolder/ {
      autoindex on;
      autoindex_exact_size off;
@@ -512,51 +519,65 @@ location / {
         autoindex   on;
         autoindex_exact_size off;
     }
+````
     
-## the above is a more complete server block
+#### the above is a more complete server block
 
-##So the above came up again and why is this so hard!!!!
+#### So the above came up again and why is this so hard!!!!
 
-##in the above example the /myfolder/ is relative to /usr/share/nginx/html so just stick a folder under html called myfolder
-##but what if myfolder is on the / path
+#### in the above example the /myfolder/ is relative to /usr/share/nginx/html so just stick a folder under html called myfolder but what if myfolder is on the / path
 
+
+````
 location /myfolder/ {
         root        /;
         autoindex   on;
         autoindex_exact_size off;
     }
-    
+````
+
+````
 setenforce permissive  ##note this is required you can check /var/log/messages and you will see seLinux errors is seLinux is set to enforcing
 sudo systemctl restart nginx
+````
 
-##but the above might still give you an error if you append a / http://server/myfolder/
-## so to fix that
 
+#### but the above might still give you an error if you append a / http://server/myfolder/
+
+#### so to fix that
+
+````
 location /myfolder {
         root        /;
         autoindex   on;
         autoindex_exact_size off;
     }
+````
 
-
+````
 sudo systemctl restart nginx
-
-##I'm sure this is not the end of this but atleast I understand it a little morea also you do not have to change the permissions on the folder
-##I saw that until I edit this and tell you to change the permissions on the folder... the stuff can be so hard sometimes.
+````
 
 
-###CUSTOM 404##########
-##REF: https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04
+#### I'm sure this is not the end of this but atleast I understand it a little morea also you do not have to change the permissions on the folder
+
+#### I saw that until I edit this and tell you to change the permissions on the folder... the stuff can be so hard sometimes.
 
 
+```CUSTOM 404```
+
+
+[https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04](https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-to-use-custom-error-pages-on-ubuntu-14-04)
+
+````
 error_page 404 /custom_404.html;
         location = /custom_404.html {
                 root /usr/share/nginx/html;
                 internal;
         }
+````
 
-## I didn't use the internal keyword, not sure what that's for
-
+##### I didn't use the internal keyword, not sure what that's for
 
 
 #### Use the below link to enable ssl on nginx, pretty comprehensive and up-to-date, obviously you need to make some adjustments
