@@ -172,8 +172,9 @@ spec:
 
 ````
 
-```vialpha2 clusters```
+```v1alpha2 clusters```
 
+##### use this version on newer vCenter 7u3+ environments
 
 ````
 apiVersion: run.tanzu.vmware.com/v1alpha2
