@@ -1,7 +1,7 @@
 #### Tanzu SQL with Postgres info goes here
 
 
-[Tanzu Docs](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.9/tanzu-postgres-k8s/GUID-create-delete-postgres.html)
+[Tanzu Docs](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/index.html)
 
 [Install docs](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.9/tanzu-postgres-k8s/GUID-install-operator.html)
 
