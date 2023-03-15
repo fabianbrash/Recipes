@@ -57,4 +57,8 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts  #OPTIONAL
 
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null   #OPTIONAL
 
+
+
+kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
+
 ````
