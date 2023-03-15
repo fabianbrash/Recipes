@@ -6,7 +6,7 @@
 ```TAP Tanzu Postgres Operator Workaround```
 
 
-##### This workaround only applies if you used the Tanzu Postgres Operator to prisvision your postgres instance(s)
+##### This workaround only applies if you used the Tanzu Postgres Operator to provision your postgres instance(s)
 
 
 
