@@ -55,7 +55,7 @@ export METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.loca
 # delete any previously added entry
 sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts  #OPTIONAL
 
-echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null   #OPTIONAL
+echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null   #NOT OPTIONAL
 
 
 
