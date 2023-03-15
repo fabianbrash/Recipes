@@ -65,3 +65,14 @@ kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 tanzu insight health
 
 ````
+
+
+##### Now let's retrieve our token to add to our TAP values file
+
+[https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-configure-access-token.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-configure-access-token.html)
+
+````
+
+export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
+
+````
