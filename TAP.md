@@ -35,3 +35,26 @@ kubectl exec -n postgres-databases -it pg-tap-0 -c pg-container -- bash
     exit
 
 ````
+
+```MetadataStore config```
+
+
+[https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-using-encrypted-connection.html#additional-resources](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-using-encrypted-connection.html#additional-resources)
+
+
+[https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-use-node-port.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-store-use-node-port.html)
+
+
+````
+kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt #Grab cert
+
+
+export METADATA_STORE_PORT=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.spec.ports[0].port}")
+export METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.local"
+
+# delete any previously added entry
+sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts  #OPTIONAL
+
+echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null   #OPTIONAL
+
+````
