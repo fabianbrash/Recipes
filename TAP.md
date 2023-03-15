@@ -11,7 +11,7 @@
 
 
 ````
-kubectl exec -n postgres-databases -it pg-tap-0 -c pg-container -- bash -c “psql”
+kubectl exec -n postgres-databases -it pg-tap-0 -c pg-container -- bash -c psql
 
 
 alter user postgres with superuser; and then \q
