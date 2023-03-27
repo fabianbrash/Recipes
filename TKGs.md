@@ -432,7 +432,112 @@ spec:
 
 ````
 
+````
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: cluster-custom
+  namespace: tkg2-cluster-ns
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks: ["198.51.100.0/12"]
+    pods:
+      cidrBlocks: ["192.0.2.0/16"]
+    serviceDomain: "cluster.local"
+  topology:
+    class: tanzukubernetescluster
+    version: v1.23.8+vmware.1-tkg.2-zshippable
+    controlPlane:
+      replicas: 3
+    workers:
+      machineDeployments:
+        - class: node-pool
+          name: node-pool-1
+          replicas: 3
+          variables:
+            overrides:
+            - name: vmClass
+              value: guaranteed-xlarge
+    variables:
+      - name: vmClass
+        value: guaranteed-medium
+      - name: storageClass
+        value: tkg2-storage-profile
+      - name: defaultStorageClass
+        value: tkg2-storage-profile
+      - name: controlPlaneVolumes
+        value:
+          - name: etcd
+            capacity:
+              storage: 4Gi
+            mountPath: /var/lib/etcd
+            storageClass: tkg2-storage-profile
+      - name: nodePoolVolumes
+        value:
+          - name: containerd
+            capacity:
+              storage: 50Gi
+            mountPath: /var/lib/containerd
+            storageClass: tkg2-storage-profile
+          - name: kubelet
+            capacity:
+              storage: 50Gi
+            mountPath: /var/lib/kubelet
+            storageClass: tkg2-storage-profile
+ 
 
+````
+
+````
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  name: cluster-ubuntu
+  namespace: tkg2-cluster-ns
+spec:
+  clusterNetwork:
+    services:
+      cidrBlocks: ["198.51.100.0/12"]
+    pods:
+      cidrBlocks: ["192.0.2.0/16"]
+    serviceDomain: "cluster.local"
+  topology:
+    class: tanzukubernetescluster
+    version: v1.23.8+vmware.2-tkg.2-zshippable
+    controlPlane:
+      replicas: 3
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+    workers:
+      machineDeployments:
+        - class: node-pool
+          name: node-pool-1
+          replicas: 3
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+        - class: node-pool
+          name: node-pool-2
+          replicas: 3
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+        - class: node-pool
+          name: node-pool-3
+          replicas: 3
+          metadata:
+            annotations:
+              run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+    variables:
+      - name: vmClass
+        value: guaranteed-medium
+      - name: storageClass
+        value: tkg2-storage-policy
+````
 
 [https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-607BA980-E3E3-4167-ABC8-B9FCDCF44746.html](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-607BA980-E3E3-4167-ABC8-B9FCDCF44746.html)
 
