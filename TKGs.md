@@ -247,6 +247,54 @@ spec:
 
 ````
 
+```vCenter8```
+
+
+````
+apiVersion: run.tanzu.vmware.com/v1alpha3
+kind: TanzuKubernetesCluster
+metadata:
+  name: tkc-custom-storage
+  namespace: tkg2-cluster-ns
+spec:
+  topology:
+    controlPlane:
+      replicas: 3
+      vmClass: guaranteed-medium
+      storageClass: tkg2-storage-policy
+      tkr:
+        reference:
+          name: v1.23.8---vmware.2-tkg.2-zshippable
+      volumes:
+      - name: etcd
+        mountPath: /var/lib/etcd
+        capacity:
+          storage: 4Gi
+    nodePools:
+    - replicas: 3
+      name: worker-np
+      vmClass: guaranteed-medium
+      storageClass: tkg2-storage-policy
+      tkr:
+        reference:
+          name: v1.23.8---vmware.2-tkg.2-zshippable
+      volumes:
+      - name: containerd
+        mountPath: /var/lib/containerd
+        capacity:
+          storage: 50Gi
+      - name: kubelet
+        mountPath: /var/lib/kubelet
+        capacity:
+          storage: 50Gi
+  settings:
+    storage:
+      defaultClass: tkg2-storage-policy
+
+
+
+````
+
 ### Adding certs after the fact
 
 [Adding trusted certs to nodes on TKGS 7.0 U2](https://brianragazzi.wordpress.com/tag/tanzu-kubernetes-grid-service/)
