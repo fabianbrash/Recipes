@@ -366,6 +366,76 @@ spec:
 
 ````
 
+[https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-D09930F7-9EC9-40D5-9349-4FC49E9EA5FB.html](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-D09930F7-9EC9-40D5-9349-4FC49E9EA5FB.html)
+
+
+```classy clusters officially clusterclass```
+
+
+````
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+#define the cluster
+metadata:
+  #user-defined name of the cluster; string
+  name: cluster-default
+  #kubernetes namespace for the cluster; string
+  namespace: tkg2-cluster-ns
+#define the desired state of cluster
+spec:
+  #specify the cluster network; required, there is no default
+  clusterNetwork:
+    #network ranges from which service VIPs are allocated
+    services:
+      #ranges of network addresses; string array
+      #CAUTION: must not overlap with Supervisor
+      cidrBlocks: ["198.51.100.0/12"]
+    #network ranges from which Pod networks are allocated
+    pods:
+      #ranges of network addresses; string array
+      #CAUTION: must not overlap with Supervisor
+      cidrBlocks: ["192.0.2.0/16"]
+    #domain name for services; string
+    serviceDomain: "cluster.local"
+  #specify the topology for the cluster
+  topology:
+    #name of the ClusterClass object to derive the topology
+    class: tanzukubernetescluster
+    #kubernetes version of the cluster; format is TKR NAME
+    version: v1.23.8---vmware.2-tkg.2-zshippable
+    #describe the cluster control plane
+    controlPlane:
+      #number of control plane nodes; integer 1 or 3
+      replicas: 3
+    #describe the cluster worker nodes
+    workers:
+      #specifies parameters for a set of worker nodes in the topology
+      machineDeployments:
+        #node pool class used to create the set of worker nodes
+        - class: node-pool
+          #user-defined name of the node pool; string
+          name: node-pool-1
+          #number of worker nodes in this pool; integer 0 or more
+          replicas: 3
+    #customize the cluster
+    variables:
+      #virtual machine class type and size for cluster nodes
+      - name: vmClass
+        value: guaranteed-medium
+      #persistent storage class for cluster nodes
+      - name: storageClass
+        value: tkg2-storage-policy
+      # default storageclass for control plane and worker node pools
+      - name: defaultStorageClass
+        value: tkg2-storage-policy
+
+````
+
+
+
+[https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-607BA980-E3E3-4167-ABC8-B9FCDCF44746.html](https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-with-tanzu-tkg/GUID-607BA980-E3E3-4167-ABC8-B9FCDCF44746.html)
+
 ### Adding certs after the fact
 
 [Adding trusted certs to nodes on TKGS 7.0 U2](https://brianragazzi.wordpress.com/tag/tanzu-kubernetes-grid-service/)
