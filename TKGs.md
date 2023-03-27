@@ -291,7 +291,78 @@ spec:
     storage:
       defaultClass: tkg2-storage-policy
 
+````
 
+
+```Ubuntu```
+
+
+````
+apiVersion: run.tanzu.vmware.com/v1alpha3
+kind: TanzuKubernetesCluster
+metadata:
+  name: tkc-ubuntu-gpu
+  namespace: tkg2-cluster-ns
+  annotations:
+    run.tanzu.vmware.com/resolve-os-image: os-name=ubuntu
+spec:
+   topology:
+     controlPlane:
+       replicas: 3
+       storageClass: tkg2-storage-policy
+       vmClass: guaranteed-large
+       tkr:
+         reference:
+           name: v1.23.8---vmware.2-tkg.2-zshippable
+       volumes:
+       - name: etcd
+         mountPath: /var/lib/etcd
+         capacity:
+           storage: 4Gi
+     nodePools:
+     - name: nodepool-a100-primary
+       replicas: 3
+       storageClass: tkg2-storage-policy
+       vmClass: vgpu-a100
+       tkr:
+         reference:
+           name: v1.23.8---vmware.2-tkg.2-zshippable
+       volumes:
+       - name: containerd
+         mountPath: /var/lib/containerd
+         capacity:
+           storage: 70Gi
+       - name: kubelet
+         mountPath: /var/lib/kubelet
+         capacity:
+           storage: 70Gi
+     - name: nodepool-a100-secondary
+       replicas: 3
+       storageClass: tkg2-storage-policy
+       vmClass: vgpu-a100
+       tkr:
+         reference:
+           name: v1.23.8---vmware.2-tkg.2-zshippable
+       volumes:
+       - name: containerd
+         mountPath: /var/lib/containerd
+         capacity:
+           storage: 70Gi
+       - name: kubelet
+         mountPath: /var/lib/kubelet
+         capacity:
+           storage: 70Gi
+   settings:
+     storage:
+       defaultClass: tkg2-storage-policy
+     network:
+       cni:
+        name: antrea
+       services:
+        cidrBlocks: ["198.51.100.0/12"]
+       pods:
+        cidrBlocks: ["192.0.2.0/16"]
+       serviceDomain: cluster.local
 
 ````
 
