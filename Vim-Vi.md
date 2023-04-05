@@ -25,11 +25,11 @@ set autoindent
 
 ###### yaml: line 43: found character that cannot start any token
 
-### THE CAUSE WAS TABS WERE INSERTED IN THE FILE AND .YAML WANTS SPACES SO I HAD TO DO
+#### THE CAUSE WAS TABS WERE INSERTED IN THE FILE AND .YAML WANTS SPACES SO I HAD TO DO
 
-### ESC : set list so I could see the TABS which is showed up as ^I while spaces were $ so I simply just deleted
+#### ESC : set list so I could see the TABS which is showed up as ^I while spaces were $ so I simply just deleted
 
-### The ^I and I was good, I need to find a way to find and replace them all
+#### The ^I and I was good, I need to find a way to find and replace them all
 
 
 ```Global search and replace```
