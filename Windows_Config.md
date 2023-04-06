@@ -1039,6 +1039,6 @@ DISM /online /Get-TargetEditions
 ````
 
 
-##### Note with the above DISM will sit at 10% removing the eval pieces, after Googling around I found a solution, launch services.msc and look for the Windows License Manager Service if it's not running start it, if it is restart it and then hit enter in the powershell console a few times to wake it up, you should see the progress start back up again
+##### Note with the above DISM will sit at 10% removing the eval pieces, after Googling around I found a solution, launch services.msc and look for the Windows License Manager Service if it's not running start it, if it is restart it and then hit enter in the powershell console a few times to wake it up, you should see the progress start back up again, it could still take about 10-15 minutes though
 
 [https://woshub.com/how-to-upgrade-windows-server-2016-evaluation-to-full-version/#:~:text=To%20convert%20Windows%20Server%202019%20EVAL%20to%20a,upgrade%20Windows%20Server%202019%20edition%20the%20same%20way.](https://woshub.com/how-to-upgrade-windows-server-2016-evaluation-to-full-version/#:~:text=To%20convert%20Windows%20Server%202019%20EVAL%20to%20a,upgrade%20Windows%20Server%202019%20edition%20the%20same%20way.)
