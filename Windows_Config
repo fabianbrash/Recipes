@@ -986,9 +986,13 @@ DISM /Online /Set-Edition:ServerDatacenter /ProductKey:12345-12345-12345-12345-1
 DISM /Online /Set-Edition:ServerStandard /ProductKey:12345-12345-12345-12345-12345 /AcceptEula
 
 slmgr /dli  #make sure things look good
+
+DISM /online /Get-CurrentEdition
+
+DISM /online /Get-TargetEditions
 ````
 
 
 ##### Note with the above DISM will sit at 10% removing the eval pieces, after Googling around I found a solution, launch services.msc and look for the Windows License Manager Service if it's not running start it, if it is restart it and then hit enter in the powershell console a few times to wake it up, you should see the progress start back up again
 
-
+[https://woshub.com/how-to-upgrade-windows-server-2016-evaluation-to-full-version/#:~:text=To%20convert%20Windows%20Server%202019%20EVAL%20to%20a,upgrade%20Windows%20Server%202019%20edition%20the%20same%20way.](https://woshub.com/how-to-upgrade-windows-server-2016-evaluation-to-full-version/#:~:text=To%20convert%20Windows%20Server%202019%20EVAL%20to%20a,upgrade%20Windows%20Server%202019%20edition%20the%20same%20way.)
