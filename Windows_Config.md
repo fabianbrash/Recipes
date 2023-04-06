@@ -1,11 +1,12 @@
-#Various Powershell commands for installing and configuring a Server core and Server GUI install
+# Various Powershell commands for installing and configuring a Server core and Server GUI install
 
 
-#Configure Server core
+``` Configure Server core```
+````
 sconfig
-
-#Powershell AD Join commands 
- 
+````
+```Powershell AD Join commands```
+```` 
 #Check available commands 
 Get-command –module ADDSDeployment 
  
@@ -30,8 +31,11 @@ Get-help Uninstall-ADDSDomainController
  
 #Demote Commands 
 Uninstall-ADDSDomainController –Forceremoval -Demoteoperationmasterrole 
- 
-######Set TrustedHost this is required to remotely manage a server when both systems are not apart of a Domain##################### 
+````
+
+#### Set TrustedHost this is required to remotely manage a server when both systems are not apart of a Domain
+
+````
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘hostname,hostname.local’ –Force 
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value ‘IP,IP’ –Force
 
@@ -67,13 +71,13 @@ regsvr32 schmmgmt.dll
 ###I had an odd issue when attempting to transfer to the schema master role, I kept getting an error
 ##Schema master could not be contacted, to fix I made certain the schema master has an alternate DNS server
 ##In my case the DNS of the DC I wanted to be the new schema master, ODD!!
+````
 
+```Create Bootable USB stick for Server 2012 R2 I will assume this will work for 2016 as well```
 
-################################################################################################################################
-Create Bootable USB stick for Server 2012 R2 I will assume this will work for 2016 as well
+#### Pre-requisites: 7-Zip software (Download it from here: http://7-zip.org/), Windows 2012 (R2) ISO (or Windows 8.1 ISO), 8GB or more USB disk
 
-Pre-requisites: 7-Zip software (Download it from here: http://7-zip.org/), Windows 2012 (R2) ISO (or Windows 8.1 ISO), 8GB or more USB disk
-
+````
 Open Command Prompt in elevated mode (Run as Administrator)
 Type diskpart and press Enter
 Type list disk and press Enter. Note the list of existing disks.
@@ -86,29 +90,39 @@ Type select partition 1 and press enter.
 Type active and press enter to make the partition 1 active
 Type format fs=ntfs and press enter. This will format the partition 1 as NTFS volume.
 Type assign and press enter to assign the USB disk to a drive letter.
- 
-
+```` 
+````
 Now right click on Windows Server 2012 R2 or Windows 8.1 ISO file, select 7-Zip –> Extract Files…
 Select your USB disk to extract the ISO contents to the USB disk
 That’s all. Boot the server or computer using the bootable USB disk.
+````
 
-***Note I simply formatted the USB disk as NTFS in the GUI and then I set the partition as primary
-***This also will allow you to upgrade a server instead of doing a clean install
-#########################################################################################################################
 
-#####Enable Disk performance metrics under server 2012,windows 10, server 2016, windows 8.1 from command prompt enter
+### Note I simply formatted the USB disk as NTFS in the GUI and then I set the partition as primary
+### This also will allow you to upgrade a server instead of doing a clean install
+
+#### Enable Disk performance metrics under server 2012,windows 10, server 2016, windows 8.1 from command prompt enter
+
+````
 diskperf -Y
+````
 
-###################Windows update tries to update but stops @ updating n%#########################
-######This is probably due to a power outage as the VM was doing it's update
-##boot into safe mode and run make certain C is the correct drive of your Windows install, in my case it was D
+#### Windows update tries to update but stops @ updating n%
+##### This is probably due to a power outage as the VM was doing it's update
+##### boot into safe mode and run make certain C is the correct drive of your Windows install, in my case it was D
+
+````
 dism.exe /image:D:\ /cleanup-image /revertpendingactions
 ######You can also attempt to rename the following file
 c:\windows\winsxs\pending.xml
+````
 
+```UPGRADING ROOT CA FROM SHA1 TO SHA256```
 
-################################UPGRADING ROOT CA FROM SHA1 TO SHA256#####################################################
-#########THIS IS IF YOU ONLY HAVE A ROOT CA AND YOU DON'T HAVE SUB-CA'S PLEASE REFERENCE https://www.petenetlive.com/KB/Article/0001243
+##### THIS IS IF YOU ONLY HAVE A ROOT CA AND YOU DON'T HAVE SUB-CA'S PLEASE REFERENCE 
+[https://www.petenetlive.com/KB/Article/0001243](https://www.petenetlive.com/KB/Article/0001243)
+
+````
 #Launch powershell
 certutil -setreg ca\csp\CNGHashAlgorithm SHA256
 net stop certsvc
@@ -118,13 +132,15 @@ net start certsvc
 ########ALSO YOU CAN DO THIS SIMPLY IF YOUR CRYPTOGRAPHIC PROVIDER IS "Microsoft Software Key Storage Provider" again refer to above link
 ####NOTE YOU MUST RUN GPUPDATE /FORCE SO THE NEW CERTIFICATE CAN REPLICATE TO YOUR ENDPOINTS "TRUSTED ROOT CERTIFICATE AUTHORITY"##
 #####ALSO YOU CAN USE THE lpd.exe TOOL TO TEST LDAPS FUNCTUNALITY LDAP PORT:389 LDAPS:636###################
+````
 
+```FORMAT A DISK 8K BLOCK SIZE```
 
-############FORMAT A DISK 8K BLOCK SIZE#########################################################
+### #This can be done from the GUI or from diskpart
+###### let's first check our current unit allocation size
+###### launch elevated command prompt
 
-####This can be done from the GUI or from diskpart
-######let's first check our current unit allocation size
-##launch elevated command prompt
+````
 fsutil fsinfo ntfsinfo 'your drive' 'bytes per cluster is your unit allocation'
 
 ######now let's format using diskpart
@@ -132,9 +148,10 @@ elevated command prompt
 diskpart.exe
 list volume or list disk
 select volume 'your volume number' or select disk
+````
+#### You can also create a 500 MB partition if this is your C drive like so
 
-####You can also create a 500 MB partition if this is your C drive like so
-
+````
 create partition primary size=500
 format quick
 ####this will give you a 500MB partition and then the below will format the rest as 8k block size
@@ -158,9 +175,13 @@ assign
 exit
 exit
 Install OS
+````
 
-########8K BLOCK ON UEFI/EFI SYSTEMS############################################
-###REF: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions
+```8K BLOCK ON UEFI/EFI SYSTEMS```
+
+[https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions)
+
+````
 ##Same as above Shif+F10
 list disk
 select disk x
@@ -176,10 +197,11 @@ assign
 exit
 exit
 Install OS
+````
 
+```CHANGE DEFAULT COMPUTER AND USER OU```
 
-#########CHANGE DEFAULT COMPUTER AND USER OU###########################
-
+````
 ##Computer redirect
 redircmp ou=ComputersOU,dc=mydomain,dc=com
 
@@ -188,27 +210,33 @@ redirusr ou=UsersOU,dc=mydomain,dc=com
 
 ##In my case
 redircmp "OU=fbWorkstations,DC=fb,DC=com"
+````
 
-##############################INSTALL .NET FROM DVD#######################################################################
+```INSTALL .NET FROM DVD```
+
+````
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /All /LimitAccess /Source:d:\sources\sxs (D is DVD drive)
+````
 
 
+```POWERSHELL FIREWALL CONFIG```
 
-#########POWERSHELL FIREWALL CONFIG#######################################
+````
 Get-NetFirewallProfile | Select name, enabled
 or
 Get-NetFirewallProfile
 
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+````
 
-##SET ENVIRONMENT VARIABLES#################
-
+```SET ENVIRONMENT VARIABLES```
+````
 Get-ChildItem Env: (List all environment variables)
 echo $Env:ProgramFiles (Just list the variable for ProgramFiles)
 
 setx JAVA_HOME "C:\Program Files\Java\jdk1.8.0_121\"
 setx path "%path%;%JAVA_HOME%\bin"
-
+````
 
 ############RSOP.MSC REF:https://prajwaldesai.com/modify-group-policy-refresh-interval-windows-computers/###############
 ##Log on to local pc and run the below
