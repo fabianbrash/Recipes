@@ -75,7 +75,7 @@ regsvr32 schmmgmt.dll
 
 ```Create Bootable USB stick for Server 2012 R2 I will assume this will work for 2016 as well```
 
-#### Pre-requisites: 7-Zip software (Download it from here: http://7-zip.org/), Windows 2012 (R2) ISO (or Windows 8.1 ISO), 8GB or more USB disk
+#### Pre-requisites: 7-Zip software [Download](http://7-zip.org/) Windows 2012 (R2) ISO (or Windows 8.1 ISO), 8GB or more USB disk
 
 ````
 Open Command Prompt in elevated mode (Run as Administrator)
@@ -136,7 +136,7 @@ net start certsvc
 
 ```FORMAT A DISK 8K BLOCK SIZE```
 
-### #This can be done from the GUI or from diskpart
+##### This can be done from the GUI or from diskpart
 ###### let's first check our current unit allocation size
 ###### launch elevated command prompt
 
@@ -238,25 +238,33 @@ setx JAVA_HOME "C:\Program Files\Java\jdk1.8.0_121\"
 setx path "%path%;%JAVA_HOME%\bin"
 ````
 
-############RSOP.MSC REF:https://prajwaldesai.com/modify-group-policy-refresh-interval-windows-computers/###############
+```RSOP.MSC``` 
+
+[https://prajwaldesai.com/modify-group-policy-refresh-interval-windows-computers/](https://prajwaldesai.com/modify-group-policy-refresh-interval-windows-computers/)
+
+````
 ##Log on to local pc and run the below
 rsop.msc
+````
 
 
+```WINDOWS UPDATE REBOOT LOOP```
 
-###WINDOWS UPDATE REBOOT LOOP####
-###Wndows continuosly prompt user to reboot machine to apply an update
+### Wndows continuosly prompt user to reboot machine to apply an update
 
+````
 ##Delete the following reg key
 HKLM/Software/Microsoft/Windows/CurrentVersion/WindowsUpdate/Auto Update
 ##Look for "RebootRequired"
 #Delete the entire folder
-##REF: http://www.squidworks.net/2012/06/solved-always-getting-message-windows-cant-update-important-files-and-services-while-the-system-is-using-them/
+````
+[http://www.squidworks.net/2012/06/solved-always-getting-message-windows-cant-update-important-files-and-services-while-the-system-is-using-them/](http://www.squidworks.net/2012/06/solved-always-getting-message-windows-cant-update-important-files-and-services-while-the-system-is-using-them/)
 
 
 
-#############STEPS FOR LAPS IMPLEMENTATION############################
+```STEPS FOR LAPS IMPLEMENTATION```
 
+````
 ###Download LAPS from Microsoft###################################
 
 ####On a management server install the entire LAPS tool LAPS64.msi(or LAPS32.msi)#######
@@ -288,18 +296,21 @@ Set-AdmPwdReadPasswordPermission -OrgUnit "OU=MyComputers,DC=lab,DC=org" -Allowe
 #####Then setup the GPO to enable ADM under Computer>Policies>Admin Templates>LAPS
 
 ####Then deploy LAPS to your client devices#####################
+````
 
 
 
+##### For scripts to run as SYSTEM make certain domain computers have atleast read and execute rights to the share
 
-##For scripts to run as SYSTEM make certain domain computers have atleast read and execute rights to the share######################
+```FORCE SYSTEM TO SYNC TIME WITH DC```
 
-#######FORCE SYSTEM TO SYNC TIME WITH DC################
-
+````
 net time \\DC_Name_OR_IP /set /y
+````
 
+```PROPER PERMISSIONS FOR ABE```
 
-###################PROPER PERMISSIONS FOR ABE############################
+````
 ##Grant Read privileges to "This folder only" to "Authenticated Users" to the root folder
 ###Traverse folder/ execute file
 ###List folder /read data
@@ -308,10 +319,11 @@ net time \\DC_Name_OR_IP /set /y
 ##Read permissions
 
 ##Then assign specific rights to the sub-folders
+````
 
+```REPAIRING DAMAGED PROFILE```
 
-######REPAIRING DAMAGED PROFILE###########################
-
+````
 ###Log on to the system by using an administrative user account other than the user account that is experiencing the problem.
 ##Back up all data in the current user's profile folder if the profile folder still exists, and then delete the profile folder. 
 ##By default, the profile resides in the following location:%SystemDrive%\Users\UserName
@@ -327,9 +339,11 @@ Note SID is a placeholder for the security identifier (SID) of the user account 
 ##Log off the system.
 ##Log on to the system again.
 ###NOTE IF THE USER LOGS IN AND IS NOT REDIRECTED TRY RUNNING THE OFFLINE FILE FIX AND AFTER REBOOT HAVE THEM LOGIN
+````
 
+```INSTALL .MSU FILES```
 
-##############INSTALL .MSU FILES########################
+````
 wusa.exe ps.msu
 
 ##silent install
@@ -337,19 +351,20 @@ wusa.exe ps.msu /quiet
 
 ###Add full path
 wusa.exe c:\msu\ps.msu
+````
+
+```AD DATABASE PERFMON COUNTER```
+
+#### To see if your DC is pulling it's DB from RAM and not disk look at the below counter Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs more RAM)
 
 
-############AD DATABASE PERFMON COUNTER###################
-###To see if your DC is pulling it's DB from RAM and not disk look at the below counter
-Database/Database Cache % HIT for lsass(Low hit rate could mean the DC needs more RAM)
+```FIX WSUS SERVER 2012R2 AND ABOVE "NODE ERROR"```
 
-
-##########FIX WSUS SERVER 2012R2 AND ABOVE "NODE ERROR"######################
+````
 ##This issue is caused by the WSUSAPPPool's memory defaulting to 1.8GB(1843200KB)
 ##Luanch IIS manager and unser APPPool look for the WSUS apppool and click on "Advanced settings"
 ###Under "Private Memory Limit(KB) set it to "0" which means unlimited
 ###This should resolve your isssue
-##REF: https://social.technet.microsoft.com/Forums/lync/en-US/7226dc0d-e3c5-40c2-817d-048bb0a74980/error-connection-error-click-reset-server-node-to-try-to-connect-to-the-server-again?forum=winserverwsus
 
 ####TEMP FIX FOR WSUS#########
 
@@ -357,6 +372,9 @@ Net stop wsusservice
 IISReset /Stop
 IISReset /Start
 Net start wsusservice
+````
+
+[https://social.technet.microsoft.com/Forums/lync/en-US/7226dc0d-e3c5-40c2-817d-048bb0a74980/error-connection-error-click-reset-server-node-to-try-to-connect-to-the-server-again?forum=winserverwsus](https://social.technet.microsoft.com/Forums/lync/en-US/7226dc0d-e3c5-40c2-817d-048bb0a74980/error-connection-error-click-reset-server-node-to-try-to-connect-to-the-server-again?forum=winserverwsus)
 
 ######CONFIGURE WSUS GPO#########
 ##The port number must be in your GPO settings or it will not work as of Server 2012R2 & 2016
