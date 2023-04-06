@@ -919,10 +919,12 @@ New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\s
 
 
 
-#####INSTALL DOCKER WINDOWS SERVER 2016#########################
+```INSTALL DOCKER WINDOWS SERVER 2016```
+
+````
 #####Note I installed this on Server 2016 core
 ###Also you must install the 'Containers' role/feature
-###Source: https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server
+
 ##Get a Powershell Prompt
 PS> Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 PS> Install-Package -Name docker -ProviderName DockerMsftProvider (Select 'A')
@@ -932,19 +934,29 @@ PS> Restart-Computer -Force
 PS> Get-Package -Name Docker -ProviderName DockerMsftProvider
 ##Get Current Version from Repo
 PS> Find-Package -Name Docker -ProviderName DockerMsftProvider
+````
 
-###Upgrade Docker##################
+[https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-serve)
+
+
+```Upgrade Docker```
+
+````
 PS> Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
 PS> Start-Service Docker
+````
 
+```Install docker Windows Server 2019```
 
-######Install docker Windows Server 2019###########
+````
 ###Also you must install the 'Containers' role/feature
 ##REF:https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/
 Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 
 Install-Package -name docker -ProviderName DockerMsftProvider -Force ##You can also add -RequiredVersion 18.03 which would install 18.03
 Start-Service -Name docker
+````
+[https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/](https://blog.sixeyed.com/getting-started-with-docker-on-windows-server-2019/)
 
 
 ####Disassociate a file exentsion with a program
@@ -972,8 +984,9 @@ HKEY_CLASSES_ROOT\.extension
 ##might say 1-1-2020 but the details inside will have the 'real time' this is the 'System' log
 
 
-##########Dealing with packages in Windows Powershell#############################
+```Dealing with packages in Windows Powershell```
 
+````
 Get-PackageProvider -ListAvailable
 
 Install-Package -Name 'package name'
@@ -981,6 +994,7 @@ Install-Package -Name 'package name'
 Uninstall-Package -Name 'package name'
 
 Find-PackageProvider
+````
 
 ####Install Nuget##########
 Get-PackageProvider -ListAvailable
