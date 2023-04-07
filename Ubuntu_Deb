@@ -666,3 +666,26 @@ sudo ufw status
 
 [https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04)
 
+
+```Extend LVM```
+
+[https://askubuntu.com/questions/498709/how-can-i-resize-an-active-lvm-partition](https://askubuntu.com/questions/498709/how-can-i-resize-an-active-lvm-partition)
+
+
+#### I'm making an assumption that you have downloaded Gparted Live and you've already extended the partition and rebooted the system
+
+
+````
+df -h  #take note of the name of /
+
+sudo pvs
+
+sudo lvs
+
+sudo pvdisplay -m
+
+sudo lvresize ubuntu-vg/ubuntu-lv -L +35g  #From the info you get from pvdisplay -m under Physical Segments - Logical volume note we don't need the /dev part, we are adding 35GB
+
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv  # again we can see the name from the df -h command
+
+````
