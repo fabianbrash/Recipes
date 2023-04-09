@@ -1,5 +1,6 @@
-#####Get all updates#####
+```Get all updates```
 
+````
 sudo apt-get update -y && sudo apt-get upgrade -y
 ##I usually install aptitude
 sudo apt-get install aptitude -y
@@ -11,16 +12,19 @@ sudo systemctl status ssh(Same as RHEL/CentOS)
 sudo apt-cache search packagename
 apt-cache search cockpit ##find all cockpit packages
 sudo aptitude search all network | less
+````
 
-##Let's find what package provides the killall utility
-##This did not work in a docker container of ubuntu
-##I need to test in a full blown ubuntu install
+#### Let's find what package provides the killall utility
+#### This did not work in a docker container of ubuntu
+##### I need to test in a full blown ubuntu install
 
+````
 sudo apt-get update && apt-cache search killall
 
 ###Get info about package
 sudo apt-cache show cockpit
 apt-cache show cockpit
+````
 
 ####If you have dependency issues with dpkg or apt################
 sudo apt-get -f install
