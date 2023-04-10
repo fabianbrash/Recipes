@@ -26,22 +26,35 @@ sudo apt-cache show cockpit
 apt-cache show cockpit
 ````
 
-####If you have dependency issues with dpkg or apt################
+#### If you have dependency issues with dpkg or apt
+
+````
 sudo apt-get -f install
-##The above should find all dependencies and install them and then install your app
+````
+
+#### The above should find all dependencies and install them and then install your app
 
 
-####UPGRADE TO A NEW RELEASE ESPECIALLY IF YOU ARE NOT ON AN LTS VERSION############
+#### UPGRADE TO A NEW RELEASE ESPECIALLY IF YOU ARE NOT ON AN LTS VERSION
+
+````
 sudo do-release-upgrade
+````
 
-
-#####Set root password#############
+```Set root password```
+````
 sudo passwd
+````
 
-###set another user password
+### set another user password
+
+````
 sudo passwd (if other user's are on the system it will ask for which user)
+````
 
-############INSTALL NMTUI/NETWORKMANAGER###########
+```INSTALL NMTUI/NETWORKMANAGER```
+
+````
 sudo aptitude install network-manager
 sudo systemctl start NetworkManager && sudo systemctl enable NetworkManager
 sudo nmtui
@@ -57,19 +70,22 @@ sudo nmtui
 ###Add your network info and then reboot
 sudo reboot
 ###You should now see the IP that you configured
+````
 
-######NOTE NMTUI GAVE ME A TON OF ISSUES ON UBUNTU SO I REMOVED IT AND JUST DID IT THROUGH THE CONFIG####
+###### NOTE NMTUI GAVE ME A TON OF ISSUES ON UBUNTU SO I REMOVED IT AND JUST DID IT THROUGH THE CONFIG
+
+````
 sudo systemctl stop NetworkManager
 sudo apt remove network-manager
 ###Then reverse the changes we made /etc/network/interfaces
 sudo reboot
 ###Then re-edit /etc/network/interfaces
+````
+```Actual File```
 
-##############Actual File#################
+#### This file describes the network interfaces available on your system and how to activate them. For more information, see interfaces(5).
 
-# This file describes the network interfaces available on your system
-# and how to activate them. For more information, see interfaces(5).
-
+````
 source /etc/network/interfaces.d/*
 
 # The loopback network interface
@@ -85,12 +101,17 @@ iface enp3s0 inet static
 	gateway 192.168.1.254
 
 dns-nameservers 8.8.8.8
+````
+```END File contents```
 
-#####END File contents###########
-##There is a bug in 16.04 so a reboot is required
+##### There is a bug in 16.04 so a reboot is required
+
+````
 sudo reboot
+````
 
-####INSTALL .deb packages###############
+```INSTALL .deb packages```
+````
 sudo dpkg -i package_1_1.deb
 ###remove
 sudo dpkg --remove webmin #or whatever package
@@ -101,8 +122,11 @@ sudo dpkg -i package_1.2.deb
 
 sudo dpkg -l | grep 'app looking for'
 sudo dpkg -l | grep plex
+````
 
-####FIREWALL Source: https://help.ubuntu.com/community/UFW ##################################
+[https://help.ubuntu.com/community/UFW](https://help.ubuntu.com/community/UFW)
+
+````
 ###ubuntu uses ufw
 sudo ufw status
 sudo ufw enable
@@ -118,17 +142,21 @@ ufw deny 80/tcp
 sudo ufw delete deny 80/tcp
 
 sudo ufw allow from 192.168.1.25/32 to any port 22 proto tcp(only allow that IP to access port 22)
+````
 
-###Alternatively################
+
+```Alternatively```
+
+````
 sudo ufw deny from 207.46.232.182
 sudo ufw deny from 192.168.0.1 to any port 22
 
 sudo ufw deny from 192.168.0.1 to any port 22
 sudo ufw deny from 192.168.0.7 to any port 22
 sudo ufw allow from 192.168.0.0/24 to any port 22 proto tcp
+````
 
-
-
+````
 ######CPU INFO##########################################
 cat /proc/cpuinfo
 
@@ -147,11 +175,12 @@ sudo du -h
 ###################UBUNTU MOTD#################################
 cd /run
 cat motd.dynamic
+````
 
 
+```INSTALL DOCKER```
 
-#######INSTALL DOCKER##################################
-
+````
 ####Install the AUFS storage driver
 sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual
 
@@ -195,18 +224,22 @@ sudo apt list --upgradeable (see all available updates)
  ##First su to root
  su -
  sudo curl -L https://github.com/docker/compose/releases/download/1.12.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+````
 
+```INSTALL WEBMIN```
 
-#######INSTALL WEBMIN################################
+````
 ##Let's download it first
 curl -O -L http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb
 sudo apt install -f /path-to-webmin/webmin_1.831_all_deb (-f will get all dependencies required)
 
 ###IF ufw is running you need to open port 10000
 sudo ufw allow 10000/tcp
+````
 
+```/boot runs out of space```
 
-#############/boot runs out of space##################
+````
 ###First check to see how much free space is available @ /boot
 df -h
 ####If you are @ 100% then you will have to manually remove some files########
@@ -228,13 +261,15 @@ sudo apt autoremove(same as above)
 sudo dpkg -l | grep linux-image or dpkg -l linux-image-\* | grep ^ii
 ##See linux headers
 sudo dpkg -l | grep linux-headers
+````
 
+```FLUSH DNS UBUNTU 17.X MIGHT WORK ON 16.X AS WELL```
 
-#####FLUSH DNS UBUNTU 17.X MIGHT WORK ON 16.X AS WELL########################
+````
 sudo systemd-resolve --flush-caches
 ##or
 sudo systemctl restart systemd-resolved
-
+````
 
 ######EXTEND A VM STORAGE THAT SITS ON LVM#############################
 ###So the first part I am going to cheat download GParted live CD and format your new extent with lvm pv
