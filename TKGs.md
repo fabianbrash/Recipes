@@ -247,6 +247,80 @@ spec:
 
 ````
 
+```GPU cluster```
+
+````
+---
+apiVersion: run.tanzu.vmware.com/v1alpha2
+kind: TanzuKubernetesCluster
+metadata:
+  name: gpu-cluster
+  namespace: dev
+spec:
+  topology:
+    controlPlane:
+      replicas: 3
+      vmClass: best-effort-large
+      storageClass: goldsp
+      volumes:
+        - name: etcd
+          mountPath: /var/lib/etcd
+          capacity:
+            storage: 25Gi
+      tkr:  
+        reference:
+          name: v1.22.9---vmware.1-tkg.1
+    nodePools:
+    - name: worker-nodepool-gtx1000
+      replicas: 2
+      vmClass: best-effort-large
+      storageClass: goldsp
+      volumes:
+        - name: containerd
+          mountPath: /var/lib/containerd
+          capacity:
+            storage: 60Gi
+      tkr:  
+        reference:
+          name: v1.22.9---vmware.1-tkg.1
+    #- name: worker-nodepool-a2
+      #replicas: 2
+      #vmClass: guaranteed-medium
+      #storageClass: vwt-storage-policy
+      #tkr:  
+        #reference:
+          #name: v1.21.2---vmware.1-tkg.1.ee25d55
+    #- name: worker-nodepool-a3
+      #replicas: 1
+      #vmClass: guaranteed-small
+      #storageClass: vwt-storage-policy
+      #tkr:  
+        #reference:
+          #name: v1.21.2---vmware.1-tkg.1.ee25d55
+  settings:
+    storage:
+      defaultClass: goldsp
+    network:
+      cni:
+        name: antrea
+      #services:
+        #cidrBlocks: ["198.53.100.0/16"]
+      #pods:
+        #cidrBlocks: ["192.0.5.0/16"]
+      #serviceDomain: cluster.local
+      #proxy:
+        #httpProxy: http://<user>:<pwd>@<ip>:<port>
+        #httpsProxy: http://<user>:<pwd>@<ip>:<port>
+        #noProxy: [10.246.0.0/16,192.168.144.0/20,192.168.128.0/20]
+      #trust:
+        #additionalTrustedCAs:
+          #- name: CompanyInternalCA-1
+            #data: LS0tLS1C...LS0tCg==
+          #- name: CompanyInternalCA-2
+            #data: MTLtMT1C...MT0tPg==
+
+````
+
 ```vCenter8```
 
 
