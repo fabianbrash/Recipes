@@ -694,20 +694,8 @@ VSPHERE_WORKER_NUM_CPUS: "4"
 WORKER_MACHINE_COUNT: 4
 
 
-
 ````
 
-
-```TKGm on Azure```
-
-
-##### So I deployed TKGm on Azure and my management cluster deploye no issues, then I went to deploy my workload cluster and it kept failing by not creating any VMs for the workload cluster, I ran the below command and sure enough it was a quota issue, note this is my personal Azure account, I didn't realize I needed to manage quotas with it, I thought they just charged me for what I use.
-
-
-````
-kubectl describe cluster-api -A
-
-````
 
 ```Windows workload```
 
@@ -963,3 +951,17 @@ kubectl label cluster mycluster type=workload
 kubectl get cluster mycluster --show-labels
 
 ````
+
+
+```TKGm on Azure```
+
+
+##### So I deployed TKGm on Azure and my management cluster deploye no issues, then I went to deploy my workload cluster and it kept failing by not creating any VMs for the workload cluster, I ran the below command and sure enough it was a quota issue, note this is my personal Azure account, I didn't realize I needed to manage quotas with it, I thought they just charged me for what I use.
+
+
+````
+kubectl describe cluster-api -A
+
+````
+
+##### Log into the azure portal and search for quotas and request an increase for the desired region
