@@ -965,3 +965,22 @@ kubectl describe cluster-api -A
 ````
 
 ##### Log into the azure portal and search for quotas and request an increase for the desired region
+
+
+```TKGm 2.x```
+
+##### You might run into an issue when creating a workload cluster
+
+
+````
+Validation error when running tanzu cluster create
+
+````
+
+
+````
+tanzu config set features.cluster.auto-apply-generated-clusterclass-based-configuration true
+
+````
+
+[https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/2.1/tkg-deploy-mc-21/mgmt-release-notes.html#TKG-17286](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/2.1/tkg-deploy-mc-21/mgmt-release-notes.html#TKG-17286)
