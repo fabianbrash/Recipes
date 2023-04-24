@@ -266,6 +266,11 @@ az aks get-os-options --location westus2
 
 az aks get-versions --location westus2
 
+az aks create -g TAP -n fb-tap-azure-1 --ssh-key-value /Users/joe/.ssh/id_rsa.pub \
+--kubernetes-version 1.25.6 --nodepool-name tapworkers --node-count 3 --os-sku Ubuntu --node-osdisk-size 100 \
+--node-vm-size Standard_D4_v3 --location westus2 \
+--network-plugin kubenet \
+--network-policy calico
 
 ````
 
