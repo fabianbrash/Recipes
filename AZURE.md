@@ -261,6 +261,12 @@ az group list
 az aks list --resource-group my_resource_group | jq .
 
 az aks delete --name fb-azure-tap --resource-group TAP --no-wait --yes
+
+az aks get-os-options --location westus2
+
+az aks get-versions --location westus2
+
+
 ````
 
 ```Remove Network security rule```
