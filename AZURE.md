@@ -254,6 +254,12 @@ az vm image list -o table --all ##Note the --all will download the latest list, 
 az vm image list --all --offer WindowsServer -o table
 
 az group create -l eastus -n rg1
+
+az group list
+
+az aks list --resource-group my_resource_group | jq .
+
+az aks delete --name fb-azure-tap --resource-group TAP --no-wait --yes
 ````
 
 ```Remove Network security rule```
