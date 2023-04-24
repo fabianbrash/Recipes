@@ -272,6 +272,7 @@ az aks create -g TAP -n fb-tap-azure-1 --ssh-key-value /Users/joe/.ssh/id_rsa.pu
 --network-plugin kubenet \
 --network-policy calico
 
+
 ````
 
 ```Remove Network security rule```
