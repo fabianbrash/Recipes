@@ -239,6 +239,7 @@ Register-AzResourceProvider -ProviderNamespace Microsoft.Cdn
 
 ```Azure CLI```
 
+[az aks commands](https://learn.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest)
 ````
 az provider list -o table
 
