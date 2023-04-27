@@ -44,3 +44,10 @@ az aks get-versions | jq '.orchestrators[] | {orchestratorVersion}'
 jq '.[] | .name' fruits.json
 
 ````
+
+
+````
+
+az aks get-versions | jq '.orchestrators[] | {orchestratorVersion,orchestratorType}'
+
+````
