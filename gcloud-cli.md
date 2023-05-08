@@ -19,8 +19,14 @@ gcloud components update
 
 
 ````
+gcloud container get-server-config --region=us-central1   # See what versions are avaiable to us
 
-gcloud container clusters create zeus --machine-type n1-standard-4 --num-nodes 3 --zone us-central1-c
+gcloud container clusters create zeus \
+--disk-size=125GB \
+--cluster-version=1.23.17-gke.2000 \
+--machine-type n1-standard-4 \
+--num-nodes 3 \
+--zone us-central1-c
 
 
 gcloud container clusters list
