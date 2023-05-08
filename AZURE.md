@@ -273,6 +273,7 @@ az aks create -g TAP -n fb-tap-azure-1 --ssh-key-value /Users/joe/.ssh/id_rsa.pu
 --network-policy calico
 
 
+az aks get-credentials --name fb-tap-azure-1 -g TAP --admin
 ````
 
 ```Remove Network security rule```
