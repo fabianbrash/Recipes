@@ -22,4 +22,27 @@ gcloud components update
 
 gcloud container clusters create zeus --machine-type n1-standard-4 --num-nodes 3 --zone us-central1-c
 
+
+gcloud container clusters list
+
+gcloud container clusters get-credentials zeus --zone us-central1-c --project zeus-python-app
+
+````
+
+
+[https://medium.com/techbull/gke-cluster-with-gcloud-utility-for-dummies-5e42bf01b739](https://medium.com/techbull/gke-cluster-with-gcloud-utility-for-dummies-5e42bf01b739)
+
+
+
+```cleaning up```
+
+
+````
+
+gcloud container clusters delete zeus --zone us-central1-c
+
+gcloud config configurations delete zeus
+
+gcloud projects delete zeus-python-app
+
 ````
