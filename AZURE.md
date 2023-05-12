@@ -307,6 +307,23 @@ https://containerblobs.blob.core.windows.net/installers/cfssljson
 ````
 
 
+```azure RHOS```
 
+````
+
+az aro list-credentials --name MY_CLUSTER_NAME --resource-group MY_RG_NAME
+
+az aro show --name MY_CLUSTER_NAME --resource-group MY_RG_NAME --query "consoleProfile.url" -o tsv
+
+
+az aro show -g MY_RG_NAME  -n MY_CLUSTER_NAME --query apiserverProfile.url -o tsv
+
+apiServer=$(az aro show -g MY_RG_NAME  -n MY_CLUSTER_NAME --query apiserverProfile.url -o tsv)
+
+oc login $apiServer -u kubeadmin -p <kubeadmin password>
+````
+
+
+[https://learn.microsoft.com/en-us/azure/openshift/tutorial-connect-cluster](https://learn.microsoft.com/en-us/azure/openshift/tutorial-connect-cluster)
 
 
