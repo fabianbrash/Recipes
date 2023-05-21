@@ -38,7 +38,9 @@ exit
 - [ ] Change license to Essentials if possible
 - [ ] Change out certificate
 - [ ] Add vCenter as a cloud
+- [ ] Setup SE pool
+- [ ] Configure frontend network
 - [ ] Add frontend network
 - [ ] Set VRF to 0.0.0.0/0 --> frontend GW
-- [ ] Setup SE pool
+- [ ] Setup SE group
 - [ ] Setup frontend network pool
