@@ -28,3 +28,17 @@ exit
 - [ ] [https://avinetworks.com/docs/latest/cli-guide/](https://avinetworks.com/docs/latest/cli-guide/)
 
 - [ ] [https://avinetworks.com/docs/20.1/cli-top-level-commands/](https://avinetworks.com/docs/20.1/cli-top-level-commands/)
+
+
+```tkgs setup```
+
+
+1. Deploy OVA
+2. Apply all patches
+3. Change license to Essentials if possible
+4. Change out certificate
+5. Add vCenter as a cloud
+6. Add frontend network
+7. Set VRF to 0.0.0.0/0 --> frontend GW
+8. Setup SE pool
+9. Setup frontend network pool
