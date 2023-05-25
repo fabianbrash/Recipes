@@ -271,27 +271,41 @@ sudo systemd-resolve --flush-caches
 sudo systemctl restart systemd-resolved
 ````
 
-######EXTEND A VM STORAGE THAT SITS ON LVM#############################
-###So the first part I am going to cheat download GParted live CD and format your new extent with lvm pv
-##Then boot back into your ubuntu/debian vm(or any other distro that uses LVM)
-##Then get some information
+```EXTEND A VM STORAGE THAT SITS ON LVM```
+
+### So the first part I am going to cheat download GParted live CD and format your new extent with lvm pv then boot back into your ubuntu/debian vm(or any other distro that uses LVM)
+
+#### Then get some information
+
+````
 sudo pvdisplay
 sudo vgdisplay
 sudo lvs
+````
 
-##Then first let's extend the volume group(VG for short)
+#### Then first let's extend the volume group(VG for short)
+
+````
 sudo vgextend ubuntu-srv-vg /dev/sda3 (Or whatever your new extent is you should see this from pvdisplay)
+````
 
-###Now second let's extend the logical volume(LV which you get from sudo lvs)
+#### Now second let's extend the logical volume(LV which you get from sudo lvs)
+
+````
 sudo lvextend /dev/ubuntu-srv-vg/root /dev/sda3
+````
 
-###Now third let's resize our filesystem
+### Now third let's resize our filesystem
+
+````
 sudo resize2fs /dev/ubuntu-srv-vg/root 
 sudo xfs_growfs /dev/centos/root  ##for centos machines tested on centos 7.7
 sudo xfs_growfs /  
+````
 
-##Note a received an error with the above on centos 8.1(assume 8.0 also) so I had to use the above 
-##REF:https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root
+#### Note a received an error with the above on centos 8.1(assume 8.0 also) so I had to use the above
+
+[https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root](https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root)
 
 ##And that should work
 ##You can also use lvextend to just add some not all space to the logical volume
