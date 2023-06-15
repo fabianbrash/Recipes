@@ -961,3 +961,14 @@ kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | bas
 ````
 
 
+```kubectl debug```
+
+
+````
+kubectl get nodes
+
+kubectl debug node/mynode -it --image=ubuntu
+
+````
+
+[https://kubernetes.io/docs/tasks/debug/debug-cluster/kubectl-node-debug/](https://kubernetes.io/docs/tasks/debug/debug-cluster/kubectl-node-debug/)
