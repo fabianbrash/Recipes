@@ -14,4 +14,7 @@ gcloud container get-server-config --region=us-east1-a --flatten=channels --filt
 
 
 gcloud container get-server-config
+
+
+gcloud container clusters get-credentials sample-cluster --location=us-central1-f
 ````
