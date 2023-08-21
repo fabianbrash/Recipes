@@ -1,5 +1,6 @@
 [https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
 
+[https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices](https://security.stackexchange.com/questions/143442/what-are-ssh-keygen-best-practices)
 
 ```GENERATING SSH KEYS TO SSH INTO SERVERS```
 
@@ -7,13 +8,23 @@
 ssh-keygen -t rsa
 ###You can also associate it with your email
 ssh-keygen -t rsa -C "me@me.com"(-C is for comments)
+
+## Updated guidance
+
+ssh-keygen -t ed25519 -a 100
+
+ssh-keygen -t rsa -b 4096 -o -a 100 # use on older systems Ubuntu <=14.04 or RHEL/CENT <=6.x
+
 ##Also you can use
 ssh-keygen -t rsa -b 4096(-b bits)
+
 ##then answer the presented questions#########
 ###you can enter a passphrase for your key if you like but if you do then you will need to enter it everytime you ssh into your server
 ######Once completed your keys should be in a location like this###
 MAC - /Users/me/.ssh
+
 LINUX - /home/me/.ssh
+
 ####File Names#####
 id_rsa - private key this is the one you keep
 id_rsa.pub - public key the one that gets uploaded to your server
