@@ -9,7 +9,7 @@ ssh-keygen -t rsa
 ###You can also associate it with your email
 ssh-keygen -t rsa -C "me@me.com"(-C is for comments)
 
-## Updated guidance
+## UPDATED GUIDANCE
 
 ssh-keygen -t ed25519 -a 100
 
