@@ -1087,6 +1087,7 @@ metadata:
     tkg.tanzu.vmware.com/cluster-controlplane-endpoint: 192.168.181.200 #kube-vip IP
     tkg/plan: prod
   labels:
+    #cluster-role.tkg.tanzu.vmware.com/management: "" this has to be commented out or just deleted or cluster creation will fail
     tkg.tanzu.vmware.com/cluster-name: workload-kv-1
   name: workload-kv-1
   namespace: default
