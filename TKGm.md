@@ -1195,3 +1195,11 @@ spec:
 ````
 
 #### The above is a guide I simply copied the mgmt YAML file and made the appropriate edits, of course the above will not work as we need TLS thumbprints, etc. Also this is very important, you must remove the management role label or the cluster creation will fail.
+
+
+```SSH into nodes```
+
+````
+ssh -i /path/to/privatekey capv@NODE_IP
+
+````
