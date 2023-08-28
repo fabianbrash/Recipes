@@ -1197,6 +1197,215 @@ spec:
 #### The above is a guide I simply copied the mgmt YAML file and made the appropriate edits, of course the above will not work as we need TLS thumbprints, etc. Also this is very important, you must remove the management role label or the cluster creation will fail.
 
 
+```TKG 2.3 tiny single node cluster(s)```
+
+````
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    tkg.tanzu.vmware.com/addon-type: authentication/pinniped
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    tkg.tanzu.vmware.com/addon-name: pinniped
+    tkg.tanzu.vmware.com/cluster-name: workload-tiny-kv-1 #this must match everywhere
+  name: workload-tiny-kv-1-pinniped-package
+  namespace: default
+stringData:
+  values.yaml: |
+    infrastructure_provider: vsphere
+    tkg_cluster_role: workload
+    identity_management_type: none
+type: clusterbootstrap-secret
+---
+apiVersion: cpi.tanzu.vmware.com/v1alpha1
+kind: VSphereCPIConfig
+metadata:
+  name: workload-tiny-kv-1
+  namespace: default
+spec:
+  vsphereCPI:
+    mode: vsphereCPI
+    tlsCipherSuites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+    vmNetwork:
+      excludeExternalSubnetCidr: 192.168.181.201/32
+      excludeInternalSubnetCidr: 192.168.181.201/32
+---
+apiVersion: csi.tanzu.vmware.com/v1alpha1
+kind: VSphereCSIConfig
+metadata:
+  name: workload-tiny-kv-1
+  namespace: default
+spec:
+  vsphereCSI:
+    config:
+      datacenter: /dc-01
+      httpProxy: ""
+      httpsProxy: ""
+      insecureFlag: false
+      noProxy: ""
+      region: null
+      tlsThumbprint: 80:25:43:3B:6E:EE:8E:7B:E9:0F:6C:5F #Unique to your env
+      useTopologyCategories: false
+      zone: null
+    mode: vsphereCSI
+---
+apiVersion: run.tanzu.vmware.com/v1alpha3
+kind: ClusterBootstrap
+metadata:
+  annotations:
+    tkg.tanzu.vmware.com/add-missing-fields-from-tkr: v1.26.5+vmware.1-tiny.2
+  name: workload-tiny-kv-1
+  namespace: default
+spec:
+  additionalPackages:
+  - refName: metrics-server*
+  - refName: secretgen-controller*
+  - refName: pinniped*
+  cpi:
+    refName: vsphere-cpi*
+    valuesFrom:
+      providerRef:
+        apiGroup: cpi.tanzu.vmware.com
+        kind: VSphereCPIConfig
+        name: workload-tiny-kv-1
+  csi:
+    refName: vsphere-csi*
+    valuesFrom:
+      providerRef:
+        apiGroup: csi.tanzu.vmware.com
+        kind: VSphereCSIConfig
+        name: workload-tiny-kv-1
+  kapp:
+    refName: kapp-controller*
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: workload-tiny-kv-1
+  namespace: default
+stringData:
+  password: mysecretpassword
+  username: administrator@vsphere.local
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    osInfo: photon,3,amd64
+    tkg.tanzu.vmware.com/cluster-controlplane-endpoint: 192.168.181.201
+    tkg/plan: dev
+    run.tanzu.vmware.com/resolve-tkr: 'tkr.tanzu.vmware.com/tiny'
+  labels:
+    tkg.tanzu.vmware.com/cluster-name: workload-tiny-kv-1
+  name: workload-tiny-kv-1
+  namespace: default
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 100.96.0.0/11
+    services:
+      cidrBlocks:
+      - 100.64.0.0/13
+  topology:
+    class: tkg-vsphere-default-v1.1.0
+    controlPlane:
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=photon
+      replicas: 1
+    variables:
+    - name: cni
+      value: antrea
+    - name: controlPlaneCertificateRotation
+      value:
+        activate: true
+        daysBefore: 90
+    - name: auditLogging
+      value:
+        enabled: true
+    - name: podSecurityStandard
+      value:
+        audit: restricted
+        deactivated: false
+        warn: restricted
+    - name: apiServerEndpoint
+      value: 192.168.181.201
+    - name: aviAPIServerHAProvider
+      value: false
+    - name: vcenter
+      value:
+        cloneMode: fullClone
+        datacenter: /dc-01
+        datastore: /dc-01/datastore/truenas-iscsi-01
+        folder: /dc-01/vm/tkg-vsphere-workload
+        network: /dc-01/network/vDS-TKG-WKLK181
+        resourcePool: /dc-01/host/cluster-01/Resources/tkg-singlenodes
+        server: 192.168.99.20
+        storagePolicyID: ""
+        template: /dc-01/vm/TKGm-templates/photon-3-kube-v1.26.5+vmware.1-tiny.2
+        tlsThumbprint: 80:25:43:3B:6E:EE:8E:7B:E9:0F:6C:5F:5E:92:E1:16 #Unique to your env
+    - name: user
+      value:
+        sshAuthorizedKeys:
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEouXZ/n3+vqAAhyJBztmPFs8tuJRBB37mXFraUDHD/n #your ssh public key
+    - name: controlPlane
+      value:
+        machine:
+          diskGiB: 200
+          memoryMiB: 16384
+          numCPUs: 8
+    - name: controlPlaneTaint
+      value: false
+
+    #- name: worker
+      #value:
+        #machine:
+          #diskGiB: 80
+          #memoryMiB: 4096
+          #numCPUs: 2
+    - name: security
+      value:
+        fileIntegrityMonitoring:
+          enabled: false
+        imagePolicy:
+          pullAlways: false
+          webhook:
+            enabled: false
+            spec:
+              allowTTL: 50
+              defaultAllow: true
+              denyTTL: 60
+              retryBackoff: 500
+        kubeletOptions:
+          eventQPS: 50
+          streamConnectionIdleTimeout: 4h0m0s
+        systemCryptoPolicy: default
+    version: v1.26.5+vmware.1-tiny.2
+    #workers:
+      #machineDeployments:
+      #- class: tkg-worker
+        #metadata:
+          #annotations:
+            #run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=photon
+        #name: md-0
+        #replicas: 1
+      #- class: tkg-worker
+        #metadata:
+          #annotations:
+            #run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=photon
+        #name: md-1
+        #replicas: 1
+      #- class: tkg-worker
+        #metadata:
+          #annotations:
+            #run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=photon
+        #name: md-2
+        #replicas: 1
+
+````
+
 ```SSH into nodes```
 
 ````
