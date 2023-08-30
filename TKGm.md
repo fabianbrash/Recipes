@@ -2025,6 +2025,32 @@ WORKER_NODE_NAMESERVERS: "192.168.99.100"
 
 #### The above uses photon
 
+```inclusteripam pool```
+
+
+````
+---
+apiVersion: ipam.cluster.x-k8s.io/v1alpha2
+kind: InClusterIPPool
+metadata:
+  annotations:
+    ipam.cluster.x-k8s.io/skip-validate-delete-webhook: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move-hierarchy: ""
+  name: cluster-kv-nodeipam-1
+  namespace: default
+spec:
+  addresses:
+  - 192.168.181.81-192.168.181.120
+  gateway: 192.168.181.1
+  prefix: 24
+
+````
+
+#### The above has to be applied before you create your workload cluster(s)
+
+
+
 ```SSH into nodes```
 
 ````
