@@ -1709,6 +1709,239 @@ WORKER_NODE_NAMESERVERS: "192.168.99.100"
 #### The above uses Ubuntu nodes
 
 
+```Classy version```
+
+````
+
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    tkg.tanzu.vmware.com/addon-type: authentication/pinniped
+  labels:
+    clusterctl.cluster.x-k8s.io/move: ""
+    tkg.tanzu.vmware.com/addon-name: pinniped
+    tkg.tanzu.vmware.com/cluster-name: mgmt-kv-nodeipam-1 #custom to your env
+  name: mgmt-kv-nodeipam-1-pinniped-package
+  namespace: tkg-system
+stringData:
+  values.yaml: |
+    infrastructure_provider: vsphere
+    tkg_cluster_role: workload
+    identity_management_type: none
+type: clusterbootstrap-secret
+---
+apiVersion: cpi.tanzu.vmware.com/v1alpha1
+kind: VSphereCPIConfig
+metadata:
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+spec:
+  vsphereCPI:
+    mode: vsphereCPI
+    tlsCipherSuites: TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+    vmNetwork:
+      excludeExternalSubnetCidr: 192.168.180.200/32 #custom to your env
+      excludeInternalSubnetCidr: 192.168.180.200/32 #custom to your env
+---
+apiVersion: csi.tanzu.vmware.com/v1alpha1
+kind: VSphereCSIConfig
+metadata:
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+spec:
+  vsphereCSI:
+    config:
+      datacenter: /dc-01
+      httpProxy: ""
+      httpsProxy: ""
+      insecureFlag: false
+      noProxy: ""
+      region: null
+      tlsThumbprint: 80:25:43:3B:6E:EE:8E:7B #custom to your env
+      useTopologyCategories: false
+      zone: null
+    mode: vsphereCSI
+---
+apiVersion: run.tanzu.vmware.com/v1alpha3
+kind: ClusterBootstrap
+metadata:
+  annotations:
+    tkg.tanzu.vmware.com/add-missing-fields-from-tkr: v1.26.5---vmware.2-tkg.1
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+spec:
+  additionalPackages:
+  - refName: metrics-server*
+  - refName: secretgen-controller*
+  - refName: pinniped*
+  cpi:
+    refName: vsphere-cpi*
+    valuesFrom:
+      providerRef:
+        apiGroup: cpi.tanzu.vmware.com
+        kind: VSphereCPIConfig
+        name: mgmt-kv-nodeipam-1
+  csi:
+    refName: vsphere-csi*
+    valuesFrom:
+      providerRef:
+        apiGroup: csi.tanzu.vmware.com
+        kind: VSphereCSIConfig
+        name: mgmt-kv-nodeipam-1
+  kapp:
+    refName: kapp-controller*
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+stringData:
+  password: mysecreatpass #custom to your env
+  username: administrator@vsphere.local
+---
+apiVersion: cluster.x-k8s.io/v1beta1
+kind: Cluster
+metadata:
+  annotations:
+    osInfo: ubuntu,20.04,amd64
+    tkg.tanzu.vmware.com/cluster-controlplane-endpoint: 192.168.180.200  #custom to your env
+    tkg/plan: prod
+  labels:
+    cluster-role.tkg.tanzu.vmware.com/management: ""
+    tkg.tanzu.vmware.com/cluster-name: mgmt-kv-nodeipam-1  #custom to your env
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+spec:
+  clusterNetwork:
+    pods:
+      cidrBlocks:
+      - 100.96.0.0/11
+    services:
+      cidrBlocks:
+      - 100.64.0.0/13
+  topology:
+    class: tkg-vsphere-default-v1.1.0
+    controlPlane:
+      metadata:
+        annotations:
+          run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=ubuntu
+      replicas: 3
+    variables:
+    - name: network
+      value:
+        addressesFromPools:
+        - apiGroup: ipam.cluster.x-k8s.io
+          kind: InClusterIPPool
+          name: mgmt-kv-nodeipam-1
+    - name: cni
+      value: antrea
+    - name: controlPlaneCertificateRotation
+      value:
+        activate: true
+        daysBefore: 90
+    - name: auditLogging
+      value:
+        enabled: true
+    - name: podSecurityStandard
+      value:
+        audit: restricted
+        deactivated: false
+        warn: restricted
+    - name: apiServerEndpoint
+      value: 192.168.180.200
+    - name: aviAPIServerHAProvider
+      value: false
+    - name: vcenter
+      value:
+        cloneMode: fullClone
+        datacenter: /dc-01
+        datastore: /dc-01/datastore/truenas-iscsi-01
+        folder: /dc-01/vm/tkg-vsphere-tkg-mgmt
+        network: /dc-01/network/vDS-TKG-MGMTWKLK180
+        resourcePool: /dc-01/host/cluster-01/Resources/tkgm-mgmt
+        server: 192.168.99.20
+        storagePolicyID: ""
+        tlsThumbprint: 80:25:43:3B:6E:EE:8E:7B:E9:0F #custom to your env
+    - name: user
+      value:
+        sshAuthorizedKeys:
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEouXZ/n3+vqAAhyJBztmPFs8tuJRBB37mXFraUDHD/n #custom to your env
+    - name: controlPlane
+      value:
+        machine:
+          diskGiB: 40
+          memoryMiB: 8192
+          numCPUs: 2
+        network:
+          nameservers:
+          - 192.168.99.100
+    - name: worker
+      value:
+        machine:
+          diskGiB: 40
+          memoryMiB: 8192
+          numCPUs: 2
+        network:
+          nameservers:
+          - 192.168.99.100
+    - name: security
+      value:
+        fileIntegrityMonitoring:
+          enabled: false
+        imagePolicy:
+          pullAlways: false
+          webhook:
+            enabled: false
+            spec:
+              allowTTL: 50
+              defaultAllow: true
+              denyTTL: 60
+              retryBackoff: 500
+        kubeletOptions:
+          eventQPS: 50
+          streamConnectionIdleTimeout: 4h0m0s
+        systemCryptoPolicy: default
+    version: v1.26.5+vmware.2-tkg.1
+    workers:
+      machineDeployments:
+      - class: tkg-worker
+        metadata:
+          annotations:
+            run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=ubuntu
+        name: md-0
+        replicas: 1
+      - class: tkg-worker
+        metadata:
+          annotations:
+            run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=ubuntu
+        name: md-1
+        replicas: 1
+      - class: tkg-worker
+        metadata:
+          annotations:
+            run.tanzu.vmware.com/resolve-os-image: image-type=ova,os-name=ubuntu
+        name: md-2
+        replicas: 1
+---
+apiVersion: ipam.cluster.x-k8s.io/v1alpha2
+kind: InClusterIPPool
+metadata:
+  annotations:
+    ipam.cluster.x-k8s.io/skip-validate-delete-webhook: ""
+  labels:
+    clusterctl.cluster.x-k8s.io/move-hierarchy: ""
+  name: mgmt-kv-nodeipam-1
+  namespace: tkg-system
+spec:
+  addresses:
+  - 192.168.180.81-192.168.180.120
+  gateway: 192.168.180.1
+  prefix: 24
+
+````
+
 ````
 
 AVI_CA_DATA_B64: ""
