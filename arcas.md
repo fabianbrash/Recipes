@@ -35,17 +35,6 @@ kubectl describe adc tkgvsphere-ako-workload-set01 #Look for Match Labels and se
 
 ````
 
-```TKGs```
-
-````
-
-
-arcas --env vsphere --file vsphere-dvs-tkgs-wcp.json --avi_configuration --avi_wcp_configuration --enable_wcp --verbose
-
-````
-
-
-
 #### Now let's label our cluster if it wasn't already labeled
 
 ````
@@ -56,6 +45,16 @@ kubectl label cluster mycluster type=workload-set01
 kubectl get cluster mycluster --show-labels
 
 ````
+
+```TKGs```
+
+````
+
+
+arcas --env vsphere --file vsphere-dvs-tkgs-wcp.json --avi_configuration --avi_wcp_configuration --enable_wcp --verbose
+
+````
+
 
 ```Customization```
 
