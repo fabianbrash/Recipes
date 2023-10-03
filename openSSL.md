@@ -102,7 +102,30 @@ openssl x509 -in harbor-01.crt -noout -text | grep -i dns
 
 ````
 
-##### Let's create our csr, then let's create the crt signed by our CA and finally test it to make sure it's all okay
+````
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+x509_extensions     = v3_req
+prompt             = no
+[ req_distinguished_name ]
+countryName                 = "US"
+stateOrProvinceName         = "Virginia"
+localityName                = "Richmond"
+organizationName            = "IT"
+organizationalUnitName      = "IT"
+commonName                  = "harborh2o.h2o.io"
+emailAddress                = "blah@blah.io"
+[ v3_req ]
+keyUsage = keyEncipherment, digitalSignature
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = harborh2o.h2o.io
+
+````
+
+##### Let's create our csr, then let's create the crt signed by our CA and finally test it to make sure it's all okay, note we are using the above cnf file.
 
 ````
 
