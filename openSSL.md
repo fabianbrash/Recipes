@@ -52,6 +52,33 @@ DNS.3 = blah.net
 
 ````
 
+##### Apparently the above uses 'dataEncipherment' apprently Chrome does not like that, and we need to use the below, note we have replaced it with 'digitalSignature'
+
+````
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+x509_extensions     = v3_req
+prompt             = no
+[ req_distinguished_name ]
+countryName                 = "US"
+stateOrProvinceName         = "Virginia"
+localityName                = "Richmond"
+organizationName            = "Blah Company"
+organizationalUnitName      = "Blah"
+commonName                  = "blah.io"
+emailAddress                = "blah@blah.io"
+[ v3_req ]
+keyUsage = keyEncipherment, digitalSignature
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = blah.io
+DNS.2 = blah.com
+DNS.3 = blah.net
+
+````
+
 
 [Citrix Article](https://support.citrix.com/article/CTX135602)
 
