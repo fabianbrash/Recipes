@@ -102,6 +102,9 @@ openssl x509 -in harbor-01.crt -noout -text | grep -i dns
 
 ````
 
+```harbor.cnf```
+
+
 ````
 [ req ]
 default_bits       = 2048
