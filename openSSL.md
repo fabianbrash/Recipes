@@ -52,7 +52,7 @@ DNS.3 = blah.net
 
 ````
 
-##### Apparently the above uses 'dataEncipherment' apprently Chrome does not like that, and we need to use the below, note we have replaced it with 'digitalSignature'
+##### Apparently the above uses 'dataEncipherment' apparently Chrome does not like that, and we need to use the below, note we have replaced it with 'digitalSignature'
 
 ````
 [ req ]
@@ -78,6 +78,8 @@ DNS.2 = blah.com
 DNS.3 = blah.net
 
 ````
+
+(https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution)[https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution]
 
 
 [Citrix Article](https://support.citrix.com/article/CTX135602)
