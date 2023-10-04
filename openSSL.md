@@ -79,7 +79,7 @@ DNS.3 = blah.net
 
 ````
 
-(https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution)[https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution]
+[https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution](https://superuser.com/questions/1451895/err-ssl-key-usage-incompatible-solution)
 
 
 [Citrix Article](https://support.citrix.com/article/CTX135602)
