@@ -1,7 +1,7 @@
 
 
 
-#####Github source:https://github.com/vmware/photon/blob/master/docs/photon-admin-guide.md
+[Github source](https://github.com/vmware/photon/blob/master/docs/photon-admin-guide.md)
 
 ###Start Docker#####################################
 systemctl start docker
