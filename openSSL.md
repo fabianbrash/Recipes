@@ -511,15 +511,17 @@ Common name – Fully qualified domain name of the website you are securing. Sin
 [Digicert-openssl-quick-reference](https://www.digicert.com/kb/ssl-support/openssl-quick-reference-guide.htm)
 
 
-#### Check cert chain
+```Check cert chain```
 
 ````
 
 openssl s_client -connect google.com:443 -showcerts
 
+openssl s_client -connect google.com:443
+
 ````
 
-#### Check chain I need to research this more
+```Check chain I need to research this more```
 
 
 ````
