@@ -71,6 +71,7 @@ git add .
 git commit -m "initial commit"
 
 git remote add add origin "GIT THIS ENDPOINT FROM GIT"
+
 git push -u origin --all
 
 ````
