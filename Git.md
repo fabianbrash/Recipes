@@ -61,7 +61,7 @@ git remote -v  ##See our remote repo's
 git push -u origin master
 ````
 
-#### Also we might want to push to an empty git repo
+### Also we might want to push to an empty git repo
 
 ````
 git init --initial-branch main
@@ -70,6 +70,7 @@ git add .
 
 git commit -m "initial commit"
 
+git remote add add origin "GIT THIS ENDPOINT FROM GIT"
 git push -u origin --all
 
 ````
