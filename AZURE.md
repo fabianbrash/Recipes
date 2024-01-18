@@ -327,3 +327,26 @@ oc login $apiServer -u kubeadmin -p <kubeadmin password>
 [https://learn.microsoft.com/en-us/azure/openshift/tutorial-connect-cluster](https://learn.microsoft.com/en-us/azure/openshift/tutorial-connect-cluster)
 
 
+```Azure PS```
+
+#### Make sure you install the correct PS module
+
+````
+Install-Module -Name Az
+
+##NOT
+Install-Module -Name Azure # THIS IS OLD AND WILL BREAK ALL YOUR SCRIPTS
+
+````
+
+#### Also let's connect to Azure prior to running our scripts and make sure we connect to the correct Subscription
+
+````
+Connect-AzAccount -SubscriptionId 'yyyyyyyy-yyyyyyyyyy-yyyyyyyy-yyyyyyyyyyyy-yyyyyyyyyyy'
+
+#OR
+
+Connect-AzAccount -Tenant 'xxxx-xxxx-xxxx-xxxx' -SubscriptionId 'xxxx-xxxx-xxxx-xxxx' ## Make sure we connect to the correct tenant and subscription
+
+````
+
