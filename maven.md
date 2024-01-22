@@ -10,6 +10,13 @@ mvn clean package
 
 ````
 
+```Run tests```
+
+````
+
+mvn test
+
+````
 
 ```run```
 
