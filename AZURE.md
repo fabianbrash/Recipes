@@ -362,6 +362,12 @@ Connect-AzAccount -Tenant 'xxxx-xxxx-xxxx-xxxx' -SubscriptionId 'xxxx-xxxx-xxxx-
 
 [https://medium.com/@shekhartarare/creating-a-self-hosted-agent-for-azure-pipelines-a-step-by-step-guide-a1cbd1c683d1](https://medium.com/@shekhartarare/creating-a-self-hosted-agent-for-azure-pipelines-a-step-by-step-guide-a1cbd1c683d1)
 
+[https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/personal-access-token-agent-registration?view=azure-devops](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/personal-access-token-agent-registration?view=azure-devops)
+
+#### A few other things, when you install the agent it will ask for a working directory I left mine as the default _work so that's where everything will be and a good place to look when troubleshooting
+
+#### Also under Default the "New Agent" Button is how you download the agent and it also has some instructions for you to follow
+
 ```Setting up ADO Pipeline```
 
 ### This also had some gotchas but the error messages were pretty good, below you will find a pipeline sample that will connect to the Default pool where I have a Windows VM waiting to accept jobs
