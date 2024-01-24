@@ -368,6 +368,10 @@ Connect-AzAccount -Tenant 'xxxx-xxxx-xxxx-xxxx' -SubscriptionId 'xxxx-xxxx-xxxx-
 
 ### And I have the Java JDK, Maven, and Git installed(actually a bunch more dev stuff is installed on the machine) and we are going to build our Java APP and push it to an APP Service
 
+### You also have to add a a Capability manually to your agent this is under Agent Pools > Default > Agents > YOUR_AGENT > Capabilities I had to add Name: maven Value: maven 
+
+### This will be under "User-defined capabilities" just hit the "+" and add it, again this came from the pretty useful error message from the failed build
+
 
 ```azure-pipelines.yml```
 
