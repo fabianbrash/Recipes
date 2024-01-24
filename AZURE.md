@@ -350,3 +350,74 @@ Connect-AzAccount -Tenant 'xxxx-xxxx-xxxx-xxxx' -SubscriptionId 'xxxx-xxxx-xxxx-
 
 ````
 
+```Agent Pools```
+
+### I would say the directions from the URL got me 90% of the way, I did have a few hiccups
+
+#### Make sure in Azure Devops(ADO) that you add your users under ORG Settings > Agent Pools > Security I made my users "Administrators" probably not a good idea but...
+
+#### The one gotcha is you can't be logged in as yourself and add yourself to any roles, so log in as another admin and assign it as that user, I also used a PAT for authentication
+
+[https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/windows-agent?view=azure-devops)
+
+[https://medium.com/@shekhartarare/creating-a-self-hosted-agent-for-azure-pipelines-a-step-by-step-guide-a1cbd1c683d1](https://medium.com/@shekhartarare/creating-a-self-hosted-agent-for-azure-pipelines-a-step-by-step-guide-a1cbd1c683d1)
+
+```Setting up ADO Pipeline```
+
+### This also had some gotchas but the error messages were pretty good, below you will find a pipeline sample that will connect to the Default pool where I have a Windows VM waiting to accept jobs
+
+### And I have the Java JDK, Maven, and Git installed(actually a bunch more dev stuff is installed on the machine) and we are going to build our Java APP and push it to an APP Service
+
+
+```azure-pipelines.yml```
+
+````
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  name: Default
+  demands: Agent.Name -equals wus-apipeline
+
+
+steps:
+#- script: echo Hello, world!
+#  displayName: 'Run a one-line script'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
+  
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
+    sqMavenPluginVersionChoice: 'pom'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Lab-Subscription (91f9999999-d832-9999-9999-99999999)-9999'
+    appType: 'webApp'
+    WebAppName: 'tanzu-java-web'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar.'
+
+````
+
+#### The - task you see was written by little builder tool in Azure Pipelines, it was pretty helpful, another issue I ran into was the Subscription, it had multiple entries with the same name
+
+#### I checked picked one until the tanzu-java-web populated, also the packageForLinux was an odd name, because this ran on a Windows machine, the example above is for a maven build that produces a .jar file
+
+#### If you run a build that produces .war files, then you need to change that
