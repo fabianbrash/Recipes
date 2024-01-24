@@ -431,3 +431,5 @@ steps:
 #### I checked picked one until the tanzu-java-web populated, also the packageForLinux was an odd name, because this ran on a Windows machine, the example above is for a maven build that produces a .jar file
 
 #### If you run a build that produces .war files, then you need to change that
+
+[https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/pool-demands?view=azure-pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/pool-demands?view=azure-pipelines)
