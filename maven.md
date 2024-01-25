@@ -18,6 +18,13 @@ mvn test
 
 ````
 
+```build clean up and skip tests```
+
+````
+mvn clean package -DskipTests
+
+````
+
 ```run```
 
 ````
