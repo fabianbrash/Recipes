@@ -53,6 +53,8 @@ output=text
 
 ````
 
+[https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+
 ````
 aws route53 list-resource-record-sets --hosted-zone-id your zone id goes here > /Users/fabianbrash/Desktop/Misc/rackspace-email-migration/fabianbrash_zone.json
 
