@@ -9,6 +9,39 @@
 
 
 ````
+aws configure
+
+aws s3 ls --profile profile1
+aws ec2 describe-instances --profile user1
+````
+
+```Credentials file example```
+
+````
+[default]
+aws_access_key_id=AKIAIOSFODNN7EXAMPLE
+aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+aws_session_token = IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZ2luX2IQoJb3JpZVERYLONGSTRINGEXAMPLE
+````
+
+```Config file example```
+
+````
+
+[default]
+region=us-west-2
+output=json
+
+[profile user1]
+role_arn=arn:aws:iam::777788889999:role/user1role
+source_profile=default
+role_session_name=session_user1
+region=us-east-1
+output=text
+
+````
+
+````
 aws route53 list-resource-record-sets --hosted-zone-id your zone id goes here > /Users/fabianbrash/Desktop/Misc/rackspace-email-migration/fabianbrash_zone.json
 
 
