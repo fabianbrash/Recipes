@@ -76,3 +76,25 @@ hugo
 ````
 ### Note the above is an array so you can comma separate and add more css files
 ### Found this help from [banjocode.com](https://www.banjocode.com/custom-css/)
+
+```Hugo cloning issues```
+
+##### Everytime I clone the repo that has my hugo site to a new machine I would receive errors like the below when I tried to build my site or run hugo in dev mode
+
+````
+
+WARN 2024/02/06 07:26:21 found no layout file for "html" for kind "page": You should create a template file which matches Hugo Layouts Lookup Rules for this combination.
+````
+
+##### I couldn't figure out what was the issue, well a quick Google and I have a resolution.  After cloning any hugo repo since the themes use git submodules you need to run the below after cloning
+
+````
+git submodule init
+git submodule update
+
+hugo server -D  #serve up our site in dev mode and load draft posts
+````
+
+##### That's it all those errors should go away. Git submodules are a bit of a black box to me
+
+[https://stackoverflow.com/questions/60269683/how-to-fix-the-error-found-no-layout-file-for-html-for-page-in-hugo-cms](https://stackoverflow.com/questions/60269683/how-to-fix-the-error-found-no-layout-file-for-html-for-page-in-hugo-cms)
