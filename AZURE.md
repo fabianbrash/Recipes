@@ -13,6 +13,7 @@
 #### Create a ResourceGroup > Virtual Networks > Global Network > Subnets > Network Security Group(Under Network Interfaces) > Public IP > VM
 
 ##### I am using the Az moduels are they are build on .Net core and Powerrshell core and are cross-platform but there are
+
 #### Azure(old powershell modules), AzureRM(new modules), and then Az(newest modules based on .net core and PS core)
 
 ```Let's log into our Azure account```
@@ -433,3 +434,34 @@ steps:
 #### If you run a build that produces .war files, then you need to change that
 
 [https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/pool-demands?view=azure-pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/pool-demands?view=azure-pipelines)
+
+
+```Useful PWSH Commands```
+
+````
+Login-AzAccount -UseDeviceAuthentication
+Connect-AzAccount -SubscriptionId 'xxxx-xxxx-xxxx-xxxx'
+Connect-AzAccount -Tenant 'xxxx-xxxx-xxxx-xxxx' -SubscriptionId 'xxxx-xxxx-xxxx-xxxx'
+Get-AzSubscription
+Get-AzStorageAccount
+Set-AzContext -Subscription 'xxxx-xxxx-xxxx-xxxx'(You can use the second command to do the same and save a step)
+New-AzResourceGroup -Name arm-test -Location "eastus"
+New-AzResourceGroupDeployment -Name "deployment1" -ResourceGroup "arm-test" -TemplateFile .\myfile.json
+New-AzResourceGroupDeployment -Name spot-deploy -ResourceGroupName Lab-West -TemplateFile .\template.json -TemplateParameterFile .\parameters.json
+
+
+````
+
+```Useful CLI commands```
+
+
+````
+az login
+az logout
+az account show
+az account list -o table
+az account set --subscription 'xxxx-xxxx-xxxx-xxxx'
+az deployment group create --name 'bicep-demo' -g 'arm-test' --template-file ./storage.bicep --parameters part=bicep
+
+
+````
