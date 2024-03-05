@@ -1440,7 +1440,7 @@ openssl x509 -in /etc/vmware/ssl/rui.crt -fingerprint -sha1 -noout
 
 ```vCenter Machine TLS cert expires```
 
-#### So this just happened to me, I purchased a TLS cert for the vCenter UI and it expired on 3-3-2024, when I attempted to log into vCenter I saw the below error message(s)
+#### So this just happened to me, I purchased a TLS cert for vCenter and it expired on 3-3-2024, when I attempted to log into vCenter I saw the below error message(s)
 
 ````
 503 Service Unavailable
@@ -1457,7 +1457,7 @@ cat /var/log/vmware/vpxd/vpxd.log
 
 ````
 
-#### And in the aboce log I saw error messages related to an expired certificate(Again I new this was the case). So how did I fix it, first I ran the below command to make sure only the 1 cert was expired
+#### And in the above log I saw error messages related to an expired certificate(Again I new this was the case). So how did I fix it, first I ran the below command to make sure only the 1 cert was expired
 
 ````
 for store in $(/usr/lib/vmware-vmafd/bin/vecs-cli store list | grep -v TRUSTED_ROOT_CRLS); do echo "[*] Store :" $store; /usr/lib/vmware-vmafd/bin/vecs-cli entry list --store $store --text | grep -ie "Alias" -ie "Not After";done;
