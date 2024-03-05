@@ -1,61 +1,98 @@
 ```VMware related info```
 
-###REFS###################################################################################
-##REF:https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html
-##REF:https://be-virtual.net/automated-installation-with-vmware-esxi-5-56-06-5/
-##REF:https://blogs.vmware.com/vsphere/2019/02/using-the-vmware-update-manager-download-service-umds.html
-##REF:https://code.vmware.com/forums/2530/vsphere-powercli#571112
-##REF:https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.install.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html
+```REFS```
 
-#In case you have a failed PSC or failed VCSA we need to clean things up
+
+[https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html)
+
+[https://be-virtual.net/automated-installation-with-vmware-esxi-5-56-06-5/](https://be-virtual.net/automated-installation-with-vmware-esxi-5-56-06-5/)
+
+[https://blogs.vmware.com/vsphere/2019/02/using-the-vmware-update-manager-download-service-umds.html](https://blogs.vmware.com/vsphere/2019/02/using-the-vmware-update-manager-download-service-umds.html)
+
+[https://code.vmware.com/forums/2530/vsphere-powercli#571112](https://code.vmware.com/forums/2530/vsphere-powercli#571112)
+
+[https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.install.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.install.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html)
+
+#### In case you have a failed PSC or failed VCSA we need to clean things up
+
+````
 cmsso-util unregister --node-pnid FQDN_of_failed_PSC_or_vCenter --username administrator@your_domain_name --passwd vCenter-Single-Sign-On-password
+````
 
-#The above did not work for me but this did
+#### The above did not work for me but this did
+
+````
 /usr/lib/vmware-vmdir/bin/vdcleavefed -h lab-psc-01.lab.net -u administrator
+````
+#### List all PSC's in
 
-#List all PSC's in
+````
 /usr/lib/vmware-vmdir/bin/vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
 or
 cd /usr/lib/vmware-vmdir/bin
 ./vdcrepadmin -f showservers -h lab-psc-01.lab.net -u administrator
+````
 
-#Show replication partners
+#### Show replication partners
+
+````
 ./vdcrepadmin -f showpartners -h lab-psc-01.lab.net -u administrator
+````
 
-#Show current replication status
+#### Show current replication status
+````
 ./vdcrepadmin -f showpartnerstatus -h localhost -u administrator
+````
 
-##Force remove PSC from replication
+#### Force remove PSC from replication
+
+````
 /usr/lib/vmware-vmdir/bin/vdcleavefed -h psc_FQDN -u administrator
+````
 
-##Note the above did not work for me I had an error while deploying a PSC 6.0 it failed on first boot
-##So after trying all above I just re-deployed the appliance and it worked, I'm thinking it was a
-##Time issue with the first PSC being set to UTC instead of EST??
-##REF:https://techbrainblog.com/2015/10/02/issues-and-errors-when-decommissioning-the-vcenter-server-or-a-platform-services-controller-vcsa-6-0/
+### Note the above did not work for me I had an error while deploying a PSC 6.0 it failed on first boot so after trying all above I just re-deployed the appliance and it worked, I'm thinking it was a time issue with the first PSC being set to UTC instead of EST??
 
-#Display storage capabilities i.e. SCSI UNMAP
+
+[https://techbrainblog.com/2015/10/02/issues-and-errors-when-decommissioning-the-vcenter-server-or-a-platform-services-controller-vcsa-6-0/](https://techbrainblog.com/2015/10/02/issues-and-errors-when-decommissioning-the-vcenter-server-or-a-platform-services-controller-vcsa-6-0/)
+
+#### Display storage capabilities i.e. SCSI UNMAP
+
+````
 esxcli storage core device list (-d optional if you want to target a particulat device)
 esxcli storage core device vaai status get
 esxcli storage core plugin list
+````
 
-#Connectin to the various VCSA and PSC appliances
-#https://psc-IP/psc - this is the SSO side of things
-#https://psc-IP:5480 - this is the appliance itself
-#https://vcsa-IP:5480 - this is the VCSA VAMI interface
 
-#Get NUMA information from a host
+#### Connectin to the various VCSA and PSC appliances
 
+````
+https://psc-IP/psc - this is the SSO side of things
+https://psc-IP:5480 - this is the appliance itself
+https://vcsa-IP:5480 - this is the VCSA VAMI interface
+````
+
+#### Get NUMA information from a host
+
+````
 esxcli hardware memory get | grep NUMA
+````
 
-$Get DCUI console from ssh, ssh into esxi host and type below
+#### Get DCUI console from ssh, ssh into esxi host and type below
+````
 dcui
+````
 
-###VScsiStats#######################################################
+```VScsiStats```
+
+````
 #List all disks
 vscsiStats -l
 Start stats on a VM with World ID 76634 and disk ID 8192
 vscsiStats -s -w 76634 -i 8192
+````
 
+````
 #Display Stats ioLength
 vscsiStats -p ioLength -c -w 76634 -i 8192
 
@@ -64,10 +101,11 @@ vscsiStats -p latency -c -w 76634 -i 8192
 
 #Stop logging
 vscsiStats -x -w 76634 -i 8192
+````
 
-###Useful ESX commands#############################################################################################
-Useful ESX commands
+```Useful ESX commands```
 
+````
 esxcli software vib list | grep ams
 
 
@@ -75,7 +113,7 @@ esxcli software vib list | grep ams
 
 /etc/init.d/hp-ams.sh stop && chkconfig hp-ams.sh off && services.sh restart
 chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
-
+````
 
 ############Restart Management Agents######################################
 /etc/init.d/hostd restart
