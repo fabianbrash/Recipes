@@ -1,4 +1,4 @@
-###VMware related info#####
+```VMware related info```
 
 ###REFS###################################################################################
 ##REF:https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.esxi.upgrade.doc/GUID-61A14EBB-5CF3-43EE-87EF-DB8EC6D83698.html
@@ -1385,4 +1385,17 @@ curl -v telnet://target ip address:desired port number
 curl -v telnet://127.0.0.1:22
 
 
+```VCSA or ESXi SHA footprint```
+
+````
+
+#VCSA
+openssl x509 -in /etc/vmware-vpx/ssl/rui.crt -fingerprint -sha1 -noout
+
+#ESXi
+openssl x509 -in /etc/vmware/ssl/rui.crt -fingerprint -sha1 -noout
+
+````
+
+[https://vmware.github.io/vic-product/assets/files/html/1.2/vic_vsphere_admin/obtain_thumbprint.html](https://vmware.github.io/vic-product/assets/files/html/1.2/vic_vsphere_admin/obtain_thumbprint.html)
 
