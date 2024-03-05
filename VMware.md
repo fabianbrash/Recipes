@@ -1450,7 +1450,7 @@ openssl x509 -in /etc/vmware/ssl/rui.crt -fingerprint -sha1 -noout
 No healthy Upstreams
 ````
 
-#### I logged into the Appliance I looked at some logs
+#### I logged into the Appliance so I could look at some logs
 
 ````
 cat /var/log/vmware/vpxd/vpxd.log
