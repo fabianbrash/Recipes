@@ -1437,3 +1437,41 @@ openssl x509 -in /etc/vmware/ssl/rui.crt -fingerprint -sha1 -noout
 
 [https://vmware.github.io/vic-product/assets/files/html/1.2/vic_vsphere_admin/obtain_thumbprint.html](https://vmware.github.io/vic-product/assets/files/html/1.2/vic_vsphere_admin/obtain_thumbprint.html)
 
+
+```vCenter Machine TLS cert expires```
+
+#### So this just happened to me, I purchases a TLS cert for the vCenter UI and it expired on 3-3-2024, when I attempted to log into vCenter I saw the below error message(s)
+
+````
+503 Service Unavailable
+
+#or
+
+No healthy Upstreams
+````
+
+#### I logged into the Appliance I looked at some logs
+
+````
+cat /var/log/vmware/vpxd/vpxd.log
+
+````
+
+#### And in the aboce log I saw error messages related to an expired certificate(Again I new this was the case). So how did I fix it, first I ran the below command to make sure only the 1 cert was expired
+
+````
+for store in $(/usr/lib/vmware-vmafd/bin/vecs-cli store list | grep -v TRUSTED_ROOT_CRLS); do echo "[*] Store :" $store; /usr/lib/vmware-vmafd/bin/vecs-cli entry list --store $store --text | grep -ie "Alias" -ie "Not After";done;
+
+````
+[https://kb.vmware.com/s/article/82332](https://kb.vmware.com/s/article/82332)
+
+#### And now I needed to just re-generate a Self-signed cert so the UI had a healthy certificate
+
+````
+/usr/lib/vmware-vmca/bin/certificate-manager #Option 3
+
+````
+
+#### In the above I chose option 3 as I just wanted a vanilla self-signed cert, once successful all services will get restarted and you should be able to log back into the vCenter UI
+
+[https://kb.vmware.com/s/article/2097936](https://kb.vmware.com/s/article/2097936)
