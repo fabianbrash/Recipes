@@ -159,3 +159,9 @@ nodeGroups:
 aws sts get-caller-identity
 ````
 
+```more aws commands```
+
+````
+aws iam create-user --user-name lucy
+
+````
