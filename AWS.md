@@ -164,4 +164,15 @@ aws sts get-caller-identity
 ````
 aws iam create-user --user-name lucy
 
+
+aws iam attach-user-policy --user-name mary --policy-arn arn:aws:iam::aws:policy/AdministratorAccess --endpoint-url http://aws:4566 #we are taking advantage of https://www.localstack.cloud/
+
+aws iam create-group --group-name project-sapphire-developers --endpoint-url http://aws:4566
+
+aws iam add-user-to-group --user-name jill --group-name project-sapphire-developers --endpoint-url http://aws:4566
+
+aws --endpoint http://aws:4566 iam list-attached-group-policies --group-name project-sapphire-developers
+
+aws --endpoint http://aws:4566 iam list-attached-user-policies --user-name jack
+
 ````
