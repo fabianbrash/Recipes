@@ -60,6 +60,8 @@ helm show values stable/mariadb > /tmp/mariadb.yaml
 ##You can then make changes to the outputted file and once you are satisfied
 
 helm install mariadb -f /tmp/mariadb.yaml stable/mariadb --namespace db
+
+helm install mariadb my-mariadb-chart/ --values my-mariadb-chart/values.yaml -f my-mariadb-chart/values-dev.yaml -n dev
 ````
 
 #### With helm we can also upgrade and rollback charts ref below
