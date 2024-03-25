@@ -77,3 +77,33 @@ And I think args:["arg1=true","--arg2=false"]
 
 
 [https://phoenixnap.com/kb/helm-install-command](https://phoenixnap.com/kb/helm-install-command)
+
+
+```create helm releases```
+
+````
+helm create demo
+
+helm install my-release demo/
+
+helm install my-release .  #if you are already in demo
+
+
+````
+
+
+```helm upgrade```
+
+````
+helm upgrade my-release .
+
+helm upgrade my-release demo/ --values demo/values.yaml
+
+````
+
+```helm rollback```
+
+````
+
+helm rollback my-release 1  #the 1 is the revision number you can see it with helm ls -a command
+````
