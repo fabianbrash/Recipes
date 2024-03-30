@@ -307,41 +307,54 @@ sudo xfs_growfs /
 
 [https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root](https://serverfault.com/questions/972385/xfs-growfs-is-not-a-mounted-xfs-filesystem-when-trying-to-grow-ol-root)
 
-##And that should work
-##You can also use lvextend to just add some not all space to the logical volume
+#### And that should work
+#### You can also use lvextend to just add some not all space to the logical volume
+
+````
 sudo lvextend -L8G(Check the docs)
+````
 
-##REF:https://unix.stackexchange.com/questions/284424/increasing-a-volume
-##REF:https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/
+[https://unix.stackexchange.com/questions/284424/increasing-a-volume](https://unix.stackexchange.com/questions/284424/increasing-a-volume)
 
-#####IF THE FILE SYSTEM IS NOT LVM THEN YOU CAN USE GPARTED########
-###REF:https://www.youtube.com/watch?v=cDgUwWkvuIY
+[https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/](https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/)
 
-############EXTEND PARTITION GPARTED###############################
+## IF THE FILE SYSTEM IS NOT LVM THEN YOU CAN USE GPARTED########
+
+[https://www.youtube.com/watch?v=cDgUwWkvuIY](https://www.youtube.com/watch?v=cDgUwWkvuIY)
+
+```EXTEND PARTITION GPARTED```
+
+````
 #boot into gparted
 ##if swap is on turn it off
 ##then extend the 'extended partition to fill up new space'
 ##then 'resize/move' the swap partition to the end
 ##then click on 'extended' and resize it to the end
 ##then click on your root partition and resize it
+````
 
-
-######MOUNT NFS####################
+```MOUNT NFS```
+````
 sudo apt install nfs-common
 su -
 mkdir /mynfs
 mount -t nfs serverIPorDNS:/mntpoint /mynfs
+````
 
+```MOUNT SMB SHARE```
 
-####MOUNT SMB SHARE############
+````
 sudo apt install cifs-utils
 #1. If your'e joined to a domain create a domain service account(smbtest)
 #2. Give Everyone full control for share access and then give the service account Modify or Full for NTFS
 #3. Now on linux
 #4. Make a directory for our mount point
 sudo /localmntpoint
+````
 
-##Add a user with UID of 5000
+## Add a user with UID of 5000
+
+````
 sudo useradd smbtest -u 5000
 sudo useradd smbtest -m ## Add user and create home directory
 ##Now create a group to add users to that will have access to
@@ -353,9 +366,11 @@ sudo mount.cifs \\\\server_DNS_OR_IP\\share /localmntpoint -o user=smbtest,uid=5
 ####NOTE THE DOMAIN IS VERY VERY IMPORTANT OR IT WILL FAIL, FOR ME THAT IS###########################
 ####NOTE FOR PERMISSIONS TO PROPAGATE PROPERLY MAKE CERTAIN THE USER ON WINDOWS MACHINE HAS A MATCHING ACCOUNT
 ####ON THE LINUX SYSTEM OR YOU WILL HAVE PERMISSION ISSUES##############
+````
 
+```MOUNT USB DRIVE```
 
-###MOUNT USB DRIVE################
+````
 sudo /mnt/USB ##create a mount point
 sudo fdisk -l ##find your device
 ##mount it
@@ -365,73 +380,90 @@ sudo mount /dev/sdb1 /mnt/USB
 sudo umount /dev/sdb1
 or
 sudo umount /mnt/USB
+````
 
-####PACKAGES WITH MULTIPLE .DEB FILES#############################
-##I ran into an isssue while attempting to install LibreOffice6, it came with a ton of .deb files
-##So I didn't know which one to start with, after reading the docs I found out you can do this.
+#### PACKAGES WITH MULTIPLE .DEB FILES
+
+#### I ran into an isssue while attempting to install LibreOffice6, it came with a ton of .deb files
+#### So I didn't know which one to start with, after reading the docs I found out you can do this.
+
+````
 cd /directorywithdebs
 sudo dpkg -i *.deb
 
 ##Simple
+````
+
+```ADD A NEW ROOT CA ON UBUNTU```
 
 
-###########ADD A NEW ROOT CA ON UBUNTU#############################
-####First let's make a directory for our root CA(s)
-###NOTE THIS WAS DONE USING UBUNTU 17.10
+#### First let's make a directory for our root CA(s)
+### NOTE THIS WAS DONE USING UBUNTU 17.10
 
+````
 sudo mkdir /usr/share/ca-certificates/extra ###extra being the name of our new folder
 ##Shouldn't the above be ??
 suod mkdir -p /usr/share/ca-certificates/extra
 sudo cp /certs/my.crt /usr/share/ca-certificates/extra
 sudo dpkg-reconfigure ca-certificates ##Follow prompts to add your new root CA
+````
 
-####NOTE: EVEN AFTER YOU'VE DONE THIS YOU WILL STILL HAVE TO ADD THE CERT(S) TO FIREFOX AND CHROME#####
+### NOTE: EVEN AFTER YOU'VE DONE THIS YOU WILL STILL HAVE TO ADD THE CERT(S) TO FIREFOX AND CHROME
 
-###########UPDATE SELECT PACKAGES##########################
-##So I had an interesting thing to happen I'm using a flavor of ubuntu called Pop_OS from System76
-##Usually I just run sudo apt update and then sudo apt ugrade -y but this time I kept getting an error in regards
-##To to libfreerdp so the system wouldn't just skip over that and install the rest of the packages.  So I needed
-##To upgrade/install specific packages.
+```UPDATE SELECT PACKAGES```
 
+#### So I had an interesting thing to happen I'm using a flavor of ubuntu called Pop_OS from System76, usually I just run sudo apt update and then sudo apt ugrade -y but this time I kept getting an error in regards
+
+#### To to libfreerdp so the system wouldn't just skip over that and install the rest of the packages.  So I needed to upgrade/install specific packages.
+
+````
 sudo apt install packagename
 
 ##For me I just ran apt list --upgradable and then select the packages I wanted to upgrade/install
 sudo apt install pop-shop -y ##This will upgrade to the latest version also
 sudo apt install -y pop-shop && sudo apt install -y udev ##this works also
+````
 
 
+```FIND PORTS THAT ARE BEING LISTENED ON```
 
-#################FIND PORTS THAT ARE BEING LISTENED ON#########################
-################THIS WOULD BE EASIER IF EVERYTHING WAS CONTAINERIZED#########
+### THIS WOULD BE EASIER IF EVERYTHING WAS CONTAINERIZED
 
+````
 sudo netstat -tulpn | grep LISTEN
 sudo lsof -i -P -n | grep LISTEN
+````
 
+```EXPORT PATH ZSH```
 
-###EXPORT PATH ZSH####################
-
+````
 export PATH=/home/david/pear/bin:$PATH
+````
 
+```Check SHA256 of a file```
 
-###Check SHA256 of a file#####################
-
+````
 sha256sum /dir/file/iso
+````
 
 
+```Add a user```
 
-##########Add a user##############
+````
 sudo adduser user ###Instead of useradd this is more user friendly it will create a home directory for you
+````
 
 
+```INSTALL DOCKER UBUNTU 18.04 LTS```
 
-#########INSTALL DOCKER UBUNTU 18.04 LTS########################################
-
+````
 ###NOTE DO NOT FOLLOW MY ABOVE INSTALL METHOD OR DOCKERS'
 sudo apt-get install -y docker.io  ##should be the latest stable build####
+````
 
 
-
-##Add folder to your $PATH zsh###
+```Add folder to your $PATH zsh```
+````
 vim ~user/.zshrc
 
 ###Add
@@ -442,29 +474,35 @@ echo $PATH
 
 ###On BASH something like this should work
 export PATH=/usr/local/go/bin:$PATH
+````
 
-##I need to check to see if the above would be permanent or like zsh there is a file we need to edit
+#### I need to check to see if the above would be permanent or like zsh there is a file we need to edit
 
-###Using find
+```Using find```
+
+````
 cd /
 sudo find . -name "*.go" ##find all golang files on the system
 sudo find . -name "go"   ##find anyting with go on the system
+````
 
+#### quick note I added a user to the docker group and when I logged off and back on again I still couldn't run docker commands so I found this
 
-####quick note I added a user to the docker group and when I logged off and back on again I still couldn't run
-####docker commands so I found this
-###REF:https://stackoverflow.com/questions/48568172/docker-sock-permission-denied
+[https://stackoverflow.com/questions/48568172/docker-sock-permission-denied](https://stackoverflow.com/questions/48568172/docker-sock-permission-denied)
 
+````
 newgrp docker
 
 ##Also you can do this
 usermod -aG docker username
 systemctl restart docker
+````
 
+```check sha256sum```
 
-###check sha256sum########
-
+````
 sha256sum ubuntu-9.10-dvd-i386.iso
+````
 
 ######ubuntu 16.04 more networking issues#########
 ##so I edited /etc/network/interface and I had to add the below
