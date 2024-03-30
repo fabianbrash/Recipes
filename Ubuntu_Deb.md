@@ -333,6 +333,30 @@ sudo lvextend -L8G(Check the docs)
 ##then click on your root partition and resize it
 ````
 
+```More disk expansion goodness```
+
+#### So even after using gparted to extend the logical volume you night still not see the storage when you run df -h this will resolve that
+
+````
+df -h
+
+sudo vgdisplay # We are looking for Alloc PE/Size vs Free PE/Size, mine showed Free  PE / Size       27577 / 107.72 GiB
+
+````
+
+#### From the above we can see that over 100 GB has not been added to the logical volume, so let's fix that
+
+````
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv #the /dev/ubuntu.. comes from sudo lvdisplay
+
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv # the /dev/mapper/.. comes from just running df -h
+
+````
+
+#### Everything should not be good and when you run df -h again you should now the new capacity, so gparted got us some of the just to the entire way
+
+[How to Extend Logical Volumes on Ubuntu Server](https://www.makeuseof.com/extend-logical-volumes-lvm-ubuntu-server/)
+
 ```MOUNT NFS```
 ````
 sudo apt install nfs-common
