@@ -318,7 +318,7 @@ sudo lvextend -L8G(Check the docs)
 
 [https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/](https://www.howtogeek.com/howto/40702/how-to-manage-and-use-lvm-logical-volume-management-in-ubuntu/)
 
-## IF THE FILE SYSTEM IS NOT LVM THEN YOU CAN USE GPARTED########
+## IF THE FILE SYSTEM IS NOT LVM THEN YOU CAN USE GPARTED
 
 [https://www.youtube.com/watch?v=cDgUwWkvuIY](https://www.youtube.com/watch?v=cDgUwWkvuIY)
 
