@@ -353,6 +353,27 @@ sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv # the /dev/mapper/.. comes from
 
 ````
 
+### So I've figured out why I had to do the above on 1 of my ubuntu 22.04 instance, it's the type of partition I guess how this would be considered, what I mean is the above had to done on an instance that uses LVM, but on the instance that did not use LVM gparted can do everything for you, so when I extended the partition in gparted and rebooted the machine and ran df -h, everything looked good
+
+```non-lvm instance```
+
+````
+/dev/sda1       124G   14G  111G  12% /
+````
+
+```lvm instance```
+
+````
+/dev/mapper/ubuntu--vg-ubuntu--lv  121G   12G  105G  10% /
+
+````
+
+#### The non lvm instance was actually downloaded directly from Ubuntu's repos
+
+[https://cloud-images.ubuntu.com/jammy/current/](https://cloud-images.ubuntu.com/jammy/current/)
+
+#### So is lvm not a good idea for server OS's and only good for the desktop flavor of Ubuntu??
+
 #### Everything should not be good and when you run df -h again you should now the new capacity, so gparted got us some of the just to the entire way
 
 [How to Extend Logical Volumes on Ubuntu Server](https://www.makeuseof.com/extend-logical-volumes-lvm-ubuntu-server/)
