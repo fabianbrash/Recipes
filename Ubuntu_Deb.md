@@ -636,13 +636,15 @@ sudo pip3 list
 sudo pip3 list --outdated  ## list all outdated packages
 ````
 
-##Once all this done I re-installed certbot with apt instead of snap then you will need to upgrade
-sudo pip3 install --upgrade certbot
+#### Once all this done I re-installed certbot with apt instead of snap then you will need to upgrade
 
+````
+sudo pip3 install --upgrade certbot
+````
 
 ```USING hostnamectl```
 
-[https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/] (https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/)
+[https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/](https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/)
 
 ### Please note all above commands require NetworkManager to be installed, which should be the default for centos installs
 
