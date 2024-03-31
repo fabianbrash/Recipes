@@ -549,60 +549,78 @@ systemctl restart docker
 sha256sum ubuntu-9.10-dvd-i386.iso
 ````
 
-######ubuntu 16.04 more networking issues#########
-##so I edited /etc/network/interface and I had to add the below
+```ubuntu 16.04 more networking issues```
+
+#### so I edited /etc/network/interface and I had to add the below
+
+````
 10.0.0.20/24
 255.255.255.0
 ##if you just added the subnet mask it wrongly assumed the network is a /8 why
 ##when the subnet says its a /24
+````
 
+```cgroups note everything below should work on most all distros```
 
-######cgroups note everything below should work on most all distros########
-##Reference this tutorial https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process
+[https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process](https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process)
 
+````
 cd /sys/fs/cgroup
+````
 
+```NETPLAN Ubuntu 18.04/19.04```
 
+[https://raw.githubusercontent.com/fabianbrash/YAML/master/01-netcfg.yaml](https://raw.githubusercontent.com/fabianbrash/YAML/master/01-netcfg.yaml)
 
-####NETPLAN Ubuntu 18.04/19.04
-##REF:https://raw.githubusercontent.com/fabianbrash/YAML/master/01-netcfg.yaml
-##REF:https://computingforgeeks.com/how-to-configure-static-ip-address-on-ubuntu/
+[https://computingforgeeks.com/how-to-configure-static-ip-address-on-ubuntu/](https://computingforgeeks.com/how-to-configure-static-ip-address-on-ubuntu/)
 
-##netplan is the new way of confguring IP's on ubuntu systems
+#### netplan is the new way of confguring IP's on ubuntu systems
 
+````
 cd /etc/netplan
 sudo vim 01-netcfg.yaml
 ##make changes as per references
 sudo netplan apply
+````
 
+```Down an interface tested on ubuntu 18.04```
 
-####Down an interface tested on ubuntu 18.04
-
+````
 ifconfig
 
 ip link set s1(or whatever interface you want down) down
+````
 
-##searching for what provides a package
-##this only works if the package is installed on your system
+```searching for what provides a package```
 
+#### this only works if the package is installed on your system
+
+````
 sudo dpkg -S which ping
 sudo dpkg -S which nslookup
+````
 
-##this is useful if you are using a docker image which has most packages removed and you need to add some back
+#### this is useful if you are using a docker image which has most packages removed and you need to add some back
 
 
-### So I ran into an issue when installing cerbot with snap on Ubuntu 20.04, the issue occured when I tried to install the route-53 dns
-##plugin with pip3 it found a conflict and tried to install an older version of acme and certbot, so deleted the snap version
-##but when I tried to delete the versions that pip had installed I received this odd error message
-##/usr/lib/python3/dist-packages, outside environment /usr
-##So I did a little Googling and found this
-##REF: https://askubuntu.com/questions/926911/unable-to-uninstall-programs-using-sudo-pip
+### So I ran into an issue when installing cerbot with snap on Ubuntu 20.04, the issue occured when I tried to install the route-53 dns plugin with pip3 it found a conflict and tried to install an older version of acme and certbot, so deleted the snap version but when I tried to delete the versions that pip had installed I received this odd error message
 
-##So run
 
+````/usr/lib/python3/dist-packages, outside environment /usr
+````
+
+#### So I did a little Googling and found this
+[https://askubuntu.com/questions/926911/unable-to-uninstall-programs-using-sudo-pip](https://askubuntu.com/questions/926911/unable-to-uninstall-programs-using-sudo-pip)
+
+##### So run
+
+````
 sudo dpkg -S certbot
+````
 
-##returned aa bunch of entries for python3-certbot so then
+#### returned aa bunch of entries for python3-certbot so then
+
+````
 sudo apt remove python3-certbot -y
 ##then I did the same for acme
 sudo dpkg -S acme
@@ -616,28 +634,40 @@ sudo pip3 list
 ##the above should no show both acme and certbot is gone
 
 sudo pip3 list --outdated  ## list all outdated packages
+````
 
 ##Once all this done I re-installed certbot with apt instead of snap then you will need to upgrade
 sudo pip3 install --upgrade certbot
 
 
-####USING hostnamectl REF: https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/#########
-###Please note all above commands require NetworkManager to be installed, which should be the default for centos installs##
+```USING hostnamectl```
+
+[https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/] (https://www.cyberciti.biz/faq/rhel-redhat-centos-7-change-hostname-command/)
+
+### Please note all above commands require NetworkManager to be installed, which should be the default for centos installs
+
+````
 hostnamectl status # list current host name
 hostnamectl set-hostname newhstname --static ##set new hostname
 sudo systemctl restart systemd-hostnamed  ##Restart service
+````
 
-###Give user sudo rights###
-##REF:https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart
+```Give user sudo rights```
 
+[https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart)
+
+````
 usermod -aG sudo sammy
+````
 
 
+```SETTING AND USING ENV VARS```
 
-########SETTING AND USING ENV VARS#################
-##set a var to some value
+#### set a var to some value
+
+````
 GIT_TAG=v0.7.6
-
+````
 ##Let's see it
 echo $GIT_TAG
 
