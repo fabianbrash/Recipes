@@ -654,7 +654,7 @@ sudo systemctl restart systemd-hostnamed  ##Restart service
 
 ```Give user sudo rights```
 
-[https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart](https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart)
+[https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart] (https://www.digitalocean.com/community/tutorials/how-to-create-a-new-sudo-enabled-user-on-ubuntu-18-04-quickstart)
 
 ````
 usermod -aG sudo sammy
@@ -780,6 +780,7 @@ netstat -anp | grep -i 2379 | grep ESTABLISHED | wc -l
 ## Fix broken deps you don't want to install
 ## REF:https://www.makeuseof.com/how-to-find-and-fix-broken-packages-on-linux/
 
+````
 sudo apt --fix-missing update
 
 sudo apt update
@@ -792,7 +793,7 @@ sudo apt clean
 ## echo out to /etc/hosts using tee
 
 echo '192.168.56.32  node-2' | sudo tee -a /etc/hosts
-
+````
 
 
 
