@@ -38,3 +38,17 @@ terraform show
 #### terraform variables are defined in a file called variables.tf
 
 [terraform variables](https://learn.hashicorp.com/tutorials/terraform/aws-variables?in=terraform/aws-get-started)
+
+
+```variables```
+
+
+````
+variable "instance_name" {
+  description = "Value of the Name tag for the EC2 instance"
+  type        = string
+  default     = "ExampleAppServerInstance"
+}
+
+
+````
