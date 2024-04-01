@@ -173,5 +173,9 @@ terraform state rm resource_to_remove  #then you can remove it from your terrafo
 
 terraform state mv resource_to_move
 
+terraform taint resource
+
+terraform untaint resource
+
 ````
 
