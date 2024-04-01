@@ -226,6 +226,8 @@ terraform untaint aws_instance.ProjectB
 terraform import aws_instance.webserver-2 <attribute>
 terraform import aws_instance.jade-mw i-10a49cef4b2cb75dc
 
+terraform get  #get remote modules from terraform
+
 ````
 
 ```debugging```
@@ -237,3 +239,27 @@ export TF_LOG_PATH=/tmp/ProjectA.log
 
 ````
 
+```terrafrom modules```
+
+
+````
+
+module "iam_iam-user" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.28.0"
+  # insert the 1 required variable here
+}
+
+````
+
+````
+module "iam_iam-user" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.28.0"
+  # insert the 1 required variable here
+  name = "max"
+  create_user = true
+  create_iam_access_key = false
+  create_iam_user_login_profile = false
+}
+````
