@@ -175,4 +175,6 @@ aws --endpoint http://aws:4566 iam list-attached-group-policies --group-name pro
 
 aws --endpoint http://aws:4566 iam list-attached-user-policies --user-name jack
 
+aws ec2 describe-instances --endpoint http://aws:4566
+
 ````
