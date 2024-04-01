@@ -228,6 +228,8 @@ terraform import aws_instance.jade-mw i-10a49cef4b2cb75dc
 
 terraform get  #get remote modules from terraform
 
+terraform console
+
 ````
 
 ```debugging```
