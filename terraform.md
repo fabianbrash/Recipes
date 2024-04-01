@@ -81,8 +81,49 @@ variable "instance_type" {
 resource "aws_instance" "cerberus" {
   ami = var.ami
   instance_type = var.instance_type
+  key_name = "cerberus"
+  user_data = file("./install-nginx.sh")
+
+#You can also use variable for key_name
+resource "aws_key_pair" "cerberus-key" {
+    key_name = "cerberus"
+    public_key = file(".ssh/cerberus.pub")
 }
 
+resource "aws_eip" "eip" {
+  instance = aws_instance.cerberus.id
+  vpc = true
+  provisioner "local-exec" {
+    command = "echo ${aws_eip.eip.public_dns} >> /root/cerberus_public_dns.txt"
+    
+  }
+}
+
+````
+
+#### Am example of install-nginx.sh
+
+````
+#!/bin/bash
+sudo yum update -y
+sudo yum install nginx -y
+sudo systemctl start nginx
+
+````
+
+##### For user_data we can also do this
+
+````
+resource "aws_instance" "cerberus" {
+  ami = var.ami
+  instance_type = var.instance_type
+  key_name = "cerberus"
+  user_data = <<-EOF
+              #!/bin/bash
+              sudo yum update -y
+              sudo yum install nginx -y
+              sudo systemctl start nginx
+              EOF
 ````
 
 #### An Example of a provider.tf file that uses a local version of the AWS API
@@ -112,6 +153,25 @@ provider "aws" {
 }
 
 [localStack](https://www.localstack.cloud/)
+
+````
+
+
+```useful commands```
+
+
+````
+terraform show
+
+terraform state list
+
+terraform state show my_resource
+
+terraform state pull  #pull remote state
+
+terraform state rm resource_to_remove  #then you can remove it from your terraform file i.e. main.tf or resources.tf
+
+terraform state mv resource_to_move
 
 ````
 
