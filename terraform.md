@@ -52,3 +52,66 @@ variable "instance_name" {
 
 
 ````
+
+```variables.tf```
+
+````
+variable "ami" {
+  type = string
+  default = "ami-06178cf087598769c"
+}
+
+variable "region" {
+    type = string
+    default = "eu-west-2"
+}
+
+variable "instance_type" {
+    type = string
+    default = "m5.large"
+}
+
+````
+
+#### Now we can consume those variables
+
+```main.tf```
+
+````
+resource "aws_instance" "cerberus" {
+  ami = var.ami
+  instance_type = var.instance_type
+}
+
+````
+
+#### An Example of a provider.tf file that uses a local version of the AWS API
+
+
+```provider.tf```
+
+
+````
+
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "4.15.0"
+    }
+  }
+}
+provider "aws" {
+  region                      = var.region
+  skip_credentials_validation = true
+  skip_requesting_account_id  = true
+
+  endpoints {
+    ec2 = "http://aws:4566"
+  }
+}
+
+[localStack](https://www.localstack.cloud/)
+
+````
+
