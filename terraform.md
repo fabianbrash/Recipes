@@ -81,6 +81,10 @@ variable "instance_type" {
 resource "aws_instance" "cerberus" {
   ami = var.ami
   instance_type = var.instance_type
+  tags = {
+        Name = "projectb_webserver"
+        Description = "Oversized Webserver"
+    }
   key_name = "cerberus"
   user_data = file("./install-nginx.sh")
 
@@ -176,6 +180,17 @@ terraform state mv resource_to_move
 terraform taint resource
 
 terraform untaint resource
+
+terraform untaint aws_instance.ProjectB
+
+````
+
+```debugging```
+
+
+````
+export TF_LOG
+export TF_LOG_PATH=/tmp/ProjectA.log
 
 ````
 
