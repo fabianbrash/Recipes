@@ -224,6 +224,7 @@ terraform untaint resource
 terraform untaint aws_instance.ProjectB
 
 terraform import aws_instance.webserver-2 <attribute>
+terraform import aws_instance.jade-mw i-10a49cef4b2cb75dc
 
 ````
 
