@@ -879,6 +879,8 @@ sudo apt install -y ubuntu-drivers-common
 
 ubuntu-drivers devices
 
+ubuntu-drivers list --gpgpu
+
 sudo ubuntu-drivers autoinstall
 ````
 
