@@ -858,3 +858,28 @@ sudo lvresize ubuntu-vg/ubuntu-lv -L +35g  #From the info you get from pvdisplay
 sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv  # again we can see the name from the df -h command
 
 ````
+
+
+```pci/gpu work```
+
+##### list all pci devices
+
+````
+sudo lspci
+
+sudo lshw -numeric -C display
+
+sudo lspci -vnn | grep VGA
+````
+
+````
+sudo apt search nvidia-driver
+
+sudo apt install -y ubuntu-drivers-common
+
+ubuntu-drivers devices
+
+sudo ubuntu-drivers autoinstall
+````
+
+
