@@ -1,11 +1,17 @@
-##REFS###########
+```REFS```
 
-###REF:https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples
+[https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples)
+
 #REF:https://docs.docker.com/engine/reference/builder/#escape
+
 #REF:https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+
 #REF:https://medium.com/@sebagomez/windows-containers-personal-cheat-sheet-95c1c4d6bdf5
+
 #REF:https://www.red-gate.com/simple-talk/sysadmin/containerization/working-windows-containers-docker-save-data/
+
 #REF:https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process
+
 #REF:https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
 
 
