@@ -173,9 +173,11 @@ EXPOSE 80
 ````
 
 
-######SAMPLE DOCKER COMPOSE FILE################################
-######docker-compose.yml#######################################
+```SAMPLE DOCKER COMPOSE FILE```
 
+```docker-compose.yml```
+
+````
 version: '2'
 
 services:
@@ -188,33 +190,49 @@ services:
     image: redis:3.2.8-alpine
     ports:
       - "6379:6379"
+````
       
-######################END CONTENT###########################################################
-##Then Run##
+##### Then Run
+
+````
 sudo docker-compose up -d
+````
 
-##Take down stack###
+##### Take down stack
+
+````
 sudo docker-compose down
-
-########PLEASE NOTE SPACING IS VERY VERY VERY VERY VERY IMPORTANT WITH YML FILES#############
-
-####The above example would launch a stack of 2 services, a nginx web server listening on port 3000 and a cache service that run
-####redis on it's standard port of 6379
-###Note 'image' and 'ports' must lineup as well as 'volumes' etc...
+````
 
 
-#####INSTALL DOCKER WINDOWS SERVER 2016#########################
-#####Note I installed this on Server 2016 core
-###Source: https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server
-##Get a Powershell Prompt
+###### PLEASE NOTE SPACING IS VERY VERY VERY VERY VERY IMPORTANT WITH YML FILES
+
+#### The above example would launch a stack of 2 services, a nginx web server listening on port 3000 and a cache service that run
+#### redis on it's standard port of 6379
+#### Note 'image' and 'ports' must lineup as well as 'volumes' etc...
+
+
+```INSTALL DOCKER WINDOWS SERVER 2016```
+
+##### Note I installed this on Server 2016 core
+
+[https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server)
+
+#### Get a Powershell Prompt
+
+````
 PS> Install-Module -Name DockerMsftProvider -Repository PSGallery -Force
 PS> Install-Package -Name docker -ProviderName DockerMsftProvider (Select 'A')
 PS> Restart-Computer -Force
+````
+#### Get Installed Version
 
-###Get Installed Version
+````
 PS> Get-Package -Name Docker -ProviderName DockerMsftProvider
 ##Get Current Version from Repo
 PS> Find-Package -Name Docker -ProviderName DockerMsftProvider
+````
+
 
 ###Upgrade Docker##################
 PS> Install-Package -Name Docker -ProviderName DockerMsftProvider -Update -Force
