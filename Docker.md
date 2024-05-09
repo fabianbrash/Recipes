@@ -103,7 +103,9 @@ sudo docker run -d --name container1 --network=br0 mongo
 ````
 
 
-#####GETTING DOCKER ON CENTOS7.X#########################################
+```GETTING DOCKER ON CENTOS7.X```
+
+````
 ###FIRST REMOVE THE OLD DOCKER IF YOU HAVE IT#####################
 sudo yum remove docker docker-common container-selinux docker-selinux docker-engine
 
@@ -118,22 +120,32 @@ sudo yum-config-manager --enable docker-ce-edge
 
 ###DISABLE EDGE BUILDS#################
 sudo yum-config-manager --disable docker-ce-edge
+````
 
-################PLEASE NOTE##################3
+```PLEASE NOTE```
+
+````
 #if you installed docker with the below command
 sudo yum install docker -y
 #####and then you remove it and intalled with the following command
 sudo yum install -y docker-ce
 ###MAKE CERTAIN TO DELETE ALL IMAGES PRIOR AS YOU MIGHT HAVE ISSUES DELETING IMAGES THAT WERE PULLED FROM THE FIRST INSTALL###
+````
 
-###INSTALL INSTRUCTIONS FOR CENTOS#####
-#https://docs.docker.com/engine/installation/linux/centos/#install-using-the-repository
+```INSTALL INSTRUCTIONS FOR CENTOS```
 
-#####RPM's are here###############
-#https://download.docker.com/linux/centos/7/x86_64/stable/Packages/
+[https://docs.docker.com/engine/installation/linux/centos/#install-using-the-repository](https://docs.docker.com/engine/installation/linux/centos/#install-using-the-repository)
 
 
-######BUILDING YOUR FIRST DOCKER IMAGES##########################
+```RPM's are here```
+
+
+[https://download.docker.com/linux/centos/7/x86_64/stable/Packages/](https://download.docker.com/linux/centos/7/x86_64/stable/Packages/)
+
+
+```BUILDING YOUR FIRST DOCKER IMAGES```
+
+````
 sudo docker build -t firstimage . (the . denotes where your Dockerfile is in this case in the current working directory)
 
 ####Now let's push it to docker hub#############
@@ -144,19 +156,21 @@ docker tag firstimage your_docker_username/firstimage:1.0
 
 ##now let's push it
 docker push your_docker_username/firstimage:1.0
+````
 
+```SAMPLE DOCKER FILE```
 
-##########SAMPLE DOCKER FILE#####################
-
+````
 FROM php:7.1.3-apache
 COPY src/ /var/www/html/
 EXPOSE 80
+````
 
-
+````
 FROM nginx:1.11.13-alpine
 COPY /html5up-forty/ /usr/share/nginx/html
 EXPOSE 80
-
+````
 
 
 ######SAMPLE DOCKER COMPOSE FILE################################
