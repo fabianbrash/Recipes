@@ -2,47 +2,69 @@
 
 [https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples](https://github.com/MicrosoftDocs/Virtualization-Documentation/tree/master/windows-container-samples)
 
-#REF:https://docs.docker.com/engine/reference/builder/#escape
+[https://docs.docker.com/engine/reference/builder/#escape](https://docs.docker.com/engine/reference/builder/#escape)
 
-#REF:https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile
+[https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile](https://docs.microsoft.com/en-us/virtualization/windowscontainers/manage-docker/manage-windows-dockerfile)
 
-#REF:https://medium.com/@sebagomez/windows-containers-personal-cheat-sheet-95c1c4d6bdf5
+[https://medium.com/@sebagomez/windows-containers-personal-cheat-sheet-95c1c4d6bdf5](https://medium.com/@sebagomez/windows-containers-personal-cheat-sheet-95c1c4d6bdf5)
 
-#REF:https://www.red-gate.com/simple-talk/sysadmin/containerization/working-windows-containers-docker-save-data/
+[https://www.red-gate.com/simple-talk/sysadmin/containerization/working-windows-containers-docker-save-data/](https://www.red-gate.com/simple-talk/sysadmin/containerization/working-windows-containers-docker-save-data/)
 
-#REF:https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process
+[https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process](https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process)
 
-#REF:https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes
+[https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes)
 
 
-####URLs#################################
-https://getcarina.com/docs/tutorials/data-volume-containers/
+```URLs```
 
-#################Get an image#################################
+[https://getcarina.com/docs/tutorials/data-volume-containers/](https://getcarina.com/docs/tutorials/data-volume-containers/)
+
+```Get an image```
+
+````
 docker pull 'image name'
+````
 
-##########Spawn a container from an image#################
+```Spawn a container from an image```
+
+````
 docker run 'image name'
+````
 
-###############List all containers###########
+```List all containers```
+
+````
 docker ps
 docker ps -a (List even containers that are not running)
+````
 
-#########List volumes##############
+```List volumes```
+
+````
 docker volume ls
-##########Stop Container##############
-docker stop 'container ID or container name'
+````
 
-#######Delete Container###########
+```Stop Container```
+
+````
+docker stop 'container ID or container name'
+````
+
+```Delete Container```
+
+````
 docker rm 'container ID or container name' -f(force)
 ####Delete an image#########
 docker rmi 'image name | ID' -f
 
 sudo docker stats
+````
 
-######The rest can be found around the web#############
+```The rest can be found around the web```
 
-#####NOW let's do something interesting##########
+#### NOW let's do something interesting
+
+````
 docker run --name mycontainer --hostname mycontainer.org -d -p 80:80 --restart always --volume /srv/myapp/folderA:/opt/myapp/folderA:Z --volume /srv/myapp/folderB:/opt/myapp/folderB:Z 'image name or image ID'
 ####What's happing here
 #### we are running a container with a friendly name of mycontainer and a hostname of mycontainer.org it's also detached(-d) and we are
@@ -60,17 +82,26 @@ now we can do this
 docker run --name myapp --volumes-from=data
 For me the above is a more complex way of adding persistence to a container I prefer using the vm as the DVC so I just need to backup
 the VM.
+````
 
-######Shell into a container
+```Shell into a container```
+
+````
 docker exec -it 'containerID or name' /bin/bash
 exit to quit
 
 ###also###
 docker run -it --rm --name login local/loginui:1.0 sh
+````
 
-#######LET'S SETUP SOME NETWORKING IN DOCKER#########################
+
+```LET'S SETUP SOME NETWORKING IN DOCKER```
+
+````
 sudo docker create network --driver=bridge br0
 sudo docker run -d --name container1 --network=br0 mongo
+````
+
 
 #####GETTING DOCKER ON CENTOS7.X#########################################
 ###FIRST REMOVE THE OLD DOCKER IF YOU HAVE IT#####################
