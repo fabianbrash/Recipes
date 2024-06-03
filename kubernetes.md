@@ -235,6 +235,9 @@ kubectl config current-context
 
 ####Now switch to prod
 kubectl config use-context prod
+
+##Set context to ns elastic-stack
+kubectl config set-context --current --namespace=elastic-stack
 ````
 
 
