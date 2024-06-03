@@ -1944,3 +1944,110 @@ spec:
   maxReplicas: 3
   targetCPUUtilizationPercentage: 80
 ````
+
+```Securing EFK```
+
+#### Add the below under env for you es statefulset yaml
+
+````
+env:
+- name: discovery.type
+  value: single-node
+- name: ES_JAVA_OPTS
+  value: "-Xms1g -Xmx1g"
+- name: xpack.security.enabled
+  value: "true"
+- name: xpack.security.transport.ssl.enabled
+  value: "true"
+````
+
+````
+kubectl apply -f es-statefulset.yaml
+````
+
+#### We need to exec into the container to change the PW
+
+````
+kubectl exec -it elasticsearch-0 -- bin/elasticsearch-users useradd elastic_user -r superuser -p elasticPass123
+````
+
+##### This will break Kibana so we need to update it's YAML with the username and password
+
+````
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  namespace: elastic-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        image: docker.elastic.co/kibana/kibana:7.1.0
+        ports:
+        - containerPort: 5601
+        env:
+        - name: ELASTICSEARCH_USERNAME
+          value: "elastic_user"
+        - name: ELASTICSEARCH_PASSWORD
+          value: "elasticPass123"
+````
+
+````
+kubectl apply -f kibana-deployment.yaml
+````
+
+```networkPolicy.yaml```
+
+````
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: efk-stack-policy
+  namespace: elastic-stack
+spec:
+  podSelector:
+    matchLabels: {}
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector: {}
+      namespaceSelector:
+        matchLabels:
+          name: elastic-stack
+  egress:
+  - to:
+    - podSelector: {}
+      namespaceSelector:
+        matchLabels:
+          name: elastic-stack
+````
+
+#### Now fluentd is broken because we are now using a password, so let's fix that
+
+#### Turn on SSL/TLS and add username and password
+
+```/fluentd/etc/fluentd.conf```
+
+##### Scroll down to the <match **>
+
+````
+ssl_verify true
+ssl_version TLSv1_2
+user elastic_user
+password elasticPass123
+````
+
+````
+k delete <FLUENTD_POD>
+````
