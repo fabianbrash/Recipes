@@ -964,6 +964,7 @@ kubectl get secret hello-world-default-user -o jsonpath='{.data.username}' | bas
 ````
 
 
+
 ```kubectl debug```
 
 
@@ -975,3 +976,222 @@ kubectl debug node/mynode -it --image=ubuntu
 ````
 
 [https://kubernetes.io/docs/tasks/debug/debug-cluster/kubectl-node-debug/](https://kubernetes.io/docs/tasks/debug/debug-cluster/kubectl-node-debug/)
+
+
+
+```kodekloud efk course```
+
+
+````
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-elasticsearch
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /data/elasticsearch
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch
+  namespace: elastic-stack
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+  - port: 9200
+    targetPort: 9200
+    nodePort: 30200  
+    name: port1
+
+  - port: 9300
+    targetPort: 9300
+    nodePort: 30300  
+    name: port2
+  type: NodePort
+
+````
+
+```elastic search stafefuleset```
+
+````
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+  namespace: elastic-stack  
+spec:
+  serviceName: "elasticsearch"
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+        ports:
+        - containerPort: 9200
+          name: port1
+        - containerPort: 9300
+          name: port2
+        env:
+        - name: discovery.type
+          value: single-node
+        volumeMounts:
+        - name: es-data
+          mountPath: /usr/share/elasticsearch/data
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
+        securityContext:
+            privileged: true
+        volumeMounts:
+        - name: es-data
+          mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+  - metadata:
+      name: es-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 5Gi
+
+````
+
+```Fluentd directives```
+
+1. source: Input sources.
+2. match: Output destinations.
+3. filter: Event processing pipelines.
+4. system: System-wide configuration.
+5. label: Group the output and filter for internal routing.
+6. worker: Limit to the specific workers.
+7. @include: Include other files.
+
+
+````
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd
+  namespace: elastic-stack
+  labels:
+    app: fluentd
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: fluentd
+  labels:
+    app: fluentd
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: fluentd
+roleRef:
+  kind: ClusterRole
+  name: fluentd
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: fluentd
+  namespace: elastic-stack
+---
+
+````
+
+
+```fluent.conf```
+
+````
+<label @FLUENT_LOG>
+  <match fluent.**>
+    @type null
+    @id ignore_fluent_logs
+  </match>
+</label>
+<source>
+  @type tail
+  @id in_tail_container_logs
+  path "/var/log/containers/*.log"
+  pos_file "/var/log/fluentd-containers.log.pos"
+  tag "kubernetes.*"
+  exclude_path /var/log/containers/fluent*
+  read_from_head true
+  <parse>
+    @type "/^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/"
+    time_format "%Y-%m-%dT%H:%M:%S.%NZ"
+    unmatched_lines
+    expression ^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$
+    ignorecase false
+    multiline false
+  </parse>
+</source>
+<match **>
+  @type elasticsearch
+  @id out_es
+  @log_level "info"
+  include_tag_key true
+  host "elasticsearch.elastic-stack.svc.cluster.local"
+  port 9200
+  path ""
+  scheme http
+  ssl_verify false
+  ssl_version TLSv1_2
+  user
+  password xxxxxx
+  reload_connections false
+  reconnect_on_error true
+  reload_on_failure true
+  log_es_400_reason false
+  logstash_prefix "fluentd"
+  logstash_dateformat "%Y.%m.%d"
+  logstash_format true
+  index_name "logstash"
+  target_index_key
+  type_name "fluentd"
+  include_timestamp false
+  template_name
+  template_file
+  template_overwrite false
+  sniffer_class_name "Fluent::Plugin::ElasticsearchSimpleSniffer"
+  request_timeout 5s
+  application_name default
+  suppress_type_name true
+  enable_ilm false
+  ilm_policy_id logstash-policy
+  ilm_policy {}
+  ilm_policy_overwrite false
+  <buffer>
+    flush_thread_count 8
+    flush_interval 5s
+    chunk_limit_size 2M
+    queue_limit_length 32
+    retry_max_interval 30
+    retry_forever true
+  </buffer>
+</match>
+
+````
