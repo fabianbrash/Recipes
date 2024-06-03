@@ -1499,3 +1499,156 @@ curl -X GET "http://localhost:30200/_template"
 #UI
 Dev Tools > console > "GET _cat/templates"
 ````
+
+```monitoring and alerting efk```
+
+
+[https://github.com/prometheus-community/elasticsearch_exporter/releases](https://github.com/prometheus-community/elasticsearch_exporter/releases)
+
+
+````
+wget https://github.com/prometheus-community/elasticsearch_exporter/releases/download/v1.7.0/elasticsearch_exporter-1.7.0.linux-amd64.tar.gz
+
+tar xzf elasticsearch_exporter-1.7.0.linux-amd64.tar.gz -C ./
+
+nohup ./elasticsearch_exporter --es.uri="http://localhost:30200" &
+
+curl http://localhost:9114/metrics
+````
+
+```Setup Prometheus```
+
+
+````
+mkdir prometheus && cd prometheus
+wget https://github.com/prometheus/prometheus/releases/download/v2.51.1/prometheus-2.51.1.linux-amd64.tar.gz
+
+tar xzf prometheus-2.51.1.linux-amd64.tar.gz -C ./
+
+````
+
+#### Add to the prometheus.yml file
+
+````
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+   - "rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: "prometheus"
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ["localhost:9090"]
+
+- job_name: "elasticsearch"
+  static_configs:
+  - targets: ["localhost:9114"]
+
+````
+
+##### note we added the elasticsearch job, then
+
+
+````
+nohup ./prometheus --config.file=prometheus.yml &
+````
+
+
+```grafana```
+
+
+````
+wget https://dl.grafana.com/enterprise/release/grafana-enterprise-10.4.1.linux-amd64.tar.gz
+
+tar xzf grafana-enterprise-10.4.1.linux-amd64.tar.gz -C ./
+
+cd 'GRAFANA_FOLDER'
+
+nohup ./bin/grafana-server &
+
+````
+
+
+##### let's create a prometheus rule
+
+```rules.yml```
+
+````
+groups:
+- name: elasticsearch
+  rules:
+  - alert: HighElasticsearchHeapUsage
+    expr: elasticsearch_jvm_memory_used_bytes{job="elasticsearch"} / elasticsearch_jvm_memory_max_bytes{job="elasticsearch"} > 0.05
+    for: 2m
+    labels:
+      severity: critical
+    annotations:
+      summary: "High Elasticsearch heap usage (instance {{ $labels.instance }})"
+      description: "Elasticsearch instance {{ $labels.instance }} has high heap usage ({{ $value }} bytes used) for more than 2 minutes."
+````
+
+#### Add the new rules file to the prometheus.yml file under rules, which is an array, I've made the changes above
+
+#### Find and kill prometheus process
+
+````
+ps aux | grep prometheus
+
+kill -9 18426
+
+nohup ./prometheus --config.file=prometheus.yml &
+````
+
+```download and configure alertmanager```
+
+````
+wget https://github.com/prometheus/alertmanager/releases/download/v0.27.0/alertmanager-0.27.0.linux-amd64.tar.gz
+
+tar xzf alertmanager-0.27.0.linux-amd64.tar.gz -C ./
+
+cd 'ALERT_MANAGER_FOLDER'
+
+nohup ./alertmanager --config.file=alertmanager.yml &
+
+ps aux | grep prometheus
+
+kill -9 24426
+
+````
+
+##### By default alertmanager runs on port 9093
+
+##### Edit your prometheus.yml file and point to correct alert manager location, sample below
+
+````
+alerting:
+   alertmanagers:
+      - static_configs:
+            - targets: ["localhost:9093"]
+````
+
+##### Start back up prometheus
+
+````
+nohup ./prometheus --config.file=prometheus.yml &
+````
