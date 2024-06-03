@@ -1,5 +1,5 @@
 
-#### My kubernetes journey
+```My kubernetes journey```
 
 [https://kubernetes.io/docs/tasks/](https://kubernetes.io/docs/tasks/)
 
@@ -1266,4 +1266,44 @@ spec:
         hostPath:
           path: /root/fluentd/etc
 
+````
+
+
+```kibana```
+
+````
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  namespace: elastic-stack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        image: docker.elastic.co/kibana/kibana:7.1.0
+        ports:
+        - containerPort: 5601
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+  namespace: elastic-stack
+spec:
+  type: NodePort
+  selector:
+    app: kibana
+  ports:
+  - protocol: TCP
+    port: 5601
+    nodePort: 30601
 ````
