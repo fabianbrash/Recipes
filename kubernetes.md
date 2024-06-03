@@ -1307,3 +1307,195 @@ spec:
     port: 5601
     nodePort: 30601
 ````
+
+
+```Optimizations```
+
+
+#### Custom Fluentd plugin
+
+
+```filter_my_custom_filter.rb```
+
+
+````
+require 'fluent/plugin/filter'
+
+class Fluent::Plugin::MyCustomFilter < Fluent::Plugin::Filter
+  Fluent::Plugin.register_filter('my_custom_filter', self)
+
+  config_param :additional_data, :string, default: 'static_info'
+
+  def filter(tag, time, record)
+    record['additional_data'] = @additional_data
+    record
+  end
+end
+````
+
+#### Add this to your conf file, note we use the below file structure
+
+````
+fluentd
+|
+| etc
+  > fluentd.conf
+|
+| plugins
+ > filter_my_custom_filter.rb
+````
+
+````
+<filter **>
+  @type my_custom_filter
+  additional_data static_info
+</filter>
+````
+
+##### And to apply our changes
+
+````
+kubectl delete ds fluentd
+
+````
+
+##### Updated YAML
+
+````
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: elastic-stack
+  labels:
+    app: fluentd
+spec:
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        image: fluent/fluentd-kubernetes-daemonset:v1.14.1-debian-elasticsearch7-1.0
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            value: "elasticsearch.elastic-stack.svc.cluster.local"
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200"
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            value: "http"
+          - name: FLUENTD_SYSTEMD_CONF
+            value: disable
+          - name: FLUENT_CONTAINER_TAIL_EXCLUDE_PATH
+            value: /var/log/containers/fluent*
+          - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+            value: "false"
+          - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+            value: /^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/ 
+          - name:  FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+            value: "fluentd"
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: configpath
+          mountPath: /fluentd/etc
+        - name: pluginpath
+          mountPath: /fluentd/plugins
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: configpath
+        hostPath:
+          path: /root/fluentd/etc
+      - name: pluginpath
+        hostPath:
+          path: /root/fluentd/plugins
+
+````
+
+
+```elastic search```
+
+```ILM```
+
+```my_ilm.json```
+
+````
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "actions": {
+          "rollover": {
+            "max_size": "5GB",
+            "max_age": "30d"
+          }
+        }
+      },
+      "delete": {
+        "min_age": "90d",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}
+
+````
+
+#### Apply with
+
+````
+curl -X PUT "http://localhost:30200/_ilm/policy/my_logs_policy" -H 'Content-Type: application/json' -d @my_ilm.json
+
+##Verify
+curl -X GET "http://localhost:30200/_ilm/policy"
+````
+
+```my_logs_template.json```
+
+````
+{
+  "index_patterns": ["fluentd-*"],
+  "settings": {
+    "index.lifecycle.name": "my_logs_policy",
+    "index.lifecycle.rollover_alias": "my-logs"
+  }
+}
+
+````
+
+#### Apply with
+
+````
+curl -X PUT "http://localhost:30200/_template/my_logs_template" -H 'Content-Type: application/json' -d @my_logs_template.json
+
+##validate
+curl -X GET "http://localhost:30200/_template"
+#UI
+Dev Tools > console > "GET _cat/templates"
+````
