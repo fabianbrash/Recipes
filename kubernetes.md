@@ -1652,3 +1652,295 @@ alerting:
 ````
 nohup ./prometheus --config.file=prometheus.yml &
 ````
+
+```SCALING```
+
+##### Add a new index
+
+````
+curl -X PUT "http://localhost:30200/myindex" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "number_of_shards": 5
+  }
+}'
+
+````
+
+##### Migrate data from old index to new one
+
+````
+curl -X POST "http://localhost:30200/_reindex" -H 'Content-Type: application/json' -d'
+{
+  "source": {
+    "index": "fluentd-2024.06.03"
+  },
+  "dest": {
+    "index": "myindex"
+  }
+}'
+````
+
+#### Let's tune fluentd, by adding buffer info
+
+```updated fluentd.conf```
+
+
+````
+<label @FLUENT_LOG>
+  <match fluent.**>
+    @type null
+    @id ignore_fluent_logs
+  </match>
+</label>
+<source>
+  @type tail
+  @id in_tail_container_logs
+  path "/var/log/containers/*.log"
+  pos_file "/var/log/fluentd-containers.log.pos"
+  tag "kubernetes.*"
+  exclude_path /var/log/containers/fluent*
+  read_from_head true
+  <parse>
+    @type "/^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/"
+    time_format "%Y-%m-%dT%H:%M:%S.%NZ"
+    unmatched_lines
+    expression ^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$
+    ignorecase false
+    multiline false
+  </parse>
+</source>
+<match **>
+  @type elasticsearch
+  @id out_es
+  @log_level "info"
+  include_tag_key true
+  host "elasticsearch.elastic-stack.svc.cluster.local"
+  port 9200
+  path ""
+  scheme http
+  ssl_verify false
+  ssl_version TLSv1_2
+  user
+  password xxxxxx
+  reload_connections false
+  reconnect_on_error true
+  reload_on_failure true
+  log_es_400_reason false
+  logstash_prefix "fluentd"
+  logstash_dateformat "%Y.%m.%d"
+  logstash_format true
+  index_name "logstash"
+  target_index_key
+  type_name "fluentd"
+  include_timestamp false
+  template_name
+  template_file
+  template_overwrite false
+  sniffer_class_name "Fluent::Plugin::ElasticsearchSimpleSniffer"
+  request_timeout 5s
+  application_name default
+  suppress_type_name true
+  enable_ilm false
+  ilm_policy_id logstash-policy
+  ilm_policy {}
+  ilm_policy_overwrite false
+  <buffer>
+    flush_thread_count 8
+    flush_interval 5s
+    chunk_limit_size 2M
+    queue_limit_length 32
+    retry_max_interval 30
+    retry_forever true
+  </buffer>
+</match>
+````
+
+##### Note the addition of the <buffer> derictive
+
+````
+kubectl delete <FLUENTD_POD>
+````
+
+##### Create a RS for fluentd, I've never seen this before, fluentd is a DS but now we are creating a RS on top...
+
+````
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: fluentd-replicaset
+  namespace: elastic-stack
+  labels:
+    app: fluentd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fluentd
+  template:
+    metadata:
+      labels:
+        app: fluentd
+    spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        image: fluent/fluentd-kubernetes-daemonset:v1.14.1-debian-elasticsearch7-1.0
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            value: "elasticsearch.elastic-stack.svc.cluster.local"
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200"
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            value: "http"
+          - name: FLUENTD_SYSTEMD_CONF
+            value: disable
+          - name: FLUENT_CONTAINER_TAIL_EXCLUDE_PATH
+            value: /var/log/containers/fluent*
+          - name: FLUENT_ELASTICSEARCH_SSL_VERIFY
+            value: "false"
+          - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+            value: /^(?<time>.+) (?<stream>stdout|stderr)( (?<logtag>.))? (?<log>.*)$/ 
+          - name:  FLUENT_ELASTICSEARCH_LOGSTASH_PREFIX
+            value: "fluentd"
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+          readOnly: true
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: configpath
+          mountPath: /fluentd/etc
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: configpath
+        hostPath:
+          path: /root/fluentd/etc
+````
+
+````
+kubectl get pods -l app=fluentd
+````
+
+#### We can also scale up elasticsearch statefulset
+
+````
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+  namespace: elastic-stack  
+spec:
+  serviceName: "elasticsearch"
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.1.0
+        resources:
+          requests:
+            cpu: "250m"
+          limits:
+            cpu: "500m"
+        ports:
+        - containerPort: 9200
+          name: port1
+        - containerPort: 9300
+          name: port2
+        env:
+        - name: discovery.type
+          value: single-node
+        volumeMounts:
+        - name: es-data
+          mountPath: /usr/share/elasticsearch/data
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
+        securityContext:
+            privileged: true
+        volumeMounts:
+        - name: es-data
+          mountPath: /usr/share/elasticsearch/data
+  volumeClaimTemplates:
+  - metadata:
+      name: es-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 5Gi
+````
+
+````
+k apply -f es-statefulset.yaml
+
+kubectl get statefulset elasticsearch -n elastic-stack -o jsonpath='{.spec.template.spec.containers[].resources}'
+````
+
+```HPA```
+
+#### metrics-server is required for this to work, but if you have a hald decent platform this is installed for you, if not
+
+````
+wget https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.5.0/components.yaml
+
+````
+
+#### Edit component.yaml before applying to add kubeelete-insecure
+
+````
+spec:
+      containers:
+      - args:
+        - --cert-dir=/tmp
+        - --secure-port=443
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+````
+
+````
+k apply -f component.yaml
+
+kubectl get pods -n kube-system
+````
+
+````
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: elasticsearch-autoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: elasticsearch
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+````
