@@ -107,5 +107,11 @@ helm upgrade my-release demo/ --values demo/values.yaml
 
 ````
 
+```get tgz of a helm chart```
+
+````
+helm pull jenkins/jenkins --version 5.1.26
+````
+
 helm rollback my-release 1  #the 1 is the revision number you can see it with helm ls -a command
 ````
