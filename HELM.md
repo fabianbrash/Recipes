@@ -57,6 +57,8 @@ helm show values stable/mariadb
 
 helm show values stable/mariadb > /tmp/mariadb.yaml
 
+helm show values jenkins/jenkins --version 5.1.26 > values.yaml
+
 ##You can then make changes to the outputted file and once you are satisfied
 
 helm install mariadb -f /tmp/mariadb.yaml stable/mariadb --namespace db
