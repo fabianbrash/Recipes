@@ -884,4 +884,11 @@ ubuntu-drivers list --gpgpu
 sudo ubuntu-drivers autoinstall
 ````
 
+```tar```
+
+##### untar .bz2
+
+````
+tar -xvjf rctl-linux-amd64.tar.bz2
+````
 
