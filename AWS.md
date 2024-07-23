@@ -178,3 +178,10 @@ aws --endpoint http://aws:4566 iam list-attached-user-policies --user-name jack
 aws ec2 describe-instances --endpoint http://aws:4566
 
 ````
+
+```get eks kubeconfig```
+
+````
+
+aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster
+````
