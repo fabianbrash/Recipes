@@ -924,3 +924,16 @@ sudo reboot now
 ````
 
 [https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/](https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/)
+
+
+```ext4 Azure VM```
+
+[https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
+
+
+##### Note when I did this my disk changed from sdc1 to sda1??
+
+````
+lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+
+````
