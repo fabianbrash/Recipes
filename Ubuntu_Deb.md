@@ -923,4 +923,4 @@ sudo reboot now
 
 ````
 
-(https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/)[https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/]
+[https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/](https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/)
