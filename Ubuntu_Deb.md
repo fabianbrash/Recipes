@@ -892,3 +892,35 @@ sudo ubuntu-drivers autoinstall
 tar -xvjf rctl-linux-amd64.tar.bz2
 ````
 
+
+```Create ext4 partition```
+
+
+````
+
+sudo fdisk -l 
+OR
+sudo parted -l
+
+sudo parted /dev/sdb
+
+mklabel msdos
+mkpart > primary > ext4 > 1 > 90000(this is how big the disk is here 90GB+)
+print
+quit
+
+sudo mkfs.ext4 /dev/sdc1(this comes from fdisk -l or parted -l)
+
+sudo e4label /dev/sdc1 disk2-part1 (e4label is not installed on ubuntu 22.04 so I need to find what provides this)
+
+sudo mkdir /mnt/disk2-part1
+
+sudo mount /dev/sdc1 /mnt/disk2-part1
+
+sudo '/dev/sdc1   /mnt/disk2-part1  ext4   defaults    0   0' >> /etc/fstab (edit /etc/fstab file)
+
+sudo reboot now
+
+````
+
+(https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/)[https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/]
