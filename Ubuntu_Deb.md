@@ -933,7 +933,14 @@ sudo reboot now
 
 ##### Note when I did this my disk changed from sdc1 to sda1??
 
+##### After reboot it now shows /dev/sdc1 as it should??? maybe I should have followed the aboec Azure article from the beginning and this would not have happened
+
 ````
+
+sudo blkid
+
+echo 'UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2' >> /etc/fstab  ##uuid comes from the above command
+
 lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 
 ````
