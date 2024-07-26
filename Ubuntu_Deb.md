@@ -940,12 +940,14 @@ sudo reboot now
 sudo su -
 lsblk
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+lsblk
 sudo mkfs.xfs /dev/sdc1
 sudo partprobe /dev/sdc1
 
 #or
 
 sudo parted /dev/sdc --script mklabel msdos mkpart primary ext4 0% 100%
+lsblk
 sudo mkfs.ext4 /dev/sdc1
 sudo partprobe /dev/sdc1
 
