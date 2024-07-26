@@ -926,7 +926,7 @@ sudo reboot now
 [https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/](https://www.tecmint.com/create-new-ext4-file-system-partition-in-linux/)
 
 
-```ext4 Azure VM```
+```ext4/xfs Azure VM```
 
 [https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/attach-disk-portal)
 
@@ -937,6 +937,8 @@ sudo reboot now
 
 
 ````
+sudo su -
+lsblk
 sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
 sudo mkfs.xfs /dev/sdc1
 sudo partprobe /dev/sdc1
