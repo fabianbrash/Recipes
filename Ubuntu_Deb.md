@@ -957,6 +957,10 @@ sudo partprobe /dev/sdc1
 
 sudo blkid
 
+sudo mkdir /datadrive
+
+sudo mount /dev/sdc1 /datadrive
+
 echo 'UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2' >> /etc/fstab  ##uuid comes from the above command
 
 #or
