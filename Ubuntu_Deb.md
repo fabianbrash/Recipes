@@ -945,7 +945,7 @@ sudo partprobe /dev/sdc1
 
 #or
 
-sudo parted /dev/sdc --script mklabel ms-dos mkpart primary ext4 0% 100%
+sudo parted /dev/sdc --script mklabel msdos mkpart primary ext4 0% 100%
 sudo mkfs.ext4 /dev/sdc1
 sudo partprobe /dev/sdc1
 
