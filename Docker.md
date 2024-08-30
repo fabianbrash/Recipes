@@ -996,3 +996,18 @@ vim
 [Dockerfiles and packages that prompt](https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai)
 
 
+```Docker builderx```
+
+[https://www.docker.com/blog/how-to-rapidly-build-multi-architecture-images-with-buildx/](https://www.docker.com/blog/how-to-rapidly-build-multi-architecture-images-with-buildx/)
+
+````
+docker buildx create --name mybuilder --use --bootstrap
+
+docker buildx ls
+
+docker buildx build --push --platform=linux/amd64,linux/arm64 --tag fabianrafay/envdrivers:0.5 .
+
+docker buildx build --push \
+--platform linux/amd64,linux/arm64 \
+--tag your_docker_username/multi_arch_sample:buildx-latest .
+````
