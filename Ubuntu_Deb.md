@@ -969,3 +969,13 @@ echo 'UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,n
 lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 
 ````
+
+```passwordless sudo```
+
+
+````
+sudo visudo
+
+%sudo   ALL=(ALL:ALL) NOPASSWD: ALL
+
+````
