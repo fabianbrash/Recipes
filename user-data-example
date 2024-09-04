@@ -1,0 +1,10 @@
+#cloud-config
+hostname: "fb-jumbox-1"
+users:
+  - name: ubuntu
+    plain_text_passwd: 'testpassword'
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: false
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICVCsjZQUH0XerR9k+Fzu0Uex5NmLqUWVflF7DQ+c0Yz Fabian.B@Fabian.fios-router.home
