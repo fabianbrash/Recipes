@@ -979,3 +979,19 @@ sudo visudo
 %sudo   ALL=(ALL:ALL) NOPASSWD: ALL
 
 ````
+
+
+```adding desktop to ubuntu server```
+
+
+##### Sometimes you might want to add a desktop to ubuntu server, well here you go
+
+
+````
+sudo apt install -y ubuntu-desktop-minimal
+
+sudo reboot now
+
+````
+
+[https://www.layerstack.com/resources/tutorials/How-to-install-Graphical-User-Interface-GUI-for-Ubuntu-22-Cloud-Servers](https://www.layerstack.com/resources/tutorials/How-to-install-Graphical-User-Interface-GUI-for-Ubuntu-22-Cloud-Servers)
