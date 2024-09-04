@@ -1475,3 +1475,19 @@ for store in $(/usr/lib/vmware-vmafd/bin/vecs-cli store list | grep -v TRUSTED_R
 #### In the above I chose option 3 as I just wanted a vanilla self-signed cert, once successful all services will get restarted and you should be able to log back into the vCenter UI
 
 [https://kb.vmware.com/s/article/2097936](https://kb.vmware.com/s/article/2097936)
+
+
+
+```cloud-init```
+
+
+##### Adding cloud-init to a VM is relatively simple, before you power on the VM you just need to add 2 entries to "VM Options > Advanced > Configuration Parameters"
+
+````
+guestinfo.userdata.encoding: base64
+guestinfo.userdata: BASE64_ENCODED_DATA_GOES_HERE
+````
+
+##### Then simply power on the VM and that should do it
+
+[https://www.youtube.com/watch?v=lhWQBz5oj8o](https://www.youtube.com/watch?v=lhWQBz5oj8o)
