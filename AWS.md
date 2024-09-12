@@ -185,3 +185,15 @@ aws ec2 describe-instances --endpoint http://aws:4566
 
 aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster
 ````
+
+```Get available k8s version```
+
+
+````
+eksctl version -o json | jq -r '.EKSServerSupportedVersions[]'
+
+aws eks describe-addon-versions | jq -r ".addons[] | .addonVersions[] | .compatibilities[] | .clusterVersion" | sort | uniq
+
+````
+
+[https://stackoverflow.com/questions/68049761/aws-eks-get-available-kubernetes-versions](https://stackoverflow.com/questions/68049761/aws-eks-get-available-kubernetes-versions)
