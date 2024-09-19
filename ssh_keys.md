@@ -18,6 +18,12 @@ ssh-keygen -t rsa -b 4096 -o -a 100 # use on older systems Ubuntu <=14.04 or RHE
 ##Also you can use
 ssh-keygen -t rsa -b 4096(-b bits)
 
+## Also
+
+ssh-keygen -t ed25519 -f ./work-github -C "fabian@blah.com" -a 100
+
+## The above will produce 2 files work-github and work-github.pub
+
 ##then answer the presented questions#########
 ###you can enter a passphrase for your key if you like but if you do then you will need to enter it everytime you ssh into your server
 ######Once completed your keys should be in a location like this###
