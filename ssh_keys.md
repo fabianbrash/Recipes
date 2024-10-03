@@ -147,3 +147,15 @@ Host 192.168.1.5
  cd /var/log/auth.log
  cat /var/log/auth.log | grep -i sshd  ##Just give me ssh related entries
 ````
+
+```locking down ssh private key```
+
+
+````
+
+chmod 600 ~/.ssh/id_rsa
+
+````
+
+
+[https://stackoverflow.com/questions/9270734/ssh-permissions-are-too-open](https://stackoverflow.com/questions/9270734/ssh-permissions-are-too-open)
