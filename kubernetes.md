@@ -330,7 +330,12 @@ systemctl stop firewalld
 
 ##Disable swap
 sed -i '/swap/d' /etc/fstab
-swapoff -a
+or
+sudo sed -i '/ swap / s/^/#/' /etc/fstab  # we can just comment out the swap line from /etc/fstab
+
+swapoff -a #Now turn off swap
+
+swapon --show  #check status of swap
 
 ##Update sysctl settings for Kubernetes networking
 
