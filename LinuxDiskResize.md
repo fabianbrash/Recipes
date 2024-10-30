@@ -57,3 +57,32 @@ df -h
 #### Both the latest Ubuntu and CentOS moved to xfs so xfs_growfs is going to be your command going forward
 
 #### This was tested on centOS 7.7.x
+
+
+
+````
+
+sudo mkdir /mnt/disk2-part1
+
+sudo mount /dev/sdc1 /mnt/disk2-part1
+
+sudo '/dev/sdc1   /mnt/disk2-part1  ext4   defaults    0   0' >> /etc/fstab (edit /etc/fstab file)
+
+sudo reboot now
+
+
+sudo blkid
+
+sudo mkdir /datadrive
+
+sudo mount /dev/sdc1 /datadrive
+
+echo 'UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2' >> /etc/fstab  ##uuid comes from the above command
+
+#or
+echo 'UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail   1   2' >> /etc/fstab  ##uuid comes from the above command
+
+lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
+
+````
+
