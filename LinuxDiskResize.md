@@ -59,9 +59,10 @@ df -h
 #### This was tested on centOS 7.7.x
 
 
+```mounting the finished product```
+
 
 ````
-
 sudo mkdir /mnt/disk2-part1
 
 sudo mount /dev/sdc1 /mnt/disk2-part1
