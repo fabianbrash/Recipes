@@ -43,3 +43,38 @@ runcmd:
 - mkdir -p /home/ubuntu/scripts && cd /home/ubuntu/scripts && curl -LO https://raw.githubusercontent.com/fabianbrash/Bash/refs/heads/master/k3s.sh
 
 ````
+
+
+```Azure VM and cloud-init```
+
+[https://learn.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-add-user](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/cloudinit-add-user)
+
+
+````
+#cloud-config
+users:
+  - default
+  - name: myadminuser
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3<snip>
+
+````
+
+
+````
+az group create --name myResourceGroup --location eastus
+
+az vm create --resource-group myResourceGroup --name vmName --image imageCIURN \
+--custom-data cloud_init_add_user.txt \
+--generate-ssh-keys
+
+
+az vm create --resource-group myResourceGroup \
+--name ubuntu2204 --image Canonical:UbuntuServer:22_04-lts:latest \
+--custom-data cloud-init.txt \
+--generate-ssh-keys
+
+````
