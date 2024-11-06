@@ -78,3 +78,6 @@ az vm create --resource-group myResourceGroup \
 --generate-ssh-keys
 
 ````
+
+
+##### In the Azure console you can paste your user-data script under "Advanced > Custom data"
