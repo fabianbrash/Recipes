@@ -2056,3 +2056,18 @@ password elasticPass123
 ````
 k delete <FLUENTD_POD>
 ````
+
+
+```Verify kubelet config```
+
+#### Sometimes you might need to make changes to the default kubelet config, but if you are running a CSP version of k8s how do you verify that the changes have occured
+
+
+````
+kubectl proxy
+
+curl -X GET http://127.0.0.1:8001/api/v1/nodes/<node-name>/proxy/configz | jq .   ## just pick a node in your cluster
+
+````
+
+[https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
