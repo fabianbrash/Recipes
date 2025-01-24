@@ -2071,3 +2071,25 @@ curl -X GET http://127.0.0.1:8001/api/v1/nodes/<node-name>/proxy/configz | jq . 
 ````
 
 [https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/](https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/)
+
+
+#### So today I ran into an interesting issue, I provisioned an [MKS](https://docs.rafay.co/clusters/upstream/baremetal_vm/overview/) cluster and I noticed that the coredns pods were now in a crashloopbackoff, I started trobuleshooting and I was told to have a look at /etc/resolv.conf and sure enough that file was empty, it seems this is part of the bootstrap of MKS to zero out this file as consul is handling DNS on MKS clusters, so if I added an entry to /etc/resolve.conf nameserver 8.8.8.8 that would cause kubectl to fail.  I found the answer [here](https://serverfault.com/questions/1081685/kubernetes-coredns-is-in-crashloopbackoff-status-with-no-nameservers-found-err) I had to do the below the CM in the cluster
+
+
+````
+kubectl -n kube-system edit cm coredns
+
+#comment out
+forward . /etc/resolv.conf {
+       max_concurrent 1000
+    }
+#and add the below
+forward . 8.8.8.8 {
+       max_concurrent 1000
+    }
+
+````
+
+#### Note in the above instead of 8.8.8.8 you should be able to just use your organizations DNS server, I'll have to test that out but it should work, it's just DNS
+
+#### Now why did this bug hit me?? The cluster worked fine for a few days
