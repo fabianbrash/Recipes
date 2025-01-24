@@ -222,12 +222,19 @@ no ip address 'assigned Ip' 'subnet mask'
 ````
 
 
-#### REMOVE A CONFIGURATION LINE FROM A PORT OR PORTS
+```REMOVE A CONFIGURATION LINE FROM A PORT OR PORTS```
 
 ````
 conf t
 interface Gi1/0/1
 default switchport access vlan
+````
+
+```Remove access port from switchport```
+
+````
+no switchport access vlan 99  #remove the port from being access prepping it to be a trunk port
+
 ````
 
 ````
