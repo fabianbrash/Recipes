@@ -237,3 +237,11 @@ git branch -u origin/main main
 git remote set-head origin -a
 
 ````
+
+```checkout multiple branches```
+
+
+````
+git branch #list remote branches
+
+````
