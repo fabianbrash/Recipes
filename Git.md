@@ -242,6 +242,8 @@ git remote set-head origin -a
 
 
 ````
-git branch #list remote branches
+git branch -r #list remote branches
+
+git branch -a #list all branches
 
 ````
