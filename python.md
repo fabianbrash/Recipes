@@ -23,7 +23,7 @@
 ````
 mkdir -p /home/me/backend/flask-app
 python3 -m venv /home/me/backend/flask-app
-source bin/activate ## source only work in Linux/MAC for Windows in the virtual env there should be a Scripts directory with an activate batch script
+source bin/activate ## source only work in Linux/MAC for Windows in the virtual env there should be a Scripts directory run Activate.ps1
 ````
 
 ## After runing the above your command line should now show flask-app in the name of the command like so (flask-app)... that's the hint it's working
