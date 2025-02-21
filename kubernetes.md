@@ -2093,3 +2093,16 @@ forward . 8.8.8.8 {
 #### Note in the above instead of 8.8.8.8 you should be able to just use your organizations DNS server, I'll have to test that out but it should work, it's just DNS
 
 #### Now why did this bug hit me?? The cluster worked fine for a few days
+
+
+```port-forward all ports of a service```
+
+### This is an example of port-forwarding all the ports of kuberay in one command
+
+````
+kubectl -n kuberay --kubeconfig=fb-ric-gpu-2-ztka-config.yaml port-forward service/ray-cluster-kuberay-head-svc 8265:8265 10001:10001 8080:8080 6379:6379 8000:8000
+
+````
+
+[https://www.warp.dev/terminus/forward-ports-in-kubernetes](https://www.warp.dev/terminus/forward-ports-in-kubernetes)
+
