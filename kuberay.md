@@ -19,6 +19,8 @@ source bin/activate
 
 ````
 pip3 install 'ray[default]'
+##or
+pip install 'ray[default]'==2.9.0
 pip3 install urllib3
 pip3 freeze > requirements.txt
 
