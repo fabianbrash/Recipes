@@ -24,6 +24,17 @@
 mkdir -p /home/me/backend/flask-app
 python3 -m venv /home/me/backend/flask-app
 source bin/activate ## source only work in Linux/MAC for Windows in the virtual env there should be a Scripts directory run Activate.ps1
+
+## let's deactivate if we are switching Python versions with something pyenv
+
+pip freeze > requirements.txt
+deactivate
+rm -rf bin/
+rm -rf lib/
+rm -rf include/
+python -m venv /home/me/backend/flask-app
+
+python --version #check to make sure python version updated succesfully
 ````
 
 ## After runing the above your command line should now show flask-app in the name of the command like so (flask-app)... that's the hint it's working
