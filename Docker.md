@@ -1011,3 +1011,24 @@ docker buildx build --push \
 --platform linux/amd64,linux/arm64 \
 --tag your_docker_username/multi_arch_sample:buildx-latest .
 ````
+
+```Docker network issues```
+
+### So ran into an interesting issue I have an OCI VM running ubuntu 22.04 I installed docker and tried to build a container but during pip install it all failed, well it seemed the containers were not getting internet access, so I tried FIX 1 and restarted and nothing, then I tried FIX 2 and that worked for me, first time running into this.
+
+
+````
+# FIX1
+sudo vim /etc/docker/daemon.json
+## add to the above file
+{
+  "dns": ["8.8.8.8", "8.8.4.4"]
+}
+sudo systemctl restart docker
+
+# FIX2
+docker run --rm -it --network=host python:3.9-slim bash #worked
+
+# build command that worked
+docker build --network=host -t ocr-app:0.01 .
+````
