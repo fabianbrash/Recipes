@@ -2106,3 +2106,12 @@ kubectl -n kuberay --kubeconfig=fb-ric-gpu-2-ztka-config.yaml port-forward servi
 
 [https://www.warp.dev/terminus/forward-ports-in-kubernetes](https://www.warp.dev/terminus/forward-ports-in-kubernetes)
 
+
+```kubectl exec```
+
+````
+kubectl exec --stdin --tty aks-helloworld-one-56c7b8d79d-xqx5t -- /bin/bash
+
+````
+
+[Spacelift blog](https://spacelift.io/blog/kubectl-exec)
