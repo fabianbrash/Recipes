@@ -1,4 +1,4 @@
-```jupyter inof goes here```
+```jupyter info goes here```
 
 
 ```Install Jupyter notebook```
