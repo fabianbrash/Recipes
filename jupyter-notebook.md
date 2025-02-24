@@ -17,4 +17,6 @@ jupyter notebook --ip 0.0.0.0 # launch a notebook and run on all interfaces
 pip install jupyterlab
 
 jupyter lab  ## launch
+
+jupyter lab --ip 0.0.0.0 # launch a jupyterlab notebook on all interfaces
 ````
