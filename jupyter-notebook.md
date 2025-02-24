@@ -5,6 +5,9 @@
 
 [https://www.geeksforgeeks.org/how-to-install-jupyter-notebook-on-macos/](https://www.geeksforgeeks.org/how-to-install-jupyter-notebook-on-macos/)
 
+```Install Jupyterlab notebook```
+
+[https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
 
 ````
 
