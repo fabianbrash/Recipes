@@ -463,5 +463,16 @@ az account list -o table
 az account set --subscription 'xxxx-xxxx-xxxx-xxxx'
 az deployment group create --name 'bicep-demo' -g 'arm-test' --template-file ./storage.bicep --parameters part=bicep
 
+az role assignment list --assignee 69da75bc-58cc-4265-b45a-53fd01483a19 --query "[].{role:roleDefinitionName, scope:scope}" -o table
+
+az ad sp list --filter "appId eq '78c2b680-4cfd-4cff-a479-7ba06b4ebb57'" --query "[].{DisplayName:displayName, ObjectID:id}" -o table
+
+az account show --query "{user: user.name, id: user.id}"
+
+az aks show --resource-group eus-aks-blue-green-rg --name aks-blue --query "identity" -o json
+
+az aks show --resource-group eus-aks-blue-green-rg --name aks-blue --query "identity" -o json
+
+az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
 
 ````
