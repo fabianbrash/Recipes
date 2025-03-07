@@ -475,4 +475,6 @@ az aks show --resource-group eus-aks-blue-green-rg --name aks-blue --query "iden
 
 az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
 
+az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
+
 ````
