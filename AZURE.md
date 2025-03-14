@@ -478,3 +478,11 @@ az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
 az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
 
 ````
+
+```List VM Quota```
+
+
+````
+az vm list-usage --location "East US" -o table
+
+````
