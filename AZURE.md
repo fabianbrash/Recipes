@@ -485,4 +485,6 @@ az aks get-credentials --resource-group aks-blue-green-rg --name aks-green
 ````
 az vm list-usage --location "East US" -o table
 
+az vm list-usage --location "East US" -o table | grep NC
+
 ````
