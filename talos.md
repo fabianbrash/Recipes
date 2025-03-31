@@ -72,3 +72,9 @@ talosctl kubeconfig --nodes $CONTROL_PLANE_IP --endpoints $CONTROL_PLANE_IP \
 talosctl kubeconfig alternative-kubeconfig --nodes $CONTROL_PLANE_IP --endpoints $CONTROL_PLANE_IP \
 --talosconfig=./talosconfig
 ````
+
+##### Get dashboard
+
+````
+talosctl dashboard -n $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP --talosconfig ./talosconfig
+````
