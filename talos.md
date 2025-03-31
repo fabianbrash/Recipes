@@ -29,6 +29,14 @@ talosctl apply-config --insecure \
 
 ````
 
+#### Let's bootstrap our worker
+
+````
+talosctl apply-config --insecure \
+--nodes $WORKER_NODE_IP \
+--file worker.yaml
+````
+
 #### Bootstrap k8s
 
 ````
