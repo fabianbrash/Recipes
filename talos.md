@@ -16,8 +16,8 @@ talosctl -n 192.168.0.2 get disks --insecure ##check to see what disk we need to
 #### To make life easy let's export the IP of our control plane node and our worker(s)
 
 ````
-export CONTROL_PLANE_IP = 192.168.0.2
-export WORKER_NODE_IP = 192.168.0.3
+export CONTROL_PLANE_IP="192.168.0.2"
+export WORKER_NODE_IP="192.168.0.3"
 ````
 
 #### Let's bootstrap our control-plane
