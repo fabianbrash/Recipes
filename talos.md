@@ -86,3 +86,7 @@ talosctl dashboard -n $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP --talosconfig ./tal
 ````
 talosctl -n $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP --talosconfig ./talosconfig services
 ````
+
+#### The team also has a project called Omni, have a look 
+
+[Omni](https://www.siderolabs.com/platform/saas-for-kubernetes/)
