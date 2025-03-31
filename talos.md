@@ -58,3 +58,17 @@ talosctl -e 192.168.0.2 -n 192.168.0.200 containers
 ````
 talosctl -e 192.168.0.2 -n 192.168.0.10,192.168.0.11 logs etcd
 ````
+
+##### After a few moments, you will be able to download your Kubernetes client configuration and get started:
+
+````
+talosctl kubeconfig --nodes $CONTROL_PLANE_IP --endpoints $CONTROL_PLANE_IP \
+--talosconfig=./talosconfig
+````
+
+##### If you would prefer the configuration to not be merged into your default Kubernetes configuration file, pass in a filename:
+
+````
+talosctl kubeconfig alternative-kubeconfig --nodes $CONTROL_PLANE_IP --endpoints $CONTROL_PLANE_IP \
+--talosconfig=./talosconfig
+````
