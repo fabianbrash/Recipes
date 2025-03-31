@@ -87,6 +87,14 @@ talosctl dashboard -n $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP --talosconfig ./tal
 talosctl -n $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP --talosconfig ./talosconfig services
 ````
 
+### I can also patch my file like this, an examole would be I need to make the control-plane schedulable
+
+````
+talosctl apply-config \
+--nodes $CONTROL_PLANE_IP -e $CONTROL_PLANE_IP \
+--talosconfig ./talosconfig \
+--file controlplane.yaml
+````
 #### The team also has a project called Omni, have a look 
 
 [Omni](https://www.siderolabs.com/platform/saas-for-kubernetes/)
