@@ -12,6 +12,8 @@
 
 ````
 talosctl -n 192.168.0.2 get disks --insecure ##check to see what disk we need to install on defaults to /dev/sda
+
+talosctl -n 192.168.181.99 -e 192.168.181.99 get disks --talosconfig ./talosconfig
 ````
 
 #### Generate our config files, note the IP is the IP of the control plane node
