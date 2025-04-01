@@ -2,6 +2,13 @@
 
 [https://www.talos.dev/v1.9/introduction/getting-started/](https://www.talos.dev/v1.9/introduction/getting-started/)
 
+[Talos Image Factory](https://factory.talos.dev/)
+
+#### The team also has a project called Omni, have a look 
+
+[Omni](https://www.siderolabs.com/platform/saas-for-kubernetes/)
+
+
 
 ````
 talosctl -n 192.168.0.2 get disks --insecure ##check to see what disk we need to install on defaults to /dev/sda
@@ -95,6 +102,3 @@ talosctl apply-config \
 --talosconfig ./talosconfig \
 --file controlplane.yaml
 ````
-#### The team also has a project called Omni, have a look 
-
-[Omni](https://www.siderolabs.com/platform/saas-for-kubernetes/)
