@@ -13,6 +13,8 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
 ##Search the repo
 
+helm repo list
+
 helm search repo stable
 
 helm repo update    # Make sure we get the latest list of charts
