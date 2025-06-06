@@ -11,6 +11,8 @@
 ````
 aws configure
 
+aws configure --profile user1
+
 aws s3 ls --profile profile1
 aws ec2 describe-instances --profile user1 --region us-west-2
 
