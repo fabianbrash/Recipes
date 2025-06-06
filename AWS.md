@@ -163,6 +163,8 @@ nodeGroups:
 
 ````
 aws sts get-caller-identity
+
+aws sts get-caller-identity --profile fbrash2
 ````
 
 ```more aws commands```
