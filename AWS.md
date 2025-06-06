@@ -13,6 +13,8 @@ aws configure
 
 aws s3 ls --profile profile1
 aws ec2 describe-instances --profile user1
+
+aws configure list-profiles
 ````
 
 ```Example of aws configure output```
