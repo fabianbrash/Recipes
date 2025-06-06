@@ -23,3 +23,9 @@ spec:
       limits:
          nvidia.com/gpu: 1
 ````
+
+````
+kubectl logs nvidia-smi
+````
+
+[https://aws.amazon.com/blogs/containers/bottlerocket-support-for-nvidia-gpus/](https://aws.amazon.com/blogs/containers/bottlerocket-support-for-nvidia-gpus/)
