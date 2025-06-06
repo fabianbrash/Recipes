@@ -12,7 +12,7 @@
 aws configure
 
 aws s3 ls --profile profile1
-aws ec2 describe-instances --profile user1
+aws ec2 describe-instances --profile user1 --region us-west-2
 
 aws configure list-profiles
 
