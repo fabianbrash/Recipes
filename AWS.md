@@ -192,6 +192,8 @@ aws ec2 describe-instances --endpoint http://aws:4566
 ````
 
 aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster
+
+aws eks update-kubeconfig --region us-west-2 --name my-eks-cluster --profile=profile1
 ````
 
 ```Get available k8s version```
