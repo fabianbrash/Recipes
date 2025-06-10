@@ -113,3 +113,19 @@ addons:
 eksctl create cluster -f cluster.yaml
 
 ````
+
+```eksctl```
+
+#### Cluster management
+
+````
+
+eksctl create cluster
+
+eksctl create cluster --name my-cluster
+
+eksctl create cluster -f cluster.yaml --profile myprofile
+
+eksctl delete cluster my-tap-cluster
+
+eksctl delete cluster my-tap-cluster --force
