@@ -104,6 +104,61 @@ addons:
 
 ````
 
+
+````
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: fabian-test-4
+  region: us-west-2
+  tags:
+    email: fabian@fabianbrash.com
+    env: dev
+  version: "1.32"
+accessConfig:
+  authenticationMode: API_AND_CONFIG_MAP
+vpc:
+  clusterEndpoints:
+    privateAccess: true
+    publicAccess: true
+iam:
+  withOIDC: true
+
+nodeGroups:
+  - name: ng-1
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
+        certManager: true
+        appMesh: true
+        ebs: true
+        fsx: true
+        efs: true
+        awsLoadBalancerController: true
+        #albIngress: true
+        xRay: true
+        cloudWatch: true
+    instanceType: t3.medium
+    desiredCapacity: 2
+    amiFamily: Bottlerocket
+    bottlerocket:
+      enableAdminContainer: true
+      settings:
+        motd: "Hello, eksctl!"
+    volumeSize: 100
+    containerRuntime: containerd
+    ssh:
+      allow: false
+addons:
+- name: aws-ebs-csi-driver
+- name: vpc-cni
+- name: kube-proxy
+  #version: 1.7.5 optional
+````
+
 ##### More help is available from the below link
 
 [https://dev.to/aws-builders/eks-iam-deep-dive-136d](https://dev.to/aws-builders/eks-iam-deep-dive-136d)
