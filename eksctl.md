@@ -181,7 +181,7 @@ eksctl create cluster --name my-cluster
 
 eksctl create cluster -f cluster.yaml --profile myprofile
 
- eksctl delete cluster -f cluster-build2.yaml --profile myprofile --disable-nodegroup-eviction
+ eksctl delete cluster -f cluster-build2.yaml --profile myprofile --disable-nodegroup-eviction --force
 
 eksctl delete cluster my-tap-cluster
 
