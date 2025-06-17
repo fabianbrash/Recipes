@@ -2115,3 +2115,13 @@ kubectl exec --stdin --tty aks-helloworld-one-56c7b8d79d-xqx5t -- /bin/bash
 ````
 
 [Spacelift blog](https://spacelift.io/blog/kubectl-exec)
+
+
+```Get all images in a cluster```
+
+````
+kubectl --kubeconfig fabian-aks-images-ztka-config.yaml get pods --all-namespaces -o jsonpath="{.items[*].spec['initContainers', 'containers'][*].image}" |\
+tr -s '[[:space:]]' '\n' |\
+sort |\
+uniq -c
+````
