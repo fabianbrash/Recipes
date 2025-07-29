@@ -207,3 +207,27 @@ aws eks describe-addon-versions | jq -r ".addons[] | .addonVersions[] | .compati
 ````
 
 [https://stackoverflow.com/questions/68049761/aws-eks-get-available-kubernetes-versions](https://stackoverflow.com/questions/68049761/aws-eks-get-available-kubernetes-versions)
+
+
+
+```EKS```
+
+### Create gp3 storageclass and set it as default
+
+````
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: gp3
+      annotations:
+        # Optional: Set this as the default storage class
+        storageclass.kubernetes.io/is-default-class: "true" 
+    provisioner: ebs.csi.eks.amazonaws.com
+    volumeBindingMode: WaitForFirstConsumer
+    parameters:
+      type: gp3
+      encrypted: "true" # Optional: Encrypt the volumes
+      # iopsPerGB: "3000" # Optional: Specify IOPS (default is 3000)
+      # throughput: "125" # Optional: Specify throughput (default is 125 MiB/s)
+    allowVolumeExpansion: true
+````
