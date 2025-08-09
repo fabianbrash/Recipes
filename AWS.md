@@ -231,3 +231,28 @@ aws eks describe-addon-versions | jq -r ".addons[] | .addonVersions[] | .compati
       # throughput: "125" # Optional: Specify throughput (default is 125 MiB/s)
     allowVolumeExpansion: true
 ````
+
+
+```AWS CLI commands```
+
+
+#### Get all ubuntu images from a region
+
+````
+aws ec2 describe-images \
+    --owners 099720109477 \
+    --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-*-*-amd64-server-*" \
+    --query "sort_by(Images, &CreationDate)[].Name" \
+    --region us-east-1
+````
+
+#### Now let's get the AMI id
+
+````
+aws ec2 describe-images \
+    --owners 099720109477 \
+    --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20250603" \
+    --query "Images[*].ImageId" \
+    --output text \
+    --region us-east-1
+````
