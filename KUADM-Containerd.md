@@ -150,6 +150,19 @@ or
 sudo kubeadm init --config=config.yaml
 ````
 
+
+```kubeadm useful commands```
+
+
+````
+kubeadm join 192.168.50.104:6443 --token jpffga.v6rwru1tv5euqj2n \
+    --discovery-token-ca-cert-hash sha256:df00931ffc172d6206eeccf9edf40ca632e7ce6ebeed2eab4e5b2989b4481976
+
+
+kubeadm token create --print-join-command
+
+````
+
 #### If you don't give a version we will get the latest patch of 1.20.0 and you'll have a mismatch when you run kubectl version --short note the below config file also specifies a version
 
 ```config.yaml```
