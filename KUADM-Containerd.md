@@ -4,6 +4,8 @@
 
 [Install KubeADM](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
+[Install k8s](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+
 ##
 
 ### Load kernel modules
