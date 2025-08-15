@@ -163,6 +163,8 @@ kubeadm join 192.168.50.104:6443 --token jpffga.v6rwru1tv5euqj2n \
 
 kubeadm token create --print-join-command
 
+kubeadm token list
+
 ````
 
 #### If you don't give a version we will get the latest patch of 1.20.0 and you'll have a mismatch when you run kubectl version --short note the below config file also specifies a version
