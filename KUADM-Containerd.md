@@ -172,13 +172,13 @@ sudo kubeadm init --config=config.yaml
 
 
 ````
-kubeadm join 192.168.50.104:6443 --token jpffga.v6rwru1tv5euqj2n \
+sudo kubeadm join 192.168.50.104:6443 --token jpffga.v6rwru1tv5euqj2n \
     --discovery-token-ca-cert-hash sha256:df00931ffc172d6206eeccf9edf40ca632e7ce6ebeed2eab4e5b2989b4481976
 
 
-kubeadm token create --print-join-command
+sudo kubeadm token create --print-join-command
 
-kubeadm token list
+sudo kubeadm token list
 
 ````
 
