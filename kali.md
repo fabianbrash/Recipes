@@ -1,6 +1,8 @@
 ```Kali Linux```
 
 
+[https://www.cm-alliance.com/cybersecurity-blog/using-metasploit-and-nmap-to-scan-for-vulnerabilities](https://www.cm-alliance.com/cybersecurity-blog/using-metasploit-and-nmap-to-scan-for-vulnerabilities)
+
 
 ##### Hydra is primarily known as a brute-force password cracking tool, it can be used in conjunction with other tools like Nmap to gain a comprehensive understanding of open ports and potential vulnerabilities. 
 
@@ -36,4 +38,6 @@ set THREADS 3
 run
 
 db_nmap -sV -p 80,22,110,25 192.168.94.134  ##nmap wrapped for Metasploit
+
+db_nmap -sV -A -p 80,22,110,25 192.168.94.134
 ````
