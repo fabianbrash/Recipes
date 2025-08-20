@@ -15,3 +15,23 @@ nmap IP_ADDRESS_TO_SCAN -p 22,25,53,80,111,443,445,3389,2049 --open
 
 nmap -A IP_ADDRESS_TO_SCAN -p 22,25,53,80,111,443,445,2049,3389 --open
 ````
+
+
+##### Metasploit
+
+##### After you launch the app in Kali Linux
+
+
+````
+use auxiliary/scanner/portscan/tcp
+
+show options
+
+set PORTS 22,25,80,110,21  ## add whatever else you would like to add here for ports
+
+set RHOSTS IP_OF_SERVER
+
+set THREADS 3
+
+run
+````
