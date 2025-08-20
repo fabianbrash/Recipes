@@ -34,4 +34,6 @@ set RHOSTS IP_OF_SERVER
 set THREADS 3
 
 run
+
+db_nmap -sV -p 80,22,110,25 192.168.94.134
 ````
