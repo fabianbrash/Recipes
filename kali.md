@@ -1,6 +1,10 @@
 ```Kali Linux```
 
 
+
+##### Hydra is primarily known as a brute-force password cracking tool, it can be used in conjunction with other tools like Nmap to gain a comprehensive understanding of open ports and potential vulnerabilities. 
+
+
 ````
 hydra -l frjb -P /usr/share/wordlists/metasploit/unix_passwords.txt -u -s 22 IP_ADDRESS_TO_SCAN
 
