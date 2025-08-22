@@ -37,7 +37,9 @@ set THREADS 3
 
 run
 
-db_nmap -sV -p 80,22,110,25 192.168.94.134  ##nmap wrapped for Metasploit
+db_nmap -sV -p 80,22,110,25,1433,27017,3306 192.168.94.134  ##nmap wrapped for Metasploit
 
-db_nmap -sV -A -p 80,22,110,25 192.168.94.134
+db_nmap -sV -A -p 80,22,110,25,1433,27017,3306 192.168.94.134
+
+db_nmap -sV -A -p 80,22,110,25,1433,27017,3306 192.168.1.2-254
 ````
