@@ -83,8 +83,8 @@ sudo systemctl restart containerd
 ### Disable swap
 
 ```
-sed -i '/swap/d' /etc/fstab
-swapoff -a
+sudo sed -i '/swap/d' /etc/fstab
+sudo swapoff -a
 ```
 ### This is optional but if you want to use NFS in cluster it's mandatory also let's install a tool and check sestatus
 
@@ -132,7 +132,7 @@ echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 ### Let's see what versions are available
 
 ````
-apt-cache madison kubeadm
+sudo apt-get update && sudo apt-cache madison kubeadm
 ````
 
 ### Install kubelet kubeadm kubectl on all nodes note if you want you can eliminate the kubectl install on the worker nodes
