@@ -566,3 +566,15 @@ openssl pkcs12 -info -in keyStore.p12
 
 ````
 [https://www.xolphin.com/support/OpenSSL/Frequently_used_OpenSSL_Commands](https://www.xolphin.com/support/OpenSSL/Frequently_used_OpenSSL_Commands)
+
+
+```base64 encode certificate```
+
+
+
+````
+
+cat fullchain.pem | base64 -w 0
+
+cat privkey.pem | base64 -w 0
+````
