@@ -39,6 +39,10 @@ pvs
 vgs
 
 sudo lvextend /dev/mapper/centos-root /dev/sda2
+
+## UBUNTU example
+
+lvextend /dev/mapper/ubuntu--vg-ubuntu--lv /dev/sda3
 ````
 
 
@@ -49,6 +53,9 @@ xfs_growfs /
 
 ##or
 resize2fs /dev/mapper/centos-root
+
+## UBUNTU example
+resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
 
 df -h
 ````
