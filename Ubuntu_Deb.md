@@ -995,3 +995,17 @@ sudo reboot now
 ````
 
 [https://www.layerstack.com/resources/tutorials/How-to-install-Graphical-User-Interface-GUI-for-Ubuntu-22-Cloud-Servers](https://www.layerstack.com/resources/tutorials/How-to-install-Graphical-User-Interface-GUI-for-Ubuntu-22-Cloud-Servers)
+
+
+```Long running processes```
+
+
+#### From time-to-time you might have to run a command that will take a while, but you also don't want your computer to go to sleep and interrupt what you are doing.  Do the below
+
+
+````
+sudo nohup radm cluster --config config.yaml > ./cluster.log
+
+````
+
+##### The above command could take up to 30 minutes, but I want to walk away and do something else without having to babysit the console
