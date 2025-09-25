@@ -1006,6 +1006,8 @@ sudo reboot now
 ````
 sudo nohup radm cluster --config config.yaml > ./cluster.log
 
+tail -f ./cluster.log   ## you can do this from another terminal session
+
 ````
 
 ##### The above command could take up to 30 minutes, but I want to walk away and do something else without having to babysit the console
