@@ -523,10 +523,18 @@ openssl s_client -connect google.com:443
 
 ```Check chain I need to research this more```
 
+#### This is more relevant as most now send over a chain and we need to validate it
+
 
 ````
 
 openssl verify -show_chain -CAfile star-tap-alexanderbrash-dev-bundle.crt star-tap-alexanderbrash-dev.crt
+
+openssl verify -CAfile ./bundle-2.crt my_cert.crt  ## note here the cafile is a bundle of the root CA and it's intermediate CAs
+
+## Example from Gemini
+
+openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt -untrusted /tmp/intermediate_ca.pem /tmp/server_cert.pem  ## here the root an the intermediate are in separate files and not bundled together
 
 ````
 
