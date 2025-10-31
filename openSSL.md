@@ -538,6 +538,18 @@ openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt -untrusted /tmp/interm
 
 ````
 
+
+#### I generated a certificate using certbot on 10-30-2025 and when I tried the -CAfile I received an error, so I went to Gemini and asked why and it instructed me to try the below instead
+
+````
+
+openssl verify -untrusted ./chain1.pem ./cert1.pem
+````
+
+#### The above worked as it used the systems root store to build the chain of trust.  Must be new for letsencrypt as it's been a while since I've used certbot to request a certificate.
+
+
+
 #### Check our CSR; not I still did not see my SAN but more on that later
 
 ````
