@@ -77,6 +77,12 @@ sudo snap install --classic certbot
 
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 
+
+### MAC INSTALL
+brew update
+brew upgrade
+brew install certbot
+
 ````
 
 ### Manual DNS challenge
