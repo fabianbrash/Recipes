@@ -86,7 +86,8 @@ DNS.3 = blah.net
 
 ## Save the above file with a .cnf extension
 
-## If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+####
+## If you only have one DNS name that's fine but the SAN is now required by Google as of Chrome 58+
+
 ## THANKS GOOGLE!!!!!!!
 
 ## If you use the above you need to use the below to generate your cert if you don't your SAN will not get populated
