@@ -8,4 +8,6 @@
 
 ````
 kubectl apply -f https://raw.githubusercontent.com/rook/rook/master/deploy/examples/toolbox.yaml -n rook-ceph
+
+kubectl -n rook-ceph exec -it deploy/rook-ceph-tools -- bash
 ````
