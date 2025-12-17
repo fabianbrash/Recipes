@@ -35,6 +35,15 @@ cephClusterSpec:
 
 ````
 
+#### In the above example we are enabling the dashboard UI so to access it we need to
+
+````
+kubectl -n rook-ceph port-forward svc/rook-ceph-mgr-dashboard 8443:7000
+
+kubectl -n rook-ceph get secret rook-ceph-dashboard-password -o jsonpath="{['data']['password']}" | base64 --decode && echo  ## Get the password, username by default is 'admin'
+
+````
+
 #### Once you've installed both helm charts
 
 
