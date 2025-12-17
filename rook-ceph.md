@@ -64,4 +64,8 @@ ceph osd status – See the health and latency of individual disks.
 
 ceph df – View detailed breakdown of used vs. available space.
 
+ceph osd device ls
+
+ceph osd df
+
 ````
