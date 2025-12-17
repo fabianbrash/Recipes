@@ -4,7 +4,36 @@
 
 #### Create a NS called rook-ceph and install both the rook-ceph as well as the rook-ceph-cluster helm charts, note the order of operation is rook-ceph, then rook-ceph-cluster
 
+##### Sample values.yaml file
 
+````
+operatorNamespace: rook-ceph
+
+cephClusterSpec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v18.2.1
+  
+  # Dashboard must be at the same indentation level as cephVersion
+  dashboard:
+    enabled: true
+    ssl: false
+
+  placement:
+    all:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: storage-node
+                  operator: In
+                  values:
+                    - "true"
+
+  storage:
+    useAllNodes: true
+    useAllDevices: true
+
+````
 
 #### Once you've installed both helm charts
 
