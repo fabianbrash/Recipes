@@ -85,7 +85,9 @@ spec:
         nvidia.com/mig-3g.40gb: "1"
 ````
 
-### Note in the above we've set the mig mode as 'mixed', while in the below we've set it as 'single' these are little gotchas
+### Note in the above we've set the mig mode as 'mixed', while in the below we've set it as 'single'
+
+### NOTE THE RESOURCE AND LIMIT SECTIONS AND HOW THEY ARE DEFINED, THESE ARE THE LITTLE GOTCHAS
 
 ````
 apiVersion: v1
