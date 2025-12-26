@@ -87,7 +87,7 @@ spec:
 
 ### Note in the above we've set the mig mode as 'mixed', while in the below we've set it as 'single'
 
-### NOTE THE RESOURCE AND LIMIT SECTIONS AND HOW THEY ARE DEFINED, THESE ARE THE LITTLE GOTCHAS
+#### NOTE THE RESOURCE AND LIMIT SECTIONS AND HOW THEY ARE DEFINED, THESE ARE THE LITTLE GOTCHAS
 
 ````
 apiVersion: v1
