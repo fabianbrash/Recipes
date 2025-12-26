@@ -59,6 +59,8 @@ spec:
         nvidia.com/mig-1g.10gb: 1
 ````
 
+### Note in the above we've set the mig mnode as 'mixed', while in the below we've set it as 'single' these are little gotchas
+
 ````
 apiVersion: v1
 kind: Pod
