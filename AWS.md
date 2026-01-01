@@ -267,4 +267,4 @@ aws ec2 describe-images \
 2. you have to build the full-chain yourself, all you have to do though is just add your certificate to the top of a new full-chain file, i.e. create a new file copy in there full-chain contents and then add your cert at the top
 
 
-##### This site was uses such a certificate https://harbor.fbclouddemo.us/
+##### This site uses such a certificate https://harbor.fbclouddemo.us/
