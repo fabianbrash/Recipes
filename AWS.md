@@ -263,7 +263,7 @@ aws ec2 describe-images \
 
 ##### AWS CM now allows you to export certificates so you can use them with non-aws apps.  Below are some gotchas
 
-1. private key is encrypted so you need to use openssl to decrypt
+1. private key is encrypted so you need to use openssl to decrypt - openssl rsa -in private_key.key -out private_key.decrypt.key
 2. you have to build the full-chain yourself, all you have to do though is just add your certificate to the top of a new full-chain file, i.e. create a new file copy in there full-chain contents and then add your cert at the top
 
 
