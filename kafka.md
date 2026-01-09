@@ -1,7 +1,7 @@
 ```KAFKA stuff here```
 
 
-#### I am using vector for my agent in my k8s cluster
+#### I am using vector for my agent in my k8s cluster, fluentbit is also an option
 
 [Vector Helm Instructions](https://vector.dev/docs/setup/installation/package-managers/helm/)
 
