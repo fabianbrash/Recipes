@@ -3,6 +3,8 @@
 
 #### I am using vector for my agent in my k8s cluster
 
+[Vector Helm Instructions](https://vector.dev/docs/setup/installation/package-managers/helm/)
+
 
 
 ```values.yaml```
@@ -101,5 +103,22 @@ type: Opaque
 data:
   # The password must be Base64 encoded
   password: QVZOU19mUjA1b1YyQnRsallJV051445456gtdgfd
+
+````
+
+
+#### Once the vector is installed and running we can access our topic with a pod like below
+
+
+````
+
+kubectl --kubeconfig=mks-1-ztka-config.yaml run kafka-consumer -it --image=edenhill/kcat:1.7.1 --rm -- \
+  kcat -b db-kafka-nyc3-88382-do-user-139256-0.j.db.ondigitalocean.com:25073 \
+  -X security.protocol=SASL_SSL \
+  -X sasl.mechanisms=SCRAM-SHA-256 \
+  -X sasl.username='admin' \
+  -X sasl.password=${KAFKA_PASSWORD} \
+  -X enable.ssl.certificate.verification=false \
+  -t k8s-logs -C -o beginning
 
 ````
