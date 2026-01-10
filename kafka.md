@@ -135,6 +135,11 @@ kubectl --kubeconfig=mks-1-ztka-config.yaml run kafka-consumer -it --image=edenh
 [https://www.instaclustr.com/blog/how-to-use-ui-for-apache-kafka-with-instaclustr-for-apache-kafka-part-2/](https://www.instaclustr.com/blog/how-to-use-ui-for-apache-kafka-with-instaclustr-for-apache-kafka-part-2/)
 
 
+````
+docker run -it -p 8080:8080 -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
+
+````
+
 #### The above example uses KAFKA running in AWS so I had to tweak it a bit for DO, DO uses SASL/SCRAM 256 and SASL/SSL not SASL/PlAINTEXT and you need to download the CA bundle from the DO UI and run the below command to create a truststore
 
 
