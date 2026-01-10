@@ -138,6 +138,10 @@ kubectl --kubeconfig=mks-1-ztka-config.yaml run kafka-consumer -it --image=edenh
 ````
 docker run -it -p 8080:8080 -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
 
+or
+
+docker run -d -p 8080:8080 -e DYNAMIC_CONFIG_ENABLED=true provectuslabs/kafka-ui
+
 ````
 
 #### The above example uses KAFKA running in AWS so I had to tweak it a bit for DO, DO uses SASL/SCRAM 256 and SASL/SSL not SASL/PlAINTEXT and you need to download the CA bundle from the DO UI and run the below command to create a truststore
