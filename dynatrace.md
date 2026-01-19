@@ -109,3 +109,8 @@ kubectl rollout restart deployment --all -n <your-app-namespace>
 Troubleshoot the Operator: kubectl exec -n dynatrace deployment/dynatrace-operator -- dynatrace-operator troubleshoot
 
 View Operator Logs: kubectl logs -n dynatrace -l app.kubernetes.io/name=dynatrace-operator
+
+````
+
+kubectl get dks -A
+````
