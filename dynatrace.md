@@ -11,7 +11,7 @@ This guide provides a comprehensive walkthrough for installing the Dynatrace Ope
 ## 🛠️ Step 1: Create the Kubernetes Secret
 Store your tokens securely in the cluster. This secret will be referenced by the DynaKube resource later.
 
-```bash
+````
 # Create the namespace
 kubectl create namespace dynatrace
 
@@ -19,6 +19,8 @@ kubectl create namespace dynatrace
 kubectl -n dynatrace create secret generic dynakube-tokens \
   --from-literal="apiToken=dt0c01.YOUR_OPERATOR_TOKEN" \
   --from-literal="dataIngestToken=dt0c01.YOUR_DATA_INGEST_TOKEN"
+````
+
 
 📦 Step 2: Install the Dynatrace Operator (Helm)
 The Operator is the controller that manages the lifecycle of the monitoring agents.
