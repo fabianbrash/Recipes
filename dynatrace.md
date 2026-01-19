@@ -27,7 +27,7 @@ The Operator is the controller that manages the lifecycle of the monitoring agen
 
 ````
 # Add the Dynatrace Helm repository
-helm repo add dynatrace [https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/main/config/helm/repos/stable](https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/main/config/helm/repos/stable)
+helm repo add dynatrace https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/main/config/helm/repos/stable
 helm repo update
 
 # Install the Operator
@@ -44,17 +44,17 @@ The DynaKube is the Custom Resource (CR) that tells the Operator how to monitor 
 Save the following content as dynakube.yaml and apply it:
 
 ````
-apiVersion: [dynatrace.com/v1beta5](https://dynatrace.com/v1beta5)
+apiVersion: dynatrace.com/v1beta5
 kind: DynaKube
 metadata:
   name: dynakube
   namespace: dynatrace
   annotations:
     # Automatically connects your K8s API to Dynatrace
-    [feature.dynatrace.com/automatic-kubernetes-api-monitoring](https://feature.dynatrace.com/automatic-kubernetes-api-monitoring): "true"
+    feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
 spec:
   # Connection Settings
-  apiUrl: "[https://oje58834.live.dynatrace.com/api](https://oje58834.live.dynatrace.com/api)"
+  apiUrl: "https://oje58834.live.dynatrace.com/api"
   tokens: "dynakube-tokens"
   
   # Skip TLS verification (useful for proxies/private CAs)
