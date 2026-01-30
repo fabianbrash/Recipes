@@ -62,3 +62,70 @@ virsh list
 virsh console 1
 virsh list --all
 ````
+
+#### You might have to do some work on your interfaces
+
+
+```Ubuntu 24.04```
+
+#### Bring up an interface even if you will not configure an IP on it.
+
+
+````
+sudo ip link set ens192 up  ## TEMPORARY
+
+````
+
+````
+sudo nano /etc/netplan/01-netcfg.yaml
+
+OR
+
+sudo nano /etc/netplan/50-cloud-init.yaml
+
+````
+
+````
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: true
+    ens192:
+      dhcp4: no
+      dhcp6: no
+      # This tells the system to bring the link up 
+      # even without an IP configuration.
+
+````
+
+#### My config
+
+
+````
+network:
+  version: 2
+  ethernets:
+    ens192:
+      dhcp4: true
+    ens160:
+      addresses:
+      - "192.168.99.17/24"
+      nameservers:
+        addresses:
+        - 192.168.99.100
+        search:
+        - fbclouddemo.us
+      routes:
+      - to: "default"
+        via: "192.168.99.1"
+
+````
+
+````
+sudo netplan try
+
+sudo netplan apply
+````
+
