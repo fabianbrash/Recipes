@@ -52,3 +52,13 @@ sudo ip link delete vlan31
 sudo ip link delete vlan41
 
 ````
+
+
+```useful virsh command```
+
+
+````
+virsh list
+virsh console 1
+virsh list --all
+````
