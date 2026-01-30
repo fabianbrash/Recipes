@@ -1027,6 +1027,10 @@ sudo ip link set ens192 up  ## TEMPORARY
 ````
 sudo nano /etc/netplan/01-netcfg.yaml
 
+OR
+
+sudo nano /etc/netplan/50-cloud-init.yaml
+
 ````
 
 ````
