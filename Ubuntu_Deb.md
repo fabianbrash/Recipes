@@ -1011,3 +1011,40 @@ tail -f ./cluster.log   ## you can do this from another terminal session
 ````
 
 ##### The above command could take up to 30 minutes, but I want to walk away and do something else without having to babysit the console
+
+
+
+```Ubuntu 24.04```
+
+#### Bring up an interface even if you will not configure an IP on it.
+
+
+````
+sudo ip link set ens192 up  ## TEMPORARY
+
+````
+
+````
+sudo nano /etc/netplan/01-netcfg.yaml
+
+````
+
+````
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: true
+    ens192:
+      dhcp4: no
+      dhcp6: no
+      # This tells the system to bring the link up 
+      # even without an IP configuration.
+
+````
+
+
+````
+sudo netplan apply
+````
