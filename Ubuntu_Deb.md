@@ -1048,6 +1048,28 @@ network:
 
 ````
 
+#### My config
+
+
+````
+network:
+  version: 2
+  ethernets:
+    ens192:
+      dhcp4: true
+    ens160:
+      addresses:
+      - "192.168.99.17/24"
+      nameservers:
+        addresses:
+        - 192.168.99.100
+        search:
+        - fbclouddemo.us
+      routes:
+      - to: "default"
+        via: "192.168.99.1"
+
+````
 
 ````
 sudo netplan try
