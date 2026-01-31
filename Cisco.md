@@ -368,7 +368,7 @@ show ip route
 ````
 
 
-``show arp```
+```show arp```
 
 
 ````
