@@ -366,3 +366,11 @@ no ip route 10.1.1.0 255.255.255.0 192.168.50.11
 show ip route
 
 ````
+
+
+``show arp```
+
+
+````
+show arp
+````
