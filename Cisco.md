@@ -374,3 +374,12 @@ show ip route
 ````
 show arp
 ````
+
+
+```tftp backup```
+
+
+````
+
+copy running-config tftp:
+````
