@@ -383,3 +383,20 @@ show arp
 
 copy running-config tftp:
 ````
+
+#### tftp no longer works for me, so I had to use SCP
+
+
+````
+copy running-config scp://ubuntu@192.168.181.11/sw1-core-config.txt
+````
+
+### But you will probably receive an error if your switch is using an older version of ssh so you will have to edit /etc/ssh/ssh_config
+
+
+````
+# Legacy support for older Cisco Switches
+Ciphers +aes256-cbc,aes128-cbc,3des-cbc
+KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
+HostKeyAlgorithms +ssh-rsa
+````
