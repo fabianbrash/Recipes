@@ -159,3 +159,19 @@ chmod 600 ~/.ssh/id_rsa
 
 
 [https://stackoverflow.com/questions/9270734/ssh-permissions-are-too-open](https://stackoverflow.com/questions/9270734/ssh-permissions-are-too-open)
+
+
+```SSH agent Forwarding```
+
+````
+# Start the agent
+eval `ssh-agent -s`
+
+# Add your key (replace id_rsa with your specific key name if needed)
+ssh-add ~/.ssh/id_rsa
+
+ssh -A username@remote-server-ip  ## -A: Enables forwarding of the authentication agent connection.
+
+ssh-add -l ## verify its working do this in the remote machine
+````
+
