@@ -25,4 +25,8 @@
 ````
 ssh -D 1080 -N -f username@remote-server-ip
 
+OR
+
+ssh -p 5132 -D1100 <user_name>remote-server-ip ## simple way note here we're using port 5132 instead of 22
+
 ````
