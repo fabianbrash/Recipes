@@ -137,6 +137,30 @@ conf t
 vtp mode transparent
 ````
 
+
+```script to recreate a VLAN```
+
+
+````
+! 1. Create the new Layer 2 VLAN first
+vlan 1101
+ name VLAN1101
+ exit
+
+! 2. Remove the old Layer 3 Interface to free up the IP
+no interface vlan 101
+
+! 3. Create the new Layer 3 Interface
+interface vlan 1101
+ ip address 192.168.101.1 255.255.255.0
+ description Renamed from Vlan101
+ no shut
+ exit
+
+! 4. (Optional) Remove the old Layer 2 VLAN
+no vlan 101
+````
+
 #### Now lets place a port or ports into the VLAN
 
 ````
