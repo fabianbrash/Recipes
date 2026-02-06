@@ -115,6 +115,24 @@ vlan "vlan number"
 name Mgmt
 ````
 
+````
+conf t
+
+! 1. Create a new L2 VLAN
+vlan 1103
+name VLAN1103
+exit
+
+! 2. Create new L3 Interface
+interface vlan 1103
+ip address 172.16.103.1 255.255.255.0
+description VLAN 1103
+no shut
+exit
+write mem
+
+````
+
 #### Show information about a VLAN
 
 ````
