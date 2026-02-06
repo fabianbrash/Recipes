@@ -121,6 +121,22 @@ name Mgmt
 show run interface vlan 101
 ````
 
+```Extended VLAN issues```
+
+#### So it seems on older Cisco switches you can only create VLANs up to 1005 above that it's considered extended VLANs
+
+
+````
+show vtp status
+````
+
+#### You need to enable "Transparent" mode
+
+````
+conf t
+vtp mode transparent
+````
+
 #### Now lets place a port or ports into the VLAN
 
 ````
