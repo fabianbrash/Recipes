@@ -115,6 +115,11 @@ vlan "vlan number"
 name Mgmt
 ````
 
+#### Show information about a VLAN
+
+````
+show run interface vlan 101
+````
 
 #### Now lets place a port or ports into the VLAN
 
