@@ -161,6 +161,16 @@ interface vlan 1101
 no vlan 101
 ````
 
+#### Always remember to save your work
+
+
+````
+copy running-config startup-config
+copy run start
+write mem
+
+````
+
 #### Now lets place a port or ports into the VLAN
 
 ````
