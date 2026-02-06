@@ -171,6 +171,13 @@ write mem
 
 ````
 
+````
+show ip interface brief | include 1101
+
+show vlan id 1101
+
+````
+
 #### Now lets place a port or ports into the VLAN
 
 ````
@@ -193,6 +200,12 @@ switchport trunk native vlan 99
 #Did not work as expected with this command "switchport mode trunk encapsulation dot1q"
 
 ````
+
+````
+show interfaces trunk
+````
+
+
 ```SHOW VLAN INFORMATION ON A PORT```
 
 ````
