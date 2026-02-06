@@ -240,6 +240,8 @@ show run int gi1/0/13
 ````
 show interfaces trunk
 
+show interfaces TenGigabitEthernet1/0/1 trunk
+
 #ALSO
 show interfaces Gi1/0/13 trunk
 ````
