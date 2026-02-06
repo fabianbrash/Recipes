@@ -437,6 +437,14 @@ show ip route
 
 ````
 
+#### Remnove routes
+
+````
+
+conf t
+no ip route 172.16.0.0 255.255.0.0 192.168.51.2
+````
+
 
 ```show arp```
 
