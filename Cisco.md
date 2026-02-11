@@ -496,3 +496,17 @@ Ciphers +aes256-cbc,aes128-cbc,3des-cbc
 KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group14-sha1
 HostKeyAlgorithms +ssh-rsa
 ````
+
+
+
+```Filtering```
+
+
+````
+show arp | include 192.168.105.10
+
+show run | exclude certificate
+
+show running-config | include 192.168
+show ip interface brief | include down
+````
