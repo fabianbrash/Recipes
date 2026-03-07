@@ -305,27 +305,33 @@ aws ec2 describe-images \
 * Naming: Tagged as pod-network-west-2a/b for clarity.
 
 3. Route Table Configuration
-Action: Created a new Custom Route Table specifically for the Pod Subnets.
 
-Route: 0.0.0.0/0 -> NAT Gateway (Targeting the NAT GW in the 172.16 public subnet).
+* Action: Created a new Custom Route Table specifically for the Pod Subnets.
 
-Association: Explicitly associated the two 100.64 subnets with this route table.
+* Route: 0.0.0.0/0 -> NAT Gateway (Targeting the NAT GW in the 172.16 public subnet).
 
-Result: Fixed the "Context Deadline Exceeded" error by allowing pods to reach the EKS Control Plane and the Internet.
+* Association: Explicitly associated the two 100.64 subnets with this route table.
+
+* Result: Fixed the "Context Deadline Exceeded" error by allowing pods to reach the EKS Control Plane and the Internet.
 
 4. Security Group Identification
-Action: Located the EKS Cluster Shared Security Group (created by Rafay).
 
-Purpose: This ID is required for the ENIConfig manifest to ensure pods on the new network interfaces can communicate with the rest of the cluster.
+* Action: Located the EKS Cluster Shared Security Group (created by Rafay).
+
+* Purpose: This ID is required for the ENIConfig manifest to ensure pods on the new network interfaces can communicate with the rest of the cluster.
+
+
 
 🛠️ Summary of the Logic
-Worker Nodes: Boot in the 172.16.x.x subnets (standard routing).
 
-Pods: Automatically receive IPs from the 100.64.x.x subnets.
+* Worker Nodes: Boot in the 172.16.x.x subnets (standard routing).
 
-The Bridge: The ENIConfig (deployed via Rafay) tells the AWS CNI which 100.64 subnet to use based on the node's Availability Zone.
+* Pods: Automatically receive IPs from the 100.64.x.x subnets.
+
+* The Bridge: The ENIConfig (deployed via Rafay) tells the AWS CNI which 100.64 subnet to use based on the node's Availability Zone.
 
 Verification Command
+
 Run this to confirm the IP separation:
 
 ````
