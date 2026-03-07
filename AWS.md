@@ -306,19 +306,19 @@ aws ec2 describe-images \
 
 3. Route Table Configuration
 
-* Action: Created a new Custom Route Table specifically for the Pod Subnets.
+    * Action: Created a new Custom Route Table specifically for the Pod Subnets.
 
-* Route: 0.0.0.0/0 -> NAT Gateway (Targeting the NAT GW in the 172.16 public subnet).
+    * Route: 0.0.0.0/0 -> NAT Gateway (Targeting the NAT GW in the 172.16 public subnet).
 
-* Association: Explicitly associated the two 100.64 subnets with this route table.
+    * Association: Explicitly associated the two 100.64 subnets with this route table.
 
-* Result: Fixed the "Context Deadline Exceeded" error by allowing pods to reach the EKS Control Plane and the Internet.
+    * Result: Fixed the "Context Deadline Exceeded" error by allowing pods to reach the EKS Control Plane and the Internet.
 
 4. Security Group Identification
 
-* Action: Located the EKS Cluster Shared Security Group (created by Rafay).
+    * Action: Located the EKS Cluster Shared Security Group (created by Rafay).
 
-* Purpose: This ID is required for the ENIConfig manifest to ensure pods on the new network interfaces can communicate with the rest of the cluster.
+    * Purpose: This ID is required for the ENIConfig manifest to ensure pods on the new network interfaces can communicate with the rest of the cluster.
 
 
 
