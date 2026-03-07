@@ -285,9 +285,10 @@ aws ec2 describe-images \
 🚀 EKS Custom Networking: IP Expansion (100.64.0.0/16)
 
 1. VPC CIDR Association
-    Action: Added a secondary IPv4 CIDR block to the existing VPC.
 
-    Range: 100.64.0.0/16 (RFC 6598 / CG-NAT space).
+    * Action: Added a secondary IPv4 CIDR block to the existing VPC.
+
+    * Range: 100.64.0.0/16 (RFC 6598 / CG-NAT space).
 
 Purpose: Provides 65,536 private IP addresses that do not conflict with the primary 172.16.0.0/16 corporate range.
 
