@@ -289,19 +289,20 @@ aws ec2 describe-images \
     * Action: Added a secondary IPv4 CIDR block to the existing VPC.
 
     * Range: 100.64.0.0/16 (RFC 6598 / CG-NAT space).
-
-Purpose: Provides 65,536 private IP addresses that do not conflict with the primary 172.16.0.0/16 corporate range.
+    
+    * Purpose: Provides 65,536 private IP addresses that do not conflict with the primary 172.16.0.0/16 corporate range.
 
 2. Subnet Creation (Pod-Specific)
-Action: Created dedicated "Pod Subnets" within the new 100.64 range.
+ 
+* Action: Created dedicated "Pod Subnets" within the new 100.64 range.
 
-Configuration:
+* Configuration:
 
-Subnet A: 100.64.0.0/20 in us-west-2a (~4,000 IPs).
+    * Subnet A: 100.64.0.0/20 in us-west-2a (~4,000 IPs).
 
-Subnet B: 100.64.16.0/20 in us-west-2b (~4,000 IPs).
+    * Subnet B: 100.64.16.0/20 in us-west-2b (~4,000 IPs).
 
-Naming: Tagged as pod-network-west-2a/b for clarity.
+* Naming: Tagged as pod-network-west-2a/b for clarity.
 
 3. Route Table Configuration
 Action: Created a new Custom Route Table specifically for the Pod Subnets.
