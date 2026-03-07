@@ -328,3 +328,55 @@ Run this to confirm the IP separation:
 ````
 kubectl get pods -o wide --all-namespaces | grep 100.64
 ````
+
+#### Then we need to apply the below YAML to the cluster.
+
+
+```ENICONFIG```
+
+````
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+  name: us-west-2a  # Match your AZ exactly
+spec:
+  subnet: subnet-039067e66666541f1 # Your 100.64.0.0/20 subnet ID
+  #securityGroups: 
+    #- sg-xxxxxxxxxxxxxxxxx # Your Cluster SG
+---
+apiVersion: crd.k8s.amazonaws.com/v1alpha1
+kind: ENIConfig
+metadata:
+  name: us-west-2b
+spec:
+  subnet: subnet-06aeba76767409a754 # Your 100.64.16.0/20 subnet ID
+  #securityGroups:
+    #- sg-xxxxxxxxxxxxxxxxx
+````
+
+#### You can deploy the above in any NS
+
+
+```AWS CNI Config```
+
+
+````
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: aws-node
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: aws-node
+          env:
+            - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+              value: "true"
+            - name: ENI_CONFIG_LABEL_DEF
+              value: "topology.kubernetes.io/zone"
+
+````
+
+#### Apply the above to kube-system
