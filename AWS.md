@@ -268,3 +268,63 @@ aws ec2 describe-images \
 
 
 ##### This site uses such a certificate https://harbor.fbclouddemo.us/
+
+
+```EKS```
+
+
+#### Carrier grade networking
+
+[https://datatracker.ietf.org/doc/html/rfc6598](https://datatracker.ietf.org/doc/html/rfc6598)
+
+[https://docs.aws.amazon.com/eks/latest/best-practices/custom-networking.html](https://docs.aws.amazon.com/eks/latest/best-practices/custom-networking.html)
+
+[https://docs.aws.amazon.com/eks/latest/userguide/pod-id-association.html](https://docs.aws.amazon.com/eks/latest/userguide/pod-id-association.html)
+
+
+🚀 EKS Custom Networking: IP Expansion (100.64.0.0/16)
+1. VPC CIDR Association
+Action: Added a secondary IPv4 CIDR block to the existing VPC.
+
+Range: 100.64.0.0/16 (RFC 6598 / CG-NAT space).
+
+Purpose: Provides 65,536 private IP addresses that do not conflict with the primary 172.16.0.0/16 corporate range.
+
+2. Subnet Creation (Pod-Specific)
+Action: Created dedicated "Pod Subnets" within the new 100.64 range.
+
+Configuration:
+
+Subnet A: 100.64.0.0/20 in us-west-2a (~4,000 IPs).
+
+Subnet B: 100.64.16.0/20 in us-west-2b (~4,000 IPs).
+
+Naming: Tagged as pod-network-west-2a/b for clarity.
+
+3. Route Table Configuration
+Action: Created a new Custom Route Table specifically for the Pod Subnets.
+
+Route: 0.0.0.0/0 -> NAT Gateway (Targeting the NAT GW in the 172.16 public subnet).
+
+Association: Explicitly associated the two 100.64 subnets with this route table.
+
+Result: Fixed the "Context Deadline Exceeded" error by allowing pods to reach the EKS Control Plane and the Internet.
+
+4. Security Group Identification
+Action: Located the EKS Cluster Shared Security Group (created by Rafay).
+
+Purpose: This ID is required for the ENIConfig manifest to ensure pods on the new network interfaces can communicate with the rest of the cluster.
+
+🛠️ Summary of the Logic
+Worker Nodes: Boot in the 172.16.x.x subnets (standard routing).
+
+Pods: Automatically receive IPs from the 100.64.x.x subnets.
+
+The Bridge: The ENIConfig (deployed via Rafay) tells the AWS CNI which 100.64 subnet to use based on the node's Availability Zone.
+
+Verification Command
+Run this to confirm the IP separation:
+
+````
+kubectl get pods -o wide --all-namespaces | grep 100.64
+````
