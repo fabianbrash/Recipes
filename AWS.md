@@ -388,4 +388,34 @@ spec:
 
 ````
 
+#### Ran into an issue with the above where a Race condition occurs and pods can still pull IPs from 172.x the below is supposed to resolve this
+
+````
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: aws-node
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+        - name: aws-node
+          env:
+            # --- Existing Config ---
+            - name: AWS_VPC_K8S_CNI_CUSTOM_NETWORK_CFG
+              value: "true"
+            - name: ENI_CONFIG_LABEL_DEF
+              value: "topology.kubernetes.io/zone"
+            
+            # --- New "Strict Mode" Config ---
+            - name: ENABLE_PREFIX_DELEGATION
+              value: "true"  # Required for high pod density on t3.2xlarge
+            - name: WARM_PREFIX_TARGET
+              value: "1"     # Keeps 16 IPs in 100.64 pre-allocated at all times
+            - name: MINIMUM_IP_TARGET
+              value: "20"    # Tells the CNI to always keep at least 20 IPs ready
+
+````
+
 #### Apply the above to kube-system
