@@ -115,19 +115,27 @@ esxcli software vib list | grep ams
 chkconfig hp-ams.sh on && /etc/init.d/hp-ams.sh start
 ````
 
-############Restart Management Agents######################################
+```Restart Management Agents```
+
+````
 /etc/init.d/hostd restart
 
 /etc/init.d/vpxa restart
+````
 
 
+```Enable CDP```
 
-########Enable CDP###############################################################################################
+````
 esxcfg vswitch b vSwitch1
 esxcfg vswitch B both vSwitch1
 esxcfg vswitch b vSwitch1
+````
 
-##################STORAGE CONFIG COMMANDS######################################################################
+
+```STORAGE CONFIG COMMANDS```
+
+````
 ##List all NFS Datastores
 esxcli storage nfs list
 /etc/init.d/storageRM stop
@@ -141,33 +149,47 @@ esxcli storage filesystem list
 
 ##unmount vmfs filesystem
 esxcli storage filesystem unmount -u or -l or -p
+````
 
-##If you get a failure filesystem is busy check to see where your esxi host is keeping it's scratch
-###under advanced setting for the host look for this key ScratchConfig.ConfiguredScratchLocation
 
-#####################VAAI CONFIG##################################################################################
+#### If you get a failure filesystem is busy check to see where your esxi host is keeping it's scratch under advanced setting for the host look for this key ScratchConfig.ConfiguredScratchLocation
+
+```VAAI CONFIG```
+
+````
 esxcli storage core device vaai status get
 esxtop select 'u' for devices
+````
 
-#########################UPDATE ESXI HOST SSH##################################################################
+
+```UPDATE ESXI HOST SSH```
+
+````
 vim-cmd hostsvc/maintenace_mode_enter
 esxcli software vib update -d "pathto .zip_offlinebundle e.g./vmfs/"(You might have to use -f or --force)
 vim-cmd hostsvc/maintenance_mode_exit
 reboot
+````
 
 
+### Get all VM ID's
 
-###Get all VM ID's
+````
 vim-cmd vmsvc/getall
 ###Then if you like you can use the VM ID's to launch the VMRC
 cd to the location of the VMRC installation
 vmrc.exe vmrc://root@yourhostorvc/?moid='vmid'
+````
+
+```CREATING CUSTOM IMAGES WITH POERCLI```
 
 
-#########################CREATING CUSTOM IMAGES WITH POERCLI##############################################
-##You need the offline bundle to start with
-####Also download your drivers and unzip so you just have your dirver offline bundle
-##Get all available Profiles
+#### You need the offline bundle to start with Also download your drivers and unzip so you just have your dirver offline bundle
+
+
+```Get all available Profiles```
+
+````
 Get-EsxImageProfile
 ##ADD a depot
 Add-EsxSoftwareDepot -DepotURL C:\location\vmware-esxi6.5-depot.zip
@@ -185,8 +207,12 @@ Add-EsxSoftwarePackage -ImageProfile MyProfile -SoftwarePackage 'packageName'
 Get-EsxSoftwarePackage
 #####Now let's export our ISO You can also export to an offline-bundle .zip file################
 Export-EsxImageprofile -ImageProfile MyProfile -Filepath C:\images\MyProfile.iso -ExportToIso -Force -NoSignatureCheck
+````
 
-################ALTERNATIVE METHOD#################################################
+
+```ALTERNATIVE METHOD```
+
+````
 Add-EsxSoftwareDepot -DepotUrl C:\depot\Esxi-6.0.zip
 Add-EsxSoftwareDepot -DepotUrl C:\depot\vibs\fusion-io.zip
 Get-EsxSoftwareDepot
@@ -200,8 +226,12 @@ Remove-EsxSoftwarePackage
 (Get-EsxImageProfile "MyProfile").viblist
 Add-EsxSoftwarePackage
 Export-EsxImageProfile -ImageProfile "MyProfile" -ExportToIso(or ExportToBundle) -FilePath C:\vmware\ISO\MyProfile.iso -Force -NoSignatureCheck
+````
 
-######################################WHAT WORKED FOR ME#################################################
+
+```WHAT WORKED FOR ME```
+
+````
 Get-EsxImageProfile
 Add-EsxSoftwareDepot -DepotUrl C:\VMware\esxi-depot.zip
 Get-EsxImageProfile
@@ -222,27 +252,37 @@ SoftwarePackage[0]: scsi-iomemory-vsl
 (Get-EsxImageProfile "MyProfile").viblist
 Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile.iso -ExportToIso -Force -noSignatureCheck
 Export-EsxImageProfile -ImageProfile "MyProfile" -Filepath C:\VMware\MyProfile-offline-bundle.zip -ExportToBundle -Force -noSignatureCheck
+````
 
-################SET SAN POLICY WINDOWS VM's#####################################################
+
+```SET SAN POLICY WINDOWS VM's```
+
+````
 ##Launch admin command prompt
 diskpart
 san
 san policy=OnlineAll
 exit
-
-###Options san policy=OnlineAll | OfflineAll | OfflineShared
-
+````
 
 
-#################VIB INSTALL, LIST, UPDATE, DELETE################################
+### Options san policy=OnlineAll | OfflineAll | OfflineShared
 
+
+
+```VIB INSTALL, LIST, UPDATE, DELETE```
+
+````
 esxcli software vib install -v /path/to/vib/intel.vib
 esxcli software vib install -d /path/to/zip/intel.zip
 esxli sofware vib update -d /path/to/zip/intel.zip
 esxcli software vib remove --vibname=name (get from esxcli software vib list or esxcli software vib list | grep intel)
+````
 
 
-######################VCSA/PSC CLI installation###################################################################
+```VCSA/PSC CLI installation```
+
+````
 cd D: (or wherever your DVD is mounted)
 cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 .\vcsa-deploy.exe install --no-esx-ssl-verify --accept-eula --acknowledge-ceip C:\path\to\json\file\PSC_first_instance_on_ESXi.json
@@ -256,17 +296,22 @@ cd vcsa-cli-installer\win32 (or if you are on Linux or MAC go to the folder)
 .\vcsa-deploy install --template-help
 .\vcsa-deploy upgrade --template-help
 .\vcsa-deploy migrate --template-help
+````
 
-##REF: https://www.vgemba.net/vmware/VCSA-CLI-Install/ 
-##REF: https://www.altaro.com/vmware/vcenter-server-appliance-6-5-u1-linux/
-##REF: https://docs.vmware.com/en/VMware-vSphere/6.7/vsphere-vcenter-server-67-installation-guide.pdf  
+[https://www.vgemba.net/vmware/VCSA-CLI-Install/](https://www.vgemba.net/vmware/VCSA-CLI-Install/)
 
-########################LIST ALL SERVICES##################################
+[https://www.altaro.com/vmware/vcenter-server-appliance-6-5-u1-linux/](https://www.altaro.com/vmware/vcenter-server-appliance-6-5-u1-linux/)
+
+[https://docs.vmware.com/en/VMware-vSphere/6.7/vsphere-vcenter-server-67-installation-guide.pdf](https://docs.vmware.com/en/VMware-vSphere/6.7/vsphere-vcenter-server-67-installation-guide.pdf) 
+
+```LIST ALL SERVICES```
+
+````
 chkconfig --list
 
 #########Also useful
 chkconfig -io
-
+````
 
 ##############CHANGE IN ESXI 6.5#################################
 ##Please note in order to see services restart you will need to run an additional command
