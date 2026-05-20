@@ -16,7 +16,7 @@ docker build -f docker/Dockerfile.cpu \
   .
 ````
 
-##### Note the command arg --build-arg max_jobs=8 can scale to your CPU.
+##### Note the command arg --build-arg max_jobs=8 can scale with your # of CPUs.
 
 #### Then we can push this into a registry, I have a pre-built CPU image here.
 
