@@ -13,7 +13,7 @@ git clone https://github.com/vllm-project/vllm.git
 cd vllm
 
 docker build -f docker/Dockerfile.cpu \
-  --tag vllm-cpu:v0.19.0 \  # this version will change as per what git clone above
+  --tag vllm-cpu:v0.19.0 \  # this version will change as per what you git clone above
   --target vllm-openai \
   --shm-size=4g \
   --build-arg max_jobs=8 \
