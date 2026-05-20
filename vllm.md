@@ -44,7 +44,7 @@ kubectl get nodes -o json | grep -o 'avx512[^ ",]*' | sort -u
 ````
 # Environment variables
 VLLM_TARGET_DEVICE=cpu
-VLLM_CPU_KVCACHE_SPACE=5 # scale with actaul memory
+VLLM_CPU_KVCACHE_SPACE=5 # scale with actual memory
 VLLM_CPU_OMP_THREADS_BIND=0-4 # scale with actual CPUs
 
 # Serve command
