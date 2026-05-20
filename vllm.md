@@ -38,7 +38,7 @@ kubectl get nodes -o json | grep -o 'avx512[^ ",]*' | sort -u
 
 ````
 
-#### And we cam run it like this
+#### And we can run it like this
 
 
 ````
