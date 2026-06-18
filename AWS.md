@@ -237,7 +237,7 @@ aws eks describe-addon-versions | jq -r ".addons[] | .addonVersions[] | .compati
 
 ````
 
-kubectl patch storageclass gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}
+kubectl patch storageclass gold -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ````
 
 ```AWS CLI commands```
