@@ -25,7 +25,7 @@ helm install dynamo-platform dynamo-platform-$RELEASE_VERSION.tgz \
 
 
 ````
-nvcr.io/nvidia/ai-dynamo/vllm-runtime:1.1.1
+nvcr.io/nvidia/ai-dynamo/vllm-runtime:1.1.1 ## runtime image
 
 registry.dev.rafay-edge.net/tf/dynamo-frontend:1.3.0-tool-fix   ## fixed for tool calling
 
