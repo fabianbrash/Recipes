@@ -8,7 +8,7 @@
 
 
 ````
-sudo apt install -y fio
+sudo apt install -y fio  ## Ubuntu, Debian
 ````
 
 ### Mixed Random Workload 3 reads for 1 write closely mimicking a DB
