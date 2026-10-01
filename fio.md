@@ -48,3 +48,20 @@ fio --name=fsync --rw=write --ioengine=sync --fdatasync=1 \
     --size=200m --bs=2300 --runtime=30 --time_based | grep -E "IOPS=|sync \(|99.00th|99.50th"
 cd .. && rm -rf fio-test
 ````
+
+### comprehensive test 2
+
+````
+mkdir -p fio-test && cd fio-test
+
+echo "=== fsync latency (etcd/MySQL pattern) ==="
+fio --name=fsync --rw=write --ioengine=sync --fdatasync=1 \
+    --size=200m --bs=2300 --runtime=30 --time_based | grep -E "IOPS=|sync \(usec\)|99.00th|99.50th"
+
+echo "=== random 4k write ==="
+fio --name=randw --rw=randwrite --bs=4k --size=1g --ioengine=libaio \
+    --iodepth=32 --direct=1 --runtime=30 --time_based | grep -E "IOPS="
+
+cd .. && rm -rf fio-test
+
+````
