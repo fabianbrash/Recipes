@@ -3,6 +3,14 @@
 ```FIO examples```
 
 
+
+```Install```
+
+
+````
+sudo apt install -y fio
+````
+
 ### Mixed Random Workload 3 reads for 1 write closely mimicking a DB
 
 ````
